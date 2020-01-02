@@ -1,6 +1,7 @@
 const withOffline = require('next-offline');
+const withCSS = require('@zeit/next-css')
 
-module.exports = withOffline({
+module.exports = withCSS(withOffline({
     target: "serverless",
     transformManifest: manifest => ['/'].concat(manifest), // add the homepage to the cache
   // Trying to set NODE_ENV=production when running yarn dev causes a build-time error so we
@@ -25,4 +26,4 @@ module.exports = withOffline({
       },
     ],
   },
-});
+}));
