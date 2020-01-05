@@ -3,6 +3,7 @@ import { Menu } from 'antd';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { resolve } from 'styled-jsx/css';
+import { COLORS } from "../../style/colors";
 
 interface MenuItem {
     name: string;
@@ -35,7 +36,7 @@ const items: MenuItem[] = [{
 const { className, styles } = resolve`
     .ant-menu {
         text-align: center;
-        background: #0a1c3f;
+        background: ${COLORS.PRIMARY};
     }
 
     .ant-menu :global(.ant-menu-submenu), 
@@ -48,7 +49,7 @@ const { className, styles } = resolve`
 
     .ant-menu-horizontal > .ant-menu-item-selected,
     .ant-menu-horizontal > .ant-menu-item:hover {
-        border-bottom: 3px solid #E9D811;
+        border-bottom: 3px solid ${COLORS.SECONDARY};
     }
 
     .ant-menu-item a {
