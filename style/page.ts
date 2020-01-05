@@ -23,4 +23,9 @@ export const pageWrapper = css`
         background-size: cover;
         mask-image: linear-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, 0));
     } 
+
+    .pageContent {
+        background: #FFF;
+        box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.5);
+    }
 `;
