@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useMemo, useEffect } from "react";
 import { Row, Col } from "antd";
 import Title from "antd/lib/typography/Title";
 import Paragraph from "antd/lib/typography/Paragraph";
@@ -6,7 +6,13 @@ import {resolve} from 'styled-jsx/css';
 import classnames from 'classnames';
 import Header from "../Header";
 import Divider from "../Divider";
+import { useSelector, useDispatch } from "react-redux";
+import { articlesSelector } from "../../store/selectors/Articles";
+import { loadArticles } from "../../store/Article";
+import { loadAvailableArticles } from "../../store/Ui";
+import { availableArticlesSelector } from "../../store/selectors/Ui";
 
+//#region <styles>
 const {className, styles} = resolve`
     .lastNewsEntries {
         padding: 10px 20px;
@@ -27,8 +33,27 @@ const {className, styles} = resolve`
         line-height: 200%;
     }
 `;
+//#endregion
 
 export default function LastNewsEntries(): ReactElement {
+    const dispatch = useDispatch();
+    const loadedArticles = useSelector(articlesSelector) || {};
+    const articleIds = useSelector(availableArticlesSelector);
+     
+    useEffect(() => {
+        dispatch(loadAvailableArticles());
+    }, []);
+
+    useEffect(() => {
+        if(articleIds.length && Object.keys(loadedArticles).length === 0) {
+            dispatch(loadArticles(articleIds.slice(0, 4)))
+        }
+    }, [loadedArticles, articleIds])
+
+    const articles = useMemo(() => Object.values(loadedArticles).sort(({created: a}, {created: b}) => b - a).slice(0, 4), [loadedArticles]);
+
+    console.log(articles);
+
     return <div className={classnames(className, 'lastNewsEntries')}>
         <Header title={'Neuigkeiten'} />
         <Row type={'flex'} align={'middle'}>
