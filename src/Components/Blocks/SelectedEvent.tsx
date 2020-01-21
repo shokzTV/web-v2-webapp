@@ -3,12 +3,14 @@ import { Row, Col } from "antd";
 import {resolve} from 'styled-jsx/css';
 import classNames from 'classnames';
 import Title from "antd/lib/typography/Title";
-import { COLORS } from "../../../style/colors";
+import { COLORS } from "../../../src/style/colors";
 import Paragraph from "antd/lib/typography/Paragraph";
 
 const {className, styles} = resolve`
     .eventRow {
         padding: 20px 0;
+        max-height: 184px;
+        overflow: hidden;
     }
 
     .definitionHeader {

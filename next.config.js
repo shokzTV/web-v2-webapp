@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const withOffline = require('next-offline');
 const withCSS = require('@zeit/next-css')
 
@@ -25,5 +27,9 @@ module.exports = withCSS(withOffline({
         },
       },
     ],
+  },
+
+  env: {
+    API_URL: process.env.API_URL
   },
 }));

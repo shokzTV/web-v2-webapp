@@ -1,8 +1,8 @@
 import { ReactElement } from "react";
-import Navigation from "../Common/Navigation";
-import SelectedEvent from "../Common/Blocks/SelectedEvent";
+import Navigation from "../../Components/Navigation";
+import SelectedEvent from "../../Components/Blocks/SelectedEvent";
 import { pageWrapper } from "../../style/page";
-import LastNewsEntries from "../Common/Blocks/LastNewsEntries";
+import LastNewsEntries from "../../Components/Blocks/LastNewsEntries";
 
 export default function Page(): ReactElement {
     return <>
