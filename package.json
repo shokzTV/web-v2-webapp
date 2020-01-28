@@ -24,6 +24,7 @@
     "asmcrypto-lite": "^1.1.0",
     "classnames": "^2.2.6",
     "dotenv": "^8.2.0",
+    "html-to-react": "^1.4.2",
     "is-plain-object": "^3.0.0",
     "lodash": "^4.17.15",
     "next": "9.1.6",
