@@ -11,6 +11,8 @@ import { articlesSelector } from "../../store/selectors/Articles";
 import { loadArticles } from "../../store/Article";
 import { loadAvailableArticles } from "../../store/Ui";
 import { availableArticlesSelector } from "../../store/selectors/Ui";
+import {Parser} from 'html-to-react'; 
+import { Skeleton } from 'antd';
 
 //#region <styles>
 const {className, styles} = resolve`
@@ -32,6 +34,31 @@ const {className, styles} = resolve`
     .content {
         line-height: 200%;
     }
+
+    .imageSkeleton {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: block;
+    }
+    .imageSkeleton :global(.ant-skeleton-content) {
+        height: 100%;
+        display: block;
+    }
+
+    .imageSkeleton :global(.ant-skeleton-paragraph) {
+        height: 100%;
+        margin: 0;
+    }
+    .imageSkeleton :global(li) {
+        height: 100%;
+    }
+
+    .imageTitle :global(li) {
+        height: 18px;
+    }
 `;
 //#endregion
 
@@ -51,28 +78,53 @@ export default function LastNewsEntries(): ReactElement {
     }, [loadedArticles, articleIds])
 
     const articles = useMemo(() => Object.values(loadedArticles).sort(({created: a}, {created: b}) => b - a).slice(0, 4), [loadedArticles]);
+    const featuredArticle = articles.length > 0 && articles[0];
+    const lastArticleRow = articles.length > 0 ? articles.slice(-3) : [];
 
-    console.log(articles);
+    const featuredArticleBody = useMemo(() => {
+        return featuredArticle ? (new Parser()).parse(featuredArticle.body) : '';
+    }, [featuredArticle]);
 
     return <div className={classnames(className, 'lastNewsEntries')}>
         <Header title={'Neuigkeiten'} />
         <Row type={'flex'} align={'middle'}>
             <Col sm={11} xs={24}>
                 <div className={classnames(className, 'imageWrapper')}>
-                <img className={className} src={'https://scontent-dus1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/p750x750/68726135_1018222015176085_351927752071998467_n.jpg?_nc_ht=scontent-dus1-1.cdninstagram.com&_nc_cat=101&_nc_ohc=BfpRxZK1xSgAX_QNoHd&oh=47031fb3582ed5d81d33ab01a827b56a&oe=5EACCB26'} />
+                    {featuredArticle && <img className={className} src={`${process.env.API_URL}${featuredArticle.cover}`} />}
+                    {!featuredArticle && <Skeleton className={classnames(className, 'imageSkeleton')} active={true} title={false} paragraph={{ rows: 1, width: '100%' }} />}
                 </div>
             </Col>
             <Col offset={1} sm={12} xs={24}>
-                <Title level={3}>Der Skyr Turm droht umzukippen!</Title>
+                 <>
+                    <Title level={3}>
+                        {featuredArticle ? featuredArticle.title : <Skeleton active={true} title={{width: '100%'}} paragraph={false} />}
+                    </Title>
 
-                <Paragraph ellipsis={{rows: 5}} className={classnames(className, 'content')}>
-                    Doggo ipsum very taste wow borkf fat boi long doggo doing me a frighten noodle horse smol what a nice floof puggorino, you are doin me a concern such treat blep you are doing me the shock shooberino much ruin diet. Puggorino you are doing me the shock what a nice floof aqua doggo the neighborhood pupper shooberino, you are doing me the shock mlem pupperino bork. Long woofer pupperino mlem heckin angery woofer doge, waggy wags pats. Borkf vvv clouds heckin good boys and girls floofs, ruff length boy extremely cuuuuuute. snoot much ruin diet. Porgo blop doggorino doge the neighborhood pupper wrinkler, ruff aqua doggo ruff tungg lotsa pats, what a nice floof heckin good boys and girls aqua doggo shooberino. Heckin angery woofer smol pupper doggo, mlem.
-                    Puggorino ur givin me a spook you are doin me a concern boofers ruff, stop it fren long water shoob. sub woofer yapper. Snoot very hand that feed shibe very taste wow very jealous pupper adorable doggo stop it fren, puggorino aqua doggo mlem such treat, stop it fren pupper yapper pats. Sub woofer shooberino woofer extremely cuuuuuute mlem, I am bekom fat pupperino. Such treat very jealous pupper length boy, smol. blep woofer doing me a frighten. Length boy long water shoob he made many woofs much ruin diet borkf doge, puggo doge waggy wags. Borking doggo wrinkler very jealous pupper puggorino heckin angery woofer borking doggo, long bois waggy wags much ruin diet stop it fren, sub woofer much ruin diet the neighborhood pupper heckin good boys. long woofer lotsa pats. Blop aqua doggo heckin good boys and girls big ol super chub long bois tungg, dat tungg tho big ol pupper fluffer heckin angery woofer.
-                </Paragraph>
+                    <Paragraph ellipsis={{rows: 5}} className={classnames(className, 'content')}>
+                        {featuredArticleBody ? <div>{featuredArticleBody}</div> : <Skeleton active={true} title={false} paragraph={{rows: 5, width: '100%'}} />}
+                    </Paragraph>
+                </>
             </Col>
         </Row>
 
         <Divider />
+
+        <Row type={'flex'} justify={'space-around'}>
+            {lastArticleRow.map(({id, title, cover}) => <Col key={id} sm={7} xs={12}>
+                <Title level={4} ellipsis={{rows: 2}}>{title}</Title>
+                <div className={classnames(className, 'imageWrapper')}>
+                    <img className={className} src={`${process.env.API_URL}${cover}`} />
+                </div>
+            </Col>)}
+            {lastArticleRow.length === 0 && [1, 2, 3].map((article) => <Col key={article} sm={7} xs={12}>
+                <Skeleton active={true} title={false} paragraph={{rows: 2, width: '100%'}} className={classnames(className, 'imageTitle')} />
+
+                <div className={classnames(className, 'imageWrapper')}>
+                    <Skeleton className={classnames(className, 'imageSkeleton')} active={true} title={false} paragraph={{ rows: 1, width: '100%' }} />
+                </div>
+            </Col>)}
+        </Row>
+
         {styles}
     </div>;
 }
