@@ -15,5 +15,13 @@
         "src": "next.config.js",
         "use": "@now/next"
       }
-    ]
+    ],
+    "build": {
+      "env": {
+          "API_URL": "@staging-url"
+      }
+    },
+    "env": {
+        "API_URL": "@staging-url"
+    }
   }
