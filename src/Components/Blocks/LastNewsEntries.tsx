@@ -4,11 +4,11 @@ import Title from "antd/lib/typography/Title";
 import Paragraph from "antd/lib/typography/Paragraph";
 import {resolve} from 'styled-jsx/css';
 import classnames from 'classnames';
-import Header from "../Header";
-import Divider from "../Divider";
+import Header from "./../Header";
+import Divider from "./../Divider";
 import {Parser} from 'html-to-react'; 
 import { Skeleton } from 'antd';
-import { useArticleList } from "../../hooks/articlesListt";
+import { useArticleList } from "./../../hooks/articlesListt";
 
 //#region <styles>
 const {className, styles} = resolve`

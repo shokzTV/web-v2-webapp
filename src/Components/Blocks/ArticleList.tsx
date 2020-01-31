@@ -1,14 +1,14 @@
 import React, { ReactElement, useState, useMemo } from "react";
-import Header from "../Header";
+import Header from "./../Header";
 import { useSelector } from "react-redux";
-import { availableArticlesSelector } from "../../store/selectors/Ui";
+import { availableArticlesSelector } from "./../../store/selectors/Ui";
 import { Pagination, Row, Col, Skeleton } from "antd";
-import { useArticleList } from "../../hooks/articlesListt";
+import { useArticleList } from "./../../hooks/articlesListt";
 import classNames from "classnames";
 import { resolve } from "styled-jsx/css";
 import Paragraph from "antd/lib/typography/Paragraph";
 import Title from "antd/lib/typography/Title";
-import Divider from "../Divider";
+import Divider from "./../Divider";
 import {Parser} from 'html-to-react'; 
 
 //#region <styles>
