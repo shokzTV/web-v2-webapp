@@ -1,9 +1,9 @@
-import { Article } from "./../store/entities/Article";
+import { Article } from "../store/entities/Article";
 import { useDispatch, useSelector } from "react-redux";
-import { loadAvailableArticles } from "./../store/Ui";
-import { loadArticles } from "./../store/Article";
-import { articlesSelector } from "./../store/selectors/Articles";
-import { availableArticlesSelector } from "./../store/selectors/Ui";
+import { loadAvailableArticles } from "../store/Ui";
+import { loadArticles } from "../store/Article";
+import { articlesSelector } from "../store/selectors/Articles";
+import { availableArticlesSelector } from "../store/selectors/Ui";
 import { useMemo } from "react";
 
 

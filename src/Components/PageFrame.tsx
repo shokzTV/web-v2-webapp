@@ -1,6 +1,6 @@
 import React, { ReactElement, ReactNode } from 'react';
 import Navigation from './Navigation';
-import { pageWrapper } from "./../style/page";
+import { pageWrapper } from "../style/page";
 import SelectedEvent from "./blocks/SelectedEvent";
 import Head from "next/head";
 
