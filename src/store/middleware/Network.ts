@@ -1,10 +1,9 @@
 import { RequestOptions } from "./NetworkMiddlewareTypes";
+import fetch from 'isomorphic-unfetch';
 
 export function getDefaultHeader(): object {
-    const jwt = localStorage.getItem('jwt');
     return {
-        'Content-Type': 'application/json',
-        ...(jwt ? {'Authorization': `JWT ${jwt}`} : {})
+        'Content-Type': 'application/json'
     };
 }
 

@@ -1,4 +1,4 @@
-import { ReactElement, useMemo, useEffect } from "react";
+import { ReactElement, useMemo } from "react";
 import { Row, Col } from "antd";
 import Title from "antd/lib/typography/Title";
 import Paragraph from "antd/lib/typography/Paragraph";
@@ -6,13 +6,9 @@ import {resolve} from 'styled-jsx/css';
 import classnames from 'classnames';
 import Header from "../Header";
 import Divider from "../Divider";
-import { useSelector, useDispatch } from "react-redux";
-import { articlesSelector } from "../../store/selectors/Articles";
-import { loadArticles } from "../../store/Article";
-import { loadAvailableArticles } from "../../store/Ui";
-import { availableArticlesSelector } from "../../store/selectors/Ui";
 import {Parser} from 'html-to-react'; 
 import { Skeleton } from 'antd';
+import { useArticleList } from "../../hooks/articlesListt";
 
 //#region <styles>
 const {className, styles} = resolve`
@@ -63,21 +59,7 @@ const {className, styles} = resolve`
 //#endregion
 
 export default function LastNewsEntries(): ReactElement {
-    const dispatch = useDispatch();
-    const loadedArticles = useSelector(articlesSelector) || {};
-    const articleIds = useSelector(availableArticlesSelector);
-     
-    useEffect(() => {
-        dispatch(loadAvailableArticles());
-    }, []);
-
-    useEffect(() => {
-        if(articleIds.length && Object.keys(loadedArticles).length === 0) {
-            dispatch(loadArticles(articleIds.slice(0, 4)))
-        }
-    }, [loadedArticles, articleIds])
-
-    const articles = useMemo(() => Object.values(loadedArticles).sort(({created: a}, {created: b}) => b - a).slice(0, 4), [loadedArticles]);
+    const articles = useArticleList();
     const featuredArticle = articles.length > 0 && articles[0];
     const lastArticleRow = articles.length > 0 ? articles.slice(-3) : [];
 
