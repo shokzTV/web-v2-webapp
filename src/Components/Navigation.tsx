@@ -3,7 +3,7 @@ import { Menu } from 'antd';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { resolve } from 'styled-jsx/css';
-import { COLORS } from "../../src/style/colors";
+import { COLORS } from "../style/colors";
 
 interface MenuItem {
     name: string;
@@ -15,7 +15,7 @@ const items: MenuItem[] = [{
     path: '/'
 }, {
     name: 'Artikel',
-    path: '/articel'
+    path: '/articles'
 }, {
     name: 'Events',
     path: '/events'

@@ -1,6 +1,11 @@
 import React, { ReactElement } from 'react'
-import Page from './Home/Page';
+import PageFrame from '../components/PageFrame';
+import LastNewsEntries from '../components/blocks/LastNewsEntries';
 
-export default function Home(): ReactElement {
-  return <Page />;
+export default function index(): ReactElement {
+  return <>
+    <PageFrame showSelectedEvent={true}>
+      <LastNewsEntries />
+    </PageFrame>
+  </>;
 }

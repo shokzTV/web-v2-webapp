@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { COLORS } from '../../src/style/colors';
+import { COLORS } from '../style/colors';
 
 export default function Header({title}): ReactElement {
     return <div className={'header'}>

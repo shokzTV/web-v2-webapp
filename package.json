@@ -17,6 +17,7 @@
     "@types/redux": "^3.6.0",
     "@types/redux-devtools-extension": "^2.13.2",
     "@types/redux-thunk": "^2.1.0",
+    "@types/reselect": "^2.2.0",
     "@types/styled-jsx": "^2.2.8",
     "@zeit/next-css": "^1.0.1",
     "add": "^2.0.6",
@@ -26,6 +27,7 @@
     "dotenv": "^8.2.0",
     "html-to-react": "^1.4.2",
     "is-plain-object": "^3.0.0",
+    "isomorphic-unfetch": "^3.0.0",
     "lodash": "^4.17.15",
     "next": "9.1.6",
     "next-offline": "^4.0.6",
@@ -37,6 +39,7 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
     "styled-jsx": "^3.2.4",
     "yarn": "^1.21.1"
   },
