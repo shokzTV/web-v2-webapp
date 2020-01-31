@@ -3,7 +3,7 @@ import { Row, Col } from "antd";
 import {resolve} from 'styled-jsx/css';
 import classNames from 'classnames';
 import Title from "antd/lib/typography/Title";
-import { COLORS } from "./../../style/colors";
+import { COLORS } from "../../style/colors";
 
 const {className, styles} = resolve`
     .eventRow {
