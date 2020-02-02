@@ -5,7 +5,6 @@ import { schema } from "normalizr";
 import { author } from './Author';
 import { tag } from './Tag';
 import { LOAD_ARTICLES_REQUEST, LOAD_ARTICLES_SUCCESS, LOAD_ARTICLES_FAILURE } from './Actions';
-import { articlesSelector } from "./selectors/Articles";
 import { loadedArticlesSelector } from "./selectors/Ui";
 
 export const article = new schema.Entity('article', {

@@ -2,11 +2,14 @@ import { State } from "./Store";
 import { createReducer } from "./reducer/Reducer";
 import { ActionDispatcher, CALL_API } from "./middleware/NetworkMiddlewareTypes";
 import { availableArticlesSelector } from "./selectors/Ui";
-import { LOAD_ARTICLE_IDS_REQUEST, LOAD_ARTICLE_IDS_SUCCESS, LOAD_ARTICLE_IDS_FAILURE, LOAD_ARTICLES_SUCCESS } from "./Actions";
+import { LOAD_ARTICLE_IDS_REQUEST, LOAD_ARTICLE_IDS_SUCCESS, LOAD_ARTICLE_IDS_FAILURE, LOAD_ARTICLES_SUCCESS, LOAD_TAGS_SUCCESS } from "./Actions";
 
 interface LoadArticleIdsSuccess {
     type: typeof LOAD_ARTICLE_IDS_SUCCESS;
     response: number[];
+}
+interface LoadedAllTagsSuccess {
+    type: typeof LOAD_TAGS_SUCCESS;
 }
 interface LoadArticleSuccess {
     type: typeof LOAD_ARTICLES_SUCCESS;
@@ -20,6 +23,7 @@ interface LoadArticleSuccess {
 const initial: State['ui'] = {
     articles: [],
     loadedArticles: [],
+    loadedAllTags: false,
 };
 
 const {addReducer, combinedReducer} = createReducer<State['ui']>(initial);
@@ -33,6 +37,12 @@ addReducer<LoadArticleSuccess>(LOAD_ARTICLES_SUCCESS, (state, {options: {urlPara
     return {
         ...state,
         loadedArticles: state.loadedArticles.concat(ids),
+    };
+});
+addReducer<LoadedAllTagsSuccess>(LOAD_TAGS_SUCCESS, (state) => {
+    return {
+        ...state,
+        loadedAllTags: true,
     };
 });
 export const uiReducer = combinedReducer;

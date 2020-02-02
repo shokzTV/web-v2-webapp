@@ -19,6 +19,7 @@ export interface State {
     ui: {
         articles: number[];
         loadedArticles: number[];
+        loadedAllTags: boolean;
     }
 }
 

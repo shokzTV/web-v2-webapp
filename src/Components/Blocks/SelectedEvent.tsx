@@ -5,17 +5,22 @@ import classNames from 'classnames';
 import Title from "antd/lib/typography/Title";
 import { COLORS } from "../../style/colors";
 
+//#region <styles>
 const {className, styles} = resolve`
     .eventRow {
         margin-bottom: 20px;
-        max-height: 184px;
+        height: 200px;
         overflow: hidden;
         padding-top: 20px;
+        background-image: url('/images/event.jpg');
+        background-size: cover;
     }
 
     .eventRowInner {
         max-width: 1024px;
         margin: 0 auto;
+        height: 100%;
+        padding-bottom: 20px;
     }
 
     .eventTitle {
@@ -52,6 +57,7 @@ const {className, styles} = resolve`
         align-items: center;
     }
 `;
+//#endregion
 
 export default function SelectedEvent(): ReactElement {
     return <div className={classNames(className, 'eventRow')}>
