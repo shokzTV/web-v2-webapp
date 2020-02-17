@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
-import PageFrame from '../components/PageFrame';
-import LastNewsEntries from '../components/blocks/LastNewsEntries';
+import PageFrame from '../Components/PageFrame';
+import LastNewsEntries from '../Components/blocks/LastNewsEntries';
 
 export default function index(): ReactElement {
   return <>
