@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import PageFrame from '../Components/PageFrame';
-import ArticleList from '../Components/blocks/ArticleList';
-import RecentArticleTags from '../Components/blocks/RecentArticleTags';
+import ArticleList from '../Components/Blocks/ArticleList';
+import RecentArticleTags from '../Components/Blocks/RecentArticleTags';
 
 export default function Home(): ReactElement {
   return <PageFrame>
