@@ -18,6 +18,11 @@ export const mainEventSelector = createSelector(
     }
 )
 
+export const featuredEventsSelector = createSelector(
+    eventEntitiesSelector,
+    (events) => Object.values(events).filter(({isFeatured}) => isFeatured).sort(({start: a}, {start: b}) => a - b)
+)
+
 export const organizerEventLogoSelector = createSelector(
     eventEntitiesSelector,
     organizerEntitiesSelector,

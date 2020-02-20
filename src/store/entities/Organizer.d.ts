@@ -2,7 +2,7 @@ export interface Organizer {
     id: number;
     name: string;
     description: string;
-    icon: string;
+    logo_small: string;
     logo: string;
     events: number;
 }
