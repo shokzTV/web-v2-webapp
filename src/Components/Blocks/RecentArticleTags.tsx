@@ -31,7 +31,6 @@ const {styles, className} = resolve`
         right: 0;
         background-color: rgba(0,0,0,.7);
         padding: 8px 10px;
-
     }
 
     .title {
@@ -58,8 +57,8 @@ export default function RecentArticleTags(): ReactElement {
     return <div>
         <Header title={'Artikelkategorien'}/>
 
-        <Row type={'flex'} align={'middle'} justify={'space-between'}>
-            {recentTags.map((tag) => <Col key={tag.id} sm={11} xs={24}>
+        <Row type={'flex'} align={'middle'} justify={'space-between'} gutter={[20, 20]}>
+            {recentTags.map((tag) => <Col key={tag.id} sm={12} xs={24}>
                 <div className={classNames(className, 'recentTags')}>
                     <img src={`${process.env.API_URL}${tag.image}`} alt={`tag-${tag.name}`} />
                     <div className={classNames(className, 'tagDescription')}>
@@ -71,6 +70,7 @@ export default function RecentArticleTags(): ReactElement {
                 </div>
             </Col>)}
         </Row>
+        
         {styles}
     </div>;
 }

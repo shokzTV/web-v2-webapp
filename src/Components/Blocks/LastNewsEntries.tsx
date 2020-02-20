@@ -8,7 +8,7 @@ import Header from "../Header";
 import Divider from "../Divider";
 import {Parser} from 'html-to-react'; 
 import { Skeleton } from 'antd';
-import { useArticleList } from "../../hooks/articlesListt";
+import { useArticleList } from "../../hooks/articlesList";
 
 //#region <styles>
 const {className, styles} = resolve`
