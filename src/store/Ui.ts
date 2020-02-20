@@ -77,6 +77,7 @@ const initial: State['ui'] = {
     loadedArticles: [],
     loadedAllTags: false,
     loadedFeaturedEvent: false,
+    loadedLatestNews: false,
     loadedMainEvent: false,
     loadedEvents: [],
     loadedVideos: [],

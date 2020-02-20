@@ -20,17 +20,8 @@ const items: MenuItem[] = [{
     name: 'Events',
     path: '/events'
 }, {
-    name: 'Special event',
+    name: 'Videos',
     path: '/specialEvents'
-}, {
-    name: 'Dota 2 lernen',
-    path: '/learn-dota'
-}, {
-    name: 'Shop',
-    path: '/shop'
-}, {
-    name: 'VOD',
-    path: '/vod'
 }];
 
 const { className, styles } = resolve`
