@@ -10,7 +10,7 @@ interface MenuItem {
     path: string;
 }
 
-const items: MenuItem[] = [{
+const items: MenuItem[] = [{
     name: 'Startseite',
     path: '/'
 }, {
