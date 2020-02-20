@@ -1,9 +1,13 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useMemo } from "react";
 import { Row, Col } from "antd";
 import {resolve} from 'styled-jsx/css';
 import classNames from 'classnames';
 import Title from "antd/lib/typography/Title";
 import { COLORS } from "../../style/colors";
+import { useDispatch, useSelector } from "react-redux";
+import { loadMainEvent } from "../../store/Event";
+import { mainEventSelector, organizerEventLogoSelector } from "../../store/selectors/Event";
+import { getImageUrl } from "../../hooks/image";
 
 //#region <styles>
 const {className, styles} = resolve`
@@ -60,19 +64,33 @@ const {className, styles} = resolve`
 //#endregion
 
 export default function SelectedEvent(): ReactElement {
+    const dispatch = useDispatch();
+    const mainEvent = useSelector(mainEventSelector);
+    const organizerLogoSelector = useSelector(organizerEventLogoSelector);
+
+    useEffect(() => {
+        dispatch(loadMainEvent());
+    }, []);
+
+    const logoUrl = useMemo(() => {
+        if(mainEvent) {
+            return organizerLogoSelector(mainEvent.id);
+        }
+        return null;
+    }, [mainEvent]);
+
     return <div className={classNames(className, 'eventRow')}>
         <Row type={"flex"} align={"middle"} className={classNames(className, 'eventRowInner')}>
             <Col xs={24} sm={6}>
                 <Row type={"flex"} align={"middle"} justify={"center"} className={classNames(className, 'evnetLogo')}>
-                    <img src="https://pro.eslgaming.com/deutschland/wp-content/uploads/2019/02/ESL-Meisterschaft-New.png" height={100}></img>
+                    <img src={logoUrl ? getImageUrl(logoUrl) : ''} height={160}></img>
                 </Row>
             </Col>
             <Col xs={24} sm={18} className={classNames(className, 'detailsCol')}>
                 <Row type={'flex'} justify={'space-around'}>
                     <Col>
                         <div className={'nameContainer'}>
-                            <Title level={2} type={'secondary'} className={classNames(className, 'eventTitle')}>ESL One Cologne</Title>
-
+                            <Title level={2} type={'secondary'} className={classNames(className, 'eventTitle')}>{mainEvent ? mainEvent.name : ''}</Title>
                             <Row type={'flex'} justify={'space-around'}>
                                 <a className={classNames(className, 'eventLink')}>Eventüberblick</a>
                                 <a className={classNames(className, 'eventLink')}>Neuigkeiten zum Event</a>

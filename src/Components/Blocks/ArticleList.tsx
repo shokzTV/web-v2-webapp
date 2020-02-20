@@ -3,7 +3,7 @@ import Header from "../Header";
 import { useSelector } from "react-redux";
 import { availableArticlesSelector } from "../../store/selectors/Ui";
 import { Pagination, Row, Col, Skeleton } from "antd";
-import { useArticleList } from "../../hooks/articlesListt";
+import { useArticleList } from "../../hooks/articlesList";
 import classNames from "classnames";
 import { resolve } from "styled-jsx/css";
 import Paragraph from "antd/lib/typography/Paragraph";
