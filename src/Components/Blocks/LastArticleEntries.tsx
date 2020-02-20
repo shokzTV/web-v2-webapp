@@ -55,7 +55,7 @@ const {className, styles} = resolve`
 `;
 //#endregion
 
-export default function LastNewsEntries(): ReactElement {
+export default function LastArticleEntries(): ReactElement {
     const articles = useArticleList();
     const featuredArticle = articles.length > 0 && articles[0];
     const lastArticleRow = articles.length > 0 ? articles.slice(-3) : [];
@@ -64,8 +64,8 @@ export default function LastNewsEntries(): ReactElement {
         return featuredArticle ? (new Parser()).parse(featuredArticle.body) : '';
     }, [featuredArticle]);
 
-    return <div className={classnames(className, 'lastNewsEntries')}>
-        <Header title={'Neuigkeiten'} />
+    return <div className={classnames(className, 'LastArticleEntries')}>
+        <Header title={'Neue Artikel'} link={'Alle Artikel anzeigen'} />
         <Row type={'flex'} align={'middle'}>
             <Col sm={11} xs={24}>
                 <div className={classnames(className, 'imageWrapper')}>

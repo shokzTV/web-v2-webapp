@@ -17,11 +17,12 @@ function EventRow({event}: {event: Event}): ReactElement {
     const startDate = dayjs.unix(event.start);
     const endDate = dayjs.unix(event.end);
     const isRunning = dayjs().isBefore(endDate) && dayjs().isAfter(startDate);
+    const isPast = dayjs().isAfter(endDate);
     const date = startDate.isSame(endDate, 'day') 
         ? startDate.format('D MMMM') 
         : startDate.format('D') + '-' + endDate.format('D MMMM');
 
-    return <div className={classNames('eventRow', {isRunning})}>
+    return <div className={classNames('eventRow', {isRunning, isPast})}>
         <div className={'eventRowData'}>
             <img width={30} src={getImageUrl(organizerEntities[event.organizer]!.logo_small)} />
 
@@ -60,6 +61,10 @@ function EventRow({event}: {event: Event}): ReactElement {
 
             .isRunning {
                 color: ${COLORS.PRIMARY}
+            }
+
+            .isPast {
+                color: #BBB;
             }
         `}</style>
     </div>;

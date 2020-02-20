@@ -8,6 +8,7 @@ import {reducer as videoReducer} from './Video';
 import {reducer as eventReducer} from './Event';
 import {reducer as eventLinkReducer} from './EventLink';
 import {reducer as organizerReducer} from './Organizer';
+import {reducer as newsReducer} from './News';
 import { ArticleEntities } from "./entities/Article";
 import { AuthorEntities } from "./entities/Author";
 import { TagEntities } from "./entities/Tag";
@@ -15,6 +16,7 @@ import { uiReducer } from './Ui';
 import { EventEntities, EventLinkEntities } from "./entities/Event";
 import { VideoEntities } from "./entities/Video";
 import { OrganizerEntities } from "./entities/Organizer";
+import { NewsEntities } from "./entities/News";
 
 export interface State {
     entities: {
@@ -22,6 +24,7 @@ export interface State {
         author: AuthorEntities,
         event: EventEntities,
         eventLink: EventLinkEntities,
+        news: NewsEntities;
         organizer: OrganizerEntities,
         tag: TagEntities,
         video: VideoEntities,
@@ -34,6 +37,7 @@ export interface State {
         loadedAllTags: boolean;
         loadedEvents: number[];
         loadedFeaturedEvent: boolean;
+        loadedLatestNews: boolean;
         loadedMainEvent: boolean;
         loadedVideos: number[];
         videos: number[];
@@ -46,6 +50,7 @@ const entityReducer = combiner({
     event: entitiesReducer(eventReducer, 'event'),
     eventLink: entitiesReducer(eventLinkReducer, 'eventLink'),
     organizer: entitiesReducer(organizerReducer, 'organizer'),
+    news: entitiesReducer(newsReducer, 'news'),
     tag: entitiesReducer(tagReducer, 'tag'),
     video: entitiesReducer(videoReducer, 'video'),
 });
