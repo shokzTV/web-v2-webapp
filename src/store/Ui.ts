@@ -143,7 +143,7 @@ addReducer<LoadedMainEventSuccess>(LOAD_MAIN_EVENT_SUCCESS, (state, {response: {
 });
 
 addReducer<LoadedFeaturedEventSuccess>(LOAD_FEATURED_EVENTS_SUCCESS, (state, {response: {entities: {event}}}) => {
-    const eventIds = Object.keys(event).map(Number);
+    const eventIds = Object.keys(event || {}).map(Number);
     return {
         ...state,
         loadedFeaturedEvent: true,

@@ -12,9 +12,6 @@ import { useArticleList } from "../../hooks/articlesList";
 
 //#region <styles>
 const {className, styles} = resolve`
-    .lastNewsEntries {
-        padding: 10px 20px;
-    }
     .imageWrapper {
         position: relative;
         padding-bottom: 56.2%;

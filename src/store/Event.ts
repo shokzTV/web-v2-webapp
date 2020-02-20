@@ -68,7 +68,7 @@ export function loadFeaturedEvents(): ActionDispatcher<Promise<void>> {
         if(!loadedFeaturedEvents) {
             await dispatch<Promise<Response>>({
                 [CALL_API]: {
-                    endpoint: `${process.env.API_URL}/event/feature`,
+                    endpoint: `${process.env.API_URL}/event/featured`,
                     schema: [event],
                     types: {
                         requestType: LOAD_FEATURED_EVENTS_REQUEST,
