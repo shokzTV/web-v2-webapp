@@ -12,6 +12,7 @@ import classNames from "classnames";
 import { COLORS } from "../../style/colors";
 import ReactCountryFlag from "react-country-flag";
 
+
 function EventRow({event}: {event: Event}): ReactElement {
     const organizerEntities = useSelector(organizerEntitiesSelector);
     const startDate = dayjs.unix(event.start);
