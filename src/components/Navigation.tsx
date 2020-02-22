@@ -21,7 +21,7 @@ const items: MenuItem[] = [{
     path: '/events'
 }, {
     name: 'Videos',
-    path: '/specialEvents'
+    path: '/videos'
 }];
 
 const { className, styles } = resolve`
