@@ -4,6 +4,7 @@ import { loadedMainEventSelector } from './Ui';
 import { Event } from "../entities/Event";
 import { organizerEntitiesSelector } from "./Organizer";
 import memoize from 'lodash/memoize';
+import dayjs from "dayjs";
 
 export const eventEntitiesSelector = (state: State) => state.entities.event;
 
@@ -18,9 +19,30 @@ export const mainEventSelector = createSelector(
     }
 )
 
+function getPriority(start: number, end: number): number {
+    const currentTs = dayjs().unix();
+
+    if(currentTs > end) {
+        return 0;
+    } else if(currentTs < start) {
+        return 1;
+    } 
+
+    return 2;
+}
+
+function sort({start: aStart, end: aEnd}, {start: bStart, end: bEnd}): number {
+    return getPriority(bStart, bEnd) - getPriority(aStart, aEnd);
+}
+
+function featureFilter({isFeatured, end}) {
+    const threshold = dayjs().subtract(2, 'week').unix();
+    return isFeatured && end > threshold;
+}
+
 export const featuredEventsSelector = createSelector(
     eventEntitiesSelector,
-    (events) => Object.values(events).filter(({isFeatured}) => isFeatured).sort(({start: a}, {start: b}) => a - b)
+    (events) => Object.values(events).filter(featureFilter).sort(sort)
 )
 
 export const organizerEventLogoSelector = createSelector(

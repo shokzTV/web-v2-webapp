@@ -20,9 +20,8 @@ export default function LatestNewsList(): ReactElement {
 
         <div className={'divider'} />
 
-        {news.map((entry) => <div key={entry.id}>
-
-            {entry.source.length > 0 && <a className={'newsTitle'} href={entry.source} target={'_blank'}>
+        {news.map((entry, index) => <div key={entry.id}>
+            {entry.source.length > 0 && <a className={'newsTitle withIcon'} href={entry.source} target={'_blank'}>
                 <Icon type="link" style={{ fontSize: '20px' }}/>
                 <b>{entry.headline}</b>
             </a>}
@@ -34,6 +33,8 @@ export default function LatestNewsList(): ReactElement {
             {entry.description.length > 0 && <div>
                 {entry.description}
             </div>}
+
+            {index !== news.length - 1 && <Divider />}
         </div>)}
 
         {news.length === 0 && <>
@@ -54,7 +55,7 @@ export default function LatestNewsList(): ReactElement {
                 align-items: center;
             }
 
-            .newsTitle b {
+            .newsTitle.withIcon b {
                 margin-left: 10px;
             }
         `}</style>
