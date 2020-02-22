@@ -18,6 +18,7 @@ export interface Event {
     isFeatured: boolean;
     isMainEvent: boolean;
     organizerLogo: string;
+    tags: number[];
 }
 
 export interface EventLink {

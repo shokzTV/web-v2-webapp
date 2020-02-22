@@ -1,6 +1,6 @@
 import { State } from "../Store";
 import { createSelector } from "reselect";
-import { loadedMainEventSelector } from './Ui';
+import { loadedMainEventSelector, availableEventsSelector, loadedFeaturedEventSelector } from './Ui';
 import { Event } from "../entities/Event";
 import { organizerEntitiesSelector } from "./Organizer";
 import memoize from 'lodash/memoize';
@@ -43,6 +43,19 @@ function featureFilter({isFeatured, end}) {
 export const featuredEventsSelector = createSelector(
     eventEntitiesSelector,
     (events) => Object.values(events).filter(featureFilter).sort(sort)
+)
+
+export const pastEventIdsSelector = createSelector(
+    availableEventsSelector,
+    loadedFeaturedEventSelector,
+    eventEntitiesSelector,
+    (ids, loadedFeatured, events) => {
+        if(loadedFeatured) {
+            return ids.filter((id) => !events[id] || !events[id].isFeatured);
+        }
+
+        return ids;
+    }
 )
 
 export const organizerEventLogoSelector = createSelector(
