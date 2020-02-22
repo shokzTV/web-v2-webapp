@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import { usePastEventsList } from "../../hooks/pastEventsList";
 import Title from "antd/lib/typography/Title";
 import { useSelector } from "react-redux";
-import { featuredEventsSelector, pastEventIdsSelector } from "../../store/selectors/Event";
+import { pastEventIdsSelector } from "../../store/selectors/Event";
 import { getImageUrl } from "../../hooks/image";
 import { tagsEntitiesSelector } from "../../store/selectors/Tags";
 
