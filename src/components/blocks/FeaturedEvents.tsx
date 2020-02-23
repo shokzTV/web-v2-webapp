@@ -114,7 +114,7 @@ export default function FeaturedEvents(): ReactElement {
             const event = eventEntities[eventId];
             return <React.Fragment key={eventId}>
                 <EventRow event={event} />
-                {index !== eventIds.length - 1 && <Divider />}
+                {index !== events.length - 1 && <Divider />}
             </React.Fragment>
         })}
 
