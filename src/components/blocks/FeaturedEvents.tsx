@@ -5,18 +5,19 @@ import Header from "../Header";
 import { organizerEntitiesSelector } from "../../store/selectors/Organizer";
 import { getImageUrl } from "../../hooks/image";
 import { Event } from "../../store/entities/Event";
-import { featuredEventsSelector } from "../../store/selectors/Event";
+import { featuredEventsSelector, eventEntitiesSelector } from "../../store/selectors/Event";
 import { Divider, Skeleton } from "antd";
 import dayjs from "dayjs";
 import classNames from "classnames";
 import { COLORS } from "../../style/colors";
 import ReactCountryFlag from "react-country-flag";
+import LoadingImage from "./LoadingImage";
 
 
-function EventRow({event}: {event: Event}): ReactElement {
+function EventRow({event}: {event?: Event}): ReactElement {
     const organizerEntities = useSelector(organizerEntitiesSelector);
-    const startDate = dayjs.unix(event.start);
-    const endDate = dayjs.unix(event.end);
+    const startDate = dayjs.unix(event && event.start);
+    const endDate = dayjs.unix(event && event.end);
     const isRunning = dayjs().isBefore(endDate) && dayjs().isAfter(startDate);
     const isPast = dayjs().isAfter(endDate);
     const date = startDate.isSame(endDate, 'day') 
@@ -25,19 +26,26 @@ function EventRow({event}: {event: Event}): ReactElement {
 
     return <div className={classNames('eventRow', {isRunning, isPast})}>
         <div className={'eventRowData'}>
-            <img width={30} src={getImageUrl(organizerEntities[event.organizer]!.logo_small)} />
+            <div className={'icon'}>
+                <LoadingImage contains src={event && organizerEntities[event.organizer]!.logo_small} />
+            </div>
 
-            <div>
+            {event && <div>
                 {isRunning ? <b>{event.name}</b> : <>{event.name}</>}
                 <div>{date}</div>
-            </div>
+            </div>}
+
+            {!event && <Skeleton title={false} paragraph={{rows: 2, width: '100%'}} />}
         </div>
 
         <div className={'location'}>
-            <div>{event.location}</div>
-            <div className={'flag'}>
-                <ReactCountryFlag svg countryCode={event.country} />
-            </div>
+            {event && <>
+                <div>{event.location}</div>
+                <div className={'flag'}>
+                    <ReactCountryFlag svg countryCode={event.country} />
+                </div>
+            </>}
+            {!event && <Skeleton title={false} paragraph={{rows: 1, width: '100%'}} />}
         </div>
     
         <style jsx>{`
@@ -47,13 +55,29 @@ function EventRow({event}: {event: Event}): ReactElement {
                 justify-content: space-between;
             }
 
+            .eventRowData {
+                flex-grow: 1;
+            }
+
+            .eventRowData :global(ul) {
+                margin-bottom: 0;
+            }
+
+
+            .eventRowData :global(li + li) {
+                margin-top: 10px;
+            }
+
             .eventRowData, .location {
                 display: flex;
                 align-items: center;
             }
             
-            .eventRowData img {
+            .icon {
                 margin-right: 20px;
+                height: 40px;
+                position: relative;
+                min-width: 40px;
             }
 
             .flag {
@@ -71,40 +95,11 @@ function EventRow({event}: {event: Event}): ReactElement {
     </div>;
 }
 
-function EmptyEventRow(): ReactElement {
-    return <div className={classNames('eventRow')}>
-        <div className={'eventRowData'}>
-            <Skeleton active={true} title={false} avatar={true} paragraph={{rows: 2, width: '100%'}} />
-        </div>
-
-        <div className={'location'}>
-            <Skeleton active={true} title={false} paragraph={{rows: 1, width: '100%'}} />
-        </div>
-    
-        <style jsx>{`
-            .eventRow {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                font-size: 14px;
-            }
-            .eventRowData {
-                display: inline-flex;
-                align-items: center;
-                justify-content: flex-start;
-                flex-grow: 1;
-            }
-            .location {
-                width: 100px;
-                margin-left: 10px;
-            }
-        `}</style>
-    </div>;
-}
-
 export default function FeaturedEvents(): ReactElement {
     const dispatch = useDispatch();
-    const events = useSelector(featuredEventsSelector);
+    const eventIds = useSelector(featuredEventsSelector);
+    const eventEntities = useSelector(eventEntitiesSelector);
+    const events = eventIds.length > 0 ? eventIds : [...Array(4).keys()];
 
     useEffect(() => {
         dispatch(loadFeaturedEvents());
@@ -115,17 +110,13 @@ export default function FeaturedEvents(): ReactElement {
 
         <div className={'divider'} />
 
-        {events.map((event, index) => <React.Fragment key={event.id}>
-            <EventRow event={event} />
-            {index !== events.length - 1 && <Divider />}
-        </React.Fragment>)}
-
-        {events.length === 0 && <>
-            <EmptyEventRow />
-            <Divider />
-            <EmptyEventRow />
-            <Divider />
-        </>}
+        {events.map((eventId, index) => {
+            const event = eventEntities[eventId];
+            return <React.Fragment key={eventId}>
+                <EventRow event={event} />
+                {index !== eventIds.length - 1 && <Divider />}
+            </React.Fragment>
+        })}
 
         <style jsx>{`
             .divider {

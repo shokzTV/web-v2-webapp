@@ -1,13 +1,13 @@
 import { ReactElement, useEffect } from "react";
 import Header from "../Header";
-import { Row, Col } from "antd";
+import { Row, Col, Skeleton } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { featuredEventsSelector } from "../../store/selectors/Event";
+import { featuredEventsSelector, eventEntitiesSelector } from "../../store/selectors/Event";
 import { loadFeaturedEvents } from "../../store/Event";
 import { tagsEntitiesSelector } from "../../store/selectors/Tags";
-import { getImageUrl } from "../../hooks/image";
 import Title from "antd/lib/typography/Title";
 import dayjs from "dayjs";
+import LoadingImage from "./LoadingImage";
 
 function period(start: number, end: number): string {
     return `${dayjs.unix(start).format('DD')} - ${dayjs.unix(start).format('DD MMMM YYYY')}`;
@@ -16,8 +16,10 @@ function period(start: number, end: number): string {
 export default function UpcomingEvents(): ReactElement {
     const dispatch = useDispatch();
     const currentTs = dayjs().unix();
-    const events = useSelector(featuredEventsSelector);
+    const featured = useSelector(featuredEventsSelector);
     const tagEntities = useSelector(tagsEntitiesSelector);
+    const events = featured.length > 0 ? featured : [...Array(4).keys()];
+    const eventEntities = useSelector(eventEntitiesSelector);
 
     useEffect(() => {
         dispatch(loadFeaturedEvents());
@@ -27,21 +29,25 @@ export default function UpcomingEvents(): ReactElement {
         <Header title={'Events'}/>
 
         <Row type={'flex'} align={'middle'} justify={'space-between'} gutter={[40, 20]}>
-            {events.map((event) => {
-                const tagId = event.tags.find((tagId) => !!tagEntities[tagId].image);
-                const tag = tagEntities[tagId];
+            {events.map((eventId) => {
+                const event = eventEntities[eventId];
+                const tagId = event && event.tags.find((tagId) => !!tagEntities[tagId].image);
+                const tag = tagId && tagEntities[tagId];
             
-                return <Col key={event.id} sm={12} xs={24}>
+                return <Col key={eventId} sm={12} xs={24}>
                     <div className={'imageWrapper'}>
-                        <img className={'image'} src={getImageUrl(tag.image)} />
+                        <LoadingImage src={tag && tag.image} />
 
                         <div className={'eventInfo'}>
-                            <Title level={3}>{event.name}</Title>
-                            <div>
-                                {event.start > currentTs ? 'Demnächst' : (event.end < currentTs ? 'Abgeschlossen' : <span className={'active'}>Jetzt</span>)}:
-                                &nbsp;
-                                {period(event.start, event.end)}
-                            </div>
+                            {event && <>
+                                <Title level={3}>{event.name}</Title>
+                                <div>
+                                    {event.start > currentTs ? 'Demnächst' : (event.end < currentTs ? 'Abgeschlossen' : <span className={'active'}>Jetzt</span>)}:
+                                    &nbsp;
+                                    {period(event.start, event.end)}
+                                </div>
+                            </>}
+                            {!event && <Skeleton paragraph={{rows: 1}} />}
                         </div>
                     </div>
 
@@ -55,11 +61,6 @@ export default function UpcomingEvents(): ReactElement {
                 padding-bottom: 56.2%;
                 height: 0;
                 overflow: hidden; 
-            }
-
-            .image {
-                object-fit: cover;
-                width: 100%;
             }
             
             .eventInfo {

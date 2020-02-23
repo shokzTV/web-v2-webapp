@@ -12,6 +12,7 @@ import classNames from 'classnames';
 import {Parser} from 'html-to-react'; 
 import { authorsSelector } from '../../store/selectors/Authors';
 import { Article } from '../../store/entities/Article';
+import dayjs from 'dayjs';
 
 //#region <styles>
 const {className, styles} = resolve`
@@ -64,7 +65,7 @@ function AuthorInfo({article}: {article: Article | null}): ReactElement {
     const authors = useSelector(authorsSelector);
 
     if(!article) {
-        return <Skeleton avatar />
+        return <Skeleton avatar title paragraph={{rows: 2}}/>
     }
 
     const author = authors[article.author];
@@ -73,7 +74,8 @@ function AuthorInfo({article}: {article: Article | null}): ReactElement {
         <Avatar shape={'circle'} src={getImageUrl(author.avatar)} size={'large'}/>
         <div className={'name'}>
             <div>Autor: <a href={`https://www.twitch.tv/${author.name}`}>{author.name}</a></div>
-            <div>{author.title}</div>
+            {author.title.length > 0 && <div><i>author.title}</i></div>}
+            <div className={'publishInfo'}>veröffentlicht am {dayjs.unix(article.created).format('DD.MM.YYYY')}</div>
         </div>
 
         <style jsx>{`
