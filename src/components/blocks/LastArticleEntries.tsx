@@ -9,6 +9,7 @@ import Divider from "../Divider";
 import {Parser} from 'html-to-react'; 
 import { Skeleton } from 'antd';
 import { useArticleList } from "../../hooks/articlesList";
+import Link from "next/link";
 
 //#region <styles>
 const {className, styles} = resolve`
@@ -76,7 +77,9 @@ export default function LastArticleEntries(): ReactElement {
             <Col offset={1} sm={12} xs={24}>
                  <>
                     <Title level={3}>
-                        {featuredArticle ? featuredArticle.title : <Skeleton active={true} title={{width: '100%'}} paragraph={false} />}
+                        {featuredArticle 
+                        ? <Link key={`/article/${featuredArticle.id}`} href={`/article/${featuredArticle.id}`}>{featuredArticle.title}</Link>
+                        : <Skeleton active={true} title={{width: '100%'}} paragraph={false} />}
                     </Title>
 
                     <Paragraph ellipsis={{rows: 5}} className={classnames(className, 'content')}>
@@ -90,7 +93,9 @@ export default function LastArticleEntries(): ReactElement {
 
         <Row type={'flex'} justify={'space-around'}>
             {lastArticleRow.map(({id, title, cover}) => <Col key={id} sm={7} xs={12}>
-                <Title level={4} ellipsis={{rows: 2}}>{title}</Title>
+                <Title level={4} ellipsis={{rows: 2}}>
+                    <Link key={`/article/${id}`} href={`/article/${id}`}>{title}</Link>
+                </Title>
                 <div className={classnames(className, 'imageWrapper')}>
                     <img className={className} src={`${process.env.API_URL}${cover}`} />
                 </div>

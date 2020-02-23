@@ -12,6 +12,7 @@ import Divider from "../Divider";
 import {Parser} from 'html-to-react'; 
 import dayjs from 'dayjs';
 import {authorsSelector} from '../../store/selectors/Authors';
+import Link from "next/link";
 
 //#region <styles>
 const {className, styles} = resolve`
@@ -98,7 +99,7 @@ export default function ArticleList(): ReactElement {
                     <Col offset={1} sm={17} xs={24}>
                         <>
                             <Title level={3}>
-                                {article.title}
+                                <Link key={`/article/${article.id}`} href={`/article/${article.id}`}>{article.title}</Link>
                                 <div className={classNames(className, 'subTitle')}>veröffentlicht am {dayjs.unix(article.created).format('DD.MM.YYYY')} von {author.name}</div>
                             </Title>
 
