@@ -10,6 +10,10 @@ import {Parser} from 'html-to-react';
 import { Skeleton } from 'antd';
 import { useArticleList } from "../../hooks/articlesList";
 import Link from "next/link";
+import { motion } from 'framer-motion';
+import { articlesSelector } from "../../store/selectors/Articles";
+import { useSelector } from "react-redux";
+import LoadingImage from "./LoadingImage";
 
 //#region <styles>
 const {className, styles} = resolve`
@@ -18,64 +22,46 @@ const {className, styles} = resolve`
         padding-bottom: 56.2%;
     }
 
-    .imageWrapper img {
-        position: absolute;
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-    }
-
     .content {
         line-height: 200%;
     }
 
-    .imageSkeleton {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        display: block;
-    }
-    .imageSkeleton :global(.ant-skeleton-content) {
-        height: 100%;
-        display: block;
-    }
-
-    .imageSkeleton :global(.ant-skeleton-paragraph) {
-        height: 100%;
-        margin: 0;
-    }
-    .imageSkeleton :global(li) {
-        height: 100%;
+    .imageTitle :global(ul) {
+        padding-top: 6px;
+        margin-bottom: 4px;
     }
 
     .imageTitle :global(li) {
         height: 18px;
+        margin-left: 0;
+    }
+
+    .imageTitle :global(li + li) {
+        margin-top: 10px;
     }
 `;
 //#endregion
 
 export default function LastArticleEntries(): ReactElement {
-    const articles = useArticleList();
-    const featuredArticle = articles.length > 0 && articles[0];
-    const lastArticleRow = articles.length > 0 ? articles.slice(-3) : [];
+    const articleIds = useArticleList();
+    const articles = useSelector(articlesSelector);
+    const featuredArticle = articleIds.length > 0 && articles[articleIds[0]];
+    const lastArticleRow = articleIds.length > 0 ? articleIds.slice(-3) : [];
 
     const featuredArticleBody = useMemo(() => {
         return featuredArticle ? (new Parser()).parse(featuredArticle.body) : '';
     }, [featuredArticle]);
 
-    return <div className={classnames(className, 'LastArticleEntries')}>
+    return <motion.div initial="exit" animate="enter" exit="exit" className={classnames(className, 'LastArticleEntries')}>
         <Header title={'Neue Artikel'} link={'Alle Artikel anzeigen'} />
         <Row type={'flex'} align={'middle'}>
             <Col sm={11} xs={24}>
-                <div className={classnames(className, 'imageWrapper')}>
-                    {featuredArticle && <img className={className} src={`${process.env.API_URL}${featuredArticle.cover}`} />}
-                    {!featuredArticle && <Skeleton className={classnames(className, 'imageSkeleton')} active={true} title={false} paragraph={{ rows: 1, width: '100%' }} />}
-                </div>
+                <motion.div className={classnames(className, 'imageWrapper')}>
+                    <LoadingImage src={featuredArticle && featuredArticle.cover} />
+                </motion.div>
             </Col>
             <Col offset={1} sm={12} xs={24}>
-                 <>
+                 <motion.div>
                     <Title level={3}>
                         {featuredArticle 
                         ? <Link key={`/article/${featuredArticle.id}`} href={`/article/${featuredArticle.id}`}>{featuredArticle.title}</Link>
@@ -85,30 +71,32 @@ export default function LastArticleEntries(): ReactElement {
                     <Paragraph ellipsis={{rows: 5}} className={classnames(className, 'content')}>
                         {featuredArticleBody ? <div>{featuredArticleBody}</div> : <Skeleton active={true} title={false} paragraph={{rows: 5, width: '100%'}} />}
                     </Paragraph>
-                </>
+                </motion.div>
             </Col>
         </Row>
 
         <Divider />
 
         <Row type={'flex'} justify={'space-around'}>
-            {lastArticleRow.map(({id, title, cover}) => <Col key={id} sm={7} xs={12}>
-                <Title level={4} ellipsis={{rows: 2}}>
-                    <Link key={`/article/${id}`} href={`/article/${id}`}>{title}</Link>
-                </Title>
-                <div className={classnames(className, 'imageWrapper')}>
-                    <img className={className} src={`${process.env.API_URL}${cover}`} />
-                </div>
-            </Col>)}
-            {lastArticleRow.length === 0 && [1, 2, 3].map((article) => <Col key={article} sm={7} xs={12}>
-                <Skeleton active={true} title={false} paragraph={{rows: 2, width: '100%'}} className={classnames(className, 'imageTitle')} />
-
-                <div className={classnames(className, 'imageWrapper')}>
-                    <Skeleton className={classnames(className, 'imageSkeleton')} active={true} title={false} paragraph={{ rows: 1, width: '100%' }} />
-                </div>
-            </Col>)}
+            {lastArticleRow.map((articleId) => {
+                const article = articles[articleId];
+                return <Col key={articleId} sm={7} xs={12}>
+                    <div>
+                        <Title level={4} ellipsis={{rows: 2}}>
+                            <Link href={`/article/${articleId}`}>
+                                <a>
+                                    {article ? article.title : <Skeleton active={true} title={false} paragraph={{rows: 2, width: '100%'}} className={classnames(className, 'imageTitle')} />}
+                                </a>
+                            </Link>
+                        </Title>
+                        <motion.div className={classnames(className, 'imageWrapper')}>
+                            <LoadingImage src={article && article.cover} />
+                        </motion.div>
+                    </div>
+                </Col>
+            })}
         </Row>
 
         {styles}
-    </div>;
+    </motion.div>;
 }

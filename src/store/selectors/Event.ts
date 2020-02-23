@@ -42,7 +42,7 @@ function featureFilter({isFeatured, end}) {
 
 export const featuredEventsSelector = createSelector(
     eventEntitiesSelector,
-    (events) => Object.values(events).filter(featureFilter).sort(sort)
+    (events) => Object.values(events).filter(featureFilter).sort(sort).map(({id}) => id)
 )
 
 export const pastEventIdsSelector = createSelector(

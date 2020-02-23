@@ -1,8 +1,7 @@
 import React, { ReactElement, ReactNode } from 'react';
-import Navigation from './Navigation';
 import { pageWrapper } from "../style/page";
-import SelectedEvent from "./blocks/SelectedEvent";
 import Head from "next/head";
+import { motion } from 'framer-motion';
 
 interface Props {
     children: ReactNode;
@@ -18,13 +17,13 @@ export default function PageFrame({children, title = null, showSelectedEvent = f
       <meta httpEquiv="Content-Language" content="de" />
     </Head>
 
-    <Navigation />
-    
-    {showSelectedEvent && <SelectedEvent />}
-
-    <div className={'pageWrapper'}>
-        {children}
-    </div>
+      <div className={'pageWrapper'}>
+        <motion.div initial="initial" animate="enter" exit="exit">
+          <div>
+            {children}
+          </div>
+        </motion.div>
+      </div>
 
     <style jsx>{pageWrapper}</style>
   </>;
