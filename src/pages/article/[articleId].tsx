@@ -96,7 +96,7 @@ export default function Home(): ReactElement {
     }, [articleId]);
 
     const article = selector(articleId);
-    const share = useShare(router.route, article && article.title);
+    const share = useShare(location.href, article && article.title);
 
     return <PageFrame showSelectedEvent>
         {article ? <Title level={3}>{article.title}</Title> : <Skeleton  className={classNames(className, 'articleTitleSkeleton')} title={{width: '80%'}} paragraph={false} />}
