@@ -5,16 +5,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { articleSelector } from '../../store/selectors/Articles';
 import { loadArticles } from '../../store/Article';
 import Title from 'antd/lib/typography/Title';
-import { Skeleton, Avatar, Divider, Button } from 'antd';
+import { Skeleton, Avatar } from 'antd';
 import { getImageUrl } from '../../hooks/image';
 import { resolve } from 'styled-jsx/css';
 import classNames from 'classnames';
-import {Parser} from 'html-to-react'; 
 import { authorsSelector } from '../../store/selectors/Authors';
 import { Article } from '../../store/entities/Article';
 import dayjs from 'dayjs';
 import LoadingImage from '../../components/blocks/LoadingImage';
 import { useShare } from '../../hooks/share';
+import CKEditorContent from '../../components/CKEditorContent';
+import Divider from '../../components/Divider';
 
 //#region <styles>
 const {className, styles} = resolve`
@@ -113,7 +114,7 @@ export default function Home(): ReactElement {
                 <AuthorInfo article={article}/>
             </div>
                                 
-            {article && <div>{(new Parser()).parse(article.body)}</div>}
+            {article && <CKEditorContent text={article.body} />}
             {!article && <>
                 <Skeleton title={false} paragraph={{rows: 4, width: '75%'}}/>
                 <Skeleton title={false} paragraph={{rows: 6, width: '75%'}}/>
@@ -125,7 +126,8 @@ export default function Home(): ReactElement {
 
         <Divider />
 
-        <Button onClick={share} />
+
+
         {styles}
     </PageFrame>;
 }
