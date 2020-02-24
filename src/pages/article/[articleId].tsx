@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { articleSelector } from '../../store/selectors/Articles';
 import { loadArticles } from '../../store/Article';
 import Title from 'antd/lib/typography/Title';
-import { Skeleton, Row, Col, Avatar } from 'antd';
+import { Skeleton, Avatar, Divider, Button } from 'antd';
 import { getImageUrl } from '../../hooks/image';
 import { resolve } from 'styled-jsx/css';
 import classNames from 'classnames';
@@ -13,6 +13,8 @@ import {Parser} from 'html-to-react';
 import { authorsSelector } from '../../store/selectors/Authors';
 import { Article } from '../../store/entities/Article';
 import dayjs from 'dayjs';
+import LoadingImage from '../../components/blocks/LoadingImage';
+import { useShare } from '../../hooks/share';
 
 //#region <styles>
 const {className, styles} = resolve`
@@ -27,36 +29,30 @@ const {className, styles} = resolve`
         overflow: hidden;
     }
 
-    .imageWrapper img {
-        position: absolute;
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-    }
-
-    .imageSkeleton {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        display: block;
-    }
-    .imageSkeleton :global(.ant-skeleton-content) {
-        height: 100%;
-        display: block;
-    }
-
-    .imageSkeleton :global(.ant-skeleton-paragraph) {
-        height: 100%;
-        margin: 0;
-    }
-    .imageSkeleton :global(li) {
-        height: 100%;
-    }
-
     .imageTitle :global(li) {
         height: 18px;
+    }
+
+    .author {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }    
+    .name {
+        margin-left: 20px;
+    }
+
+    .skeleton {
+        width: auto;
+    }
+
+    .skeleton2 {
+        width: 45%;
+        margin-top: 20px;
+    }
+
+    .articleTitleSkeleton {
+        margin-bottom: 0.5em;
     }
 `;
 //#endregion
@@ -65,29 +61,27 @@ function AuthorInfo({article}: {article: Article | null}): ReactElement {
     const authors = useSelector(authorsSelector);
 
     if(!article) {
-        return <Skeleton avatar title paragraph={{rows: 2}}/>
+        return <>
+            <Skeleton className={classNames(className, 'skeleton')} 
+                    avatar 
+                    title={false} 
+                    paragraph={{rows: 2, width: '75%'}}/>
+            <Skeleton className={classNames(className, 'skeleton2')} title={false} paragraph={{rows: 4, width: '75%'}}/>
+            <Skeleton className={classNames(className, 'skeleton2')} title={false} paragraph={{rows: 2, width: '75%'}}/>
+        </>;    
     }
 
     const author = authors[article.author];
 
-    return <div className={'author'}>
+    return <div className={classNames(className, 'author')}>
         <Avatar shape={'circle'} src={getImageUrl(author.avatar)} size={'large'}/>
-        <div className={'name'}>
+        <div className={classNames(className, 'name')}>
             <div>Autor: <a href={`https://www.twitch.tv/${author.name}`}>{author.name}</a></div>
             {author.title.length > 0 && <div><i>author.title}</i></div>}
-            <div className={'publishInfo'}>veröffentlicht am {dayjs.unix(article.created).format('DD.MM.YYYY')}</div>
+            <div className={classNames(className, 'publishInfo')}>veröffentlicht am {dayjs.unix(article.created).format('DD.MM.YYYY')}</div>
         </div>
 
-        <style jsx>{`
-            .author {
-                display: flex;
-                align-items: center;
-                margin-bottom: 20px;
-            }    
-            .name {
-                margin-left: 20px;
-            }
-        `}</style>
+        {styles}
     </div>;
 }
 
@@ -102,15 +96,15 @@ export default function Home(): ReactElement {
     }, [articleId]);
 
     const article = selector(articleId);
+    const share = useShare(router.route, article && article.title);
 
     return <PageFrame showSelectedEvent>
-        {article ? <Title level={3}>{article.title}</Title> : <Skeleton title={{width: '80%'}} paragraph={false} />}
+        {article ? <Title level={3}>{article.title}</Title> : <Skeleton  className={classNames(className, 'articleTitleSkeleton')} title={{width: '80%'}} paragraph={false} />}
 
         <div className={classNames(className, 'articleContent')}>
             <div className={classNames(className, 'articleImageWrapper')}>
                 <div className={classNames(className, 'imageWrapper')}>
-                    {article ? <img className={className} src={getImageUrl(article.cover)}/> 
-                            : <Skeleton className={classNames(className, 'imageSkeleton')} title={false} paragraph={{rows: 1, width: '100%'}} />}
+                    <LoadingImage src={article && article.cover} />
                 </div>
             </div>
 
@@ -118,8 +112,19 @@ export default function Home(): ReactElement {
                 <AuthorInfo article={article}/>
             </div>
                                 
-            {article ? <div>{(new Parser()).parse(article.body)}</div> : <Skeleton title={false} paragraph={{rows: 40}} />}
+            {article && <div>{(new Parser()).parse(article.body)}</div>}
+            {!article && <>
+                <Skeleton title={false} paragraph={{rows: 4, width: '75%'}}/>
+                <Skeleton title={false} paragraph={{rows: 6, width: '75%'}}/>
+                <Skeleton title={false} paragraph={{rows: 3, width: '75%'}}/>
+                <Skeleton title={false} paragraph={{rows: 6, width: '75%'}}/>
+                <Skeleton title={false} paragraph={{rows: 3, width: '75%'}}/>
+            </>}
         </div>
+
+        <Divider />
+
+        <Button onClick={share} />
         {styles}
     </PageFrame>;
 }
