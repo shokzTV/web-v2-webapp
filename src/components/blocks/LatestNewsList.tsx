@@ -20,33 +20,40 @@ export default function LatestNewsList(): ReactElement {
 
         <div className={'divider'} />
 
-        {news.map((entry, index) => <div key={entry.id}>
-            {entry.source.length > 0 && <a className={'newsTitle withIcon'} href={entry.source} target={'_blank'}>
-                <Icon type="link" style={{ fontSize: '20px' }}/>
-                <b>{entry.headline}</b>
-            </a>}
+        <div className={'news'}>
+            {news.map((entry, index) => <div key={entry.id}>
+                {entry.source.length > 0 && <a className={'newsTitle withIcon'} href={entry.source} target={'_blank'}>
+                    <Icon type="link" style={{ fontSize: '20px' }}/>
+                    <b>{entry.headline}</b>
+                </a>}
 
-            {entry.source.length === 0 && <div className={'newsTitle'}>
-                <b>{entry.headline}</b>
-            </div>}
+                {entry.source.length === 0 && <div className={'newsTitle'}>
+                    <b>{entry.headline}</b>
+                </div>}
 
-            {entry.description.length > 0 && <div>
-                {entry.description}
-            </div>}
+                {entry.description.length > 0 && <div>
+                    {entry.description}
+                </div>}
 
-            {index !== news.length - 1 && <Divider />}
-        </div>)}
+                {index !== news.length - 1 && <Divider />}
+            </div>)}
 
-        {news.length === 0 && <>
-            <Skeleton title={{width: '100%'}} active paragraph={{rows: 1, width: '100%'}} />
-            <Divider />
-            <Skeleton title={{width: '100%'}} active paragraph={{rows: 1, width: '100%'}} />
-            <Divider />
-        </>}
+            {news.length === 0 && <>
+                <Skeleton title={{width: '100%'}} active paragraph={{rows: 1, width: '100%'}} />
+                <Divider />
+                <Skeleton title={{width: '100%'}} active paragraph={{rows: 1, width: '100%'}} />
+                <Divider />
+            </>}
+        </div>
 
         <style jsx>{`
             .divider {
                 height: 1.75em;
+            }
+
+            .news {
+                max-height: 430px;
+                overflow-y: scroll;
             }
 
             .newsTitle {
