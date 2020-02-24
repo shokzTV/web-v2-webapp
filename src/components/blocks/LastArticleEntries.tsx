@@ -62,14 +62,19 @@ export default function LastArticleEntries(): ReactElement {
                     <Title level={3}>
                         {featuredArticle 
                         ? <Link key={`/article/${featuredArticle.id}`} href={`/article/${featuredArticle.id}`}><a>{featuredArticle.title}</a></Link>
-                        : <Skeleton active={true} title={{width: '100%'}} paragraph={false} />}
+                        : <>
+                            <Skeleton active={true} title={{width: '100%'}} paragraph={false} />
+                            <Skeleton active={true} title={{width: '50%'}} paragraph={false} />
+                        </>}
                     </Title>
 
-                    <Paragraph ellipsis={{rows: 5}} className={classnames(className, 'content')}>
+                    {featuredArticleBody.length > 0 && <Paragraph ellipsis={{rows: 5}} className={classnames(className, 'content')}>
                         <div>
                             <CKEditorContent text={featuredArticleBody} />
                         </div>
-                    </Paragraph>
+                    </Paragraph>}
+
+                    {featuredArticleBody.length === 0 && <Skeleton active={true} title={false} paragraph={{rows: 5}} />}
                 </motion.div>
             </Col>
         </Row>
