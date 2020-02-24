@@ -39,9 +39,15 @@ export default function LatestNewsList(): ReactElement {
             </div>)}
 
             {news.length === 0 && <>
-                <Skeleton title={{width: '100%'}} active paragraph={{rows: 1, width: '100%'}} />
+                <Skeleton title={false} active paragraph={{rows: 2, width: '100%'}} />
                 <Divider />
-                <Skeleton title={{width: '100%'}} active paragraph={{rows: 1, width: '100%'}} />
+                <Skeleton title={false} active paragraph={{rows: 1, width: '100%'}} />
+                <Divider />
+                <Skeleton title={false} active paragraph={{rows: 2, width: '100%'}} />
+                <Divider />
+                <Skeleton title={false} active paragraph={{rows: 1, width: '100%'}} />
+                <Divider />
+                <Skeleton title={false} active paragraph={{rows: 2, width: '100%'}} />
                 <Divider />
             </>}
         </div>
