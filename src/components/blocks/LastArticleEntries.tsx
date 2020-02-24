@@ -6,7 +6,6 @@ import {resolve} from 'styled-jsx/css';
 import classnames from 'classnames';
 import Header from "../Header";
 import Divider from "../Divider";
-import {Parser} from 'html-to-react'; 
 import { Skeleton } from 'antd';
 import { useArticleList } from "../../hooks/articlesList";
 import Link from "next/link";
@@ -14,6 +13,7 @@ import { motion } from 'framer-motion';
 import { articlesSelector } from "../../store/selectors/Articles";
 import { useSelector } from "react-redux";
 import LoadingImage from "./LoadingImage";
+import CKEditorContent from "../CKEditorContent";
 
 //#region <styles>
 const {className, styles} = resolve`
@@ -47,10 +47,7 @@ export default function LastArticleEntries(): ReactElement {
     const articles = useSelector(articlesSelector);
     const featuredArticle = articleIds.length > 0 && articles[articleIds[0]];
     const lastArticleRow = articleIds.length > 0 ? articleIds.slice(-3) : [];
-
-    const featuredArticleBody = useMemo(() => {
-        return featuredArticle ? (new Parser()).parse(featuredArticle.body) : '';
-    }, [featuredArticle]);
+    const featuredArticleBody = useMemo(() => featuredArticle ? featuredArticle.body : '', [featuredArticle]);
 
     return <motion.div initial="exit" animate="enter" exit="exit" className={classnames(className, 'LastArticleEntries')}>
         <Header title={'Neue Artikel'} link={'Alle Artikel anzeigen'} />
@@ -64,12 +61,14 @@ export default function LastArticleEntries(): ReactElement {
                  <motion.div>
                     <Title level={3}>
                         {featuredArticle 
-                        ? <Link key={`/article/${featuredArticle.id}`} href={`/article/${featuredArticle.id}`}>{featuredArticle.title}</Link>
+                        ? <Link key={`/article/${featuredArticle.id}`} href={`/article/${featuredArticle.id}`}><a>{featuredArticle.title}</a></Link>
                         : <Skeleton active={true} title={{width: '100%'}} paragraph={false} />}
                     </Title>
 
                     <Paragraph ellipsis={{rows: 5}} className={classnames(className, 'content')}>
-                        {featuredArticleBody ? <div>{featuredArticleBody}</div> : <Skeleton active={true} title={false} paragraph={{rows: 5, width: '100%'}} />}
+                        <div>
+                            <CKEditorContent text={featuredArticleBody} />
+                        </div>
                     </Paragraph>
                 </motion.div>
             </Col>

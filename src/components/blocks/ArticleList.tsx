@@ -9,13 +9,13 @@ import { resolve } from "styled-jsx/css";
 import Paragraph from "antd/lib/typography/Paragraph";
 import Title from "antd/lib/typography/Title";
 import Divider from "../Divider";
-import {Parser} from 'html-to-react'; 
 import dayjs from 'dayjs';
 import {authorsSelector} from '../../store/selectors/Authors';
 import Link from "next/link";
 import LoadingImage from "./LoadingImage";
 import { articlesSelector } from "../../store/selectors/Articles";
 import { motion } from "framer-motion";
+import CKEditorContent from "../CKEditorContent";
 
 //#region <styles>
 const {className, styles} = resolve`
@@ -73,7 +73,9 @@ export default function ArticleList(): ReactElement {
                                     <div className={classNames(className, 'subTitle')}>veröffentlicht am {dayjs.unix(article.created).format('DD.MM.YYYY')} von {author.name}</div>
                                 </Title>
                                 <Paragraph ellipsis={{rows: 2}} className={classNames(className, 'content')}>
-                                    <div>{(new Parser()).parse(article.body)}</div>
+                                    <div>
+                                        <CKEditorContent text={article.body} />
+                                    </div>
                                 </Paragraph>
                             </>}
 
