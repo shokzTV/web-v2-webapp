@@ -1,6 +1,6 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import PageFrame from '../../components/PageFrame';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import { eventsSelector } from '../../store/selectors/Event';
 import Header from '../../components/Header';
@@ -12,8 +12,10 @@ import Title from 'antd/lib/typography/Title';
 import { useEventDate, useEventOrganizer } from '../../hooks/event';
 import ReactCountryFlag from "react-country-flag";
 import { eventLinksSelector } from '../../store/selectors/EventLinks';
+import { loadEventRelations } from '../../store/Ui';
 
 export default function Event(): ReactElement {
+    const dispatch = useDispatch();
     const router = useRouter();
     const eventId = +router.query.eventId;
     const event = useSelector(eventsSelector)(eventId);
@@ -21,6 +23,10 @@ export default function Event(): ReactElement {
     const eventDate = useEventDate()(eventId);
     const organizerName = useEventOrganizer(eventId);
     const eventLinks = useSelector(eventLinksSelector)(eventId);
+
+    useEffect(() => {
+        dispatch(loadEventRelations(eventId));
+    }, []);
 
     return <PageFrame showSelectedEvent>
         <Header title={'Events > ' + (event ? event.name : '')} />

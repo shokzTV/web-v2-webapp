@@ -10,3 +10,4 @@ export const loadedEventsSelector = (state: State) => state.ui.loadedEvents;
 export const loadedMainEventSelector = (state: State) => state.ui.loadedMainEvent;
 export const loadedFeaturedEventSelector = (state: State) => state.ui.loadedFeaturedEvent;
 export const loadedLatestNewsSelector = (state: State) => state.ui.loadedLatestNews;
+export const eventRelationsSelector = (state: State) => state.ui.eventRelations;

@@ -32,6 +32,12 @@ export interface State {
 
     ui: {
         articles: number[];
+        eventRelations: {
+            [x: number]: {
+                articles: number[];
+                videos: number[];
+            };
+        }
         events: number[];
         loadedArticles: number[];
         loadedAllTags: boolean;
