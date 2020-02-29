@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadMainEvent } from "../../store/Event";
 import { mainEventSelector, organizerEventLogoSelector } from "../../store/selectors/Event";
 import { getImageUrl } from "../../hooks/image";
+import Link from "next/link";
 
 //#region <styles>
 const {className, styles} = resolve`
@@ -92,7 +93,9 @@ export default function SelectedEvent(): ReactElement {
                         <div className={'nameContainer'}>
                             <Title level={2} type={'secondary'} className={classNames(className, 'eventTitle')}>{mainEvent ? mainEvent.name : ''}</Title>
                             <Row type={'flex'} justify={'space-around'}>
-                                <a className={classNames(className, 'eventLink')}>Eventüberblick</a>
+                                <Link href={`/event/${mainEvent ? mainEvent.id : ''}`}>
+                                    <a className={classNames(className, 'eventLink')}>Eventüberblick</a>
+                                </Link>
                                 <a className={classNames(className, 'eventLink')}>Neuigkeiten zum Event</a>
                             </Row>
                         </div>

@@ -8,6 +8,11 @@ import dayjs from "dayjs";
 
 export const eventEntitiesSelector = (state: State) => state.entities.event;
 
+export const eventsSelector = createSelector(
+    eventEntitiesSelector,
+    (events) => memoize((id: number) => events[id])
+)
+
 export const mainEventSelector = createSelector(
     eventEntitiesSelector,
     loadedMainEventSelector,

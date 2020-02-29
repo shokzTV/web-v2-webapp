@@ -1,18 +1,13 @@
-import { ReactElement, useState, useMemo } from "react";
+import { ReactElement, useState } from "react";
 import Header from "../Header";
 import { Row, Col, Skeleton, Pagination } from "antd";
-import dayjs from "dayjs";
 import { usePastEventsList } from "../../hooks/pastEventsList";
 import Title from "antd/lib/typography/Title";
 import { useSelector } from "react-redux";
 import { pastEventIdsSelector, eventEntitiesSelector } from "../../store/selectors/Event";
-import { getImageUrl } from "../../hooks/image";
-import { tagsEntitiesSelector } from "../../store/selectors/Tags";
+import { useEventImage } from "../../hooks/image";
 import LoadingImage from "./LoadingImage";
-
-function period(start: number, end: number): string {
-    return `${dayjs.unix(start).format('DD')} - ${dayjs.unix(start).format('DD MMMM YYYY')}`;
-}
+import { useEventDate } from "../../hooks/event";
 
 const pageSize = 10;
 export default function PastEvents(): ReactElement {
@@ -20,17 +15,8 @@ export default function PastEvents(): ReactElement {
     const [page, setPage] = useState(1);
     const events = useSelector(eventEntitiesSelector);
     const eventIds = usePastEventsList(page - 1, pageSize);
-    const tagEntities = useSelector(tagsEntitiesSelector);
-    
-    const preloadCount = useMemo(() => {
-        if(eventIds.length > 0) {
-            return 0;
-        }
-        if(totalCount > 0 && page * pageSize > totalCount) {
-            return totalCount % pageSize;
-        }
-        return pageSize;
-    }, [page, eventIds, totalCount]);
+    const eventImage = useEventImage();
+    const eventDate = useEventDate(true);
     
     return <div>
         <Header title={'Vorherige Events'}/>
@@ -38,20 +24,17 @@ export default function PastEvents(): ReactElement {
         <Row type={'flex'} align={'middle'} justify={'space-between'} gutter={[40, 20]}>
             {eventIds.map((eventId) => {
                 const event = events[eventId];
-                const tagId = event && event.tags.find((tagId) => !!tagEntities[tagId].image);
-                const tag = tagId && tagEntities[tagId];
-
                 return <Col key={eventId} sm={12} xs={24}>
                     <Row type={'flex'} align={'middle'} justify={'space-between'} gutter={[15, 10]}>
                         <Col xs={10}>
                             <div className={'imageWrapper'}>
-                                <LoadingImage src={tag && tag.image} />
+                                <LoadingImage src={eventImage(eventId)} />
                             </div>
                         </Col>
                         <Col xs={14}>
                             {event && <>
                                 <Title level={4}>{event.name}</Title>
-                                <div>{period(event.start, event.end)}</div>
+                                <div>{eventDate(event.id)}</div>
                             </>}
 
                             {!event && <Skeleton title={{width: '100%'}} paragraph={{rows: 1, width: '100%'}} />}
@@ -72,11 +55,6 @@ export default function PastEvents(): ReactElement {
                 padding-bottom: 56.2%;
                 height: 0;
                 overflow: hidden; 
-            }
-
-            .image {
-                object-fit: cover;
-                width: 100%;
             }
         `}</style>
     </div>;

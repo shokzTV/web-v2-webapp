@@ -2,7 +2,7 @@ import { State } from "./Store";
 import { createReducer } from "./reducer/Reducer";
 import { ActionDispatcher, CALL_API } from "./middleware/NetworkMiddlewareTypes";
 import { availableArticlesSelector, availableVideosSelector, availableEventsSelector } from "./selectors/Ui";
-import { LOAD_ARTICLE_IDS_REQUEST, LOAD_ARTICLE_IDS_SUCCESS, LOAD_ARTICLE_IDS_FAILURE, LOAD_ARTICLES_SUCCESS, LOAD_TAGS_SUCCESS, LOAD_VIDEO_IDS_REQUEST, LOAD_VIDEO_IDS_SUCCESS, LOAD_VIDEO_IDS_FAILURE, LOAD_VIDEOS_SUCCESS, LOAD_EVENT_IDS_REQUEST, LOAD_EVENT_IDS_SUCCESS, LOAD_EVENT_IDS_FAILURE, LOAD_EVENT_SUCCESS, LOAD_MAIN_EVENT_SUCCESS, LOAD_FEATURED_EVENTS_SUCCESS } from "./Actions";
+import { LOAD_ARTICLE_IDS_REQUEST, LOAD_ARTICLE_IDS_SUCCESS, LOAD_ARTICLE_IDS_FAILURE, LOAD_TAGS_SUCCESS, LOAD_VIDEO_IDS_REQUEST, LOAD_VIDEO_IDS_SUCCESS, LOAD_VIDEO_IDS_FAILURE, LOAD_EVENT_IDS_REQUEST, LOAD_EVENT_IDS_SUCCESS, LOAD_EVENT_IDS_FAILURE, LOAD_MAIN_EVENT_SUCCESS, LOAD_FEATURED_EVENTS_SUCCESS, LOAD_ARTICLES_REQUEST, LOAD_VIDEOS_REQUEST, LOAD_EVENT_REQUEST } from "./Actions";
 
 interface LoadArticleIdsSuccess {
     type: typeof LOAD_ARTICLE_IDS_SUCCESS;
@@ -24,7 +24,7 @@ interface LoadedAllTagsSuccess {
 }
 
 interface LoadArticleSuccess {
-    type: typeof LOAD_ARTICLES_SUCCESS;
+    type: typeof LOAD_ARTICLES_REQUEST;
     options: {
         urlParams: {
             ids: number[];
@@ -33,7 +33,7 @@ interface LoadArticleSuccess {
 }
 
 interface LoadVideoSuccess {
-    type: typeof LOAD_VIDEOS_SUCCESS;
+    type: typeof LOAD_VIDEOS_REQUEST;
     options: {
         urlParams: {
             ids: number[];
@@ -42,7 +42,7 @@ interface LoadVideoSuccess {
 }
 
 interface LoadEventSuccess {
-    type: typeof LOAD_EVENT_SUCCESS;
+    type: typeof LOAD_EVENT_REQUEST;
     options: {
         urlParams: {
             ids: number[];
@@ -106,14 +106,14 @@ addReducer<LoadEventIdsSuccess>(LOAD_EVENT_IDS_SUCCESS, (state, {response}) => {
     };
 });
 
-addReducer<LoadArticleSuccess>(LOAD_ARTICLES_SUCCESS, (state, {options: {urlParams: {ids}}}) => {
+addReducer<LoadArticleSuccess>(LOAD_ARTICLES_REQUEST, (state, {options: {urlParams: {ids}}}) => {
     return {
         ...state,
         loadedArticles: state.loadedArticles.concat(ids),
     };
 });
 
-addReducer<LoadVideoSuccess>(LOAD_VIDEOS_SUCCESS, (state, {options: {urlParams: {ids}}}) => {
+addReducer<LoadVideoSuccess>(LOAD_VIDEOS_REQUEST, (state, {options: {urlParams: {ids}}}) => {
     return {
         ...state,
         loadedVideos: state.loadedVideos.concat(ids),
@@ -127,7 +127,7 @@ addReducer<LoadedAllTagsSuccess>(LOAD_TAGS_SUCCESS, (state) => {
     };
 });
 
-addReducer<LoadEventSuccess>(LOAD_EVENT_SUCCESS, (state, {options: {urlParams: {ids}}}) => {
+addReducer<LoadEventSuccess>(LOAD_EVENT_REQUEST, (state, {options: {urlParams: {ids}}}) => {
     return {
         ...state,
         loadedEvents: state.loadedEvents.concat(ids),

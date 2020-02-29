@@ -69,7 +69,7 @@ export default function ArticleList(): ReactElement {
                         <>
                             {article && <>
                                 <Title level={3}>
-                                    <Link key={`/article/${article.id}`} href={`/article/${article.id}`}><a>{article.title}</a></Link>
+                                    <Link href={`/article/${article.id}`}><a>{article.title}</a></Link>
                                     <div className={classNames(className, 'subTitle')}>veröffentlicht am {dayjs.unix(article.created).format('DD.MM.YYYY')} von {author.name}</div>
                                 </Title>
                                 <Paragraph ellipsis={{rows: 2}} className={classNames(className, 'content')}>

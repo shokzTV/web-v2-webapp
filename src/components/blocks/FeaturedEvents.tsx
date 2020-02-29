@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadFeaturedEvents } from '../../store/Event'; 
 import Header from "../Header";
 import { organizerEntitiesSelector } from "../../store/selectors/Organizer";
-import { getImageUrl } from "../../hooks/image";
 import { Event } from "../../store/entities/Event";
 import { featuredEventsSelector, eventEntitiesSelector } from "../../store/selectors/Event";
 import { Divider, Skeleton } from "antd";
@@ -12,6 +11,7 @@ import classNames from "classnames";
 import { COLORS } from "../../style/colors";
 import ReactCountryFlag from "react-country-flag";
 import LoadingImage from "./LoadingImage";
+import { useEventDate } from "../../hooks/event";
 
 
 function EventRow({event}: {event?: Event}): ReactElement {
@@ -20,9 +20,7 @@ function EventRow({event}: {event?: Event}): ReactElement {
     const endDate = dayjs.unix(event && event.end);
     const isRunning = dayjs().isBefore(endDate) && dayjs().isAfter(startDate);
     const isPast = dayjs().isAfter(endDate);
-    const date = startDate.isSame(endDate, 'day') 
-        ? startDate.format('D MMMM') 
-        : startDate.format('D') + '-' + endDate.format('D MMMM');
+    const eventDate = useEventDate(true)(event.id);
 
     return <div className={classNames('eventRow', {isRunning, isPast})}>
         <div className={'eventRowData'}>
@@ -32,7 +30,7 @@ function EventRow({event}: {event?: Event}): ReactElement {
 
             {event && <div>
                 {isRunning ? <b>{event.name}</b> : <>{event.name}</>}
-                <div>{date}</div>
+                <div>{eventDate}</div>
             </div>}
 
             {!event && <Skeleton title={false} paragraph={{rows: 2, width: '100%'}} />}
