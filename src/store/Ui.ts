@@ -1,8 +1,27 @@
 import { State } from "./Store";
 import { createReducer } from "./reducer/Reducer";
 import { ActionDispatcher, CALL_API } from "./middleware/NetworkMiddlewareTypes";
-import { availableArticlesSelector, availableVideosSelector, availableEventsSelector } from "./selectors/Ui";
-import { LOAD_ARTICLE_IDS_REQUEST, LOAD_ARTICLE_IDS_SUCCESS, LOAD_ARTICLE_IDS_FAILURE, LOAD_TAGS_SUCCESS, LOAD_VIDEO_IDS_REQUEST, LOAD_VIDEO_IDS_SUCCESS, LOAD_VIDEO_IDS_FAILURE, LOAD_EVENT_IDS_REQUEST, LOAD_EVENT_IDS_SUCCESS, LOAD_EVENT_IDS_FAILURE, LOAD_MAIN_EVENT_SUCCESS, LOAD_FEATURED_EVENTS_SUCCESS, LOAD_ARTICLES_REQUEST, LOAD_VIDEOS_REQUEST, LOAD_EVENT_REQUEST } from "./Actions";
+import { availableArticlesSelector, availableVideosSelector, availableEventsSelector, eventRelationsSelector } from "./selectors/Ui";
+import { 
+    LOAD_ARTICLE_IDS_REQUEST,
+    LOAD_ARTICLE_IDS_SUCCESS,
+    LOAD_ARTICLE_IDS_FAILURE,
+    LOAD_TAGS_SUCCESS,
+    LOAD_VIDEO_IDS_REQUEST, 
+    LOAD_VIDEO_IDS_SUCCESS, 
+    LOAD_VIDEO_IDS_FAILURE, 
+    LOAD_EVENT_IDS_REQUEST, 
+    LOAD_EVENT_IDS_SUCCESS, 
+    LOAD_EVENT_IDS_FAILURE, 
+    LOAD_MAIN_EVENT_SUCCESS, 
+    LOAD_FEATURED_EVENTS_SUCCESS, 
+    LOAD_ARTICLES_REQUEST, 
+    LOAD_VIDEOS_REQUEST,
+    LOAD_EVENT_REQUEST,
+    LOAD_EVENT_RELATIONS_REQUEST,
+    LOAD_EVENT_RELATIONS_SUCCESS,
+    LOAD_EVENT_RELATIONS_FAILURE
+} from "./Actions";
 
 interface LoadArticleIdsSuccess {
     type: typeof LOAD_ARTICLE_IDS_SUCCESS;
@@ -71,8 +90,22 @@ interface LoadedFeaturedEventSuccess {
     };
 }
 
+interface LoadedEventRelationsSuccess {
+    type: typeof LOAD_EVENT_RELATIONS_SUCCESS;
+    response: {
+        articles: number[];
+        videos: number[];
+    };
+    options: {
+        urlParams: {
+            eventId: number;
+        };
+    };
+}
+
 const initial: State['ui'] = {
     articles: [],
+    eventRelations: {},
     events: [],
     loadedArticles: [],
     loadedAllTags: false,
@@ -152,6 +185,16 @@ addReducer<LoadedFeaturedEventSuccess>(LOAD_FEATURED_EVENTS_SUCCESS, (state, {re
     };
 });
 
+addReducer<LoadedEventRelationsSuccess>(LOAD_EVENT_RELATIONS_SUCCESS, (state, {response, options: {urlParams: {eventId}}}) => {
+    return {
+        ...state,
+        eventRelations: {
+            ...state.eventRelations,
+            [eventId]: response
+        }
+    };
+});
+
 export const uiReducer = combinedReducer;
 
 export function loadAvailableArticles(): ActionDispatcher<Promise<void>> {
@@ -199,6 +242,26 @@ export function loadAvailableEvents(): ActionDispatcher<Promise<void>> {
                         successType: LOAD_EVENT_IDS_SUCCESS,
                         failureType: LOAD_EVENT_IDS_FAILURE,
                     },
+                },
+            });
+        }
+    }
+}
+
+export function loadEventRelations(eventId: number): ActionDispatcher<Promise<void>> {
+    return async (dispatch, getState) => {
+        if(!eventRelationsSelector(getState())[eventId]) {
+            await dispatch<Promise<Response>>({
+                [CALL_API]: {
+                    endpoint: `${process.env.API_URL}/event/relations/:eventId`,
+                    types: {
+                        requestType: LOAD_EVENT_RELATIONS_REQUEST,
+                        successType: LOAD_EVENT_RELATIONS_SUCCESS,
+                        failureType: LOAD_EVENT_RELATIONS_FAILURE,
+                    },
+                    options: {
+                        urlParams: {eventId}
+                    }
                 },
             });
         }
