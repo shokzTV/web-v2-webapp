@@ -2470,6 +2470,11 @@ cyclist@^1.0.1:
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-1.0.1.tgz#596e9698fd0c80e12038c2b82d6eb1b35b6224d9"
   integrity sha1-WW6WmP0MgOEgOMK4LW6xs1tiJNk=
 
+date-fns@^2.9.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.10.0.tgz#abd10604d8bafb0bcbd2ba2e9b0563b922ae4b6b"
+  integrity sha512-EhfEKevYGWhWlZbNeplfhIU/+N+x0iCIx7VzKlXma2EdQyznVlZhCptXUY+BegNpPW2kjdx15Rvq503YcXXrcA==
+
 dayjs@^1.8.19:
   version "1.8.19"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.19.tgz#5117dc390d8f8e586d53891dbff3fa308f51abfe"
@@ -4479,6 +4484,13 @@ next@9.1.6:
     webpack-hot-middleware "2.25.0"
     webpack-sources "1.4.3"
     whatwg-fetch "3.0.0"
+
+nextjs-sitemap-generator@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/nextjs-sitemap-generator/-/nextjs-sitemap-generator-0.5.0.tgz#0a5b847b2354f4df8967bfedb0a41b9cc6233e0e"
+  integrity sha512-mURzAVQTA1nQfFyQl+r2To2/paH0CLPkFO2gedRgZv7oaty6Dw66WVlb3yFP4KiwSyczzeotecdm+sWA2Ejbmw==
+  dependencies:
+    date-fns "^2.9.0"
 
 node-fetch@2.6.0, node-fetch@^2.2.0:
   version "2.6.0"
