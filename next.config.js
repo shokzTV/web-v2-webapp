@@ -20,11 +20,11 @@ module.exports = withCSS(withOffline({
           expiration: {
             maxEntries: 150,
             maxAgeSeconds: 30 * 24 * 60 * 60,
+            purgeOnQuotaError: true,
           },
           cacheableResponse: {
             statuses: [0, 200],
           },
-          purgeOnQuotaError: true,
         },
       },
     ],
