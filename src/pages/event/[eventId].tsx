@@ -13,6 +13,9 @@ import { useEventDate, useEventOrganizer } from '../../hooks/event';
 import ReactCountryFlag from "react-country-flag";
 import { eventLinksSelector } from '../../store/selectors/EventLinks';
 import { loadEventRelations } from '../../store/Ui';
+import EventArticles from '../../components/blocks/EventArticles';
+import EventVideos from '../../components/blocks/EventVideos';
+import { loadEvents } from '../../store/Event';
 
 export default function Event(): ReactElement {
     const dispatch = useDispatch();
@@ -25,10 +28,11 @@ export default function Event(): ReactElement {
     const eventLinks = useSelector(eventLinksSelector)(eventId);
 
     useEffect(() => {
+        dispatch(loadEvents([eventId]));
         dispatch(loadEventRelations(eventId));
     }, []);
 
-    return <PageFrame showSelectedEvent>
+    return <PageFrame>
         <Header title={'Events > ' + (event ? event.name : '')} />
 
         <Divider />
@@ -48,10 +52,10 @@ export default function Event(): ReactElement {
                             <div className={'label'}>Datum:</div>
                             <div>{eventDate}</div>
                         </div>
-                        <div className={'dataRow'}>
+                        {organizerName && organizerName.length > 0 && <div className={'dataRow'}>
                             <div className={'label'}>Veranstalter:</div>
                             <div>{organizerName}</div>
-                        </div>
+                        </div>}
                         <div className={'dataRow'}>
                             <div className={'label'}>Ort:</div>
                             <div className={'location'}>
@@ -60,21 +64,24 @@ export default function Event(): ReactElement {
                                 <div>{event && event.location}</div>
                             </div>
                         </div>
-                        <div className={'dataRow'}>
+                        {event && event.pricePool.length > 0 && <div className={'dataRow'}>
                             <div className={'label'}>Preisgeld:</div>
                             <div>{event && event.pricePool}</div>
-                        </div>
+                        </div>}
                     </Col>
                     <Col xs={24} sm={10}>
                         <h4>Eventlinks</h4>
                         <ul className={'listWrapper'}>
-                            {eventLinks.map(({id, name, link}) => <li key={id}><a href={link}>{name}</a></li>)}
+                            {eventLinks.map(({id, name, link}) => <li key={id}><a target={'_blank'} href={link}>{name}</a></li>)}
                         </ul>
                     </Col>
                 </Row>
             </Col>
         </Row>
-        
+
+        <EventArticles eventId={eventId} />
+        <EventVideos eventId={eventId} />
+
         <style jsx>{`
             .imageWrapper {
                 position: relative;

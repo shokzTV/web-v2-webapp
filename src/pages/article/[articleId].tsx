@@ -100,7 +100,7 @@ export default function Home(): ReactElement {
     //@ts-ignore
     const share = useShare(global.location && global.location.href, article && article.title);
 
-    return <PageFrame showSelectedEvent>
+    return <PageFrame>
         {article ? <Title level={3}>{article.title}</Title> : <Skeleton  className={classNames(className, 'articleTitleSkeleton')} title={{width: '80%'}} paragraph={false} />}
 
         <div className={classNames(className, 'articleContent')}>
@@ -123,10 +123,6 @@ export default function Home(): ReactElement {
                 <Skeleton title={false} paragraph={{rows: 3, width: '75%'}}/>
             </>}
         </div>
-
-        <Divider />
-
-
 
         {styles}
     </PageFrame>;

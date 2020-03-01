@@ -59,17 +59,17 @@ export default function ArticleList(): ReactElement {
             const author = article && authorEntities[article.author];
 
             return <React.Fragment key={id}>
-                <Row type={'flex'} align={'middle'}>
-                    <Col sm={6} xs={24}>
+                <Row type={'flex'} align={'middle'} gutter={[30, 30]}>
+                    <Col sm={7} xs={24}>
                         <motion.div initial="exit" animate="enter" exit="exit" className={classNames(className, 'imageWrapper')}>
                             <LoadingImage src={article && article.cover} />
                         </motion.div>
                     </Col>
-                    <Col offset={1} sm={17} xs={24}>
+                    <Col sm={17} xs={24}>
                         <>
                             {article && <>
                                 <Title level={3}>
-                                    <Link href={`/article/${article.id}`}><a>{article.title}</a></Link>
+                                    <Link href={'/article/[articleId]'} as={`/article/${article.id}`}><a>{article.title}</a></Link>
                                     <div className={classNames(className, 'subTitle')}>veröffentlicht am {dayjs.unix(article.created).format('DD.MM.YYYY')} von {author.name}</div>
                                 </Title>
                                 <Paragraph ellipsis={{rows: 2}} className={classNames(className, 'content')}>

@@ -12,6 +12,7 @@ import { COLORS } from "../../style/colors";
 import ReactCountryFlag from "react-country-flag";
 import LoadingImage from "./LoadingImage";
 import { useEventDate } from "../../hooks/event";
+import Link from "next/link";
 
 
 function EventRow({event}: {event?: Event}): ReactElement {
@@ -20,31 +21,37 @@ function EventRow({event}: {event?: Event}): ReactElement {
     const endDate = dayjs.unix(event && event.end);
     const isRunning = dayjs().isBefore(endDate) && dayjs().isAfter(startDate);
     const isPast = dayjs().isAfter(endDate);
-    const eventDate = useEventDate(true)(event.id);
+    const eventDate = useEventDate(true)(event && event.id);
 
-    return <div className={classNames('eventRow', {isRunning, isPast})}>
-        <div className={'eventRowData'}>
-            <div className={'icon'}>
-                <LoadingImage contains src={event && organizerEntities[event.organizer]!.logo_small} />
-            </div>
+    return <div>
+        <Link as={`/event/${event && event.id}`} href={'/event/[eventId]'}>
+            <a>
+                <div className={classNames('eventRow', {isRunning, isPast})}>
+                    <div className={'eventRowData'}>
+                        <div className={'icon'}>
+                            <LoadingImage contains src={event && organizerEntities[event.organizer]!.logo_small} />
+                        </div>
 
-            {event && <div>
-                {isRunning ? <b>{event.name}</b> : <>{event.name}</>}
-                <div>{eventDate}</div>
-            </div>}
+                        {event && <div>
+                            {isRunning ? <b>{event.name}</b> : <>{event.name}</>}
+                            <div>{eventDate}</div>
+                        </div>}
 
-            {!event && <Skeleton title={false} paragraph={{rows: 2, width: '100%'}} />}
-        </div>
+                        {!event && <Skeleton title={false} paragraph={{rows: 2, width: '100%'}} />}
+                    </div>
 
-        <div className={'location'}>
-            {event && <>
-                <div>{event.location}</div>
-                <div className={'flag'}>
-                    <ReactCountryFlag svg countryCode={event.country} />
+                    <div className={'location'}>
+                        {event && <>
+                            <div>{event.location}</div>
+                            <div className={'flag'}>
+                                <ReactCountryFlag svg countryCode={event.country} />
+                            </div>
+                        </>}
+                        {!event && <Skeleton title={false} paragraph={{rows: 1, width: '100%'}} />}
+                    </div>
                 </div>
-            </>}
-            {!event && <Skeleton title={false} paragraph={{rows: 1, width: '100%'}} />}
-        </div>
+            </a>
+        </Link>
     
         <style jsx>{`
             .eventRow {
