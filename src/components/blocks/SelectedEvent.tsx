@@ -84,7 +84,7 @@ export default function SelectedEvent(): ReactElement {
         <Row type={"flex"} align={"middle"} className={classNames(className, 'eventRowInner')}>
             <Col xs={24} sm={6}>
                 <Row type={"flex"} align={"middle"} justify={"center"} className={classNames(className, 'evnetLogo')}>
-                    <img src={logoUrl ? getImageUrl(logoUrl) : ''} height={160}></img>
+                    <img src={logoUrl ? getImageUrl(logoUrl) : ''} height={160} alt={'selected_event_organizer_logo'}/>
                 </Row>
             </Col>
             <Col xs={24} sm={18} className={classNames(className, 'detailsCol')}>
