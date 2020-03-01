@@ -44,7 +44,7 @@ function EventRow({event}: {event?: Event}): ReactElement {
                         {event && <>
                             <div>{event.location}</div>
                             <div className={'flag'}>
-                                {event.country !== 'offline' ? <ReactCountryFlag svg countryCode={event.country} /> : <div className={'emptyFlag'} />}
+                                {event.country !== 'xx' ? <ReactCountryFlag svg countryCode={event.country} alt={event.country + '-flag'} /> : <div className={'emptyFlag'} />}
                             </div>
                         </>}
                         {!event && <Skeleton title={false} paragraph={{rows: 1, width: '100%'}} />}
@@ -107,8 +107,10 @@ function EventRow({event}: {event?: Event}): ReactElement {
 
             .emptyFlag {
                 width: 14px;
-                height: 14px;
+                height: 12px;
                 background-color: #CCC;
+                display: inline-block;
+                vertical-align: -.1em;
             }
         `}</style>
     </div>;
