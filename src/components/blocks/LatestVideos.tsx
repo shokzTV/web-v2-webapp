@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import Header from "../Header";
 import { useVideoList } from "../../hooks/videoList";
-import { Carousel } from "antd";
+import { Carousel, Icon } from "antd";
 import { COLORS } from "../../style/colors";
 import { useSelector } from "react-redux";
 import { videoEntitiesSelector } from "../../store/selectors/Videos";
@@ -27,6 +27,22 @@ const responsiveConfig = [{
   }
 ];
 
+function NextArrow(props): ReactElement {
+    const {onClick} = props;
+    return <div className={'icon slick-arrow slick-next' } onClick={onClick}>
+        <Icon type="right-circle" />
+        <style jsx>{`.icon {font-size: 20px;}`}</style>
+    </div>;
+}
+
+function PrevArrow(props): ReactElement {
+    const {onClick} = props;
+    return <div className={'icon slick-arrow slick-prev'} onClick={onClick}>
+        <Icon type="left-circle" />
+        <style jsx>{`.icon {font-size: 20px;}`}</style>
+    </div>;
+}
+
 export default function LatestVideos(): ReactElement {
     const videoIds = useVideoList(0, 10);
     const videos = useSelector(videoEntitiesSelector);
@@ -34,7 +50,17 @@ export default function LatestVideos(): ReactElement {
     return <>
         <Header title={'Neuste Videos'}  link={'Alle Videos anzeigen'} />
 
-        <Carousel autoplay slidesToShow={3} slidesToScroll={1} initialSlide={0}  responsive={responsiveConfig}>
+        <Carousel 
+            autoplay 
+            draggable
+            slidesToShow={3} 
+            slidesToScroll={1} 
+            initialSlide={0}
+            responsive={responsiveConfig} 
+            dots={false} 
+            arrows={true} 
+            nextArrow={<NextArrow />}
+            prevArrow={<PrevArrow />}>
             {videoIds.map((videoId) => {
                 const video = videos[videoId];
 
@@ -56,11 +82,15 @@ export default function LatestVideos(): ReactElement {
                 overflow: hidden;
                 border-radius: 15px;
             }
+
+            .icon {
+                font-size: 20px;
+            }
         `}</style>
 
         <style jsx global>{`
             .ant-carousel {
-                padding-bottom: 20px;
+                padding: 0 30px 20px 30px;
             }
             .ant-carousel .slick-dots li button {
                 background-color: rgba(0,0,0,.5);
@@ -71,6 +101,10 @@ export default function LatestVideos(): ReactElement {
             .ant-carousel .slick-dots-bottom {
                 bottom: 0;
             } 
+
+            .slick-arrow {
+                font-size: 20px!important;
+            }
         `}</style>
     </>;
 }
