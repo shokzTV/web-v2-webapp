@@ -1,5 +1,5 @@
 import { ReactElement, useMemo, useEffect } from "react";
-import { Row, Col, Carousel } from "antd";
+import { Row, Col, Carousel, Icon } from "antd";
 import Title from "antd/lib/typography/Title";
 import {resolve} from 'styled-jsx/css';
 import classnames from 'classnames';
@@ -49,6 +49,22 @@ const {className, styles} = resolve`
 `;
 //#endregion
 
+function NextArrow(props): ReactElement {
+    const {onClick} = props;
+    return <div className={'icon slick-arrow slick-next' } onClick={onClick}>
+        <Icon type="right-circle" />
+        <style jsx>{`.icon {font-size: 20px;}`}</style>
+    </div>;
+}
+
+function PrevArrow(props): ReactElement {
+    const {onClick} = props;
+    return <div className={'icon slick-arrow slick-prev'} onClick={onClick}>
+        <Icon type="left-circle" />
+        <style jsx>{`.icon {font-size: 20px;}`}</style>
+    </div>;
+}
+
 export default function EventVideos({eventId}: {eventId: number}): ReactElement | null{
     const eventRelation = useSelector(eventRelationsSelector)[eventId];
     const videos = useSelector(videoEntitiesSelector);
@@ -66,7 +82,18 @@ export default function EventVideos({eventId}: {eventId: number}): ReactElement 
 
             <br />
 
-            <Carousel autoplay slidesToShow={3} slidesToScroll={1} dots swipeToSlide initialSlide={0}>
+            <Carousel 
+                autoplay 
+                draggable
+                slidesToShow={3} 
+                slidesToScroll={1} 
+                swipeToSlide 
+                initialSlide={0}
+                dots={false} 
+                arrows={true} 
+                nextArrow={<NextArrow />}
+                prevArrow={<PrevArrow />}
+            >
                 {videoIds.map((videoId) => {
                     const video = videos[videoId];
 
@@ -92,7 +119,7 @@ export default function EventVideos({eventId}: {eventId: number}): ReactElement 
 
             <style jsx global>{`
                 .ant-carousel {
-                    padding-bottom: 20px;
+                    padding: 0 30px 20px 30px;
                 }
                 .ant-carousel .slick-dots li button {
                     background-color: rgba(0,0,0,.5);

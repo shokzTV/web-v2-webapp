@@ -48,6 +48,10 @@ const {className, styles} = resolve`
     .link {
         color: ${COLORS.WEAK}!important;
     }
+
+    .articleTitle {
+        height: 3em;
+    }
 `;
 //#endregion
 
@@ -71,7 +75,7 @@ export default function EventArticles({eventId}: {eventId: number}): ReactElemen
                     const article = articles[articleId];
                     return <Col key={articleId} sm={8} xs={12}>
                         <div className={classnames(className, 'article')}>
-                            <Title level={4} ellipsis={{rows: 2}}>
+                            <Title level={4} ellipsis={{rows: 2}} className={classnames(className, 'articleTitle')}>
                                 <Link href={'/article/[articleId]'} as={`/article/${articleId}`}>
                                     <a className={classnames(className, 'link')}>
                                         {article ? article.title : <Skeleton active={true} title={false} paragraph={{rows: 2, width: '100%'}} className={classnames(className, 'imageTitle')} />}

@@ -40,6 +40,10 @@ const {className, styles} = resolve`
     .imageTitle :global(li + li) {
         margin-top: 10px;
     }
+
+    .articleTitle {
+        height: 3em;
+    }
 `;
 //#endregion
 
@@ -87,7 +91,7 @@ export default function LastArticleEntries(): ReactElement {
                 const article = articles[articleId];
                 return <Col key={articleId} sm={8} xs={24}>
                     <div>
-                        <Title level={4} ellipsis={{rows: 2}}>
+                        <Title level={4} ellipsis={{rows: 2}} className={classnames(className, 'articleTitle')}>
                             <Link href={'/article/[articleId]'} as={`/article/${articleId}`}>
                                 <a>
                                     {article ? article.title 
