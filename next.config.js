@@ -13,7 +13,7 @@ module.exports = withCSS(withOffline({
     runtimeCaching: [
       {
         urlPattern: /^https?.*api/,
-        handler: 'CacheFirst',
+        handler: 'staleWhileRevalidate',
         options: {
           cacheName: 'https-calls-v1',
           expiration: {
