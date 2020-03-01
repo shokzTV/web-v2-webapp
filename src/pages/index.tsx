@@ -13,7 +13,7 @@ export default function index(): ReactElement {
 
       <Divider />
 
-      <Row type={'flex'} gutter={[30, 30]}>
+      <Row type={'flex'} gutter={[50, 30]}>
         <Col xs={24} sm={12}>
           <FeaturedEvents />
         </Col>

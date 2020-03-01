@@ -33,16 +33,21 @@ const {className, styles} = resolve`
     .subTitle {
         font-size: 16px;
         font-weight: normal;
+        margin-bottom: 20px;
     }
 
     .imageTitle :global(li) {
         margin-left: 0;
         height: 18px;
     }
+
+    .divider {
+        margin: 10px 0;
+    }
 `;
 //#endregion
 
-const pageSize = 4;
+const pageSize = 6;
 export default function ArticleList(): ReactElement {
     const totalCount = useSelector(availableArticlesSelector).length;
     const [page, setPage] = useState(1);
@@ -51,10 +56,10 @@ export default function ArticleList(): ReactElement {
     const authorEntities = useSelector(authorsSelector);
 
     return <>
-        <Header title={'Artikel > Alle Artikel'} />
+        <Header title={'Artikel > Alle Artikel'} link={'Alle Artikelkatergorien anzeigen'} />
         <Divider />
 
-        {articleIds.map((id) => {
+        {articleIds.map((id, index) => {
             const article = articles[id];
             const author = article && authorEntities[article.author];
 
@@ -92,11 +97,19 @@ export default function ArticleList(): ReactElement {
                     </Col>
                 </Row>
 
-                <Divider />    
+                {index !== articleIds.length - 1 && <Divider />}    
             </React.Fragment>
         })}
         
-        <Pagination current={page} onChange={(page) => setPage(page)} total={totalCount} pageSize={pageSize} />
+        {totalCount > pageSize && <>
+            <div className={classNames(className, 'divider')}/>
+
+            <Row type={'flex'} justify={'space-around'}>
+                <Col>
+                    <Pagination current={page} onChange={(page) => setPage(page)} total={totalCount} pageSize={pageSize} />
+                </Col>
+            </Row>
+        </>}
 
         {styles}
     </>;

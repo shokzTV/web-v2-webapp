@@ -13,6 +13,7 @@ import { useSelector, useDispatch } from "react-redux";
 import LoadingImage from "./LoadingImage";
 import { eventRelationsSelector } from "../../store/selectors/Ui";
 import { loadArticles } from "../../store/Article";
+import { COLORS } from "../../style/colors";
 
 //#region <styles>
 const {className, styles} = resolve`
@@ -43,6 +44,10 @@ const {className, styles} = resolve`
         margin-top: 1px;
         margin-bottom: 15px;
     }
+
+    .link {
+        color: ${COLORS.WEAK}!important;
+    }
 `;
 //#endregion
 
@@ -59,15 +64,16 @@ export default function EventArticles({eventId}: {eventId: number}): ReactElemen
     if(eventRelation && articleIds.length > 0) {
         return <motion.div initial="exit" animate="enter" exit="exit">
             <Divider />
-            <Header title={'Artikel zum Event'} />
-            <Row type={'flex'} justify={'space-around'}>
+            <Header title={'Artikel zum Event'} link={'Alle Artikel zum Event'} />
+            <br />
+            <Row type={'flex'} gutter={[30, 30]}>
                 {articleIds.map((articleId) => {
                     const article = articles[articleId];
-                    return <Col key={articleId} sm={7} xs={12}>
-                        <div>
+                    return <Col key={articleId} sm={8} xs={12}>
+                        <div className={classnames(className, 'article')}>
                             <Title level={4} ellipsis={{rows: 2}}>
                                 <Link href={'/article/[articleId]'} as={`/article/${articleId}`}>
-                                    <a>
+                                    <a className={classnames(className, 'link')}>
                                         {article ? article.title : <Skeleton active={true} title={false} paragraph={{rows: 2, width: '100%'}} className={classnames(className, 'imageTitle')} />}
                                     </a>
                                 </Link>
@@ -87,7 +93,7 @@ export default function EventArticles({eventId}: {eventId: number}): ReactElemen
             <Divider />
             <Skeleton paragraph={false} className={classnames(className, 'titleSkeleton')} title={{width: '20%'}} />
 
-            <Row type={'flex'} justify={'space-around'}>
+            <Row type={'flex'} gutter={[30, 30]}>
                 {[0,0,0].map((articleId, index) => {
                     return <Col key={`${articleId}-${index}`} sm={7} xs={12}>
                         <div>

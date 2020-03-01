@@ -22,6 +22,8 @@ export default function PastEvents(): ReactElement {
     return <div>
         <Header title={'Vorherige Events'}/>
 
+        <div className={'spacer'}/>
+
         <Row type={'flex'} align={'middle'} justify={'space-between'} gutter={[40, 20]}>
             {eventIds.map((eventId) => {
                 const event = events[eventId];
@@ -35,12 +37,14 @@ export default function PastEvents(): ReactElement {
                                     </div>
                                 </Col>
                                 <Col xs={14}>
-                                    {event && <>
-                                        <Title level={4}>{event.name}</Title>
-                                        <div>{eventDate(event.id)}</div>
-                                    </>}
+                                    <div className={'eventInfo'}>
+                                        {event && <>
+                                            <Title level={3}>{event.name}</Title>
+                                            <div className={'eventDate'}>{eventDate(event.id)}</div>
+                                        </>}
 
-                                    {!event && <Skeleton title={{width: '100%'}} paragraph={{rows: 1, width: '100%'}} />}
+                                        {!event && <Skeleton title={{width: '100%'}} paragraph={{rows: 1, width: '100%'}} />}
+                                    </div>
                                 </Col>
                             </Row>
                         </a>
@@ -60,6 +64,19 @@ export default function PastEvents(): ReactElement {
                 padding-bottom: 56.2%;
                 height: 0;
                 overflow: hidden; 
+            }
+
+            .eventInfo {
+                margin-left: 20px;
+            }
+
+            .spacer {
+                height: 2em;
+            }
+
+            .eventDate {
+                font-size: 18px;
+                margin-top: -10px;
             }
         `}</style>
     </div>;

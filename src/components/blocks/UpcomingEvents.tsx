@@ -10,6 +10,7 @@ import LoadingImage from "./LoadingImage";
 import { useEventImage } from "../../hooks/image";
 import { useEventDate } from "../../hooks/event";
 import Link from "next/link";
+import classNames from "classnames";
 
 export default function UpcomingEvents(): ReactElement {
     const dispatch = useDispatch();
@@ -25,9 +26,9 @@ export default function UpcomingEvents(): ReactElement {
     }, []);
     
     return <div>
-        <Header title={'Events'}/>
+        <Header title={'Events'} link={'Vorherige Events anzeigen'} />
 
-        <Row type={'flex'} align={'middle'} justify={'space-between'} gutter={[40, 20]}>
+        <Row type={'flex'} align={'middle'} justify={'space-between'} gutter={[40, 40]}>
             {events.map((eventId) => {
                 const event = eventEntities[eventId];
             
@@ -40,7 +41,7 @@ export default function UpcomingEvents(): ReactElement {
                                 <div className={'eventInfo'}>
                                     {event && <>
                                         <Title level={3}>{event.name}</Title>
-                                        <div>
+                                        <div className={classNames('info', {finished: event.end < currentTs})}>
                                             {event.start > currentTs ? 'Demnächst' : (event.end < currentTs ? 'Abgeschlossen' : <span className={'active'}>Jetzt</span>)}:
                                             &nbsp;
                                             {eventDate(eventId)}
@@ -69,16 +70,27 @@ export default function UpcomingEvents(): ReactElement {
                 left: 0;
                 right: 0;
                 position: absolute;
-                padding: 10px 15px;
+                padding: 14px 15px;
+                color: rgba(255, 255, 255, .7);
+            }
+
+            .info {
+                color: #FFF;
+                font-size: 18px;
+            }
+            .info.finished {
                 color: rgba(255, 255, 255, .7);
             }
 
             .eventInfo :global(h3) {
                 color: #FFF!important;
+                text-transform: uppercase;
+                margin-bottom: 0;
             }
 
             .active {
-                color: #F00;
+                color: #e3211c;
+                text-transform: uppercase;
             }
         `}</style>
     </div>;

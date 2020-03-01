@@ -24,6 +24,7 @@ const {className, styles} = resolve`
 
     .content {
         line-height: 200%;
+        font-size: 18px;
     }
 
     .imageTitle :global(ul) {
@@ -59,7 +60,7 @@ export default function LastArticleEntries(): ReactElement {
             </Col>
             <Col sm={13} xs={24}>
                  <motion.div>
-                    <Title level={3}>
+                    <Title level={2}>
                         {featuredArticle 
                         ? <Link href={'/article/[articleId]'} as={`/article/${featuredArticle.id}`}><a>{featuredArticle.title}</a></Link>
                         : <>

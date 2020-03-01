@@ -31,7 +31,7 @@ export default function LatestNewsList(): ReactElement {
                     <b>{entry.headline}</b>
                 </div>}
 
-                {entry.description.length > 0 && <div>
+                {entry.description.length > 0 && <div className={'newsDescription'}>
                     {entry.description}
                 </div>}
 
@@ -58,14 +58,23 @@ export default function LatestNewsList(): ReactElement {
             }
 
             .news {
-                max-height: 430px;
+                max-height: 450px;
                 overflow-y: scroll;
             }
 
             .newsTitle {
-                color: ${COLORS.PRIMARY};
                 display: flex;
                 align-items: center;
+                font-size: 18px;
+                margin-bottom: 6px;
+            }
+
+            .newsTitle b, .newsTitle i {
+                color: ${COLORS.PRIMARY};
+            }
+
+            .newsDescription {
+                font-size: 16px;
             }
 
             .newsTitle.withIcon b {
