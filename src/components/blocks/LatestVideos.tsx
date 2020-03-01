@@ -30,7 +30,7 @@ const responsiveConfig = [{
 function NextArrow(props): ReactElement {
     const {onClick} = props;
     return <div className={'icon slick-arrow slick-next' } onClick={onClick}>
-        <Icon type="right-circle" />
+        <Icon type="right" />
         <style jsx>{`.icon {font-size: 20px;}`}</style>
     </div>;
 }
@@ -38,7 +38,7 @@ function NextArrow(props): ReactElement {
 function PrevArrow(props): ReactElement {
     const {onClick} = props;
     return <div className={'icon slick-arrow slick-prev'} onClick={onClick}>
-        <Icon type="left-circle" />
+        <Icon type="left" />
         <style jsx>{`.icon {font-size: 20px;}`}</style>
     </div>;
 }
@@ -53,6 +53,7 @@ export default function LatestVideos(): ReactElement {
         <Carousel 
             autoplay 
             draggable
+            pauseOnHover
             slidesToShow={3} 
             slidesToScroll={1} 
             initialSlide={0}

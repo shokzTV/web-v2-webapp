@@ -14,6 +14,7 @@ import { articlesSelector } from "../../store/selectors/Articles";
 import { useSelector } from "react-redux";
 import LoadingImage from "./LoadingImage";
 import CKEditorContent from "../CKEditorContent";
+import { COLORS } from "../../style/colors";
 
 //#region <styles>
 const {className, styles} = resolve`
@@ -25,6 +26,16 @@ const {className, styles} = resolve`
     .content {
         line-height: 200%;
         font-size: 18px;
+        position: relative;
+    }
+    
+    .readMore {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: #FFF;
+        padding: 0 0 0 0px;
+        color: ${COLORS.PRIMARY};
     }
 
     .imageTitle :global(ul) {
@@ -76,6 +87,12 @@ export default function LastArticleEntries(): ReactElement {
                     {featuredArticleBody.length > 0 && <Paragraph ellipsis={{rows: 5}} className={classnames(className, 'content')}>
                         <div>
                             <CKEditorContent text={featuredArticleBody} />
+                        </div>
+
+                        <div className={classnames(className, 'readMore')}>
+                            <Link href={'/article/[articleId]'} as={`/article/${featuredArticle.id}`}>
+                                <a>...weiterlesen</a>
+                            </Link>
                         </div>
                     </Paragraph>}
 
