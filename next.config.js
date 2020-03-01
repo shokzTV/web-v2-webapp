@@ -12,8 +12,8 @@ module.exports = withCSS(withOffline({
     swDest: 'static/service-worker.js',
     runtimeCaching: [
       {
-        urlPattern: /^https?.*/,
-        handler: 'NetworkFirst',
+        urlPattern: /^https?.*api/,
+        handler: 'CacheFirst',
         options: {
           cacheName: 'https-calls',
           networkTimeoutSeconds: 15,
@@ -24,6 +24,7 @@ module.exports = withCSS(withOffline({
           cacheableResponse: {
             statuses: [0, 200],
           },
+          purgeOnQuotaError: true,
         },
       },
     ],
