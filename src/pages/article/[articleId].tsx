@@ -15,7 +15,6 @@ import dayjs from 'dayjs';
 import LoadingImage from '../../components/blocks/LoadingImage';
 import { useShare } from '../../hooks/share';
 import CKEditorContent from '../../components/CKEditorContent';
-import Divider from '../../components/Divider';
 
 //#region <styles>
 const {className, styles} = resolve`
@@ -55,6 +54,18 @@ const {className, styles} = resolve`
     .articleTitleSkeleton {
         margin-bottom: 0.5em;
     }
+
+    .userName {
+        font-size: 18px;
+    }
+
+    .userTitle {
+        font-size: 16px;
+    }
+
+    .publishInfo {
+        font-size: 14px;
+    }
 `;
 //#endregion
 
@@ -64,9 +75,9 @@ function AuthorInfo({article}: {article: Article | null}): ReactElement {
     if(!article) {
         return <>
             <Skeleton className={classNames(className, 'skeleton')} 
-                    avatar 
-                    title={false} 
-                    paragraph={{rows: 2, width: '75%'}}/>
+                      avatar={{size: 70}}
+                      title={false} 
+                      paragraph={{rows: 2, width: '75%'}}/>
             <Skeleton className={classNames(className, 'skeleton2')} title={false} paragraph={{rows: 4, width: '75%'}}/>
             <Skeleton className={classNames(className, 'skeleton2')} title={false} paragraph={{rows: 2, width: '75%'}}/>
         </>;    
@@ -75,10 +86,10 @@ function AuthorInfo({article}: {article: Article | null}): ReactElement {
     const author = authors[article.author];
 
     return <div className={classNames(className, 'author')}>
-        <Avatar shape={'circle'} src={getImageUrl(author.avatar)} size={'large'}/>
+        <Avatar shape={'circle'} src={getImageUrl(author.avatar)} size={70}/>
         <div className={classNames(className, 'name')}>
-            <div>Autor: <a href={`https://www.twitch.tv/${author.name}`}>{author.name}</a></div>
-            {author.title.length > 0 && <div><i>author.title}</i></div>}
+            <div className={classNames(className, 'userName')}>Autor: <a href={`https://www.twitch.tv/${author.name}`} target={'_blank'}>{author.name}</a></div>
+            {author.title.length > 0 && <div className={classNames(className, 'userTitle')}><i>{author.title}</i></div>}
             <div className={classNames(className, 'publishInfo')}>veröffentlicht am {dayjs.unix(article.created).format('DD.MM.YYYY')}</div>
         </div>
 
@@ -101,7 +112,7 @@ export default function Home(): ReactElement {
     const share = useShare(global.location && global.location.href, article && article.title);
 
     return <PageFrame>
-        {article ? <Title level={3}>{article.title}</Title> : <Skeleton  className={classNames(className, 'articleTitleSkeleton')} title={{width: '80%'}} paragraph={false} />}
+        {article ? <Title level={2}>{article.title}</Title> : <Skeleton  className={classNames(className, 'articleTitleSkeleton')} title={{width: '80%'}} paragraph={false} />}
 
         <div className={classNames(className, 'articleContent')}>
             <div className={classNames(className, 'articleImageWrapper')}>

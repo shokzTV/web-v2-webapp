@@ -47,7 +47,7 @@ const {className, styles} = resolve`
     .eventLink {
         text-transform: uppercase;
         color: ${COLORS.PRIMARY};
-
+        font-size: 20px;
     }
 
     .eventLink + .eventLink {

@@ -19,6 +19,7 @@ export default function PageFrame({children, title = null}: Props): ReactElement
       <meta name="google" content="notranslate" />
       <meta httpEquiv="Content-Language" content="de" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700&display=swap" rel="stylesheet" />
     </Head>
 
     <div className={'page'}>
@@ -79,6 +80,11 @@ export default function PageFrame({children, title = null}: Props): ReactElement
       .pageFooter a, .ant-menu a {
         color: #FFF!important;
       } 
+
+      * {
+        font-family: 'Roboto Condensed';
+        color: ${COLORS.WEAK};
+      }
     `}</style>
   </>;
 }

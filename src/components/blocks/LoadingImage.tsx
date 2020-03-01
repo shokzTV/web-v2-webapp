@@ -1,4 +1,4 @@
-import { ReactElement, useState, useMemo } from "react";
+import { ReactElement, useState } from "react";
 import { resolve } from "styled-jsx/css";
 import classNames from "classnames";
 import { Skeleton } from "antd";
@@ -41,6 +41,7 @@ const {className, styles} = resolve`
         object-fit: cover;
         width: 100%;
         height: 100%;
+        border-radius: 8px;
     }
 
     .contains {

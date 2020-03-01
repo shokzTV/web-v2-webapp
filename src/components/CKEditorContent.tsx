@@ -29,7 +29,22 @@ var processingInstructions = [
 ];
   
 export default function CKEditorContent({text}: {text: string}): ReactElement {
-    return <>
+    return <div className={'content'}>
         {(new HtmlToReact.Parser()).parseWithInstructions(text, () => true, processingInstructions)}
-    </>;
+
+        <style jsx>{`
+            .content {
+                font-size: 18px;
+                line-height: 200%;
+            }    
+
+            .content :global(img) {
+                max-width: 100%;
+            }
+
+            .content :global(p) {
+                margin-bottom: 0;
+            }
+        `}</style>
+    </div>;
 }

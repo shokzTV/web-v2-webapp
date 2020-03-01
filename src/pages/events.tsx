@@ -9,9 +9,17 @@ export default function Events(): ReactElement {
     <PageFrame>
       <UpcomingEvents />
 
+      <div className={'spacer'} />
+
       <Divider />
 
       <PastEvents />
+
+      <style jsx>{`
+        .spacer {
+          height: 2em;
+        }  
+      `}</style>
     </PageFrame>
   </>;
 }

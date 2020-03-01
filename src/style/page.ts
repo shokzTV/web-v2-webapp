@@ -9,9 +9,9 @@ export const pageWrapper = css`
     }
 
     .pageWrapper {
-        max-width: 1024px;
+        max-width: 1175px;
         margin: 0 auto;
-        padding: 20px 15px;
+        padding: 20px 15px 40px 15px;
         flex-grow: 1;
         width: 100%;
     }
@@ -21,7 +21,7 @@ export const pageWrapper = css`
     }
 
     .linkList {
-        max-width: 1024px;
+        max-width: 1175px;
         margin: 0 auto;
         padding: 20px;
         color: #FFF;

@@ -34,7 +34,7 @@ export default function LatestVideos(): ReactElement {
     return <>
         <Header title={'Neuste Videos'}  link={'Alle Videos anzeigen'} />
 
-        <Carousel autoplay slidesToShow={3} slidesToScroll={1} dots swipeToSlide initialSlide={0}  responsive={responsiveConfig}>
+        <Carousel autoplay slidesToShow={3} slidesToScroll={1} initialSlide={0}  responsive={responsiveConfig}>
             {videoIds.map((videoId) => {
                 const video = videos[videoId];
 

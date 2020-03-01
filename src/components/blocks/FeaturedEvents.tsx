@@ -32,9 +32,9 @@ function EventRow({event}: {event?: Event}): ReactElement {
                             <LoadingImage contains src={event && organizerEntities[event.organizer]!.logo_small} />
                         </div>
 
-                        {event && <div>
+                        {event && <div className={'eventName'}>
                             {isRunning ? <b>{event.name}</b> : <>{event.name}</>}
-                            <div>{eventDate}</div>
+                            <div className={'eventDate'}>{eventDate}</div>
                         </div>}
 
                         {!event && <Skeleton title={false} paragraph={{rows: 2, width: '100%'}} />}
@@ -89,12 +89,20 @@ function EventRow({event}: {event?: Event}): ReactElement {
                 margin-left: 8px;
             }
 
-            .isRunning {
-                color: ${COLORS.PRIMARY}
+            .isRunning .eventName b {
+                color: ${COLORS.PRIMARY}!important;
             }
 
-            .isPast {
+            .isPast * {
                 color: #BBB;
+            }
+
+            .eventName {
+                font-size: 18px;
+            }
+
+            .eventDate, .location {
+                font-size: 16px;
             }
         `}</style>
     </div>;

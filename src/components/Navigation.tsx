@@ -56,6 +56,7 @@ const { className, styles } = resolve`
     .ant-menu-item, .ant-menu-submenu-title {
         padding: 14px 20px;
         vertical-align: middle;
+        font-size: 20px;
     }
 
     .ant-menu-item a {

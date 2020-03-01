@@ -40,9 +40,8 @@ function sort({start: aStart, end: aEnd}, {start: bStart, end: bEnd}): number {
     return getPriority(bStart, bEnd) - getPriority(aStart, aEnd);
 }
 
-function featureFilter({isFeatured, end}) {
-    const threshold = dayjs().subtract(2, 'week').unix();
-    return isFeatured && end > threshold;
+function featureFilter({isFeatured}) {
+    return isFeatured;
 }
 
 export const featuredEventsSelector = createSelector(

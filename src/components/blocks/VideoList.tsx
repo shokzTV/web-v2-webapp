@@ -31,7 +31,7 @@ export default function VideoList(): ReactElement {
         <Header title={'Videos > Alle Videos'} />
         <Divider />
 
-        <Row type={'flex'} justify={'end'}>
+        <Row type={'flex'} justify={'space-around'}>
             <Pagination current={page} onChange={(page) => setPage(page)} total={totalCount} pageSize={pageSize} />
         </Row>
 
@@ -48,6 +48,12 @@ export default function VideoList(): ReactElement {
                     </a>
                 </Col>
             })}
+        </Row>
+
+        <br />
+
+        <Row type={'flex'} justify={'space-around'}>
+            <Pagination current={page} onChange={(page) => setPage(page)} total={totalCount} pageSize={pageSize} />
         </Row>
 
         {styles}

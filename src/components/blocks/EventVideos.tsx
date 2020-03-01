@@ -62,7 +62,9 @@ export default function EventVideos({eventId}: {eventId: number}): ReactElement 
     if(videoIds.length > 0) {
         return <motion.div initial="exit" animate="enter" exit="exit">
             <Divider />
-            <Header title={'Videos zum Event'} />
+            <Header title={'Videos zum Event'} link={'Alle Videos zum Event'}/>
+
+            <br />
 
             <Carousel autoplay slidesToShow={3} slidesToScroll={1} dots swipeToSlide initialSlide={0}>
                 {videoIds.map((videoId) => {

@@ -9,6 +9,7 @@ import Paragraph from "antd/lib/typography/Paragraph";
 import { resolve } from "styled-jsx/css";
 import classNames from 'classnames';
 import LoadingImage from "./LoadingImage";
+import Divider from "../Divider";
 
 const {styles, className} = resolve`
     .recentTags {
@@ -24,17 +25,19 @@ const {styles, className} = resolve`
         left: 0;
         right: 0;
         background-color: rgba(0,0,0,.7);
-        padding: 8px 10px;
+        padding: 12px 15px;
     }
 
     .title {
         color: #FFF;
-        margin-bottom: 3px;
+        margin-bottom: 0px;
+        text-transform: uppercase;
     }
 
     .description {
         color: #FFF;
         margin-bottom: 0;
+        font-size: 18px;
     }
 
     .tagDescription :global(ul) {
@@ -52,12 +55,16 @@ export default function RecentArticleTags(): ReactElement {
     }, []);
 
     const tagIds = useSelector(orderedLastTagesSelector);
-    const recentTags = tagIds.length > 0 ? tagIds : [...Array(4).keys()];
+    const recentTags = tagIds.length > 0 ? tagIds : [...Array(8).keys()];
 
     return <div>
+        <Divider />
+
         <Header title={'Artikelkategorien'}/>
 
-        <Row type={'flex'} align={'middle'} justify={'space-between'} gutter={[20, 20]}>
+        <br />
+
+        <Row type={'flex'} align={'middle'} gutter={[20, 20]}>
             {recentTags.map((tagId) => {
                 const tag = tagEntities[tagId];
                 return <Col key={tagId} sm={12} xs={24}>
@@ -65,8 +72,8 @@ export default function RecentArticleTags(): ReactElement {
                         <LoadingImage src={tag && tag.image} />
                         <div className={classNames(className, 'tagDescription')}>
                             {tag && <>
-                                <Title level={4} className={classNames(className, 'title')}>{tag.name}</Title>
-                                <Paragraph ellipsis={{rows: 2}} className={classNames(className, 'description')}>
+                                <Title level={3} className={classNames(className, 'title')}>{tag.name}</Title>
+                                <Paragraph ellipsis={{rows: 1}} className={classNames(className, 'description')}>
                                     {tag.description}
                                 </Paragraph>
                             </>}

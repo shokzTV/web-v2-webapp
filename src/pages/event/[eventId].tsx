@@ -16,6 +16,14 @@ import { loadEventRelations } from '../../store/Ui';
 import EventArticles from '../../components/blocks/EventArticles';
 import EventVideos from '../../components/blocks/EventVideos';
 import { loadEvents } from '../../store/Event';
+import { COLORS } from '../../style/colors';
+import CKEditorContent from '../../components/CKEditorContent';
+
+const descriptionName = {
+    description: 'Beschreibung',
+    information: 'Information',
+    advice: 'Hinweis'
+}
 
 export default function Event(): ReactElement {
     const dispatch = useDispatch();
@@ -44,10 +52,10 @@ export default function Event(): ReactElement {
                 </div>
             </Col>
             <Col xs={24} sm={12}>
-                <Title level={3}>{event && event.name}</Title>
+                <Title level={2}>{event && event.name}</Title>
                 <Row type={'flex'} gutter={[20, 20]}>
-                    <Col xs={24} sm={14}>
-                        <h4>Eventinformationen</h4>
+                    <Col xs={24} sm={15}>
+                        <div className={'title'}>Eventinformationen</div>
                         <div className={'dataRow'}>
                             <div className={'label'}>Datum:</div>
                             <div>{eventDate}</div>
@@ -69,8 +77,8 @@ export default function Event(): ReactElement {
                             <div>{event && event.pricePool}</div>
                         </div>}
                     </Col>
-                    <Col xs={24} sm={10}>
-                        <h4>Eventlinks</h4>
+                    <Col xs={24} sm={9}>
+                        <div className={'title'}>Eventlinks</div>
                         <ul className={'listWrapper'}>
                             {eventLinks.map(({id, name, link}) => <li key={id}><a target={'_blank'} href={link}>{name}</a></li>)}
                         </ul>
@@ -79,8 +87,25 @@ export default function Event(): ReactElement {
             </Col>
         </Row>
 
+
+        {event && event.description.length > 0 && <>
+            <Divider />
+
+            <Header title={event && descriptionName[event.descriptionType]} />
+            <div className={'description'}>
+                <CKEditorContent text={event && event.description} />
+            </div>
+        </>}
+
         <EventArticles eventId={eventId} />
         <EventVideos eventId={eventId} />
+
+        {event && event.disclaimer.length > 0 && <>
+            <Divider half/>
+            <div className={'disclaimer'}>
+                <CKEditorContent text={event && event.disclaimer} />
+            </div>
+        </>}
 
         <style jsx>{`
             .imageWrapper {
@@ -95,6 +120,7 @@ export default function Event(): ReactElement {
                 flex-direction: row;
                 align-items: center;
                 margin-top: 8px;
+                font-size: 20px;
             }
 
             .location {
@@ -104,12 +130,33 @@ export default function Event(): ReactElement {
             }
 
             .label {
-                width: 100px;
+                width: 120px;
             }
 
             .listWrapper {
                 padding-left: 18px;
             } 
+
+            .title {
+                font-size: 20px;
+                color: ${COLORS.PRIMARY};
+                margin-bottom: 15px;
+            }
+            .listWrapper {
+                font-size: 20px;
+            }
+
+            .description {
+                padding-left: 14px;
+            } 
+
+            .disclaimer {
+                text-align: right;
+            }
+            .disclaimer :global(*) {
+                color: #BBB;
+                font-size: 14px;
+            }
         `}</style>
     </PageFrame>;
 }

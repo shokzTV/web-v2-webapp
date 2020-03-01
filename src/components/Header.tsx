@@ -24,14 +24,14 @@ export default function Header({title, link}: Props): ReactElement {
                 font-weight: 400;
                 color: ${COLORS.PRIMARY};
                 text-transform: uppercase;
-                font-size: 16px;
+                font-size: 20px;
                 display: flex;
                 justify-content: space-between;
             }
 
             .linkLabel {
                 cursor: pointer;
-                font-size: 11px;
+                font-size: 14px;
                 line-height: 1em;
                 padding: 3px 8px;
                 text-transform: uppercase;
