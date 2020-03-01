@@ -1,11 +1,10 @@
 import React, { ReactElement } from 'react'
 import PageFrame from '../components/PageFrame';
-import VideoList from '../components/blocks/VideoList';
 
-export default function Videos(): ReactElement {
+export default function imprint(): ReactElement {
   return <>
     <PageFrame>
-        <VideoList />
+        Imprint
     </PageFrame>
   </>;
 }

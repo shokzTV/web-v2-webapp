@@ -8,6 +8,7 @@ import { pastEventIdsSelector, eventEntitiesSelector } from "../../store/selecto
 import { useEventImage } from "../../hooks/image";
 import LoadingImage from "./LoadingImage";
 import { useEventDate } from "../../hooks/event";
+import Link from "next/link";
 
 const pageSize = 10;
 export default function PastEvents(): ReactElement {
@@ -25,21 +26,25 @@ export default function PastEvents(): ReactElement {
             {eventIds.map((eventId) => {
                 const event = events[eventId];
                 return <Col key={eventId} sm={12} xs={24}>
-                    <Row type={'flex'} align={'middle'} justify={'space-between'} gutter={[15, 10]}>
-                        <Col xs={10}>
-                            <div className={'imageWrapper'}>
-                                <LoadingImage src={eventImage(eventId)} />
-                            </div>
-                        </Col>
-                        <Col xs={14}>
-                            {event && <>
-                                <Title level={4}>{event.name}</Title>
-                                <div>{eventDate(event.id)}</div>
-                            </>}
+                    <Link href={'/event/[eventId]'} as={`/event/${eventId}`}>
+                        <a>
+                            <Row type={'flex'} align={'middle'} justify={'space-between'} gutter={[15, 10]}>
+                                <Col xs={10}>
+                                    <div className={'imageWrapper'}>
+                                        <LoadingImage src={eventImage(eventId)} />
+                                    </div>
+                                </Col>
+                                <Col xs={14}>
+                                    {event && <>
+                                        <Title level={4}>{event.name}</Title>
+                                        <div>{eventDate(event.id)}</div>
+                                    </>}
 
-                            {!event && <Skeleton title={{width: '100%'}} paragraph={{rows: 1, width: '100%'}} />}
-                        </Col>
-                    </Row>
+                                    {!event && <Skeleton title={{width: '100%'}} paragraph={{rows: 1, width: '100%'}} />}
+                                </Col>
+                            </Row>
+                        </a>
+                    </Link>
                 </Col>
             })}
         </Row>

@@ -6,7 +6,7 @@ import { Divider } from 'antd';
 
 export default function Events(): ReactElement {
   return <>
-    <PageFrame showSelectedEvent={true}>
+    <PageFrame>
       <UpcomingEvents />
 
       <Divider />

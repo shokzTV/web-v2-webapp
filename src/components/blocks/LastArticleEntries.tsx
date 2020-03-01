@@ -51,17 +51,17 @@ export default function LastArticleEntries(): ReactElement {
 
     return <motion.div initial="exit" animate="enter" exit="exit" className={classnames(className, 'LastArticleEntries')}>
         <Header title={'Neue Artikel'} link={'Alle Artikel anzeigen'} />
-        <Row type={'flex'} align={'middle'}>
+        <Row type={'flex'} align={'middle'} gutter={[30, 30]}>
             <Col sm={11} xs={24}>
                 <motion.div className={classnames(className, 'imageWrapper')}>
                     <LoadingImage src={featuredArticle && featuredArticle.cover} />
                 </motion.div>
             </Col>
-            <Col offset={1} sm={12} xs={24}>
+            <Col sm={13} xs={24}>
                  <motion.div>
                     <Title level={3}>
                         {featuredArticle 
-                        ? <Link key={`/article/${featuredArticle.id}`} href={`/article/${featuredArticle.id}`}><a>{featuredArticle.title}</a></Link>
+                        ? <Link href={'/article/[articleId]'} as={`/article/${featuredArticle.id}`}><a>{featuredArticle.title}</a></Link>
                         : <>
                             <Skeleton active={true} title={{width: '100%'}} paragraph={false} />
                             <Skeleton active={true} title={{width: '50%'}} paragraph={false} />
@@ -81,15 +81,16 @@ export default function LastArticleEntries(): ReactElement {
 
         <Divider />
 
-        <Row type={'flex'} justify={'space-around'}>
+        <Row type={'flex'} gutter={[30, 30]}>
             {lastArticleRow.map((articleId) => {
                 const article = articles[articleId];
-                return <Col key={articleId} sm={7} xs={12}>
+                return <Col key={articleId} sm={8} xs={24}>
                     <div>
                         <Title level={4} ellipsis={{rows: 2}}>
-                            <Link href={`/article/${articleId}`}>
+                            <Link href={'/article/[articleId]'} as={`/article/${articleId}`}>
                                 <a>
-                                    {article ? article.title : <Skeleton active={true} title={false} paragraph={{rows: 2, width: '100%'}} className={classnames(className, 'imageTitle')} />}
+                                    {article ? article.title 
+                                             : <Skeleton active={true} title={false} paragraph={{rows: 2, width: '100%'}} className={classnames(className, 'imageTitle')} />}
                                 </a>
                             </Link>
                         </Title>

@@ -8,12 +8,12 @@ import LatestNewsList from '../components/blocks/LatestNewsList';
 
 export default function index(): ReactElement {
   return <>
-    <PageFrame showSelectedEvent={true}>
+    <PageFrame>
       <LastArticleEntries />
 
       <Divider />
 
-      <Row gutter={[60, 30]}>
+      <Row type={'flex'} gutter={[30, 30]}>
         <Col xs={24} sm={12}>
           <FeaturedEvents />
         </Col>

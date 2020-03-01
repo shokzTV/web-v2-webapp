@@ -14,7 +14,7 @@ import Link from "next/link";
 const {className, styles} = resolve`
     .eventRow {
         margin-bottom: 20px;
-        height: 200px;
+        min-height: 200px;
         overflow: hidden;
         padding-top: 20px;
         background-image: url('/images/event.jpg');
@@ -92,8 +92,8 @@ export default function SelectedEvent(): ReactElement {
                     <Col>
                         <div className={'nameContainer'}>
                             <Title level={2} type={'secondary'} className={classNames(className, 'eventTitle')}>{mainEvent ? mainEvent.name : ''}</Title>
-                            <Row type={'flex'} justify={'space-around'}>
-                                <Link href={`/event/${mainEvent ? mainEvent.id : ''}`}>
+                            <Row type={'flex'} align={'middle'} justify={'center'}>
+                                <Link href={'/event/[eventId]'} as={`/event/${mainEvent ? mainEvent.id : ''}`}>
                                     <a className={classNames(className, 'eventLink')}>Eventüberblick</a>
                                 </Link>
                                 <a className={classNames(className, 'eventLink')}>Neuigkeiten zum Event</a>

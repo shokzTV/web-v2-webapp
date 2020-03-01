@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { resolve } from 'styled-jsx/css';
 import { COLORS } from "../style/colors";
+import classNames from "classnames";
 
 interface MenuItem {
     name: string;
@@ -25,9 +26,18 @@ const items: MenuItem[] = [{
 }];
 
 const { className, styles } = resolve`
-    .ant-menu {
-        text-align: center;
+    .menuWrapper {
         background: ${COLORS.PRIMARY};
+    }
+
+    .ant-menu {
+        max-width: 1024px;
+        width: 100%;
+        margin: 0 auto;
+        text-align: left;
+        background: ${COLORS.PRIMARY};
+        height: 77px;
+        border-bottom: none;
     }
 
     .ant-menu :global(.ant-menu-submenu), 
@@ -39,8 +49,13 @@ const { className, styles } = resolve`
     }
 
     .ant-menu-horizontal > .ant-menu-item-selected,
-    .ant-menu-horizontal > .ant-menu-item:hover {
+    .ant-menu-horizontal > .ant-menu-item:not(.logo):hover {
         border-bottom: 3px solid ${COLORS.SECONDARY};
+    }
+
+    .ant-menu-item, .ant-menu-submenu-title {
+        padding: 14px 20px;
+        vertical-align: middle;
     }
 
     .ant-menu-item a {
@@ -48,19 +63,32 @@ const { className, styles } = resolve`
         color: #FFF;
     }
 
+    :global(.ant-menu-submenu) .ant-menu-item {
+        padding: 0 20px;
+    }
     :global(.ant-menu-submenu) .ant-menu-item a {
         text-transform: uppercase;
-        color: #000;
+        color: #000!important;
+    }
+
+    .logo {
+        pointer-events: none;
+        padding: 3px 40px 3px 0;
     }
 `;
 
 export default function Navigation(): ReactElement {
     const {pathname} = useRouter();
-    return <Menu mode={'horizontal'} selectedKeys={[pathname]} className={className}>
-        {items.map(({name, path}) => <Menu.Item key={path} className={className}>
-                <Link key={path} href={path}><a className={className}>{name}</a></Link>
+    return <div className={classNames(className, 'menuWrapper')}>
+        <Menu mode={'horizontal'} selectedKeys={[pathname]} className={className}>
+            <Menu.Item className={classNames(className, 'logo')}>
+                <img src={'/images/logo.png'} alt={'logo'} />
             </Menu.Item>
-        )}
+            {items.map(({name, path}) => <Menu.Item key={path} className={className}>
+                    <Link key={path} href={path}><a className={className}>{name}</a></Link>
+                </Menu.Item>
+            )}
+        </Menu>
         {styles}
-    </Menu>;
+    </div>;
 }
