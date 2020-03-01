@@ -15,8 +15,7 @@ module.exports = withCSS(withOffline({
         urlPattern: /^https?.*api/,
         handler: 'CacheFirst',
         options: {
-          cacheName: 'https-calls',
-          networkTimeoutSeconds: 15,
+          cacheName: 'https-calls-v1',
           expiration: {
             maxEntries: 150,
             maxAgeSeconds: 30 * 24 * 60 * 60,
