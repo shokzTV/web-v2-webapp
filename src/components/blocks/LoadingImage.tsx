@@ -60,7 +60,7 @@ const imageVariants = {
 export default function LoadingImage({src, contains}: {src?: string; contains?: boolean}): ReactElement {
     const [loaded, setLoaded] = useState(false);
     return <>
-        {loaded && <motion.img className={classNames(className, 'image', {contains})} variants={imageVariants} src={getImageUrl(src)} />}
+        {loaded && <motion.img className={classNames(className, 'image', {contains})} variants={imageVariants} src={getImageUrl(src)} alt={src} />}
         {!loaded && <Skeleton className={classNames(className, 'imageSkeleton')} active={true} title={false} paragraph={{ rows: 1, width: '100%' }} />}  
 
         <div className={classNames(className, 'imageLoader')}>
