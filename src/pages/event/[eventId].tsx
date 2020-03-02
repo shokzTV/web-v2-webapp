@@ -80,7 +80,7 @@ export default function Event(): ReactElement {
                     <Col xs={24} sm={9}>
                         <div className={'title'}>Eventlinks</div>
                         <ul className={'listWrapper'}>
-                            {eventLinks.map(({id, name, link}) => <li key={id}><a target={'_blank'} href={link}>{name}</a></li>)}
+                            {eventLinks.map(({id, name, link}) => <li key={id}><a target={'_blank'} href={link} rel={'noreferrer'}>{name}</a></li>)}
                         </ul>
                     </Col>
                 </Row>

@@ -38,10 +38,10 @@ export default function PageFrame({children, title = null}: Props): ReactElement
 
           <Row type={'flex'} gutter={[25, 10]}>
             <Col sm={6} xs={24}>
-              <a href={'https://www.instagram.com/shokztv/'} target={'_blank'}>Instagram</a>
+              <a href={'https://www.instagram.com/shokztv/'} target={'_blank'} rel={'noreferrer'}>Instagram</a>
             </Col>
             <Col sm={6} xs={24}>
-              <a href={'https://www.twitch.tv/shokztv'} target={'_blank'}>Twitch</a>
+              <a href={'https://www.twitch.tv/shokztv'} target={'_blank'} rel={'noreferrer'}>Twitch</a>
             </Col>
             <Col sm={6} xs={24}>
               <a href={'mailto:kontakt@shokz.tv'}>Kontakt</a>
@@ -52,10 +52,10 @@ export default function PageFrame({children, title = null}: Props): ReactElement
               </Link>
             </Col>
             <Col sm={6} xs={24}>
-              <a href={'https://twitter.com/shokztv/'} target={'_blank'}>Twitter</a>
+              <a href={'https://twitter.com/shokztv/'} target={'_blank'} rel={'noreferrer'}>Twitter</a>
             </Col>
             <Col sm={6} xs={24}>
-              <a href={'http://www.discord.gg/hagYNWg'} target={'_blank'}>Discord</a>
+              <a href={'http://www.discord.gg/hagYNWg'} target={'_blank'} rel={'noreferrer'}>Discord</a>
             </Col>
             <Col sm={6} xs={24}>
               <Link href={'/imprint'} as={'/imprint'}>

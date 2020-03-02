@@ -67,7 +67,7 @@ export default function LatestVideos(): ReactElement {
 
                 return <div key={videoId} className={'videoEntry'}>
                     <div className={'thumbnailWrapper'}>
-                        <a href={video ? video.source : ''} target={'_blank'}>
+                        <a href={video ? video.source : ''} target={'_blank'} rel={'noreferrer'}>
                             <LoadingImage src={video && video.thumbnail} />
                         </a>
                     </div>

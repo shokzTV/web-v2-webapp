@@ -41,7 +41,7 @@ export default function VideoList(): ReactElement {
             {videoIds.map((videoId) => {
                 const video = videos[videoId];
                 return <Col sm={8} xs={24} key={videoId}>
-                    <a href={video && video.source} target={'_blank'}>
+                    <a href={video && video.source} target={'_blank'} rel={'noreferrer'}>
                         <div className={classNames(className, 'imageWrapper')}>
                             <LoadingImage src={video && video.thumbnail} />
                         </div>

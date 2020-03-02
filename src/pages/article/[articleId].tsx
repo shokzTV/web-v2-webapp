@@ -88,7 +88,7 @@ function AuthorInfo({article}: {article: Article | null}): ReactElement {
     return <div className={classNames(className, 'author')}>
         <Avatar shape={'circle'} src={getImageUrl(author.avatar)} size={70}/>
         <div className={classNames(className, 'name')}>
-            <div className={classNames(className, 'userName')}>Autor: <a href={`https://www.twitch.tv/${author.name}`} target={'_blank'}>{author.name}</a></div>
+            <div className={classNames(className, 'userName')}>Autor: <a href={`https://www.twitch.tv/${author.name}`} target={'_blank'} rel={'noreferrer'}>{author.name}</a></div>
             {author.title.length > 0 && <div className={classNames(className, 'userTitle')}><i>{author.title}</i></div>}
             <div className={classNames(className, 'publishInfo')}>veröffentlicht am {dayjs.unix(article.created).format('DD.MM.YYYY')}</div>
         </div>
