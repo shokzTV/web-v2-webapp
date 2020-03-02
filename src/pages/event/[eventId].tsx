@@ -67,7 +67,7 @@ export default function Event(): ReactElement {
                         <div className={'dataRow'}>
                             <div className={'label'}>Ort:</div>
                             <div className={'location'}>
-                                {event && event.country !== 'xx' ? <ReactCountryFlag svg countryCode={event.country + '-flag'} alt={event.country} /> : <div className={'emptyFlag'} />}
+                                {event && event.country !== 'xx' ? <ReactCountryFlag svg countryCode={event.country} alt={event.country + '-flag'} /> : <div className={'emptyFlag'} />}
                                 &nbsp;
                                 <div>{event && event.location}</div>
                             </div>
