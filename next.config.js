@@ -1,9 +1,8 @@
 require('dotenv').config();
 
 const withOffline = require('next-offline');
-const withCSS = require('@zeit/next-css')
 
-module.exports = withCSS(withOffline({
+module.exports = withOffline({
     target: "serverless",
     transformManifest: manifest => ['/'].concat(manifest), // add the homepage to the cache
   // Trying to set NODE_ENV=production when running yarn dev causes a build-time error so we
@@ -32,4 +31,4 @@ module.exports = withCSS(withOffline({
   env: {
     API_URL: process.env.API_URL
   },
-}));
+});
