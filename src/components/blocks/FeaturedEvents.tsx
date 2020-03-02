@@ -94,7 +94,7 @@ function EventRow({event}: {event?: Event}): ReactElement {
             }
 
             .isPast * {
-                color: #BBB;
+                color: #999;
             }
 
             .eventName {
