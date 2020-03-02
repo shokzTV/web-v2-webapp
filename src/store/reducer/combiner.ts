@@ -47,7 +47,7 @@ export function combiner(reducers: object | [] | Function): (state: object, acti
       let finalNextState = isPlainObject(state) ? Object.assign({}, state) : state;
       let hasChanged = false;
       const getPreviousState = () => typeof state === 'undefined' ? state : finalNextState;
-      reducers.forEach((reducer) => {
+      (reducers as []).forEach((reducer) => {
         const nextState = combiner(reducer)(getPreviousState(), action);
         if (checkHasChanged(finalNextState, nextState)) {
           hasChanged = true;
@@ -63,7 +63,6 @@ export function combiner(reducers: object | [] | Function): (state: object, acti
     return (state = {}, action) => {
       let hasChanged = false;
       const nextState = {...state};
-      //@ts-ignore
       Object.entries(reducers).forEach(([key, reducer]) => {
         const previousStateForKey = state[key];
         const nextStateForKey = combiner(reducer)(previousStateForKey, action);
