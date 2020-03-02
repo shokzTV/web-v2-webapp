@@ -12,10 +12,10 @@ module.exports = withCSS(withOffline({
     swDest: 'static/service-worker.js',
     runtimeCaching: [
       {
-        urlPattern: /^https?.*api/,
+        urlPattern: /^https?.*(api|gstatic|logo\.png|event\.jpg|favicon\.ico)/,
         handler: 'StaleWhileRevalidate',
         options: {
-          cacheName: 'https-calls-v1',
+          cacheName: 'https-calls-v2',
           expiration: {
             maxEntries: 150,
             maxAgeSeconds: 30 * 24 * 60 * 60,
