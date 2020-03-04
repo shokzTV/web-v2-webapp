@@ -6,6 +6,7 @@ import Title from 'antd/lib/typography/Title';
 import { Row, Col } from 'antd';
 import { COLORS } from '../style/colors';
 import Link from 'next/link';
+import Footer from './Footer';
 
 interface Props {
     children: ReactNode;
@@ -31,44 +32,7 @@ export default function PageFrame({children, title = null}: Props): ReactElement
           </div>
         </motion.div>
       </div>
-
-      <div className={'pageFooter'}>
-        <div className={'linkList'}>
-          <Title level={4}>Mehr von shokzTV</Title>
-
-          <Row type={'flex'} gutter={[25, 10]}>
-            <Col sm={6} xs={24}>
-              <a href={'https://www.instagram.com/shokztv/'} target={'_blank'} rel={'noreferrer'}>Instagram</a>
-            </Col>
-            <Col sm={6} xs={24}>
-              <a href={'https://www.twitch.tv/shokztv'} target={'_blank'} rel={'noreferrer'}>Twitch</a>
-            </Col>
-            <Col sm={6} xs={24}>
-              <a href={'mailto:kontakt@shokz.tv'}>Kontakt</a>
-            </Col>
-            <Col sm={6} xs={24}>
-              <Link href={'/dataProtection'} as={'/dataProtection'}>
-                <a>Datenschutzerklärung</a>
-              </Link>
-            </Col>
-            <Col sm={6} xs={24}>
-              <a href={'https://twitter.com/shokztv/'} target={'_blank'} rel={'noreferrer'}>Twitter</a>
-            </Col>
-            <Col sm={6} xs={24}>
-              <a href={'http://www.discord.gg/hagYNWg'} target={'_blank'} rel={'noreferrer'}>Discord</a>
-            </Col>
-            <Col sm={6} xs={24}>
-              <Link href={'/imprint'} as={'/imprint'}>
-                <a>Impressum</a>
-              </Link>
-            </Col>
-          </Row>
-        </div>
-
-        <div className={'status'}>
-          Diese Website steht in keiner offiziellen Verbindung mit Dota2 oder Valve Cooperation - Dota2 is a registered trademark of Valve Cooperation
-        </div>
-      </div>
+      <Footer />
     </div>
 
     <style jsx>{pageWrapper}</style>
