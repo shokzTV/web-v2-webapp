@@ -67,7 +67,6 @@ const {className, styles} = resolve`
         font-size: 14px;
     }
 
-
     @media (max-width: 850px) {
         .articleImageWrapper {
             display: block;
@@ -78,8 +77,6 @@ const {className, styles} = resolve`
             width: 100%;
         }
     }
-
-
 `;
 //#endregion
 
@@ -119,7 +116,7 @@ function Tags({article}: {article: Article}): ReactElement {
             <div className={'caption'}><b>Artikelkategorien:</b>&nbsp;&nbsp;</div>
             {article && article.tags.map((tagId) => {
                 const tag = tags[tagId];
-                return <div className={'tag'}>{tag.name}&nbsp;&nbsp;</div>;
+                return <div className={'tag'} key={tagId}>{tag.name}&nbsp;&nbsp;</div>;
             })}
         </div>
 
@@ -133,7 +130,6 @@ function Tags({article}: {article: Article}): ReactElement {
                 margin-bottom: 10px;
                 padding-bottom: 10px;
             }
-            
         `}</style>
     </>;
 }

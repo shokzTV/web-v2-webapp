@@ -2,10 +2,7 @@ import React, { ReactElement, ReactNode } from 'react';
 import { pageWrapper } from "../style/page";
 import Head from "next/head";
 import { motion } from 'framer-motion';
-import Title from 'antd/lib/typography/Title';
-import { Row, Col } from 'antd';
 import { COLORS } from '../style/colors';
-import Link from 'next/link';
 import Footer from './Footer';
 
 interface Props {
@@ -20,8 +17,13 @@ export default function PageFrame({children, title = null}: Props): ReactElement
       <meta name="google" content="notranslate" />
       <meta httpEquiv="Content-Language" content="de" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
+
       <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700&display=swap" rel="stylesheet" />
       <meta name="description" content="shokzTV: Die deutsche Dota2 Startseite für aktuelle Nachrichten, Themen, Events, Updates, Pro Teams, Twitchstreamer und Castings" />
+
+      <link rel="apple-touch-icon" href="images/apple-touch-icon.png"></link>
+      <meta name="theme-color" content="#0A1C3F" />
+      <link rel="manifest" href="/manifest.json" />
     </Head>
 
     <div className={'page'}>
