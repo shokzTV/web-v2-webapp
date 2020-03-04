@@ -15,31 +15,4 @@ export const pageWrapper = css`
         flex-grow: 1;
         width: 100%;
     }
-
-    .pageFooter {
-        background-color: #424242;
-    }
-
-    .linkList {
-        max-width: 1175px;
-        margin: 0 auto;
-        padding: 20px;
-        color: #FFF;
-    }
-
-    .linkList :global(h4) {
-        color: #FFF;
-    }
-
-    .linkList :global(a) {
-        color: #FFF;
-    }
-
-    .status {
-        background-color: #343434;
-        text-align: center;
-        color: rgba(255, 255, 255, .5);
-        padding: 10px;
-        font-style: italic;
-    }
 `;
