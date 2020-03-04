@@ -13,8 +13,8 @@ import { authorsSelector } from '../../store/selectors/Authors';
 import { Article } from '../../store/entities/Article';
 import dayjs from 'dayjs';
 import LoadingImage from '../../components/blocks/LoadingImage';
-import { useShare } from '../../hooks/share';
 import CKEditorContent from '../../components/CKEditorContent';
+import { tagsEntitiesSelector } from '../../store/selectors/Tags';
 
 //#region <styles>
 const {className, styles} = resolve`
@@ -66,6 +66,20 @@ const {className, styles} = resolve`
     .publishInfo {
         font-size: 14px;
     }
+
+
+    @media (max-width: 850px) {
+        .articleImageWrapper {
+            display: block;
+            margin: 0 auto;
+            float: none;
+            margin-bottom: 20px;
+            max-width: 512px;
+            width: 100%;
+        }
+    }
+
+
 `;
 //#endregion
 
@@ -97,6 +111,33 @@ function AuthorInfo({article}: {article: Article | null}): ReactElement {
     </div>;
 }
 
+function Tags({article}: {article: Article}): ReactElement {
+    const tags = useSelector(tagsEntitiesSelector);
+
+    return <>
+        <div className={'tagList'}>
+            <div className={'caption'}><b>Artikelkategorien:</b>&nbsp;&nbsp;</div>
+            {article && article.tags.map((tagId) => {
+                const tag = tags[tagId];
+                return <div className={'tag'}>{tag.name}&nbsp;&nbsp;</div>;
+            })}
+        </div>
+
+        <style jsx>{`
+            .tagList {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                margin-top: 10px;
+                border-bottom: 1px solid #DDD;
+                margin-bottom: 10px;
+                padding-bottom: 10px;
+            }
+            
+        `}</style>
+    </>;
+}
+
 export default function Home(): ReactElement {
     const router = useRouter();
     const dispatch = useDispatch();
@@ -108,8 +149,6 @@ export default function Home(): ReactElement {
     }, [articleId]);
 
     const article = selector(articleId);
-    //@ts-ignore
-    const share = useShare(global.location && global.location.href, article && article.title);
 
     return <PageFrame>
         {article ? <Title level={2}>{article.title}</Title> : <Skeleton  className={classNames(className, 'articleTitleSkeleton')} title={{width: '80%'}} paragraph={false} />}
@@ -123,6 +162,10 @@ export default function Home(): ReactElement {
 
             <div>
                 <AuthorInfo article={article}/>
+            </div>
+
+            <div>
+                <Tags article={article}/>
             </div>
                                 
             {article && <CKEditorContent text={article.body} />}
