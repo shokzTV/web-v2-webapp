@@ -6318,6 +6318,13 @@ react-twitter-embed@^3.0.3:
     react-proptype-conditional-require "^1.0.4"
     scriptjs "^2.5.9"
 
+react-visibility-sensor@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/react-visibility-sensor/-/react-visibility-sensor-5.1.1.tgz#5238380960d3a0b2be0b7faddff38541e337f5a9"
+  integrity sha512-cTUHqIK+zDYpeK19rzW6zF9YfT4486TIgizZW53wEZ+/GPBbK7cNS0EHyJVyHYacwFEvvHLEKfgJndbemWhB/w==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-youtube-embed@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/react-youtube-embed/-/react-youtube-embed-1.0.3.tgz#aae0d6e3bd4b3fe3cf05561b730ce1fd99a4aab1"
