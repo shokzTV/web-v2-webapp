@@ -17,8 +17,16 @@ const {className, styles} = resolve`
         min-height: 200px;
         overflow: hidden;
         padding-top: 20px;
-        background-image: url('/images/event.jpg');
         background-size: cover;
+        position: relative;
+    }
+
+    .eventImage {
+        position: absolute;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        top: -10px;
     }
 
     .eventRowInner {
@@ -77,14 +85,25 @@ export default function SelectedEvent(): ReactElement {
         if(mainEvent) {
             return organizerLogoSelector(mainEvent.id);
         }
-        return null;
+        return {jpeg: '', jp2: '', webp: ''};
     }, [mainEvent]);
 
     return <div className={classNames(className, 'eventRow')}>
+        <div className={classNames(className, 'eventImage')}>
+            <picture>
+                <source type="image/webp" srcSet={'/images/event.webp'}/>
+                <source type="image/jp2" srcSet={'/images/event.jp2'}/>
+                <img className={classNames(className, 'image')} src={'/images/event.jpeg'} alt={'event iamge background'}/>
+            </picture>
+        </div>
         <Row align={"middle"} className={classNames(className, 'eventRowInner')}>
             <Col xs={24} sm={6}>
                 <Row align={"middle"} justify={"center"} className={classNames(className, 'evnetLogo')}>
-                    <img src={logoUrl ? getImageUrl(logoUrl) : ''} height={160} alt={'selected_event_organizer_logo'}/>
+                    <picture>
+                        <source type="image/webp" srcSet={logoUrl.webp}/>
+                        <source type="image/jp2" srcSet={logoUrl.jp2}/>
+                        <img className={classNames(className, 'image')} height={160} src={logoUrl.jpeg} alt={'selected_event_organizer_logo'}/>
+                    </picture>
                 </Row>
             </Col>
             <Col xs={24} sm={18} className={classNames(className, 'detailsCol')}>

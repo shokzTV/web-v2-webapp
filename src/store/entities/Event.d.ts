@@ -13,6 +13,7 @@ export interface Event {
     pricePool: string;
     banner: string;
     bannerJP2: string;
+    bannerWEBP: string;
     description: string;
     descriptionType: EventDescriptionType;
     disclaimer: string;
@@ -20,6 +21,7 @@ export interface Event {
     isMainEvent: boolean;
     organizerLogo: string;
     organizerLogoJP2: string;
+    organizerLogoWEBP: string;
     tags: number[];
     links: number[];
 }
