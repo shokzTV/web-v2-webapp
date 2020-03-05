@@ -67,7 +67,7 @@ export default function LastArticleEntries(): ReactElement {
 
     return <motion.div initial="exit" animate="enter" exit="exit" className={classnames(className, 'LastArticleEntries')}>
         <Header title={'Neue Artikel'} link={'Alle Artikel anzeigen'} />
-        <Row type={'flex'} align={'middle'} gutter={[30, 30]}>
+        <Row align={'middle'} gutter={[30, 30]}>
             <Col sm={11} xs={24}>
                 <motion.div className={classnames(className, 'imageWrapper')}>
                     <LoadingImage src={featuredArticle && featuredArticle.cover} />
@@ -103,7 +103,7 @@ export default function LastArticleEntries(): ReactElement {
 
         <Divider />
 
-        <Row type={'flex'} gutter={[30, 30]}>
+        <Row gutter={[30, 30]}>
             {lastArticleRow.map((articleId) => {
                 const article = articles[articleId];
                 return <Col key={articleId} sm={8} xs={24}>

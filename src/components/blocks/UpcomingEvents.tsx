@@ -28,7 +28,7 @@ export default function UpcomingEvents(): ReactElement {
     return <div>
         <Header title={'Events'} link={'Vorherige Events anzeigen'} />
 
-        <Row type={'flex'} align={'middle'} justify={'space-between'} gutter={[40, 40]}>
+        <Row align={'middle'} justify={'space-between'} gutter={[40, 40]}>
             {events.map((eventId) => {
                 const event = eventEntities[eventId];
             

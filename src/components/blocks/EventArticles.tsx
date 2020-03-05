@@ -70,7 +70,7 @@ export default function EventArticles({eventId}: {eventId: number}): ReactElemen
             <Divider />
             <Header title={'Artikel zum Event'} link={'Alle Artikel zum Event'} />
             <br />
-            <Row type={'flex'} gutter={[30, 30]}>
+            <Row gutter={[30, 30]}>
                 {articleIds.map((articleId) => {
                     const article = articles[articleId];
                     return <Col key={articleId} sm={8} xs={12}>
@@ -97,7 +97,7 @@ export default function EventArticles({eventId}: {eventId: number}): ReactElemen
             <Divider />
             <Skeleton paragraph={false} className={classnames(className, 'titleSkeleton')} title={{width: '20%'}} />
 
-            <Row type={'flex'} gutter={[30, 30]}>
+            <Row gutter={[30, 30]}>
                 {[0,0,0].map((articleId, index) => {
                     return <Col key={`${articleId}-${index}`} sm={7} xs={12}>
                         <div>

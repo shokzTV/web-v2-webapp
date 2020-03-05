@@ -3,7 +3,8 @@ import Header from "../Header";
 import { useDispatch, useSelector } from "react-redux";
 import { loadLatestNews } from "../../store/News";
 import { latestNewsSelector } from "../../store/selectors/News";
-import { Skeleton, Divider, Icon } from "antd";
+import { LinkOutlined } from '@ant-design/icons';
+import { Skeleton, Divider } from "antd";
 import { COLORS } from "../../style/colors";
 
 
@@ -23,7 +24,7 @@ export default function LatestNewsList(): ReactElement {
         <div className={'news'}>
             {news.map((entry, index) => <div key={entry.id}>
                 {entry.source.length > 0 && <a className={'newsTitle withIcon'} href={entry.source} target={'_blank'} rel={'noreferrer'}>
-                    <Icon type="link" style={{ fontSize: '20px' }}/>
+                    <LinkOutlined style={{ fontSize: '20px' }} />
                     <b>{entry.headline}</b>
                 </a>}
 

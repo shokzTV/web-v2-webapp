@@ -1,7 +1,8 @@
 import { ReactElement } from "react";
 import Header from "../Header";
 import { useVideoList } from "../../hooks/videoList";
-import { Carousel, Icon } from "antd";
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { Carousel } from "antd";
 import { COLORS } from "../../style/colors";
 import { useSelector } from "react-redux";
 import { videoEntitiesSelector } from "../../store/selectors/Videos";
@@ -29,18 +30,22 @@ const responsiveConfig = [{
 
 function NextArrow(props): ReactElement {
     const {onClick} = props;
-    return <div className={'icon slick-arrow slick-next' } onClick={onClick}>
-        <Icon type="right" />
-        <style jsx>{`.icon {font-size: 20px;}`}</style>
-    </div>;
+    return (
+        <div className={'icon slick-arrow slick-next' } onClick={onClick}>
+            <RightOutlined />
+            <style jsx>{`.icon {font-size: 20px;}`}</style>
+        </div>
+    );
 }
 
 function PrevArrow(props): ReactElement {
     const {onClick} = props;
-    return <div className={'icon slick-arrow slick-prev'} onClick={onClick}>
-        <Icon type="left" />
-        <style jsx>{`.icon {font-size: 20px;}`}</style>
-    </div>;
+    return (
+        <div className={'icon slick-arrow slick-prev'} onClick={onClick}>
+            <LeftOutlined />
+            <style jsx>{`.icon {font-size: 20px;}`}</style>
+        </div>
+    );
 }
 
 export default function LatestVideos(): ReactElement {

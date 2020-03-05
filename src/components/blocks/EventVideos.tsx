@@ -1,18 +1,13 @@
 import { ReactElement, useMemo, useEffect } from "react";
-import { Row, Col, Carousel, Icon } from "antd";
-import Title from "antd/lib/typography/Title";
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { Row, Col, Carousel } from "antd";
 import {resolve} from 'styled-jsx/css';
-import classnames from 'classnames';
 import Header from "../Header";
 import Divider from "../Divider";
-import { Skeleton } from 'antd';
-import Link from "next/link";
 import { motion } from 'framer-motion';
-import { articlesSelector } from "../../store/selectors/Articles";
 import { useSelector, useDispatch } from "react-redux";
 import LoadingImage from "./LoadingImage";
 import { eventRelationsSelector } from "../../store/selectors/Ui";
-import { loadArticles } from "../../store/Article";
 import { videoEntitiesSelector } from "../../store/selectors/Videos";
 import { loadVideos } from "../../store/Video";
 import { COLORS } from "../../style/colors";
@@ -51,18 +46,22 @@ const {className, styles} = resolve`
 
 function NextArrow(props): ReactElement {
     const {onClick} = props;
-    return <div className={'icon slick-arrow slick-next' } onClick={onClick}>
-        <Icon type="right" />
-        <style jsx>{`.icon {font-size: 20px;}`}</style>
-    </div>;
+    return (
+        <div className={'icon slick-arrow slick-next' } onClick={onClick}>
+            <RightOutlined />
+            <style jsx>{`.icon {font-size: 20px;}`}</style>
+        </div>
+    );
 }
 
 function PrevArrow(props): ReactElement {
     const {onClick} = props;
-    return <div className={'icon slick-arrow slick-prev'} onClick={onClick}>
-        <Icon type="left" />
-        <style jsx>{`.icon {font-size: 20px;}`}</style>
-    </div>;
+    return (
+        <div className={'icon slick-arrow slick-prev'} onClick={onClick}>
+            <LeftOutlined />
+            <style jsx>{`.icon {font-size: 20px;}`}</style>
+        </div>
+    );
 }
 
 export default function EventVideos({eventId}: {eventId: number}): ReactElement | null{

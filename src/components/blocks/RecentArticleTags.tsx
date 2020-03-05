@@ -64,7 +64,7 @@ export default function RecentArticleTags(): ReactElement {
 
         <br />
 
-        <Row type={'flex'} align={'middle'} gutter={[20, 20]}>
+        <Row align={'middle'} gutter={[20, 20]}>
             {recentTags.map((tagId) => {
                 const tag = tagEntities[tagId];
                 return <Col key={tagId} sm={12} xs={24}>

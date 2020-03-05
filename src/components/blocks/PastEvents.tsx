@@ -24,13 +24,13 @@ export default function PastEvents(): ReactElement {
 
         <div className={'spacer'}/>
 
-        <Row type={'flex'} align={'middle'} justify={'space-between'} gutter={[40, 20]}>
+        <Row align={'middle'} justify={'space-between'} gutter={[40, 20]}>
             {eventIds.map((eventId) => {
                 const event = events[eventId];
                 return <Col key={eventId} sm={12} xs={24}>
                     <Link href={'/event/[eventId]'} as={`/event/${eventId}`}>
                         <a>
-                            <Row type={'flex'} align={'middle'} justify={'space-between'} gutter={[15, 10]}>
+                            <Row align={'middle'} justify={'space-between'} gutter={[15, 10]}>
                                 <Col xs={10}>
                                     <div className={'imageWrapper'}>
                                         <LoadingImage src={eventImage(eventId)} />

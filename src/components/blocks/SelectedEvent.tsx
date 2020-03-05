@@ -81,18 +81,18 @@ export default function SelectedEvent(): ReactElement {
     }, [mainEvent]);
 
     return <div className={classNames(className, 'eventRow')}>
-        <Row type={"flex"} align={"middle"} className={classNames(className, 'eventRowInner')}>
+        <Row align={"middle"} className={classNames(className, 'eventRowInner')}>
             <Col xs={24} sm={6}>
-                <Row type={"flex"} align={"middle"} justify={"center"} className={classNames(className, 'evnetLogo')}>
+                <Row align={"middle"} justify={"center"} className={classNames(className, 'evnetLogo')}>
                     <img src={logoUrl ? getImageUrl(logoUrl) : ''} height={160} alt={'selected_event_organizer_logo'}/>
                 </Row>
             </Col>
             <Col xs={24} sm={18} className={classNames(className, 'detailsCol')}>
-                <Row type={'flex'} justify={'space-around'}>
+                <Row justify={'space-around'}>
                     <Col>
                         <div className={'nameContainer'}>
                             <Title level={2} type={'secondary'} className={classNames(className, 'eventTitle')}>{mainEvent ? mainEvent.name : ''}</Title>
-                            <Row type={'flex'} align={'middle'} justify={'center'}>
+                            <Row align={'middle'} justify={'center'}>
                                 <Link href={'/event/[eventId]'} as={`/event/${mainEvent ? mainEvent.id : ''}`}>
                                     <a className={classNames(className, 'eventLink')}>Eventüberblick</a>
                                 </Link>
