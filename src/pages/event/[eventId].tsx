@@ -48,7 +48,7 @@ export default function Event(): ReactElement {
         <Row gutter={[50, 50]}>
             <Col xs={24} sm={12}>
                 <div className={'imageWrapper'}>
-                    <LoadingImage src={eventImage(eventId)} />
+                    <LoadingImage src={eventImage(eventId)} webp={eventImage(eventId, 'WEBP')} jp2={eventImage(eventId, 'JP2')} />
                 </div>
             </Col>
             <Col xs={24} sm={12}>

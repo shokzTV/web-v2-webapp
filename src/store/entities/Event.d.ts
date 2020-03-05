@@ -12,12 +12,14 @@ export interface Event {
     location: string;
     pricePool: string;
     banner: string;
+    bannerJP2: string;
     description: string;
     descriptionType: EventDescriptionType;
     disclaimer: string;
     isFeatured: boolean;
     isMainEvent: boolean;
     organizerLogo: string;
+    organizerLogoJP2: string;
     tags: number[];
     links: number[];
 }

@@ -66,7 +66,7 @@ export default function ArticleList(): ReactElement {
                 <Row align={'middle'} gutter={[30, 30]}>
                     <Col sm={7} xs={24}>
                         <div className={classNames(className, 'imageWrapper')}>
-                            <LoadingImage src={article && article.cover} />
+                            <LoadingImage src={article && article.cover} webp={article && article.coverWEBP} jp2={article && article.coverJP2} />
                         </div>
                     </Col>
                     <Col sm={17} xs={24}>

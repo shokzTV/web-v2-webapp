@@ -69,7 +69,7 @@ export default function LastArticleEntries(): ReactElement {
         <Row align={'middle'} gutter={[30, 30]}>
             <Col sm={11} xs={24}>
                 <div className={classnames(className, 'imageWrapper')}>
-                    <LoadingImage src={featuredArticle && featuredArticle.cover} />
+                    <LoadingImage src={featuredArticle && featuredArticle.cover} webp={featuredArticle && featuredArticle.coverWEBP} jp2={featuredArticle && featuredArticle.coverJP2} />
                 </div>
             </Col>
             <Col sm={13} xs={24}>
@@ -116,7 +116,7 @@ export default function LastArticleEntries(): ReactElement {
                             </Link>
                         </Title>
                         <div className={classnames(className, 'imageWrapper')}>
-                            <LoadingImage src={article && article.cover} />
+                            <LoadingImage src={article && article.cover} webp={article && article.coverWEBP} jp2={article && article.coverJP2} />
                         </div>
                     </div>
                 </Col>

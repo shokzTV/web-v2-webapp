@@ -82,7 +82,7 @@ export default function EventArticles({eventId}: {eventId: number}): ReactElemen
                                 </Link>
                             </Title>
                             <div className={classnames(className, 'imageWrapper')}>
-                                <LoadingImage src={article && article.cover} />
+                                <LoadingImage src={article && article.cover} webp={article && article.coverWEBP} jp2={article && article.coverJP2} />
                             </div>
                         </div>
                     </Col>
@@ -109,7 +109,7 @@ export default function EventArticles({eventId}: {eventId: number}): ReactElemen
                             </Title>
                         </div>
                         <div className={classnames(className, 'imageWrapper')}>
-                            <LoadingImage src={undefined} />
+                            <LoadingImage src={undefined} webp={undefined} jp2={undefined} />
                         </div>
                     </Col>
                 })}

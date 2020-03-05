@@ -33,7 +33,7 @@ export default function PastEvents(): ReactElement {
                             <Row align={'middle'} justify={'space-between'} gutter={[15, 10]}>
                                 <Col xs={10}>
                                     <div className={'imageWrapper'}>
-                                        <LoadingImage src={eventImage(eventId)} />
+                                        <LoadingImage src={eventImage(eventId)} webp={eventImage(eventId, 'WEBP')} jp2={eventImage(eventId, 'JP2')} />
                                     </div>
                                 </Col>
                                 <Col xs={14}>

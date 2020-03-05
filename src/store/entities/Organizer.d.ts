@@ -2,8 +2,12 @@ export interface Organizer {
     id: number;
     name: string;
     description: string;
-    logo_small: string;
+    icon: string;
+    icon_webp: string;
+    icon_jpeg_2000: string;
     logo: string;
+    logo_webp: string;
+    logo_jpeg_2000: string;
     events: number;
 }
 
