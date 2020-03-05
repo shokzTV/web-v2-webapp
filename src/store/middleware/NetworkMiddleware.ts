@@ -1,4 +1,3 @@
-import asmCrypto from 'asmcrypto-lite';
 import {normalize} from 'normalizr';
 import {MiddlewareAPI} from 'redux';
 import NetworkError from './NetworkError';
@@ -43,9 +42,7 @@ function executeFetch<State extends object>(
   const state = store.getState();
   const endPointUrl = typeof endpoint === 'function' ? endpoint(state) : endpoint;
 
-  const hash = generateRequestHash({
-    endPointUrl, headers, method, options, types,
-  });
+  const hash = generateRequestHash();
 
   if (activeRequest.has(hash) && method === 'get') {
     return activeRequest.get(hash);
@@ -119,7 +116,6 @@ async function handleErrorResponse(
 
 }
 
-function generateRequestHash(object: object): string {
-  // The stringified object has to be encoded because asmCrypto cannot hash unicode values.
-  return asmCrypto.SHA256.hex(encodeURI(JSON.stringify(object)));
+function generateRequestHash(): string {
+  return Math.random().toString(36);
 }

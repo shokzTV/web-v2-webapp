@@ -17,7 +17,6 @@ import 'antd/lib/divider/style/index.css';
 import 'antd/lib/avatar/style/index.css';
 import 'antd/lib/layout/style/index.css';
 import 'antd/lib/pagination/style/index.css';
-import { AnimatePresence } from 'framer-motion';
 import Navigation from '../components/Navigation';
 import SelectedEvent from '../components/blocks/SelectedEvent';
 
@@ -33,9 +32,7 @@ class MyApp extends App {
             <Provider store={store}>
                 <Navigation />
                 <SelectedEvent />
-                <AnimatePresence exitBeforeEnter>
-                        <Component {...pageProps} />
-                </AnimatePresence>
+                <Component {...pageProps} />
             </Provider>
         );
     }

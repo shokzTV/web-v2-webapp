@@ -2,7 +2,6 @@ import { ReactElement, useState, useCallback, useRef } from "react";
 import { resolve } from "styled-jsx/css";
 import classNames from "classnames";
 import { Skeleton } from "antd";
-import { motion } from 'framer-motion';
 import { getImageUrl } from '../../hooks/image';
 import VisibilitySensor from "react-visibility-sensor";
 
@@ -52,19 +51,12 @@ const {className, styles} = resolve`
 `;
 //#endregion
 
-let easing = [0.175, 0.85, 0.42, 0.96];
-const imageVariants = {
-    initial: { scale: 0.8, opacity: 0 },
-    exit: { scale: 0.8, opacity: 0, transition: { duration: 0.5, ease: easing } },
-    enter: { scale: 1, opacity: 1, transition: { duration: 0.5, ease: easing } },
-  };
-
 export default function LoadingImage({src, contains}: {src?: string; contains?: boolean}): ReactElement {
     const [loaded, setLoaded] = useState(false);
 
     return <VisibilitySensor  scrollCheck partialVisibility={true}>
         {({ isVisible }) => <div className={classNames(className, 'imageSkeleton')}>
-            {loaded && <motion.img className={classNames(className, 'image', {contains})} variants={imageVariants} src={getImageUrl(src)} alt={src} />}
+            {loaded && <img className={classNames(className, 'image', {contains})} src={getImageUrl(src)} alt={src} />}
             {!loaded && <Skeleton className={classNames(className, 'imageSkeleton')} active={true} title={false} paragraph={{ rows: 1, width: '100%' }} />}  
 
             <div className={classNames(className, 'imageLoader')}>
