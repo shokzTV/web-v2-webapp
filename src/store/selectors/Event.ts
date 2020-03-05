@@ -5,6 +5,7 @@ import { Event } from "../entities/Event";
 import { organizerEntitiesSelector } from "./Organizer";
 import memoize from 'lodash/memoize';
 import dayjs from "dayjs";
+import { getImageUrl } from "../../hooks/image";
 
 export const eventEntitiesSelector = (state: State) => state.entities.event;
 
@@ -70,15 +71,15 @@ export const organizerEventLogoSelector = createSelector(
         if(event) {
             if(event.organizerLogo) {
                 return {
-                    jpeg: event.organizerLogo,
-                    jp2: event.organizerLogoJP2,
-                    webp: event.organizerLogoWEBP,
+                    jpeg: getImageUrl(event.organizerLogo),
+                    jp2: getImageUrl(event.organizerLogoJP2),
+                    webp: getImageUrl(event.organizerLogoWEBP),
                 };
             }
             return {
-                jpeg: organizer[event.organizer].logo,
-                jp2: organizer[event.organizer].logo_jpeg_2000,
-                webp: organizer[event.organizer].logo_webp,
+                jpeg: getImageUrl(organizer[event.organizer].logo),
+                jp2: getImageUrl(organizer[event.organizer].logo_jpeg_2000),
+                webp: getImageUrl(organizer[event.organizer].logo_webp),
             };
         }
         return {
