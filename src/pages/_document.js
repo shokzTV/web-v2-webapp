@@ -17,6 +17,7 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700&display=swap" rel="stylesheet" />
         </body>
       </Html>
     )
