@@ -18,7 +18,6 @@ export default function PageFrame({children, title = null}: Props): ReactElement
       <meta httpEquiv="Content-Language" content="de" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700&display=swap" rel="stylesheet" />
       <meta name="description" content="shokzTV: Die deutsche Dota2 Startseite für aktuelle Nachrichten, Themen, Events, Updates, Pro Teams, Twitchstreamer und Castings" />
 
       <link rel="apple-touch-icon" href="images/apple-touch-icon.png"></link>
