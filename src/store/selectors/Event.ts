@@ -65,11 +65,26 @@ export const pastEventIdsSelector = createSelector(
 export const organizerEventLogoSelector = createSelector(
     eventEntitiesSelector,
     organizerEntitiesSelector,
-    (events, organizer) => memoize((eventId: number, webp: boolean = true) => {
+    (events, organizer) => memoize((eventId: number) => {
         const event = events[eventId];
         if(event) {
-            return event.organizerLogo ? (webp ? event.organizerLogo : event.organizerLogoJP2) :  (webp ? organizer[event.organizer].logo_webp : organizer[event.organizer].logo_jpeg_2000);
+            if(event.organizerLogo) {
+                return {
+                    jpeg: event.organizerLogo,
+                    jp2: event.organizerLogoJP2,
+                    webp: event.organizerLogoWEBP,
+                };
+            }
+            return {
+                jpeg: organizer[event.organizer].logo,
+                jp2: organizer[event.organizer].logo_jpeg_2000,
+                webp: organizer[event.organizer].logo_webp,
+            };
         }
-        return '';
+        return {
+            jpeg: '',
+            jp2: '',
+            webp: '',
+        };
     })
 )
