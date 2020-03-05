@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^9.2.2",
     "@types/classnames": "^2.2.9",
     "@types/is-plain-object": "^2.0.4",
     "@types/lodash": "^4.14.149",
