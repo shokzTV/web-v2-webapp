@@ -1,7 +1,6 @@
 import React, { ReactElement, ReactNode } from 'react';
 import { pageWrapper } from "../style/page";
 import Head from "next/head";
-import { motion } from 'framer-motion';
 import { COLORS } from '../style/colors';
 import Footer from './Footer';
 
@@ -27,11 +26,11 @@ export default function PageFrame({children, title = null}: Props): ReactElement
 
     <div className={'page'}>
       <div className={'pageWrapper'}>
-        <motion.div initial="initial" animate="enter" exit="exit">
+        <div>
           <div>
             {children}
           </div>
-        </motion.div>
+        </div>
       </div>
       <Footer />
     </div>

@@ -7,7 +7,6 @@ import Header from "../Header";
 import Divider from "../Divider";
 import { Skeleton } from 'antd';
 import Link from "next/link";
-import { motion } from 'framer-motion';
 import { articlesSelector } from "../../store/selectors/Articles";
 import { useSelector, useDispatch } from "react-redux";
 import LoadingImage from "./LoadingImage";
@@ -66,7 +65,7 @@ export default function EventArticles({eventId}: {eventId: number}): ReactElemen
     }, [articleIds]);
 
     if(eventRelation && articleIds.length > 0) {
-        return <motion.div initial="exit" animate="enter" exit="exit">
+        return <div>
             <Divider />
             <Header title={'Artikel zum Event'} link={'Alle Artikel zum Event'} />
             <br />
@@ -82,16 +81,16 @@ export default function EventArticles({eventId}: {eventId: number}): ReactElemen
                                     </a>
                                 </Link>
                             </Title>
-                            <motion.div className={classnames(className, 'imageWrapper')}>
+                            <div className={classnames(className, 'imageWrapper')}>
                                 <LoadingImage src={article && article.cover} />
-                            </motion.div>
+                            </div>
                         </div>
                     </Col>
                 })}
             </Row>
 
             {styles}
-        </motion.div>;
+        </div>;
     } else if(!eventRelation) {
         return <>
             <Divider />

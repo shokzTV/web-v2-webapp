@@ -9,7 +9,6 @@ import Divider from "../Divider";
 import { Skeleton } from 'antd';
 import { useArticleList } from "../../hooks/articlesList";
 import Link from "next/link";
-import { motion } from 'framer-motion';
 import { articlesSelector } from "../../store/selectors/Articles";
 import { useSelector } from "react-redux";
 import LoadingImage from "./LoadingImage";
@@ -65,16 +64,16 @@ export default function LastArticleEntries(): ReactElement {
     const lastArticleRow = articleIds.length > 0 ? articleIds.slice(-3) : [];
     const featuredArticleBody = useMemo(() => featuredArticle ? featuredArticle.body : '', [featuredArticle]);
 
-    return <motion.div initial="exit" animate="enter" exit="exit" className={classnames(className, 'LastArticleEntries')}>
+    return <div className={classnames(className, 'LastArticleEntries')}>
         <Header title={'Neue Artikel'} link={'Alle Artikel anzeigen'} />
         <Row align={'middle'} gutter={[30, 30]}>
             <Col sm={11} xs={24}>
-                <motion.div className={classnames(className, 'imageWrapper')}>
+                <div className={classnames(className, 'imageWrapper')}>
                     <LoadingImage src={featuredArticle && featuredArticle.cover} />
-                </motion.div>
+                </div>
             </Col>
             <Col sm={13} xs={24}>
-                 <motion.div>
+                 <div>
                     <Title level={2}>
                         {featuredArticle 
                         ? <Link href={'/article/[articleId]'} as={`/article/${featuredArticle.id}`}><a>{featuredArticle.title}</a></Link>
@@ -97,7 +96,7 @@ export default function LastArticleEntries(): ReactElement {
                     </Paragraph>}
 
                     {featuredArticleBody.length === 0 && <Skeleton active={true} title={false} paragraph={{rows: 5}} />}
-                </motion.div>
+                </div>
             </Col>
         </Row>
 
@@ -116,14 +115,14 @@ export default function LastArticleEntries(): ReactElement {
                                 </a>
                             </Link>
                         </Title>
-                        <motion.div className={classnames(className, 'imageWrapper')}>
+                        <div className={classnames(className, 'imageWrapper')}>
                             <LoadingImage src={article && article.cover} />
-                        </motion.div>
+                        </div>
                     </div>
                 </Col>
             })}
         </Row>
 
         {styles}
-    </motion.div>;
+    </div>;
 }

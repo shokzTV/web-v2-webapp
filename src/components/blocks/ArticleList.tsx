@@ -14,7 +14,6 @@ import {authorsSelector} from '../../store/selectors/Authors';
 import Link from "next/link";
 import LoadingImage from "./LoadingImage";
 import { articlesSelector } from "../../store/selectors/Articles";
-import { motion } from "framer-motion";
 import CKEditorContent from "../CKEditorContent";
 
 //#region <styles>
@@ -66,9 +65,9 @@ export default function ArticleList(): ReactElement {
             return <React.Fragment key={id}>
                 <Row align={'middle'} gutter={[30, 30]}>
                     <Col sm={7} xs={24}>
-                        <motion.div initial="exit" animate="enter" exit="exit" className={classNames(className, 'imageWrapper')}>
+                        <div className={classNames(className, 'imageWrapper')}>
                             <LoadingImage src={article && article.cover} />
-                        </motion.div>
+                        </div>
                     </Col>
                     <Col sm={17} xs={24}>
                         <>
