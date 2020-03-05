@@ -31,13 +31,13 @@ export default function VideoList(): ReactElement {
         <Header title={'Videos > Alle Videos'} />
         <Divider />
 
-        <Row type={'flex'} justify={'space-around'}>
+        <Row justify={'space-around'}>
             <Pagination current={page} onChange={(page) => setPage(page)} total={totalCount} pageSize={pageSize} />
         </Row>
 
         <br />
 
-        <Row type={'flex'} align={'middle'} gutter={[25, 25]}>
+        <Row align={'middle'} gutter={[25, 25]}>
             {videoIds.map((videoId) => {
                 const video = videos[videoId];
                 return <Col sm={8} xs={24} key={videoId}>
@@ -52,7 +52,7 @@ export default function VideoList(): ReactElement {
 
         <br />
 
-        <Row type={'flex'} justify={'space-around'}>
+        <Row justify={'space-around'}>
             <Pagination current={page} onChange={(page) => setPage(page)} total={totalCount} pageSize={pageSize} />
         </Row>
 

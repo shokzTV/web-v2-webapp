@@ -45,7 +45,7 @@ export default function Event(): ReactElement {
 
         <Divider />
 
-        <Row type={'flex'} gutter={[50, 50]}>
+        <Row gutter={[50, 50]}>
             <Col xs={24} sm={12}>
                 <div className={'imageWrapper'}>
                     <LoadingImage src={eventImage(eventId)} />
@@ -53,7 +53,7 @@ export default function Event(): ReactElement {
             </Col>
             <Col xs={24} sm={12}>
                 <Title level={2}>{event && event.name}</Title>
-                <Row type={'flex'} gutter={[20, 20]}>
+                <Row gutter={[20, 20]}>
                     <Col xs={24} sm={15}>
                         <div className={'title'}>Eventinformationen</div>
                         <div className={'dataRow'}>

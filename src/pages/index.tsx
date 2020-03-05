@@ -14,7 +14,7 @@ export default function index(): ReactElement {
       <Divider />
 
       <div>
-        <Row type={'flex'} gutter={[50, 30]} style={{margin: '0!important'}}>
+        <Row gutter={[50, 30]} style={{margin: '0!important'}}>
           <Col xs={24} sm={12}>
             <FeaturedEvents />
           </Col>

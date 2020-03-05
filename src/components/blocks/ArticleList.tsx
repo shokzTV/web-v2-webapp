@@ -64,7 +64,7 @@ export default function ArticleList(): ReactElement {
             const author = article && authorEntities[article.author];
 
             return <React.Fragment key={id}>
-                <Row type={'flex'} align={'middle'} gutter={[30, 30]}>
+                <Row align={'middle'} gutter={[30, 30]}>
                     <Col sm={7} xs={24}>
                         <motion.div initial="exit" animate="enter" exit="exit" className={classNames(className, 'imageWrapper')}>
                             <LoadingImage src={article && article.cover} />
@@ -104,7 +104,7 @@ export default function ArticleList(): ReactElement {
         {totalCount > pageSize && <>
             <div className={classNames(className, 'divider')}/>
 
-            <Row type={'flex'} justify={'space-around'}>
+            <Row justify={'space-around'}>
                 <Col>
                     <Pagination current={page} onChange={(page) => setPage(page)} total={totalCount} pageSize={pageSize} />
                 </Col>

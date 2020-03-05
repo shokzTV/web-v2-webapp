@@ -10,9 +10,9 @@ export default function Footer(): ReactElement {
             <Title level={3}>Mehr von shokzTV</Title>
             <br />
 
-            <Row type={'flex'} gutter={[25, 50]}>
+            <Row gutter={[25, 50]}>
                 <Col sm={12} xs={24}>
-                    <Row type={'flex'} gutter={[25, 10]}>
+                    <Row gutter={[25, 10]}>
                         <Col sm={8} xs={12}>
                             <a href={'https://www.twitch.tv/shokztv'} target={'_blank'} rel={'noreferrer'}>Twitch</a>
                         </Col>
@@ -21,7 +21,7 @@ export default function Footer(): ReactElement {
                         </Col>
                     </Row>
                     <br />
-                    <Row type={'flex'} gutter={[25, 10]}>
+                    <Row gutter={[25, 10]}>
                         <Col sm={8} xs={12}>
                             <a href={'https://twitter.com/shokztv/'} target={'_blank'} rel={'noreferrer'}>Twitter</a>
                         </Col>
@@ -35,13 +35,13 @@ export default function Footer(): ReactElement {
                 </Col>
                 <Col sm={12} xs={24}>
                     <div className={'aside'}>
-                        <Row type={'flex'} gutter={[25, 10]}>
+                        <Row gutter={[25, 10]}>
                             <Col sm={12} xs={24}>
                                 <a href={'mailto:kontakt@shokz.tv'}>Kontakt</a>
                             </Col>
                         </Row>
                         <br />
-                        <Row type={'flex'} gutter={[25, 10]}>
+                        <Row gutter={[25, 10]}>
                             <Col sm={12} xs={12}>
                                 <Link href={'/dataProtection'} as={'/dataProtection'}>
                                     <a>Datenschutzerklärung</a>
