@@ -36,7 +36,7 @@ export default function UpcomingEvents(): ReactElement {
                     <Link as={`/event/${eventId}`} href={'/event/[eventId]'}>
                         <a>
                             <div className={'imageWrapper'}>
-                                <LoadingImage src={eventImage(eventId)} />
+                                <LoadingImage src={eventImage(eventId)} webp={eventImage(eventId, 'WEBP')} jp2={eventImage(eventId, 'JP2')} />
 
                                 <div className={'eventInfo'}>
                                     {event && <>
@@ -72,6 +72,7 @@ export default function UpcomingEvents(): ReactElement {
                 position: absolute;
                 padding: 14px 15px;
                 color: rgba(255, 255, 255, .7);
+                z-index: 3;
             }
 
             .info {

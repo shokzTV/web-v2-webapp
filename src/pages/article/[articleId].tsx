@@ -152,7 +152,7 @@ export default function Home(): ReactElement {
         <div className={classNames(className, 'articleContent')}>
             <div className={classNames(className, 'articleImageWrapper')}>
                 <div className={classNames(className, 'imageWrapper')}>
-                    <LoadingImage src={article && article.cover} />
+                    <LoadingImage src={article && article.cover} webp={article && article.coverWEBP} jp2={article && article.coverJP2} />
                 </div>
             </div>
 

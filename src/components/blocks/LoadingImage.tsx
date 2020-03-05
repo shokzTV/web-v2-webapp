@@ -7,7 +7,7 @@ import VisibilitySensor from "react-visibility-sensor";
 
 //#region <styles>
 const {className, styles} = resolve`
-    .imageSkeleton {
+    .imageSkeleton, .imgWrapper {
         position: absolute;
         top: 0;
         bottom: 0;
@@ -16,6 +16,11 @@ const {className, styles} = resolve`
         display: block;
         border-radius: 8px;
     }
+
+    .imgWrapper {
+        z-index: 2;
+    }
+    
     .imageSkeleton :global(.ant-skeleton-content) {
         height: 100%;
         display: block;
@@ -51,18 +56,21 @@ const {className, styles} = resolve`
 `;
 //#endregion
 
-export default function LoadingImage({src, contains}: {src?: string; contains?: boolean}): ReactElement {
+export default function LoadingImage({src, webp, jp2, contains}: {src?: string; webp?: string; jp2?: string; contains?: boolean}): ReactElement { 
     const [loaded, setLoaded] = useState(false);
 
     return <VisibilitySensor  scrollCheck partialVisibility={true}>
-        {({ isVisible }) => <div className={classNames(className, 'imageSkeleton')}>
-            {loaded && <img className={classNames(className, 'image', {contains})} src={getImageUrl(src)} alt={src} />}
+        {({ isVisible }) => <>
+            <div className={classNames(className, 'imgWrapper')}>
+                {(isVisible || loaded) && <picture>
+                    <source type="image/webp" srcSet={getImageUrl(webp)}/>
+                    <source type="image/jp2" srcSet={getImageUrl(jp2)}/>
+                    <img className={classNames(className, 'image', {contains})} src={getImageUrl(src)} alt={src} onLoad={() => setLoaded(true)}/>
+                </picture>}
+            </div>
             {!loaded && <Skeleton className={classNames(className, 'imageSkeleton')} active={true} title={false} paragraph={{ rows: 1, width: '100%' }} />}  
 
-            <div className={classNames(className, 'imageLoader')}>
-                {src && isVisible && <img src={getImageUrl(src)} onLoad={() => setLoaded(true)}/>}
-            </div>
             {styles}
-        </div>}
+        </>}
     </VisibilitySensor>;
 }

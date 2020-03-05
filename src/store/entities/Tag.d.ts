@@ -3,6 +3,8 @@ export interface Tag {
     name: string;
     description: string;
     image: string;
+    imageWEBP: string;
+    imageJP2: string;
     lastAction: number | null;
 }
 

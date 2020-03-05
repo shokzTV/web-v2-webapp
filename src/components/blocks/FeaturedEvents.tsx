@@ -29,7 +29,7 @@ function EventRow({event}: {event?: Event}): ReactElement {
                 <div className={classNames('eventRow', {isRunning, isPast})}>
                     <div className={'eventRowData'}>
                         <div className={'icon'}>
-                            <LoadingImage contains src={event && organizerEntities[event.organizer]!.logo_small} />
+                            <LoadingImage contains src={event && organizerEntities[event.organizer]!.icon} webp={event && organizerEntities[event.organizer]!.icon_webp} jp2={event && organizerEntities[event.organizer]!.icon_jpeg_2000} />
                         </div>
 
                         {event && <div className={'eventName'}>

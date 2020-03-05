@@ -26,6 +26,7 @@ const {styles, className} = resolve`
         right: 0;
         background-color: rgba(0,0,0,.7);
         padding: 12px 15px;
+        z-index: 3;
     }
 
     .title {
@@ -69,7 +70,7 @@ export default function RecentArticleTags(): ReactElement {
                 const tag = tagEntities[tagId];
                 return <Col key={tagId} sm={12} xs={24}>
                     <div className={classNames(className, 'recentTags')}>
-                        <LoadingImage src={tag && tag.image} />
+                        <LoadingImage src={tag && tag.image} webp={tag && tag.imageWEBP} jp2={tag && tag.imageJP2} />
                         <div className={classNames(className, 'tagDescription')}>
                             {tag && <>
                                 <Title level={3} className={classNames(className, 'title')}>{tag.name}</Title>
