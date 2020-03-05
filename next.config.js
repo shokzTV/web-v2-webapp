@@ -1,8 +1,11 @@
 require('dotenv').config();
 
 const withOffline = require('next-offline');
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
 
-module.exports = withOffline({
+module.exports = withBundleAnalyzer(withOffline({
     target: "serverless",
     transformManifest: manifest => ['/'].concat(manifest), // add the homepage to the cache
   // Trying to set NODE_ENV=production when running yarn dev causes a build-time error so we
@@ -31,4 +34,4 @@ module.exports = withOffline({
   env: {
     API_URL: process.env.API_URL
   },
-});
+}));
