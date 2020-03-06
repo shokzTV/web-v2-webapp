@@ -42,26 +42,26 @@ function getBody(data: object | FormData | undefined, headers: object): string |
 }
 
 export async function get(endPointUrl: string, options: RequestOptions, headers: { [key: string]: string; } | Headers): Promise<Response | object | string> {
-    return fetch(injectUrlParams(endPointUrl, options), {method: 'GET', headers, ...options}).then(handleResponse);
+    return fetch(injectUrlParams(endPointUrl, options), {method: 'GET', headers, ...options}).then(handleResponse).catch((error) => console.log(error));
 }
 
 export async function post(endPointUrl: string, options: RequestOptions, headers: { [key: string]: string; } | Headers): Promise<Response | object | string> {
     const body = getBody(options.data, headers);
-    return fetch(injectUrlParams(endPointUrl, options), {method: 'POST', headers, ...options, body}).then(handleResponse);
+    return fetch(injectUrlParams(endPointUrl, options), {method: 'POST', headers, ...options, body}).then(handleResponse).catch((error) => console.log(error));
 }
 
 export async function patch(endPointUrl: string, options: RequestOptions, headers: { [key: string]: string; } | Headers): Promise<Response | object | string> {
     const body = getBody(options.data, headers);
-    return fetch(injectUrlParams(endPointUrl, options), {method: 'PATCH', headers, ...options, body}).then(handleResponse);
+    return fetch(injectUrlParams(endPointUrl, options), {method: 'PATCH', headers, ...options, body}).then(handleResponse).catch((error) => console.log(error));
 }
 
 export async function del(endPointUrl: string, options: RequestOptions, headers: { [key: string]: string; } | Headers): Promise<Response | object | string> {
-    return fetch(injectUrlParams(endPointUrl, options), {method: 'DELETE', headers, ...options}).then(handleResponse);
+    return fetch(injectUrlParams(endPointUrl, options), {method: 'DELETE', headers, ...options}).then(handleResponse).catch((error) => console.log(error));
 }
 
 export async function put(endPointUrl: string, options: RequestOptions, headers: { [key: string]: string; } | Headers): Promise<Response | object | string> {
     const body = getBody(options.data, headers);
-    return fetch(injectUrlParams(endPointUrl, options), {method: 'PUT', headers, ...options, body}).then(handleResponse);
+    return fetch(injectUrlParams(endPointUrl, options), {method: 'PUT', headers, ...options, body}).then(handleResponse).catch((error) => console.log(error));
 }
 
 async function handleResponse(response: Response): Promise<Response | object | string> {
