@@ -51,20 +51,30 @@ export default function PageFrame({children, title = null}: Props): ReactElement
       .pageWrapper {
           max-width: 1175px;
           margin: 0 auto;
-          padding: 20px 15px 40px 15px;
+          padding: 30px 15px 40px 15px;
           flex-grow: 1;
           width: 100%;
       }  
     `}</style>
 
     <style jsx global>{`
-      .pageFooter a, .ant-menu a {
-        color: #FFF!important;
-      } 
-
       * {
         font-family: 'Roboto Condensed';
         color: ${COLORS.WEAK};
+      }
+
+      *, html, body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      h3 {
+          font-size: 20px;
       }
     `}</style>
   </>;

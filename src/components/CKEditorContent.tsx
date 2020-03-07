@@ -1,7 +1,9 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useMemo } from "react";
 import HtmlToReact  from 'html-to-react';
 import YouTube from 'react-youtube-embed';
 import { TwitterTweetEmbed } from 'react-twitter-embed';
+import Truncate from 'react-truncate-html';
+import ReactDOMServer from 'react-dom/server';
 
 var processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);
 var processingInstructions = [
@@ -28,9 +30,13 @@ var processingInstructions = [
     },
 ];
   
-export default function CKEditorContent({text}: {text: string}): ReactElement {
+export default function CKEditorContent({text, rows = 0}: {text: string; rows?: number}): ReactElement {
+    const html = (new HtmlToReact.Parser()).parseWithInstructions(text, () => true, processingInstructions);
+
     return <div className={'content'}>
-        {(new HtmlToReact.Parser()).parseWithInstructions(text, () => true, processingInstructions)}
+        {rows > 0 && <Truncate lines={rows}
+                               dangerouslySetInnerHTML={{__html: html.length > 0 && html.map(ReactDOMServer.renderToStaticMarkup).join("")}}/>}
+        {rows === 0 && <>{html}</>}
 
         <style jsx>{`
             .content {

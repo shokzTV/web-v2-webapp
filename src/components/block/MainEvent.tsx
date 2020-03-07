@@ -4,6 +4,7 @@ import OrganizerLogo from "./MainEvent/OrganizerLogo";
 import { Event } from '../../api/@types/Event';
 import EventBanner from "./MainEvent/EventBanner";
 import { COLORS } from "../../style/colors";
+import Link from "next/link";
 
 export default function MainEvent(): ReactElement {
     const [event, setEvent] = useState<Event | null>(null);
@@ -23,7 +24,7 @@ export default function MainEvent(): ReactElement {
             <div className={'eventDetails'}>
                 <h1 className={'mainEventHeader'}>{event ? event.name : <>&nbsp;</>}</h1>
                 <div className={'eventLinks'}>
-                    <div className={'eventLink'}>Eventüberblick</div>
+                <Link href={'/event/[eventId]'} as={'/event/' + (event && event.id)}><div className={'eventLink'}>Eventüberblick</div></Link>
                     <div className={'eventLink'}>Neuigkeiten zum Event</div>
                 </div>
             </div>
@@ -70,12 +71,14 @@ export default function MainEvent(): ReactElement {
                 text-transform: uppercase;
                 color: ${COLORS.PRIMARY};
                 font-size: 20px;
+                cursor: pointer;
             }
 
             .eventLink + .eventLink {
                 margin-left: 20px;
                 padding-left: 20px;
                 border-left: 1px solid ${COLORS.PRIMARY};
+                text-decoration: none;
             }
         `}</style>
     </div>;
