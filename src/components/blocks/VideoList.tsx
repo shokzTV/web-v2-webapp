@@ -64,4 +64,4 @@ function VideoList(): ReactElement {
     </>;
 }
 
-export default connect()(VideoList);
+export default VideoList;

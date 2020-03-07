@@ -3,6 +3,8 @@ import { pageWrapper } from "../style/page";
 import Head from "next/head";
 import { COLORS } from '../style/colors';
 import Footer from './Footer';
+import MainEvent from './block/MainEvent';
+import Navigation from './Navigation';
 
 interface Props {
     children: ReactNode;
@@ -22,8 +24,12 @@ export default function PageFrame({children, title = null}: Props): ReactElement
       <link rel="apple-touch-icon" href="images/apple-touch-icon.png"></link>
       <meta name="theme-color" content="#0A1C3F" />
       <link rel="manifest" href="/manifest.json" />
+      <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700&display=swap" rel="stylesheet" />
     </Head>
 
+    <Navigation />    
+    <MainEvent />
+    
     <div className={'page'}>
       <div className={'pageWrapper'}>
         <div>
@@ -38,10 +44,6 @@ export default function PageFrame({children, title = null}: Props): ReactElement
     <style jsx>{pageWrapper}</style>
 
     <style jsx global>{`
-      a {
-        color: ${COLORS.PRIMARY}!important;
-      }
-
       .pageFooter a, .ant-menu a {
         color: #FFF!important;
       } 

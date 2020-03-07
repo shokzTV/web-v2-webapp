@@ -1,7 +1,6 @@
 import { ReactElement } from "react";
 import Header from "../Header";
 import { useVideoList } from "../../hooks/videoList";
-import Carousel from 'antd/lib/carousel';
 import { COLORS } from "../../style/colors";
 import { useSelector } from "react-redux";
 import { videoEntitiesSelector } from "../../store/selectors/Videos";
@@ -54,30 +53,17 @@ export default function LatestVideos(): ReactElement {
     return <>
         <Header title={'Neuste Videos'}  link={'Alle Videos anzeigen'} />
 
-        <Carousel 
-            autoplay 
-            draggable
-            pauseOnHover
-            slidesToShow={3} 
-            slidesToScroll={1} 
-            initialSlide={0}
-            responsive={responsiveConfig} 
-            dots={false} 
-            arrows={true} 
-            nextArrow={<NextArrow />}
-            prevArrow={<PrevArrow />}>
-            {videoIds.map((videoId) => {
-                const video = videos[videoId];
+        {videoIds.map((videoId) => {
+            const video = videos[videoId];
 
-                return <div key={videoId} className={'videoEntry'}>
-                    <div className={'thumbnailWrapper'}>
-                        <a href={video ? video.source : ''} target={'_blank'} rel={'noreferrer'}>
-                            <LoadingImage src={video && video.thumbnail} webp={video && video.thumbnailWEBP} jp2={video && video.thumbnailJP2} />
-                        </a>
-                    </div>
+            return <div key={videoId} className={'videoEntry'}>
+                <div className={'thumbnailWrapper'}>
+                    <a href={video ? video.source : ''} target={'_blank'} rel={'noreferrer'}>
+                        <LoadingImage src={video && video.thumbnail} webp={video && video.thumbnailWEBP} jp2={video && video.thumbnailJP2} />
+                    </a>
                 </div>
-            })}
-        </Carousel>
+            </div>
+        })}
     
         <style jsx>{`
             .thumbnailWrapper {
