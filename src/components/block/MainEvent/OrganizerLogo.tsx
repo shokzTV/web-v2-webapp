@@ -1,6 +1,6 @@
 import { Event } from '../../../api/@types/Event';
 import { ReactElement } from 'react';
-import { getImageUrl } from '../../../hooks/image';
+import { getImageUrl } from '../../../config/image';
 import css from 'styled-jsx/css';
 
 const imageStyle = css`
