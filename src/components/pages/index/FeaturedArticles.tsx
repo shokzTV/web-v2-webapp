@@ -36,11 +36,11 @@ export default function FeaturedArticles(): ReactElement {
                 </div>
             </div>
         </Link>
-
+        
         <Divider />
 
         <div className={'lastArticleRow'}>
-            {previousArticles.map((article) => <Link href={'/article/[articleId]'} as={'/article/' + article.id}>
+            {previousArticles.map((article, index) => <Link href={'/article/[articleId]'} as={'/article/' + article.id} key={article.id + '-' + index}>
                 <div className={'prevArticleCol'}>
                     <h3 className={'pastArticleHeader'}>{article.title}</h3>
                     <div className={'articleCover'}>

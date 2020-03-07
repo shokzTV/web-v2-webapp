@@ -4,7 +4,15 @@ import VisibilitySensor from "react-visibility-sensor";
 import { getImageUrl } from "../../config/image";
 import Loader from "./Loader";
 
-export default function LoadingImage({src, webp, jp2, contains}: {src?: string; webp?: string; jp2?: string; contains?: boolean}): ReactElement { 
+interface Props {
+    src?: string;
+    webp?: string;
+    jp2?: string;
+    contains?: boolean;
+    hideLoader?: boolean;
+}
+
+export default function LoadingImage({src, webp, jp2, contains, hideLoader = false}: Props): ReactElement { 
     const [loaded, setLoaded] = useState(false);
 
     return <VisibilitySensor  scrollCheck partialVisibility={true}>
@@ -16,7 +24,7 @@ export default function LoadingImage({src, webp, jp2, contains}: {src?: string; 
                     <img className={classNames('image', {contains})} src={getImageUrl(src)} alt={src} onLoad={() => setLoaded(true)}/>
                 </picture>}
             </div>}
-            <div className={'imageSkeleton'}><Loader /></div>
+            {(!hideLoader || !loaded) &&  <div className={'imageSkeleton'}><Loader /></div>}
 
             <style jsx>{`
                 .imageSkeleton, .imgWrapper {
