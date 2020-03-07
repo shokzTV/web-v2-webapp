@@ -3,7 +3,6 @@
 
 // ./pages/_document.js
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import Navigation from '../components/Navigation';
 
 class MyDocument extends Document {
   render() {
@@ -11,10 +10,8 @@ class MyDocument extends Document {
       <Html lang="de">
         <Head />
         <body>
-          <Navigation />
           <Main />
           <NextScript />
-          <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700&display=swap" rel="stylesheet" />
         </body>
       </Html>
     )
