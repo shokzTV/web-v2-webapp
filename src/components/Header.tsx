@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import { COLORS } from '../style/colors';
+import Link from "next/link";
 
 interface Props {
     title: string;
@@ -7,12 +8,16 @@ interface Props {
     linkTarget?: string;
 }
 
-export default function Header({title, link}: Props): ReactElement {
+export default function Header({title, linkTarget, link}: Props): ReactElement {
     return <div className={'header'}>
         {title}
 
         {link && <div className={'linkLabel'}>
-            {link}
+            {linkTarget && <Link href={linkTarget}>
+                <a className={'link'}>{link}</a>
+            </Link>}
+
+            {!linkTarget && link}
         </div>}
 
         <style jsx>{`
@@ -20,7 +25,7 @@ export default function Header({title, link}: Props): ReactElement {
                 margin: 5px 0 15px 0;
                 line-height: 1em;
                 padding: 0 0 0 10px;
-                border-left: 2px solid ${COLORS.SECONDARY};
+                border-left: 2px solid ${COLORS.HIGHLIGHT};
                 font-weight: 400;
                 color: ${COLORS.PRIMARY};
                 text-transform: uppercase;
@@ -37,6 +42,10 @@ export default function Header({title, link}: Props): ReactElement {
                 text-transform: uppercase;
                 background-color: #EBEBEB;
                 color: ${COLORS.PRIMARY};
+            }
+
+            .link {
+                text-decoration: none;
             }
         `}</style>
     </div>;
