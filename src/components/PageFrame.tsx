@@ -1,5 +1,4 @@
 import React, { ReactElement, ReactNode } from 'react';
-import { pageWrapper } from "../style/page";
 import Head from "next/head";
 import { COLORS } from '../style/colors';
 import Footer from './Footer';
@@ -41,7 +40,22 @@ export default function PageFrame({children, title = null}: Props): ReactElement
       <Footer />
     </div>
 
-    <style jsx>{pageWrapper}</style>
+    <style jsx>{`
+      .page {
+          min-height: calc(100vh - 268px);
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+      }
+
+      .pageWrapper {
+          max-width: 1175px;
+          margin: 0 auto;
+          padding: 20px 15px 40px 15px;
+          flex-grow: 1;
+          width: 100%;
+      }  
+    `}</style>
 
     <style jsx global>{`
       .pageFooter a, .ant-menu a {
