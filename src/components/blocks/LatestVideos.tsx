@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import Header from "../Header";
 import { useVideoList } from "../../hooks/videoList";
-import { Carousel } from "antd";
+import Carousel from 'antd/lib/carousel';
 import { COLORS } from "../../style/colors";
 import { useSelector } from "react-redux";
 import { videoEntitiesSelector } from "../../store/selectors/Videos";

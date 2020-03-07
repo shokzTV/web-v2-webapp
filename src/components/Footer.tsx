@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 import Title from "antd/lib/typography/Title";
-import { Row, Col } from "antd";
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
 import Link from "next/link";
 
 export default function Footer(): ReactElement {

@@ -1,8 +1,10 @@
-import React, { ReactElement, useState, useMemo } from "react";
+import React, { ReactElement, useState } from "react";
 import Header from "../Header";
 import { useSelector } from "react-redux";
 import { availableArticlesSelector } from "../../store/selectors/Ui";
-import { Pagination, Row, Col, Skeleton } from "antd";
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Skeleton from 'antd/lib/skeleton';
 import { useArticleList } from "../../hooks/articlesList";
 import classNames from "classnames";
 import { resolve } from "styled-jsx/css";
@@ -105,7 +107,6 @@ export default function ArticleList(): ReactElement {
 
             <Row justify={'space-around'}>
                 <Col>
-                    <Pagination current={page} onChange={(page) => setPage(page)} total={totalCount} pageSize={pageSize} />
                 </Col>
             </Row>
         </>}

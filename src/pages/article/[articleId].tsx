@@ -5,16 +5,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { articleSelector } from '../../store/selectors/Articles';
 import { loadArticles } from '../../store/Article';
 import Title from 'antd/lib/typography/Title';
-import { Skeleton, Avatar } from 'antd';
+import Skeleton from 'antd/lib/skeleton';
+import Avatar from 'antd/lib/avatar';
 import { getImageUrl } from '../../hooks/image';
 import { resolve } from 'styled-jsx/css';
 import classNames from 'classnames';
 import { authorsSelector } from '../../store/selectors/Authors';
 import { Article } from '../../store/entities/Article';
 import dayjs from 'dayjs';
-import LoadingImage from '../../components/blocks/LoadingImage';
-import CKEditorContent from '../../components/CKEditorContent';
 import { tagsEntitiesSelector } from '../../store/selectors/Tags';
+import CKEditorContent from '../../components/CKEditorContent';
+import LoadingImage from '../../components/blocks/LoadingImage';
+import { reduxPage } from '../../config/redux';
 
 //#region <styles>
 const {className, styles} = resolve`
@@ -134,7 +136,7 @@ function Tags({article}: {article: Article}): ReactElement {
     </>;
 }
 
-export default function Home(): ReactElement {
+function article(): ReactElement {
     const router = useRouter();
     const dispatch = useDispatch();
     const articleId = +router.query.articleId;
@@ -177,3 +179,5 @@ export default function Home(): ReactElement {
         {styles}
     </PageFrame>;
 }
+
+export default reduxPage(article);

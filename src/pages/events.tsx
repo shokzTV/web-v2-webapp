@@ -2,9 +2,10 @@ import React, { ReactElement } from 'react'
 import PageFrame from '../components/PageFrame';
 import UpcomingEvents from '../components/blocks/UpcomingEvents';
 import PastEvents from '../components/blocks/PastEvents';
-import { Divider } from 'antd';
+import Divider from '../components/Divider';
+import { reduxPage } from '../config/redux';
 
-export default function Events(): ReactElement {
+function events(): ReactElement {
   return <>
     <PageFrame>
       <UpcomingEvents />
@@ -23,3 +24,5 @@ export default function Events(): ReactElement {
     </PageFrame>
   </>;
 }
+
+export default reduxPage(events);

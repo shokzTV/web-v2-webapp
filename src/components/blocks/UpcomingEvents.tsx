@@ -1,6 +1,8 @@
 import { ReactElement, useEffect } from "react";
 import Header from "../Header";
-import { Row, Col, Skeleton } from "antd";
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Skeleton from 'antd/lib/skeleton';
 import { useDispatch, useSelector } from "react-redux";
 import { featuredEventsSelector, eventEntitiesSelector } from "../../store/selectors/Event";
 import { loadFeaturedEvents } from "../../store/Event";

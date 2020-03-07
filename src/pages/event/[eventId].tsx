@@ -5,19 +5,21 @@ import { useRouter } from 'next/router';
 import { eventsSelector } from '../../store/selectors/Event';
 import Header from '../../components/Header';
 import Divider from '../../components/Divider';
-import { Row, Col } from 'antd';
-import LoadingImage from '../../components/blocks/LoadingImage';
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
 import { useEventImage } from '../../hooks/image';
 import Title from 'antd/lib/typography/Title';
 import { useEventDate, useEventOrganizer } from '../../hooks/event';
 import ReactCountryFlag from "react-country-flag";
 import { eventLinksSelector } from '../../store/selectors/EventLinks';
 import { loadEventRelations } from '../../store/Ui';
-import EventArticles from '../../components/blocks/EventArticles';
-import EventVideos from '../../components/blocks/EventVideos';
 import { loadEvents } from '../../store/Event';
 import { COLORS } from '../../style/colors';
+import EventVideos from '../../components/blocks/EventVideos';
+import EventArticles from '../../components/blocks/EventArticles';
 import CKEditorContent from '../../components/CKEditorContent';
+import LoadingImage from '../../components/blocks/LoadingImage';
+import { reduxPage } from '../../config/redux';
 
 const descriptionName = {
     description: 'Beschreibung',
@@ -25,7 +27,7 @@ const descriptionName = {
     advice: 'Hinweis'
 }
 
-export default function Event(): ReactElement {
+function event(): ReactElement {
     const dispatch = useDispatch();
     const router = useRouter();
     const eventId = +router.query.eventId;
@@ -167,3 +169,5 @@ export default function Event(): ReactElement {
         `}</style>
     </PageFrame>;
 }
+
+export default reduxPage(event);

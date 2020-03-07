@@ -1,5 +1,6 @@
 import { ReactElement, useEffect, useMemo } from "react";
-import { Row, Col } from "antd";
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
 import {resolve} from 'styled-jsx/css';
 import classNames from 'classnames';
 import Title from "antd/lib/typography/Title";
@@ -7,7 +8,6 @@ import { COLORS } from "../../style/colors";
 import { useDispatch, useSelector } from "react-redux";
 import { loadMainEvent } from "../../store/Event";
 import { mainEventSelector, organizerEventLogoSelector } from "../../store/selectors/Event";
-import { getImageUrl } from "../../hooks/image";
 import Link from "next/link";
 
 //#region <styles>
