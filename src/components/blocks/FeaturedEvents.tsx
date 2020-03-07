@@ -5,7 +5,7 @@ import Header from "../Header";
 import { organizerEntitiesSelector } from "../../store/selectors/Organizer";
 import { Event } from "../../store/entities/Event";
 import { featuredEventsSelector, eventEntitiesSelector } from "../../store/selectors/Event";
-import { Divider, Skeleton } from "antd";
+import Skeleton from 'antd/lib/skeleton';
 import dayjs from "dayjs";
 import classNames from "classnames";
 import { COLORS } from "../../style/colors";
@@ -13,6 +13,7 @@ import ReactCountryFlag from "react-country-flag";
 import LoadingImage from "./LoadingImage";
 import { useEventDate } from "../../hooks/event";
 import Link from "next/link";
+import Divider from "../Divider";
 
 
 function EventRow({event}: {event?: Event}): ReactElement {

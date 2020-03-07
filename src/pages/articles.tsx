@@ -2,8 +2,9 @@ import React, { ReactElement } from 'react';
 import PageFrame from '../components/PageFrame';
 import ArticleList from '../components/blocks/ArticleList';
 import RecentArticleTags from '../components/blocks/RecentArticleTags';
+import { reduxPage } from '../config/redux';
 
-export default function Home(): ReactElement {
+function articles(): ReactElement {
   return <PageFrame>
     <div className={'pageFrame'}>
       <ArticleList />
@@ -22,3 +23,5 @@ export default function Home(): ReactElement {
     `}</style>
   </PageFrame>;
 }
+
+export default reduxPage(articles);

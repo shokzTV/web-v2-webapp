@@ -1,6 +1,8 @@
 import { ReactElement, useState } from "react";
 import Header from "../Header";
-import { Row, Col, Skeleton, Pagination } from "antd";
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Skeleton from 'antd/lib/skeleton';
 import { usePastEventsList } from "../../hooks/pastEventsList";
 import Title from "antd/lib/typography/Title";
 import { useSelector } from "react-redux";
@@ -55,7 +57,6 @@ export default function PastEvents(): ReactElement {
 
         {pageSize < totalCount && <Row>
             <br />
-            <Pagination current={page} onChange={(page) => setPage(page)} total={totalCount} pageSize={pageSize} />
         </Row>}
         
         <style jsx>{`

@@ -3,8 +3,9 @@ import Header from "../Header";
 import { useDispatch, useSelector } from "react-redux";
 import { loadLatestNews } from "../../store/News";
 import { latestNewsSelector } from "../../store/selectors/News";
-import { Skeleton, Divider } from "antd";
+import Skeleton from 'antd/lib/skeleton';
 import { COLORS } from "../../style/colors";
+import Divider from "../Divider";
 
 
 export default function LatestNewsList(): ReactElement {

@@ -1,7 +1,7 @@
-import { ReactElement, useState, useCallback, useRef } from "react";
+import { ReactElement, useState } from "react";
 import { resolve } from "styled-jsx/css";
 import classNames from "classnames";
-import { Skeleton } from "antd";
+import Skeleton from 'antd/lib/skeleton';
 import { getImageUrl } from '../../hooks/image';
 import VisibilitySensor from "react-visibility-sensor";
 

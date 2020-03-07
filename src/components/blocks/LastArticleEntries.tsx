@@ -1,12 +1,13 @@
 import { ReactElement, useMemo } from "react";
-import { Row, Col } from "antd";
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Skeleton from 'antd/lib/skeleton';
 import Title from "antd/lib/typography/Title";
 import Paragraph from "antd/lib/typography/Paragraph";
 import {resolve} from 'styled-jsx/css';
 import classnames from 'classnames';
 import Header from "../Header";
 import Divider from "../Divider";
-import { Skeleton } from 'antd';
 import { useArticleList } from "../../hooks/articlesList";
 import Link from "next/link";
 import { articlesSelector } from "../../store/selectors/Articles";

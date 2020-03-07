@@ -1,7 +1,4 @@
 import { ReactElement } from "react";
-import { Menu } from 'antd';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { resolve } from 'styled-jsx/css';
 import { COLORS } from "../style/colors";
 import classNames from "classnames";
@@ -79,17 +76,7 @@ const { className, styles } = resolve`
 `;
 
 export default function Navigation(): ReactElement {
-    const {pathname} = useRouter();
     return <div className={classNames(className, 'menuWrapper')}>
-        <Menu mode={'horizontal'} selectedKeys={[pathname]} className={className}>
-            <Menu.Item className={classNames(className, 'logo')}>
-                <img src={'/images/logo.png'} alt={'logo'} />
-            </Menu.Item>
-            {items.map(({name, path}) => <Menu.Item key={path} className={className}>
-                    <Link key={path} href={path}><a className={className}>{name}</a></Link>
-                </Menu.Item>
-            )}
-        </Menu>
         {styles}
     </div>;
 }

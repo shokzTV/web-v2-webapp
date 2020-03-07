@@ -1,12 +1,15 @@
 import React, { ReactElement } from 'react'
 import FeaturedEvents from '../components/blocks/FeaturedEvents';
-import { Row, Col, Divider } from 'antd';
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
 import PageFrame from '../components/PageFrame';
-import LastArticleEntries from '../components/blocks/LastArticleEntries';
-import LatestVideos from '../components/blocks/LatestVideos';
+import Divider from '../components/Divider';
 import LatestNewsList from '../components/blocks/LatestNewsList';
+import LatestVideos from '../components/blocks/LatestVideos';
+import LastArticleEntries from '../components/blocks/LastArticleEntries';
+import { reduxPage } from '../config/redux';
 
-export default function index(): ReactElement {
+function index(): ReactElement {
   return <>
     <PageFrame>
       <LastArticleEntries />
@@ -30,3 +33,5 @@ export default function index(): ReactElement {
     </PageFrame>
   </>;
 }
+
+export default reduxPage(index);

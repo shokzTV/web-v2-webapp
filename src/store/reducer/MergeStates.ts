@@ -1,4 +1,5 @@
-import {cloneDeep, isPlainObject} from 'lodash';
+import cloneDeep from 'lodash/cloneDeep';
+import isPlainObject from 'lodash/isPlainObject';
 
 export type DeepPartial<T> = {
 [P in keyof T]?: T[P] extends Array<infer U>

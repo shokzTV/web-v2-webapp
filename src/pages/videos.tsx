@@ -1,11 +1,14 @@
 import React, { ReactElement } from 'react'
 import PageFrame from '../components/PageFrame';
 import VideoList from '../components/blocks/VideoList';
+import { reduxPage } from '../config/redux';
 
-export default function Videos(): ReactElement {
+function videos(): ReactElement {
   return <>
     <PageFrame>
         <VideoList />
     </PageFrame>
   </>;
 }
+
+export default reduxPage(videos);

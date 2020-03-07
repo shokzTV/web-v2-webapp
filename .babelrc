@@ -1,8 +1,11 @@
   
 {
-    "presets": ["next/babel"],
+    "presets": [
+      ["@babel/env", { "targets": { "node": "current" }, "modules": false }],
+      "next/babel"
+    ],
     "plugins": [
-      ["import", { "libraryName": "antd", "libraryDirectory": "lib"}, "antd"],
-      ["import", { "libraryName": "lodash", "libraryDirectory": "", "camel2DashComponentName": false}, "lodash"]
+      ["import", { "libraryName": "antd", "libraryDirectory": "es"}, "antd"],
+      ["import", { "libraryName": "lodash", "libraryDirectory": ""}, "lodash"]
     ]
   }

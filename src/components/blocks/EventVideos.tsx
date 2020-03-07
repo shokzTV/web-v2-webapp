@@ -1,5 +1,5 @@
 import { ReactElement, useMemo, useEffect } from "react";
-import { Carousel } from "antd";
+import Carousel from 'antd/lib/carousel';
 import Header from "../Header";
 import Divider from "../Divider";
 import { useSelector, useDispatch } from "react-redux";
