@@ -7,6 +7,13 @@ export interface Article {
     coverJP2: string;
     status: string;
     created: number;
-    author: number;
+    author: {
+        id: number;
+        name: string;
+        twitch: string;
+        avatar: string;
+        avatarWEBP: string;
+        avatarJP2: string;
+    };
     tags: number[];
 }
