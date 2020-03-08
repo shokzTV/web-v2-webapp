@@ -12,7 +12,7 @@ export default function VideoList(): ReactElement {
         total,
         setPage,
         entries
-    } = usePagination<Video>(10, fetchVideoIds, fetchVideos);
+    } = usePagination<Video>(12, fetchVideoIds, fetchVideos);
 
     return <>
         <Header title={'Alle Videos'} />
