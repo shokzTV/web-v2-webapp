@@ -5,7 +5,7 @@ import { Event } from '../api/@types/Event';
 
 dayjs.locale('de')
 
-export function useEventDate(onlyMonth = false): (event: Event) => string | null {
+export function useEventDate(onlyMonth = false): (event: Event | null) => string | null {
     return useCallback((event) => {
         if(event) {
             const start = dayjs.unix(event.start);
