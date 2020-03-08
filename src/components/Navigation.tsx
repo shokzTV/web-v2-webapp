@@ -1,9 +1,7 @@
 import { ReactElement } from "react";
-import { Menu } from 'antd';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { resolve } from 'styled-jsx/css';
 import { COLORS } from "../style/colors";
+import Link from "next/link";
+import { useRouter } from 'next/router';
 import classNames from "classnames";
 
 interface MenuItem {
@@ -25,71 +23,60 @@ const items: MenuItem[] = [{
     path: '/videos'
 }];
 
-const { className, styles } = resolve`
-    .menuWrapper {
-        background: ${COLORS.PRIMARY};
-    }
-
-    .ant-menu {
-        max-width: 1024px;
-        width: 100%;
-        margin: 0 auto;
-        text-align: left;
-        background: ${COLORS.PRIMARY};
-        height: 77px;
-        border-bottom: none;
-    }
-
-    .ant-menu :global(.ant-menu-submenu), 
-    .ant-menu > :global(.ant-menu-submenu-active),
-    .ant-menu:not(.ant-menu-inline) :global(.ant-menu-submenu-open),
-    .ant-menu :global(.ant-menu-submenu-title:hover) {
-        color: #FFF;
-        border: none;
-    }
-
-    .ant-menu-horizontal > .ant-menu-item-selected,
-    .ant-menu-horizontal > .ant-menu-item:not(.logo):hover {
-        border-bottom: 3px solid ${COLORS.SECONDARY};
-    }
-
-    .ant-menu-item, .ant-menu-submenu-title {
-        padding: 14px 20px;
-        vertical-align: middle;
-        font-size: 20px;
-    }
-
-    .ant-menu-item a {
-        text-transform: uppercase;
-        color: #FFF;
-    }
-
-    :global(.ant-menu-submenu) .ant-menu-item {
-        padding: 0 20px;
-    }
-    :global(.ant-menu-submenu) .ant-menu-item a {
-        text-transform: uppercase;
-        color: #000!important;
-    }
-
-    .logo {
-        pointer-events: none;
-        padding: 3px 40px 3px 0;
-    }
-`;
-
 export default function Navigation(): ReactElement {
-    const {pathname} = useRouter();
-    return <div className={classNames(className, 'menuWrapper')}>
-        <Menu mode={'horizontal'} selectedKeys={[pathname]} className={className}>
-            <Menu.Item className={classNames(className, 'logo')}>
-                <img src={'/images/logo.png'} alt={'logo'} />
-            </Menu.Item>
-            {items.map(({name, path}) => <Menu.Item key={path} className={className}>
-                    <Link key={path} href={path}><a className={className}>{name}</a></Link>
-                </Menu.Item>
-            )}
-        </Menu>
-        {styles}
+    const router = useRouter();
+    return <div className={'menuWrapper'}>
+        <div className={'menuWrapperInner'}>
+            <div className={'logo'}>
+                <Link href={'/'}>
+                    <img src={'/images/logo.png'} alt={'website_logo'} />
+                </Link>
+            </div>
+
+            {items.map(({name, path}) => <Link key={path} href={path}>
+                <a className={classNames('menuLink', {active: path === (router && router.pathname)})}>{name}</a>
+            </Link>)}
+        </div>
+
+        <style jsx>{`
+            .menuWrapper {
+                background: ${COLORS.PRIMARY};
+                height: 75px;
+            }
+
+            .menuWrapperInner {
+                margin: 0 auto;
+                max-width: 1024px;
+                display: flex;
+                height: 100%;
+            }
+
+            .menuLink {    
+                color: #FFF;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                padding: 0 20px;
+                font-size: 20px;
+                border-bottom: 5px solid ${COLORS.PRIMARY};
+                transition: border-color 240ms ease-in-out;
+                text-transform: uppercase;
+                margin-top: 5px;
+                height: calc(100% - 5px);
+                text-decoration: none;
+            }
+
+            .menuLink:hover, .menuLink.active {
+                border-color: ${COLORS.HIGHLIGHT};
+            }
+
+            .logo {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                margin-right: 40px;
+                width: 131px;
+            }
+        `}</style>
     </div>;
 }

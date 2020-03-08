@@ -1,32 +1,42 @@
 import React, { ReactElement } from 'react'
-import FeaturedEvents from '../components/blocks/FeaturedEvents';
-import { Row, Col, Divider } from 'antd';
 import PageFrame from '../components/PageFrame';
-import LastArticleEntries from '../components/blocks/LastArticleEntries';
-import LatestVideos from '../components/blocks/LatestVideos';
-import LatestNewsList from '../components/blocks/LatestNewsList';
+import FeaturedArticles from '../components/pages/index/FeaturedArticles';
+import Divider from '../components/Divider';
+import FeaturedEvents from '../components/pages/index/FeaturedEvents';
+import LastVideos from '../components/pages/index/LastVideos';
+import LastNews from '../components/pages/index/LastNews';
 
 export default function index(): ReactElement {
-  return <>
-    <PageFrame>
-      <LastArticleEntries />
+  return <PageFrame>
+    
+    <FeaturedArticles />
 
-      <Divider />
+    <Divider double/>
 
-      <div>
-        <Row gutter={[50, 30]} style={{margin: '0!important'}}>
-          <Col xs={24} sm={12}>
-            <FeaturedEvents />
-          </Col>
-          <Col xs={24} sm={12}>
-            <LatestNewsList />
-          </Col>
-        </Row>
+    <div className={'row'}>
+      <div className={'col'}>
+        <FeaturedEvents />
       </div>
+      <div className={'col'}>
+        <LastNews />
+      </div>
+    </div>
 
-      <Divider />
-      
-      <LatestVideos />
-    </PageFrame>
-  </>;
+    <Divider double/>
+
+    <LastVideos />
+
+    <style jsx>{`
+      .row {
+        margin: -20px;
+        display: flex;
+        flex-direction: row;
+      }
+
+      .col {
+        width: 50%;
+        padding: 20px;
+      }
+    `}</style>
+  </PageFrame>;
 }

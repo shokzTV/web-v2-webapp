@@ -1,8 +1,9 @@
 import React, { ReactElement, ReactNode } from 'react';
-import { pageWrapper } from "../style/page";
 import Head from "next/head";
 import { COLORS } from '../style/colors';
 import Footer from './Footer';
+import MainEvent from './block/MainEvent';
+import Navigation from './Navigation';
 
 interface Props {
     children: ReactNode;
@@ -22,8 +23,12 @@ export default function PageFrame({children, title = null}: Props): ReactElement
       <link rel="apple-touch-icon" href="images/apple-touch-icon.png"></link>
       <meta name="theme-color" content="#0A1C3F" />
       <link rel="manifest" href="/manifest.json" />
+      <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700&display=swap" rel="stylesheet" />
     </Head>
 
+    <Navigation />    
+    <MainEvent />
+    
     <div className={'page'}>
       <div className={'pageWrapper'}>
         <div>
@@ -35,20 +40,41 @@ export default function PageFrame({children, title = null}: Props): ReactElement
       <Footer />
     </div>
 
-    <style jsx>{pageWrapper}</style>
-
-    <style jsx global>{`
-      a {
-        color: ${COLORS.PRIMARY}!important;
+    <style jsx>{`
+      .page {
+          min-height: calc(100vh - 268px);
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
       }
 
-      .pageFooter a, .ant-menu a {
-        color: #FFF!important;
-      } 
+      .pageWrapper {
+          max-width: 1175px;
+          margin: 0 auto;
+          padding: 30px 15px 40px 15px;
+          flex-grow: 1;
+          width: 100%;
+      }  
+    `}</style>
 
+    <style jsx global>{`
       * {
         font-family: 'Roboto Condensed';
         color: ${COLORS.WEAK};
+      }
+
+      *, html, body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      h3 {
+          font-size: 20px;
       }
     `}</style>
   </>;

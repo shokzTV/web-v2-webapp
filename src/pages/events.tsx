@@ -1,25 +1,15 @@
 import React, { ReactElement } from 'react'
 import PageFrame from '../components/PageFrame';
-import UpcomingEvents from '../components/blocks/UpcomingEvents';
-import PastEvents from '../components/blocks/PastEvents';
-import { Divider } from 'antd';
+import FeaturedEvents from '../components/pages/events/FeaturedEvents';
+import Divider from '../components/Divider';
+import PastEvents from '../components/pages/events/PastEvents';
 
-export default function Events(): ReactElement {
-  return <>
-    <PageFrame>
-      <UpcomingEvents />
+export default function events(): ReactElement {
+  return <PageFrame>
+    <FeaturedEvents />
 
-      <div className={'spacer'} />
+    <Divider double />
 
-      <Divider />
-
-      <PastEvents />
-
-      <style jsx>{`
-        .spacer {
-          height: 2em;
-        }  
-      `}</style>
-    </PageFrame>
-  </>;
+    <PastEvents />
+  </PageFrame>;
 }
