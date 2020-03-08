@@ -13,7 +13,7 @@ export default function Pagination({total, page, setPage}: Props): ReactElement 
         if(page <= 3) {
             return [...Array(total).keys()].slice(0, 5).map((id) => id + 1);
         } else if(total - page <= 5) {
-            return [total - 4, total - 3, total - 2, total - 1, total];
+            return [...Array(total).keys()].slice(-5).map((id) => id + 1).filter((id) => id > 0);
         }
 
         return [page - 2, page - 1, page, page + 1, page + 2];
