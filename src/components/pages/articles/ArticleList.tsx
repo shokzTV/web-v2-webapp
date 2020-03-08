@@ -12,7 +12,7 @@ export default function ArticleList(): ReactElement {
         total,
         setPage,
         entries
-    } = usePagination<Article>(10, fetchArticleIds, fetchArticles);
+    } = usePagination<Article>(3, fetchArticleIds, fetchArticles);
 
     return <>
         <Header title={'ALLE ARTIKEL'} link={'ALLE ARTIKELKATERGORIEN ANZEIGEN'} />

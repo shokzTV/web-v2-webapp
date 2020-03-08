@@ -28,6 +28,7 @@ export default function Entry({event}: {event: Event | null}): ReactElement {
                 display: flex;
                 margin: -15px;
                 align-items: center;
+                cursor: pointer;
             } 
 
             .coverColumn {

@@ -12,7 +12,7 @@ export default function Pagination({total, page, setPage}: Props): ReactElement 
     const pagesOfIntrest = useMemo(() => {
         if(page <= 3) {
             return [...Array(total).keys()].slice(0, 5).map((id) => id + 1);
-        } else if(total - page >= 3) {
+        } else if(total - page <= 5) {
             return [total - 4, total - 3, total - 2, total - 1, total];
         }
 
@@ -42,7 +42,7 @@ export default function Pagination({total, page, setPage}: Props): ReactElement 
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    padding-bottom: 20px;
+                    padding: 20px 0;
                 }
 
                 .page {
