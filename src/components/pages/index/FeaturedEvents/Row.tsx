@@ -9,7 +9,7 @@ import { useEventDate } from "../../../../hooks/eventDate";
 import ReactCountryFlag from "react-country-flag";
 import Divider from "../../../Divider";
 
-export default function Row({event}: {event: Event | null}): ReactElement {
+export default function Row({event, noDivider = false}: {event: Event | null; noDivider?: boolean}): ReactElement {
     if(event) {
         const startDate = dayjs.unix(event && event.start);
         const endDate = dayjs.unix(event && event.end);
@@ -48,7 +48,7 @@ export default function Row({event}: {event: Event | null}): ReactElement {
                 </a>
             </Link>
 
-            <Divider />
+           {!noDivider && <Divider />}
 
             <style jsx>{`   
                 .eventRow {
