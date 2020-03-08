@@ -1,24 +1,15 @@
 import React, { ReactElement } from 'react';
 import PageFrame from '../components/PageFrame';
-import ArticleList from '../components/blocks/ArticleList';
-import RecentArticleTags from '../components/blocks/RecentArticleTags';
+import ArticleList from '../components/pages/articles/ArticleList';
+import RecentTags from '../components/pages/articles/RecentTags';
+import Divider from '../components/Divider';
 
-export default function Home(): ReactElement {
+export default function articles(): ReactElement {
   return <PageFrame>
-    <div className={'pageFrame'}>
-      <ArticleList />
-      <div className={'articleTagsDivider'} />
-      <RecentArticleTags />
-    </div>
+    <ArticleList />
 
-    <style jsx>{`
-      .articleTagsDivider {
-        margin-top: 50px;
-      }
+    <Divider double />
 
-      .pageFrame {
-        padding-bottom: 40px;
-      }
-    `}</style>
+    <RecentTags />
   </PageFrame>;
 }
