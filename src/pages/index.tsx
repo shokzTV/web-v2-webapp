@@ -3,6 +3,7 @@ import PageFrame from '../components/PageFrame';
 import FeaturedArticles from '../components/pages/index/FeaturedArticles';
 import Divider from '../components/Divider';
 import FeaturedEvents from '../components/pages/index/FeaturedEvents';
+import LastVideos from '../components/pages/index/LastVideos';
 import LastNews from '../components/pages/index/LastNews';
 
 export default function index(): ReactElement {
@@ -20,6 +21,11 @@ export default function index(): ReactElement {
         <LastNews />
       </div>
     </div>
+
+    <Divider double/>
+
+    <LastVideos />
+
     <style jsx>{`
       .row {
         margin: -20px;
