@@ -30,7 +30,7 @@ var processingInstructions = [
     },
 ];
   
-export default function CKEditorContent({text, rows = 0}: {text: string; rows?: number}): ReactElement {
+export default function CKEditorContent({text = '<p></p>', rows = 0}: {text: string; rows?: number}): ReactElement {
     const html = (new HtmlToReact.Parser()).parseWithInstructions(text, () => true, processingInstructions);
 
     return <div className={'content'}>

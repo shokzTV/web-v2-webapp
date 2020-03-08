@@ -26,3 +26,6 @@ export function useEventDate(onlyMonth = false): (event: Event) => string | null
     }, []);
 }
 
+export function formatDate(ts: number = null, format: string = 'DD.MM.YYYY'): string {
+    return (ts ? dayjs.unix(ts) : dayjs()).format(format);
+}
