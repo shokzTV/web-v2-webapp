@@ -1,3 +1,5 @@
+import { Tag } from "./Tag";
+
 export interface Article {
     id: number;
     title: string;
@@ -14,6 +16,7 @@ export interface Article {
         avatar: string;
         avatarWEBP: string;
         avatarJP2: string;
+        title: string;
     };
-    tags: number[];
+    tags: Tag[];
 }

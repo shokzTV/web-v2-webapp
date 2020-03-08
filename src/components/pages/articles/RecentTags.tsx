@@ -16,7 +16,7 @@ export default function RecentTags(): ReactElement {
         <Header title={'ARTIKELKATEGORIEN'} />
 
         <div className={'tagGrid'}>
-            {tags.map((tag) => <div className={'column'}><Entry key={tag.id} tag={tag} /></div>)}
+            {tags.map((tag) => <div key={tag.id} className={'column'}><Entry tag={tag} /></div>)}
         </div>
 
         <style jsx>{`

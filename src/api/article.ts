@@ -12,3 +12,7 @@ export async function fetchArticleIds(): Promise<number[]> {
 export async function fetchArticles(ids: number[] = []): Promise<Article[]> {
     return await get<Article[]>(`/article/public/articles?ids[]=${ids.join('&ids[]=')}`);
 }
+
+export async function loadArticle(id: number): Promise<Article> {
+    return (await fetchArticles([id]))[0];
+}
