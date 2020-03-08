@@ -16,3 +16,7 @@ export async function fetchPastEventIds(): Promise<number[]> {
 export async function fetchEventsById(ids: number[] = []): Promise<Event[]> {
     return await get<Event[]>(`/event/byId?ids[]=${ids.join('&ids[]=')}`);
 }
+
+export async function fetchEvent(id: number): Promise<Event> {
+    return (await fetchEventsById([id]))[0];
+}
