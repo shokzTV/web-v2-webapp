@@ -12,6 +12,8 @@ module.exports = withBundleAnalyzer(withOffline({
   // turn on the SW in dev mode so that we can actually test it
   workboxOpts: {
     swDest: 'static/service-worker.js',
+    skipWaiting: true,
+    cleanupOutdatedCaches: true,
     runtimeCaching: [
       {
         urlPattern: /^https?.*(api|cdnjs|gstatic|event\.(webp|jp2|jpeg)|favicon\.ico|logo\.png)/,
