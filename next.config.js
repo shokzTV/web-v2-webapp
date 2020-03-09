@@ -14,7 +14,7 @@ module.exports = withBundleAnalyzer(withOffline({
     swDest: 'static/service-worker.js',
     runtimeCaching: [
       {
-        urlPattern: /^https?.*(api|cdnjs|gstatic|event\.(webp|jp2|jpeg)|favicon\.ico)/,
+        urlPattern: /^https?.*(api|cdnjs|gstatic|event\.(webp|jp2|jpeg)|favicon\.ico|logo\.png)/,
         handler: 'StaleWhileRevalidate',
         options: {
           cacheName: 'https-calls-v2',
