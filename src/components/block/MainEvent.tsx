@@ -100,6 +100,10 @@ export default function MainEvent(): ReactElement {
                     padding-left: 0;
                     border-left: none;
                 }
+
+                .organizerLogo {
+                    width: auto;
+                }
             }
         `}</style>
     </div>;
