@@ -73,6 +73,44 @@ export default function SingleEventView({event}: {event: Event | null}): ReactE
                 padding: 20px;
             }
 
+            
+            @media only screen and (max-width: 768px) { 
+                h1 {
+                    text-align: center;
+                }
+
+                .coverColumn {
+                    max-width: 512px;
+                    width: 100%;
+                }
+
+                .eventDetails {
+                    margin: 0;
+                    flex-direction: column;
+                }
+
+                .coverColumn {
+                    margin: 0 auto;
+                }
+
+                .detailsColumn {
+                    margin: 0;
+                }
+
+            }
+
+            @media only screen and (max-width: 375px) { 
+                .detailsColumn {
+                    flex-direction: column;
+                }
+                .details, .eventLinks {
+                    width: 100%;
+                    padding: 5px;
+                }
+                .eventLinks {
+                    margin-top: 20px;
+                }
+            }
         `}</style>
     </>;
 }

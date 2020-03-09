@@ -38,6 +38,24 @@ export default function SingleArticleView({article}: {article: Article | null}):
                 position: relative;
                 padding-bottom: 56.2%;
             }
+
+            
+            @media only screen and (max-width: 768px) {
+                h1 {
+                    text-align: center;
+                }
+
+                .articleCoverWrapper {
+                    float: none;
+                    margin: 0 auto;
+                    max-width: 512px;
+                    width: 100%;
+                    margin-bottom: 20px;
+                }
+            }
+            
+            @media only screen and (max-width: 375px) {
+            }
         `}</style>
     </>;
 }
