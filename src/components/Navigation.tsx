@@ -123,6 +123,8 @@ export default function Navigation(): ReactElement {
                     display: flex;
                     flex-direction: column;
                     align-items: stretch;
+                    overflow: hidden;
+                    flex-shrink: 0;
                 }
 
                 .menuWrapperInner {
