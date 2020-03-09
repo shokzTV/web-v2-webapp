@@ -6,6 +6,7 @@ import LoadingImage from "../../block/ImageLoader";
 import CKEditorContent from "../../CKEditorContent";
 import Link from "next/link";
 import Divider from "../../Divider";
+import TextLoader from "../../TextLoader";
 
 export default function FeaturedArticles(): ReactElement {
     const [featured, setFeatured] = useState<Partial<Article[]> | null>(null);
@@ -31,8 +32,10 @@ export default function FeaturedArticles(): ReactElement {
                     </div>
                 </div>
                 <div className={'lastArticleCol'}>
-                    <h1 className={'lastArticleHeader'}>{lastArticle ? lastArticle.title : <>&nbsp;</>}</h1>
+                    <h1 className={'lastArticleHeader'}>{lastArticle ? lastArticle.title : <TextLoader rows={2} type={'h1'} />}</h1>
                     <CKEditorContent text={lastArticle && lastArticle.body ? lastArticle.body : '<p></p>'} rows={5} />
+
+                    {!lastArticle && <TextLoader rows={5} />}
                 </div>
             </div>
         </Link>
@@ -42,7 +45,7 @@ export default function FeaturedArticles(): ReactElement {
         <div className={'lastArticleRow'}>
             {previousArticles.map((article, index) => <Link href={'/article/[articleId]'} as={'/article/' + article.id} key={article.id + '-' + index}>
                 <div className={'prevArticleCol'}>
-                    <h3 className={'pastArticleHeader'}>{article.title}</h3>
+                    <h3 className={'pastArticleHeader'}>{article.title ? article.title : <TextLoader rows={2} type={'h3'} />}</h3>
                     <div className={'articleCover'}>
                         <LoadingImage src={article.cover} webp={article.coverWEBP} jp2={article.coverJP2} />
                     </div>
