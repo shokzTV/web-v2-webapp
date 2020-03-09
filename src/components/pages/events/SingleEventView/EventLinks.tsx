@@ -22,6 +22,10 @@ export default function EventLinks({event}: {event: Event}): ReactElement {
                 font-size: 20px;
             }
 
+            li {
+                margin-top: 8px;
+            }
+
             .link {
                 text-decoration: none;
             }

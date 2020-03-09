@@ -5,6 +5,7 @@ import EventDetails from "./SingleEventView/EventDetails";
 import EventLinks from "./SingleEventView/EventLinks";
 import EventDescription from "./SingleEventView/EventDescription";
 import EventDisclaimer from "./SingleEventView/EventDisclaimer";
+import EventRelations from "./SingleEventView/EventRelations";
 
 export default function SingleEventView({event}: {event: Event | null}): ReactElement {
     const tag = event && event.tags[0];
@@ -30,6 +31,9 @@ export default function SingleEventView({event}: {event: Event | null}): ReactE
         </div>
 
         <EventDescription event={event} />
+
+        <EventRelations event={event} />
+
         <EventDisclaimer event={event} />
 
         <style jsx>{`
@@ -46,7 +50,6 @@ export default function SingleEventView({event}: {event: Event | null}): ReactE
             .eventCover {
                 position: relative;
                 padding-bottom: 56.2%;
-
             }
 
             h1 {
@@ -63,6 +66,10 @@ export default function SingleEventView({event}: {event: Event | null}): ReactE
             .details {
                 padding: 20px;
                 width: 66%;
+            }
+
+            .eventLinks {
+                padding: 20px;
             }
 
         `}</style>
