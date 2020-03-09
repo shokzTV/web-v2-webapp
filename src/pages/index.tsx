@@ -37,6 +37,22 @@ export default function index(): ReactElement {
         width: 50%;
         padding: 20px;
       }
+
+      @media only screen and (max-width: 768px) { 
+        .row {
+          flex-direction: column;
+          margin: 0;
+        }
+        .col {
+          width: 100%;
+        }
+      }
+
+      @media only screen and (max-width: 375px) {
+        .col {
+          padding: 5px;
+        }
+      }
     `}</style>
   </PageFrame>;
 }

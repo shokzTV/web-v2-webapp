@@ -24,6 +24,22 @@ export default function FeaturedEvents(): ReactElement {
                 width: 50%;
                 padding: 20px;
             }
+            
+            @media only screen and (max-width: 768px) {
+                .eventsGrid {
+                    margin: 0;
+                }
+            }
+            
+            @media only screen and (max-width: 375px) {
+                .eventsGrid {
+                    flex-direction: column;
+                }
+                .column {
+                    padding: 5px;
+                    width: 100%;
+                }                    
+            }
         `}</style>
     </>;
 }

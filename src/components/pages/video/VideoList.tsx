@@ -49,6 +49,23 @@ export default function VideoList(): ReactElement {
                 position: relative;
                 padding-bottom: 56.2%;
             }
+            
+            @media only screen and (max-width: 768px) { 
+                .videoGrid {
+                    margin: 0;
+                }
+
+                .column {
+                    width: 50%;
+                }  
+            }
+
+            @media only screen and (max-width: 375px) { 
+                .column {
+                    padding: 5px;
+                    width: 100%;
+                }  
+            }
         `}</style>      
     </>;
 }

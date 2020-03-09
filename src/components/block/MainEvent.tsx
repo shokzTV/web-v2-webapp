@@ -35,6 +35,7 @@ export default function MainEvent(): ReactElement {
                 height: 200px;
                 position: relative;
             }    
+
             .mainEventInner {
                 display: flex;
                 max-width: 1024px;
@@ -61,7 +62,6 @@ export default function MainEvent(): ReactElement {
                 margin-bottom: .75em;
             }
 
-
             .eventLinks {
                 display: flex;
                 align-items: center;
@@ -72,13 +72,34 @@ export default function MainEvent(): ReactElement {
                 color: ${COLORS.PRIMARY};
                 font-size: 20px;
                 cursor: pointer;
+                text-decoration: underline;
             }
 
             .eventLink + .eventLink {
                 margin-left: 20px;
                 padding-left: 20px;
                 border-left: 1px solid ${COLORS.PRIMARY};
-                text-decoration: none;
+            }
+
+            @media only screen and (max-width: 375px) { 
+                .mainEventWrapper {
+                    min-height: 200px;
+                    height: auto;
+                }
+                .mainEventInner {
+                    flex-direction: column;
+                    align-items: center;
+                    padding: 20px 0;
+                }
+                .eventLinks {
+                    flex-direction: column;
+                }
+                .eventLink + .eventLink {
+                    margin-top: 5px;
+                    margin-left: 0;
+                    padding-left: 0;
+                    border-left: none;
+                }
             }
         `}</style>
     </div>;

@@ -8,6 +8,7 @@ import LoadingImage from "../../../block/ImageLoader";
 import { useEventDate } from "../../../../hooks/eventDate";
 import ReactCountryFlag from "react-country-flag";
 import Divider from "../../../Divider";
+import TextLoader from "../../../TextLoader";
 
 export default function Row({event, noDivider = false}: {event: Event | null; noDivider?: boolean}): ReactElement {
     if(event) {
@@ -108,5 +109,36 @@ export default function Row({event, noDivider = false}: {event: Event | null; no
         </>;
     }
 
-    return <>Loader</>;
+    return <>
+        <div className={'row'}>
+            <div className={'icon'}>
+                <LoadingImage contains />
+            </div>
+
+
+            <div className={'rows'}>
+                <div style={{fontSize: 18}}><TextLoader rows={1} /></div>
+                <div style={{fontSize: 16}}><TextLoader rows={1} /></div>
+            </div>
+        </div>
+    
+        <style jsx>{`
+            .row {
+                display: flex;
+                height: 40px;
+            }
+
+            .rows {
+                flex-grow: 1;
+            }
+                
+            .icon {
+                margin-right: 20px;
+                height: 40px;
+                position: relative;
+                min-width: 40px;
+            }
+        `}</style>
+        {!noDivider && <Divider />}
+    </>;
 }

@@ -1,14 +1,15 @@
 import { ReactElement } from "react";
 import { Tag } from "../../../../api/@types/Tag";
 import LoadingImage from "../../../block/ImageLoader";
+import TextLoader from "../../../TextLoader";
 
 export default function Entry({tag}: {tag: Tag | null}): ReactElement {
     return <div className={'tagEntry'}>
         <LoadingImage src={tag && tag.image} webp={tag && tag.imageWEBP} jp2={tag && tag.imageJP2} />
 
         <div className={'tagDescription'}>
-            <h3>{tag ? tag.name : <>&nbsp;</>}</h3>
-            <div className={'desc'}>{tag && tag.description}</div>
+            <h3>{tag ? tag.name : <TextLoader rows={1} type={'h3'} />}</h3>
+            <div className={'desc'}>{tag ? tag.description : <TextLoader rows={1} />}</div>
         </div>
 
         <style jsx>{`
