@@ -54,7 +54,7 @@ export default function SingleArticleView({article}: {article: Article | null}):
                 }
             }
             
-            @media only screen and (max-width: 375px) {
+            @media only screen and (max-width: 425px) {
             }
         `}</style>
     </>;

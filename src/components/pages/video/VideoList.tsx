@@ -60,7 +60,7 @@ export default function VideoList(): ReactElement {
                 }  
             }
 
-            @media only screen and (max-width: 375px) { 
+            @media only screen and (max-width: 425px) { 
                 .column {
                     padding: 5px;
                     width: 100%;

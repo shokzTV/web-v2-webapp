@@ -31,7 +31,7 @@ export default function FeaturedEvents(): ReactElement {
                 }
             }
             
-            @media only screen and (max-width: 375px) {
+            @media only screen and (max-width: 425px) {
                 .eventsGrid {
                     flex-direction: column;
                 }
