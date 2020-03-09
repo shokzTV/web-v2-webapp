@@ -5,12 +5,14 @@ import EventDetails from "./SingleEventView/EventDetails";
 import EventLinks from "./SingleEventView/EventLinks";
 import EventDescription from "./SingleEventView/EventDescription";
 import EventDisclaimer from "./SingleEventView/EventDisclaimer";
+import EventRelations from "./SingleEventView/EventRelations";
+import TextLoader from "../../TextLoader";
 
 export default function SingleEventView({event}: {event: Event | null}): ReactElement {
     const tag = event && event.tags[0];
     
     return <>
-        <h1>{event && event.name}</h1>
+        <h1>{event ? event.name : <div style={{paddingBottom: '1px'}}><TextLoader type={'h1'} rows={1} /></div>}</h1>
 
         <div className={'eventDetails'}>
             <div className={'coverColumn'}>
@@ -30,6 +32,9 @@ export default function SingleEventView({event}: {event: Event | null}): ReactE
         </div>
 
         <EventDescription event={event} />
+
+        <EventRelations event={event} />
+
         <EventDisclaimer event={event} />
 
         <style jsx>{`
@@ -46,7 +51,6 @@ export default function SingleEventView({event}: {event: Event | null}): ReactE
             .eventCover {
                 position: relative;
                 padding-bottom: 56.2%;
-
             }
 
             h1 {
@@ -65,6 +69,48 @@ export default function SingleEventView({event}: {event: Event | null}): ReactE
                 width: 66%;
             }
 
+            .eventLinks {
+                padding: 20px;
+            }
+
+            
+            @media only screen and (max-width: 768px) { 
+                h1 {
+                    text-align: center;
+                }
+
+                .coverColumn {
+                    max-width: 512px;
+                    width: 100%;
+                }
+
+                .eventDetails {
+                    margin: 0;
+                    flex-direction: column;
+                }
+
+                .coverColumn {
+                    margin: 0 auto;
+                }
+
+                .detailsColumn {
+                    margin: 0;
+                }
+
+            }
+
+            @media only screen and (max-width: 375px) { 
+                .detailsColumn {
+                    flex-direction: column;
+                }
+                .details, .eventLinks {
+                    width: 100%;
+                    padding: 5px;
+                }
+                .eventLinks {
+                    margin-top: 20px;
+                }
+            }
         `}</style>
     </>;
 }

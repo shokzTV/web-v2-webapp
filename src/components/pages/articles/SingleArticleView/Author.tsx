@@ -3,6 +3,7 @@ import { ReactElement } from "react";
 import { formatDate } from "../../../../hooks/eventDate";
 import LoadingImage from "../../../block/ImageLoader";
 import { COLORS } from "../../../../style/colors";
+import TextLoader from "../../../TextLoader";
 
 export default function Author({article}: {article: Article | null}): ReactElement {
     const author = article && article.author;
@@ -15,7 +16,7 @@ export default function Author({article}: {article: Article | null}): ReactEleme
         </div>
         <div className={'name'}>
             <div className={'userName'}>
-                Autor: <a className={'link'} href={`https://www.twitch.tv/${author && author.name}`} target={'_blank'} rel={'noreferrer'}>{author && author.name}</a>
+                Autor:&nbsp;<a className={'link'} href={`https://www.twitch.tv/${author && author.name}`} target={'_blank'} rel={'noreferrer'}>{author ? author.name: <TextLoader rows={1} />}</a>
             </div>
             {author && author.title.length > 0 && <div className={'userTitle'}><i>{author.title}</i></div>}
             <div className={'publishInfo'}>veröffentlicht am {formatDate(article && article.created)}</div>
@@ -42,6 +43,7 @@ export default function Author({article}: {article: Article | null}): ReactEleme
 
             .userName {
                 font-size: 18px;
+                display: flex;
             }
 
             .userTitle {

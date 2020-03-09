@@ -4,10 +4,11 @@ import CKEditorContent from "../../CKEditorContent";
 import LoadingImage from "../../block/ImageLoader";
 import Author from "./SingleArticleView/Author";
 import Tags from "./SingleArticleView/Tags";
+import TextLoader from "../../TextLoader";
 
 export default function SingleArticleView({article}: {article: Article | null}): ReactElement {
     return <>
-        <h1>{article && article.title}</h1>
+        <h1>{article ? article.title : <TextLoader rows={1} type={'h1'} /> }</h1>
 
         <div className={'articleContent'}>
             <div className={'articleCoverWrapper'}>
@@ -20,6 +21,8 @@ export default function SingleArticleView({article}: {article: Article | null}):
             <Tags article={article} />
                                 
             {article && <CKEditorContent text={article.body} />}
+
+            {!article && <TextLoader rows={20} type={'ckeditor'} />}
         </div>
 
         <style jsx>{`   
@@ -34,6 +37,24 @@ export default function SingleArticleView({article}: {article: Article | null}):
             .articleCover {
                 position: relative;
                 padding-bottom: 56.2%;
+            }
+
+            
+            @media only screen and (max-width: 768px) {
+                h1 {
+                    text-align: center;
+                }
+
+                .articleCoverWrapper {
+                    float: none;
+                    margin: 0 auto;
+                    max-width: 512px;
+                    width: 100%;
+                    margin-bottom: 20px;
+                }
+            }
+            
+            @media only screen and (max-width: 375px) {
             }
         `}</style>
     </>;

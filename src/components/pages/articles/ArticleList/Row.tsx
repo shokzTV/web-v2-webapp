@@ -6,6 +6,7 @@ import Link from "next/link";
 import dayjs from "dayjs";
 import { formatDate } from "../../../../hooks/eventDate";
 import CKEditorContent from "../../../CKEditorContent";
+import TextLoader from "../../../TextLoader";
 
 
 export default function Row({article, noDivider = false}: {article: Article | null; noDivider?: boolean}): ReactElement {
@@ -20,12 +21,13 @@ export default function Row({article, noDivider = false}: {article: Article | nu
                 </div>
 
                 <div className={'detailsColumn'}>
-                    <h2>{article ? article.title : <>&nbsp;</>}</h2>
+                    <h2>{article ? article.title : <TextLoader rows={1} type={'h2'} />}</h2>
                     <div className={'articleDetails'}>
                         veröffentlicht am {formatDate(article && article.created)} von {article && article.author.name}
                     </div>
 
                     <CKEditorContent text={article && article.body} rows={2}/>
+                    {!article && <TextLoader rows={2} type={'ckeditor'} />}
                 </div>
             </div>
         </Link>
@@ -59,6 +61,29 @@ export default function Row({article, noDivider = false}: {article: Article | nu
                 font-size: 16px;
                 font-weight: normal;
                 margin-bottom: 20px;
+            }
+            
+            @media only screen and (max-width: 768px) {
+                .articleRow {
+                    margin: 0;
+                }
+            }
+            
+            @media only screen and (max-width: 375px) {
+                .articleRow {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .coverColumn {
+                    max-width: 512px;
+                    width: 100%;
+                    padding: 5px;
+                }
+
+                .detailsColumn {
+                    width: 100%;
+                    padding: 5px;
+                }
             }
         `}</style>
     </>;

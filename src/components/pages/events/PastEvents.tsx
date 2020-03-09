@@ -19,7 +19,7 @@ export default function PastEvents(): ReactElement {
 
         <Pagination  page={page} total={total} setPage={setPage} />
         <div className={'eventGrid'}>
-            {entries.map((event, index) => <div className={'colummn'} key={(event && event.id) + '-' + index}>
+            {entries.map((event, index) => <div className={'column'} key={(event && event.id) + '-' + index}>
                 <Entry event={event}/>
             </div>)}
         </div>
@@ -32,11 +32,21 @@ export default function PastEvents(): ReactElement {
                 margin: -20px;
             }
 
-            .colummn {
+            .column {
                 padding: 20px;
                 width: 50%;
             }
             
+            @media only screen and (max-width: 768px) { 
+                .eventGrid {
+                    margin: 0;
+                    flex-direction: column;
+                }
+                .column {
+                    padding: 5px;
+                    width: 100%;
+                }  
+            }
         `}</style>
     </>;
 }

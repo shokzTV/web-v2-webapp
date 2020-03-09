@@ -6,6 +6,7 @@ import LoadingImage from "../../block/ImageLoader";
 import CKEditorContent from "../../CKEditorContent";
 import Link from "next/link";
 import Divider from "../../Divider";
+import TextLoader from "../../TextLoader";
 
 export default function FeaturedArticles(): ReactElement {
     const [featured, setFeatured] = useState<Partial<Article[]> | null>(null);
@@ -31,18 +32,20 @@ export default function FeaturedArticles(): ReactElement {
                     </div>
                 </div>
                 <div className={'lastArticleCol'}>
-                    <h1 className={'lastArticleHeader'}>{lastArticle ? lastArticle.title : <>&nbsp;</>}</h1>
+                    <h1 className={'lastArticleHeader'}>{lastArticle ? lastArticle.title : <TextLoader rows={2} type={'h1'} />}</h1>
                     <CKEditorContent text={lastArticle && lastArticle.body ? lastArticle.body : '<p></p>'} rows={5} />
+
+                    {!lastArticle && <TextLoader rows={5} />}
                 </div>
             </div>
         </Link>
         
         <Divider />
 
-        <div className={'lastArticleRow'}>
+        <div className={'lastArticleRow pastArticleRow'}>
             {previousArticles.map((article, index) => <Link href={'/article/[articleId]'} as={'/article/' + article.id} key={article.id + '-' + index}>
                 <div className={'prevArticleCol'}>
-                    <h3 className={'pastArticleHeader'}>{article.title}</h3>
+                    <h3 className={'pastArticleHeader'}>{article.title ? article.title : <TextLoader rows={2} type={'h3'} />}</h3>
                     <div className={'articleCover'}>
                         <LoadingImage src={article.cover} webp={article.coverWEBP} jp2={article.coverJP2} />
                     </div>
@@ -55,6 +58,7 @@ export default function FeaturedArticles(): ReactElement {
                 display: flex;
                 margin: -20px;
                 align-items: center;
+                cursor: pointer;
             }
 
             .lastArticleCol {
@@ -80,6 +84,39 @@ export default function FeaturedArticles(): ReactElement {
                 height: 3em;
                 margin-bottom: .5em;
                 line-height: 1.4;
+            }
+
+            @media only screen and (max-width: 768px) { 
+                .lastArticleRow {
+                    margin: 0;
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .lastArticleCol {
+                    width: 100%;
+                }
+
+                .lastArticleCol:first-child {
+                    max-width: 512px;
+                    width: 100%;
+                }
+
+                .prevArticleCol {
+                    width: 50%;
+                }
+
+                .pastArticleRow {
+                    justify-content: space-around;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+            } 
+            @media only screen and (max-width: 375px) { 
+                .prevArticleCol, .lastArticleCol {
+                    width: 100%;
+                    padding: 5px;
+                }
             }
         `}</style>
 
