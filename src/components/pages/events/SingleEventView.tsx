@@ -6,12 +6,13 @@ import EventLinks from "./SingleEventView/EventLinks";
 import EventDescription from "./SingleEventView/EventDescription";
 import EventDisclaimer from "./SingleEventView/EventDisclaimer";
 import EventRelations from "./SingleEventView/EventRelations";
+import TextLoader from "../../TextLoader";
 
 export default function SingleEventView({event}: {event: Event | null}): ReactElement {
     const tag = event && event.tags[0];
     
     return <>
-        <h1>{event && event.name}</h1>
+        <h1>{event ? event.name : <div style={{paddingBottom: '1px'}}><TextLoader type={'h1'} rows={1} /></div>}</h1>
 
         <div className={'eventDetails'}>
             <div className={'coverColumn'}>

@@ -8,6 +8,7 @@ import Carousel from "../../../block/Carousel";
 import LoadingImage from "../../../block/ImageLoader";
 import Divider from "../../../Divider";
 import Link from "next/link";
+import TextLoader from "../../../TextLoader";
 
 export default function EventRelations({event}: {event: Event | null}): ReactElement {
     const [articles, setArticles] = useState<Partial<Article>[]>(Array(3).fill(undefined));
@@ -33,7 +34,7 @@ export default function EventRelations({event}: {event: Event | null}): ReactEle
                 {articles.map((article, index) => <div key={(article && article.id) + '-' + index} >
                     <Link href={'/article/[articleId]'} as={'/article/' + (article && article.id)}>
                         <div className={'prevArticleCol'}>
-                            <h3 className={'pastArticleHeader'}>{article && article.title}</h3>
+                            <h3 className={'pastArticleHeader'}>{article ? article.title : <TextLoader type={'h3'} rows={2} />}</h3>
                             <div className={'articleCover'}>
                                 <LoadingImage src={article && article.cover} 
                                                 webp={article && article.coverWEBP} 

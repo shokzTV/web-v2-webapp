@@ -19,7 +19,7 @@ export function usePagination<T extends IdEntry = IdEntry>(
     const [loaded, setLoaded] = useState<number[]>([]);
     const [data, setData] = useState<T[]>([]);
     const total = useMemo(
-        () => ids.length % pageSize === 0 ? (ids.length / pageSize) : Math.round((ids.length / pageSize) + .5), 
+        () => ids.length > 0 ? (ids.length % pageSize === 0 ? (ids.length / pageSize) : Math.round((ids.length / pageSize) + .5)) : 2, 
         [ids, pageSize]
     );
     const pageIds = useMemo<number[]>(() => ids.length > 0 ? ids.slice((page - 1) * pageSize, page * pageSize) : [], [page, ids, pageSize]);
@@ -42,7 +42,7 @@ export function usePagination<T extends IdEntry = IdEntry>(
         loadEntries();
     }, [pageIds, loaded]);
 
-    const entries = useMemo(() => pageIds.map((id) => data.find((entity) => entity.id! === id)), [pageIds, data]);
+    const entries = useMemo(() => pageIds.length > 0 ? pageIds.map((id) => data.find((entity) => entity.id! === id)) : Array(pageSize).fill(undefined), [pageIds, data]);
 
     return {
         entries,
