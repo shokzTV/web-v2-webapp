@@ -1,5 +1,6 @@
 import { get } from "./request";
 import { Event } from './@types/Event';
+import { Video } from "./@types/Video";
 
 export async function fetchMainEvent(): Promise<Event> {
     return await get<Event>('/event/main');
@@ -19,4 +20,20 @@ export async function fetchEventsById(ids: number[] = []): Promise<Event[]> {
 
 export async function fetchEvent(id: number): Promise<Event> {
     return (await fetchEventsById([id]))[0];
+}
+
+
+interface RelationResponse {
+    articles: Array<{
+        id: number;
+        title: string;
+        cover: string;
+        coverWEBP: string;
+        coverJP2: string;
+    }>;
+    videos: Video[];
+}
+
+export async function fetchEventRelations(id: number): Promise<RelationResponse> {
+    return await get<RelationResponse>(`/event/relations/${id}`);
 }
