@@ -5,7 +5,7 @@ import { fetchLatestTags } from "../../../api/tag";
 import Entry from "./RecentTags/Entry";
 
 export default function RecentTags(): ReactElement {
-    const [tags, setTags] = useState<Tag[]>([]);
+    const [tags, setTags] = useState<Tag[]>(Array(8).fill(undefined));
 
     useEffect(() => {
         const loadTags = async () => setTags(await fetchLatestTags());
@@ -16,7 +16,7 @@ export default function RecentTags(): ReactElement {
         <Header title={'ARTIKELKATEGORIEN'} />
 
         <div className={'tagGrid'}>
-            {tags.map((tag) => <div key={tag.id} className={'column'}><Entry tag={tag} /></div>)}
+            {tags.map((tag, index) => <div key={(tag && tag.id) + '-' + index} className={'column'}><Entry tag={tag} /></div>)}
         </div>
 
         <style jsx>{`

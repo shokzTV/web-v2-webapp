@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Event } from "../../../../api/@types/Event";
 import LoadingImage from "../../../block/ImageLoader";
 import { useEventDate } from "../../../../hooks/eventDate";
+import TextLoader from "../../../TextLoader";
 
 
 export default function Entry({event}: {event: Event | null}): ReactElement {
@@ -17,8 +18,8 @@ export default function Entry({event}: {event: Event | null}): ReactElement {
                     </div>
                 </div>
                 <div className={'detailsColumn'}>
-                    <h3>{event && event.name}</h3>
-                    <div>{eventDate}</div>
+                    <h3>{event ? event.name : <TextLoader rows={1} type={'h3'} />}</h3>
+                    <div>{eventDate ? eventDate : <TextLoader rows={1} />}</div>
                 </div>
             </div>
         </Link>
