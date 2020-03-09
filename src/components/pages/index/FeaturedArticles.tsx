@@ -42,7 +42,7 @@ export default function FeaturedArticles(): ReactElement {
         
         <Divider />
 
-        <div className={'lastArticleRow'}>
+        <div className={'lastArticleRow pastArticleRow'}>
             {previousArticles.map((article, index) => <Link href={'/article/[articleId]'} as={'/article/' + article.id} key={article.id + '-' + index}>
                 <div className={'prevArticleCol'}>
                     <h3 className={'pastArticleHeader'}>{article.title ? article.title : <TextLoader rows={2} type={'h3'} />}</h3>
@@ -84,6 +84,39 @@ export default function FeaturedArticles(): ReactElement {
                 height: 3em;
                 margin-bottom: .5em;
                 line-height: 1.4;
+            }
+
+            @media only screen and (max-width: 768px) { 
+                .lastArticleRow {
+                    margin: 0;
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .lastArticleCol {
+                    width: 100%;
+                }
+
+                .lastArticleCol:first-child {
+                    max-width: 512px;
+                    width: 100%;
+                }
+
+                .prevArticleCol {
+                    width: 50%;
+                }
+
+                .pastArticleRow {
+                    justify-content: space-around;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+            } 
+            @media only screen and (max-width: 375px) { 
+                .prevArticleCol, .lastArticleCol {
+                    width: 100%;
+                    padding: 5px;
+                }
             }
         `}</style>
 

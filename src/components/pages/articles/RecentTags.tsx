@@ -30,6 +30,22 @@ export default function RecentTags(): ReactElement {
                 width: 50%;
                 padding: 20px;
             }
+
+            @media only screen and (max-width: 768px) {
+                .tagGrid {
+                    margin: 0;
+                }
+            }
+
+            @media only screen and (max-width: 375px) {
+                .tagGrid {
+                    flex-direction: column;
+                }
+                .column {
+                    padding: 5px;
+                    width: 100%;
+                }                    
+            }
         `}</style>
     </>;
 }

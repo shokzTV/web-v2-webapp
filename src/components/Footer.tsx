@@ -116,6 +116,32 @@ export default function Footer(): ReactElement {
                 color: #FFF;
                 text-decoration: none;
             }
+
+            @media only screen and (max-width: 768px) { 
+                .footerRow {
+                    margin: 0;
+                }
+                .footerLinks {
+                    flex-direction: column;
+                }
+                .mainFooterLinks, .subFooterLinks {
+                    width: 100%;
+                }
+
+                .x2 .footerColumn {
+                    padding: 20px;
+                    width: 33%;
+                }
+            }
+            @media only screen and (max-width: 375px) { 
+                .footerRow {
+                    flex-direction: column;
+                }
+                .footerColumn, .x2 .footerColumn, .x3 .footerColumn {
+                    width: 100%;
+                    padding: 5px;
+                }
+            }
         `}</style>
     </div>;
 }

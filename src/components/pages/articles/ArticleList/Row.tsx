@@ -62,6 +62,29 @@ export default function Row({article, noDivider = false}: {article: Article | nu
                 font-weight: normal;
                 margin-bottom: 20px;
             }
+            
+            @media only screen and (max-width: 768px) {
+                .articleRow {
+                    margin: 0;
+                }
+            }
+            
+            @media only screen and (max-width: 375px) {
+                .articleRow {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .coverColumn {
+                    max-width: 512px;
+                    width: 100%;
+                    padding: 5px;
+                }
+
+                .detailsColumn {
+                    width: 100%;
+                    padding: 5px;
+                }
+            }
         `}</style>
     </>;
 }

@@ -51,6 +51,21 @@ export default function Entry({event}: {event: Event | null}): ReactElement {
                 font-size: 24px;
                 margin-bottom: 10px;
             }
+            
+            @media only screen and (max-width: 375px) { 
+                .event {
+                    margin: 0;
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .coverColumn, .detailsColumn {
+                    padding: 5px;
+                    width: 100%;
+                }  
+                .detailsColumn {
+                    text-align: center;
+                }
+            }
         `}</style>
     </>;
 }
