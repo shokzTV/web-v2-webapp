@@ -9,7 +9,7 @@ export default function LastVideos(): ReactElement {
     const [videos, setVideos] = useState<Video[]>(Array(10).fill(undefined));
 
     useEffect(() => {
-        const loadVideos = async () => setVideos(await fetchLatestVideos());
+        const loadVideos = async () => setVideos((await fetchLatestVideos()));
         loadVideos();
     }, []);
 
@@ -20,8 +20,8 @@ export default function LastVideos(): ReactElement {
                 <div className={'thumbnailWrapper'}>
                     <a href={video ? video.source : ''} target={'_blank'} rel={'noreferrer'}>
                         <LoadingImage src={video && video.thumbnail} 
-                                        webp={video && video.thumbnailWEBP} 
-                                        jp2={video && video.thumbnailJP2} />
+                                      webp={video && video.thumbnailWEBP} 
+                                      jp2={video && video.thumbnailJP2} />
                     </a>
                 </div>
             </div>)}

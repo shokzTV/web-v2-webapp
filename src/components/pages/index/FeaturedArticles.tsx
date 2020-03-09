@@ -55,6 +55,7 @@ export default function FeaturedArticles(): ReactElement {
                 display: flex;
                 margin: -20px;
                 align-items: center;
+                cursor: pointer;
             }
 
             .lastArticleCol {
