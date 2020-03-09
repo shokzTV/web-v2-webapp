@@ -112,7 +112,7 @@ export default function FeaturedArticles(): ReactElement {
                     flex-wrap: wrap;
                 }
             } 
-            @media only screen and (max-width: 375px) { 
+            @media only screen and (max-width: 425px) { 
                 .prevArticleCol, .lastArticleCol {
                     width: 100%;
                     padding: 5px;

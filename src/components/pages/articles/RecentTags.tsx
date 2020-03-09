@@ -37,7 +37,7 @@ export default function RecentTags(): ReactElement {
                 }
             }
 
-            @media only screen and (max-width: 375px) {
+            @media only screen and (max-width: 425px) {
                 .tagGrid {
                     flex-direction: column;
                 }

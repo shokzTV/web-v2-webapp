@@ -69,7 +69,7 @@ export default function Row({article, noDivider = false}: {article: Article | nu
                 }
             }
             
-            @media only screen and (max-width: 375px) {
+            @media only screen and (max-width: 425px) {
                 .articleRow {
                     flex-direction: column;
                     align-items: center;

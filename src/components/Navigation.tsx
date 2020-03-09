@@ -95,7 +95,7 @@ export default function Navigation(): ReactElement {
                 display: none;
             }
 
-            @media only screen and (max-width: 375px) { 
+            @media only screen and (max-width: 425px) { 
                 .menuWrapper {
                     height: 75px;
                     transition: height 240ms ease-in-out;
@@ -110,7 +110,7 @@ export default function Navigation(): ReactElement {
                 }
 
                 .menuWrapper.showSubMenu {
-                    height: 375px;
+                    height: 425px;
                 }
 
                 .logo {

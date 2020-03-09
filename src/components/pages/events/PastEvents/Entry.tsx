@@ -52,7 +52,7 @@ export default function Entry({event}: {event: Event | null}): ReactElement {
                 margin-bottom: 10px;
             }
             
-            @media only screen and (max-width: 375px) { 
+            @media only screen and (max-width: 425px) { 
                 .event {
                     margin: 0;
                     flex-direction: column;

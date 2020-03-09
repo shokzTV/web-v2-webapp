@@ -81,7 +81,7 @@ export default function MainEvent(): ReactElement {
                 border-left: 1px solid ${COLORS.PRIMARY};
             }
 
-            @media only screen and (max-width: 375px) { 
+            @media only screen and (max-width: 425px) { 
                 .mainEventWrapper {
                     min-height: 200px;
                     height: auto;

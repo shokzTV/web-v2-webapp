@@ -133,7 +133,7 @@ export default function Footer(): ReactElement {
                     width: 33%;
                 }
             }
-            @media only screen and (max-width: 375px) { 
+            @media only screen and (max-width: 425px) { 
                 .footerRow {
                     flex-direction: column;
                 }

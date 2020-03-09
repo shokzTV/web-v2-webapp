@@ -99,7 +99,7 @@ export default function SingleEventView({event}: {event: Event | null}): ReactE
 
             }
 
-            @media only screen and (max-width: 375px) { 
+            @media only screen and (max-width: 425px) { 
                 .detailsColumn {
                     flex-direction: column;
                 }
