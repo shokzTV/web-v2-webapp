@@ -67,11 +67,11 @@ export default function Navigation(): ReactElement {
                 align-items: center;
                 padding: 0 20px;
                 font-size: 20px;
-                border-bottom: 5px solid ${COLORS.PRIMARY};
+                border-bottom: 3px solid ${COLORS.PRIMARY};
                 transition: border-color 240ms ease-in-out;
                 text-transform: uppercase;
-                margin-top: 5px;
-                height: calc(100% - 5px);
+                margin-top: 3px;
+                height: calc(100% - 3px);
                 text-decoration: none;
             }
 

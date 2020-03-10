@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Footer(): ReactElement {
     return <div className={'footerWrapper'}>
         <div className={'footerWrapperInner'}>
-            <h2 className={'footerHeader'}>Mehr von shokzTV</h2>
+            <h3 className={'footerHeader'}>Mehr von shokzTV</h3>
 
             <div className={'footerLinks'}>
                 <div className={'mainFooterLinks'}>
@@ -69,7 +69,7 @@ export default function Footer(): ReactElement {
             }
 
             .footerHeader {
-                font-size: 24px;
+                font-size: 20px;
                 margin-bottom: 20px;
                 color: #FFF;
             }
