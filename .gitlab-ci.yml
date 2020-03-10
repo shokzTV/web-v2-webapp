@@ -15,7 +15,7 @@ build_assets:
       - .yarn
   artifacts:
     paths:
-      - public/build
+      - out
   script:
     - echo "Building"
     - yarn build
