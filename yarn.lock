@@ -4457,11 +4457,6 @@ nextjs-sitemap-generator@^0.5.0:
   dependencies:
     date-fns "^2.9.0"
 
-nextjs@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/nextjs/-/nextjs-0.0.3.tgz#4f4d1d6a257be920d9b9649d4d9522c724a4e543"
-  integrity sha1-T00daiV76SDZuWSdTZUixySk5UM=
-
 node-fetch@2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
