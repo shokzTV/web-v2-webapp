@@ -72,7 +72,7 @@ export default function MainEvent(): ReactElement {
                 color: ${COLORS.PRIMARY};
                 font-size: 20px;
                 cursor: pointer;
-                text-decoration: underline;
+                text-decoration: none;
             }
 
             .eventLink + .eventLink {

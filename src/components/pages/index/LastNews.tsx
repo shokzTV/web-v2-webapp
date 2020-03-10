@@ -46,7 +46,7 @@ export default function LastNews(): ReactElement {
             }
 
             .news {
-                max-height: 420px;
+                max-height: 365px;
                 overflow-y: scroll;
             }
 
@@ -68,6 +68,13 @@ export default function LastNews(): ReactElement {
 
             .newsTitle.withIcon b {
                 margin-left: 10px;
+            }
+
+
+            @media only screen and (max-width: 768px) { 
+                .news {
+                    max-height: none;
+                }
             }
         `}</style>
 
