@@ -14,6 +14,7 @@ module.exports = withBundleAnalyzer(withOffline({
     swDest: 'static/service-worker.js',
     skipWaiting: true,
     cleanupOutdatedCaches: true,
+    clientsClaim: true,
     runtimeCaching: [
       {
         urlPattern: /^https?.*(api|cdnjs|gstatic|event\.(webp|jp2|jpeg)|favicon\.ico|logo\.png)/,
