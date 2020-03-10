@@ -4,6 +4,7 @@ import { COLORS } from '../style/colors';
 import Footer from './Footer';
 import MainEvent from './block/MainEvent';
 import Navigation from './Navigation';
+import AlphaInfo from './block/AlphaInfo';
 
 interface Props {
     children: ReactNode;
@@ -23,6 +24,8 @@ export default function PageFrame({children, title = null}: Props): ReactElement
       <meta name="theme-color" content="#0A1C3F" />
       <link rel="manifest" href="/manifest.json" />
     </Head>
+
+    <AlphaInfo />
 
     <Navigation />    
     <MainEvent />
