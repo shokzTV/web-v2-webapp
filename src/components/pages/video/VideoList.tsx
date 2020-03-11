@@ -17,7 +17,7 @@ export default function VideoList(): ReactElement {
     return <>
         <Header title={'Alle Videos'} />
 
-        <Pagination  page={page} total={total} setPage={setPage} />
+        <Pagination  page={page} total={total} setPage={setPage} noTopSpacing />
 
         <div className={'videoGrid'}>
             {entries.map((video, index) => <div className={'column'} key={(video && video.id) + '-' + index}>
