@@ -17,8 +17,6 @@ build_assets:
     paths:
       - out
   script:
-    - echo "Creating env file"
-    - echo $ENV > .env
     - echo "Building"
     - yarn build
     - echo "Exporting"
