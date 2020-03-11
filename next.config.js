@@ -42,6 +42,7 @@ module.exports = withBundleAnalyzer(withOffline({
     ],
   },
   env: {
-    API_URL: process.env.API_URL
+    API_URL: process.env.API_URL,
+    GA_ID: process.env.GA_ID
   },
 }));

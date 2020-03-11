@@ -18,10 +18,12 @@
     ],
     "build": {
       "env": {
-          "API_URL": "@staging-url"
+          "API_URL": "@staging-url",
+          "GA_ID": "@ga_id"
       }
     },
     "env": {
-        "API_URL": "@staging-url"
+        "API_URL": "@staging-url",
+        "GA_ID": "@ga_id"
     }
   }
