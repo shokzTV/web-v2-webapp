@@ -110,7 +110,7 @@ export default function Navigation(): ReactElement {
                 }
 
                 .menuWrapper.showSubMenu {
-                    height: 425px;
+                    height: 375px;
                 }
 
                 .logo {
