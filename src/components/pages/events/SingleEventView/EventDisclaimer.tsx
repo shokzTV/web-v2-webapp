@@ -2,6 +2,7 @@ import { ReactElement } from "react";
 import { Event } from "../../../../api/@types/Event";
 import Divider from "../../../Divider";
 import CKEditorContent from "../../../CKEditorContent";
+import { COLORS } from "../../../../style/colors";
 
 export default function EventDisclaimer({event}: {event: Event | null}): ReactElement {
     return <>
@@ -17,7 +18,7 @@ export default function EventDisclaimer({event}: {event: Event | null}): ReactEl
                 text-align: right;
             }
             .disclaimer :global(*) {
-                color: #BBB;
+                color: ${COLORS.WEAK};
                 font-size: 14px;
             }
         `}</style>
