@@ -17,10 +17,14 @@ module.exports = withBundleAnalyzer(withOffline({
     clientsClaim: true,
     runtimeCaching: [
       {
-        urlPattern: /^https?.*(api|cdnjs|gstatic|event\.(webp|jp2|jpeg)|favicon\.ico|logo\.png)/,
-        handler: 'StaleWhileRevalidate',
+        urlPattern: /^https?.*(webp|jp2|jpeg|.ico|.png)$/,
+        handler: 'CacheFirst'
+      },
+      {
+        urlPattern: /^https?.*(api|cdnjs|gstatic)/,
+        handler: 'NetworkFirst',
         options: {
-          cacheName: 'https-calls-v2',
+          cacheName: 'alpha-v1',
           expiration: {
             maxEntries: 150,
             maxAgeSeconds: 30 * 24 * 60 * 60,
