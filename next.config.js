@@ -21,7 +21,11 @@ module.exports = withBundleAnalyzer(withOffline({
         handler: 'CacheFirst'
       },
       {
-        urlPattern: /^https?.*(api|cdnjs|gstatic)/,
+        urlPattern: /^https?.*(cdnjs|gstatic)/,
+        handler: 'CacheFirst'
+      },
+      {
+        urlPattern: /^https?.*(api)/,
         handler: 'NetworkFirst',
         options: {
           cacheName: 'alpha-v1',
