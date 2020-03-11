@@ -32,7 +32,7 @@ export default function Row({event, noDivider = false}: {event: Event | null; no
                             </div>
 
                             <div className={'eventName'}>
-                                {isRunning ? <b>{event.name}</b> : <>{event.name}</>}
+                                {(isRunning || !isPast) ? <b>{event.name}</b> : <>{event.name}</>}
                                 <div className={'eventDate'}>{eventDate}</div>
                             </div>
                         </div>
@@ -83,7 +83,7 @@ export default function Row({event, noDivider = false}: {event: Event | null; no
                 }
 
                 .isPast * {
-                    color: #999;
+                    color: ${COLORS.WEAK};
                 }
 
                 .eventName {
