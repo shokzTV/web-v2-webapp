@@ -53,10 +53,12 @@ const sliderSettings = {
     prevArrow: <PrevArrow />,
 };
 
-export default function Carousel({children}: {children: ReactNode}): ReactElement {
+export default function Carousel({children, slidesToShow = 3}: {children: ReactNode; slidesToShow?: number;}): ReactElement {
     return <>
       <Slider {...sliderSettings}>
+        {slidesToShow < 2 && <div />}
         {children}
+        {slidesToShow < 3 && <div />}
       </Slider>
 
       <style jsx global>{`

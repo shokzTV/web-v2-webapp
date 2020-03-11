@@ -30,7 +30,7 @@ export default function EventRelations({event}: {event: Event | null}): ReactEle
         {articles.length > 0 && <>
             <Divider />
             <Header title={'Event Artikel'} />
-            <Carousel>
+            <Carousel slidesToShow={articles.length}>
                 {articles.map((article, index) => <div key={(article && article.id) + '-' + index} >
                     <Link href={'/article/[articleId]'} as={'/article/' + (article && article.id)}>
                         <div className={'prevArticleCol'}>
@@ -49,7 +49,7 @@ export default function EventRelations({event}: {event: Event | null}): ReactEle
         {videos.length > 0 && <>
             <Divider />
             <Header title={'Event Videos'} />
-            <Carousel>
+            <Carousel slidesToShow={videos.length}>
                 {videos.map((video, index) => <div key={(video && video.id) + '-' + index} className={'videoEntry'}>
                     <div className={'thumbnailWrapper'}>
                         <a href={video ? video.source : ''} target={'_blank'} rel={'noreferrer'}>

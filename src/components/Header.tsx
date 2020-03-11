@@ -10,7 +10,7 @@ interface Props {
 
 export default function Header({title, linkTarget, link}: Props): ReactElement {
     return <div className={'header'}>
-        <div>{title}</div>
+        <div className={'title'}>{title}</div>
 
         {link && <div className={'linkLabel'}>
             {linkTarget && <Link href={linkTarget}>
@@ -33,6 +33,10 @@ export default function Header({title, linkTarget, link}: Props): ReactElement {
                 display: flex;
                 justify-content: space-between;
                 flex-wrap: wrap-reverse;;
+            }
+
+            .title {
+                color: ${COLORS.PRIMARY};
             }
 
             .linkLabel {
