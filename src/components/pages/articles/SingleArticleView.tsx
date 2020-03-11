@@ -5,9 +5,12 @@ import LoadingImage from "../../block/ImageLoader";
 import Author from "./SingleArticleView/Author";
 import Tags from "./SingleArticleView/Tags";
 import TextLoader from "../../TextLoader";
+import Header from "../../Header";
 
 export default function SingleArticleView({article}: {article: Article | null}): ReactElement {
     return <>
+        <Header title={'Artikel'} link={'Alle Artikel anzeigen'} linkTarget={'/articles'} />
+
         <h1>{article ? article.title : <TextLoader rows={1} type={'h1'} /> }</h1>
 
         <div className={'articleContent'}>
