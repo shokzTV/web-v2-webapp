@@ -1,13 +1,13 @@
 const sitemap = require('nextjs-sitemap-generator');  
 
 sitemap({
-  baseUrl: 'https://shokz.grief.dev',
+  baseUrl: 'https://shokz.tv',
   pagesDirectory: __dirname + "/src/pages",  
   targetDirectory : 'public/',
   nextConfigPath: __dirname + "/next.config.js",
   ignoredExtensions: [
-        'png',
-        'jpg'
+    'png',
+    'jpg'
   ],
   pagesConfig: {
     '/': {
