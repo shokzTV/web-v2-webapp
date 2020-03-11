@@ -6,6 +6,7 @@ import Truncate from 'react-truncate-html';
 import ReactDOMServer from 'react-dom/server';
 
 var processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);
+
 var processingInstructions = [
     {
         shouldProcessNode: (node) => {
@@ -37,7 +38,6 @@ export default function CKEditorContent({text = '<p></p>', rows = 0}: {text: str
         {rows > 0 && <Truncate lines={rows}
                                dangerouslySetInnerHTML={{__html: html.length > 0 && html.map(ReactDOMServer.renderToStaticMarkup).join("")}}/>}
         {rows === 0 && <>{html}</>}
-
         <style jsx>{`
             .content {
                 font-size: 18px;
@@ -50,6 +50,10 @@ export default function CKEditorContent({text = '<p></p>', rows = 0}: {text: str
 
             .content :global(p) {
                 margin-bottom: 0;
+            }
+
+            .content :global(ul) {
+                padding-left: 20px;
             }
         `}</style>
     </div>;
