@@ -1,10 +1,11 @@
-import React, { ReactElement, ReactNode } from 'react';
+import React, { ReactElement, ReactNode, useEffect } from 'react';
 import Head from "next/head";
 import { COLORS } from '../style/colors';
 import Footer from './Footer';
 import MainEvent from './block/MainEvent';
 import Navigation from './Navigation';
 import AlphaInfo from './block/AlphaInfo';
+import {fetchVersion} from '../api/base';
 
 interface Props {
     children: ReactNode;
@@ -12,6 +13,19 @@ interface Props {
 }
 
 export default function PageFrame({children, title = null}: Props): ReactElement {
+  useEffect(() => {
+    const checkVersion = async () => {
+      const version = await fetchVersion();
+      const localVersion = localStorage.getItem('version');
+
+      if(localVersion !== version) {
+        localStorage.setItem('version', version);
+        window.location.reload(true);
+      }
+    };
+
+    checkVersion();
+  }, []);
   return <>
     <Head>
       <title>shokz.tv {title && ` - ${title}`}</title>
