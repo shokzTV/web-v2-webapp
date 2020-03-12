@@ -1,43 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-<url><loc>https://shokz.tv/article/[articleId]</loc>
-                
-                
-                
-                <lastmod>2020-03-11</lastmod>
-                </url><url><loc>https://shokz.tv/articles</loc>
-                
-                
-                
-                <lastmod>2020-03-11</lastmod>
-                </url><url><loc>https://shokz.tv/dataProtection</loc>
-                
-                
-                
-                <lastmod>2020-03-11</lastmod>
-                </url><url><loc>https://shokz.tv/event/[eventId]</loc>
-                
-                
-                
-                <lastmod>2020-03-11</lastmod>
-                </url><url><loc>https://shokz.tv/events</loc>
-                
-                
-                
-                <lastmod>2020-03-11</lastmod>
-                </url><url><loc>https://shokz.tv/imprint</loc>
-                
-                
-                
-                <lastmod>2020-03-11</lastmod>
-                </url><url><loc>https://shokz.tv/index</loc>
-                
-                
-                
-                <lastmod>2020-03-11</lastmod>
-                </url><url><loc>https://shokz.tv/videos</loc>
-                
-                
-                
-                <lastmod>2020-03-11</lastmod>
-                </url></urlset>
+    <url><loc>https://shokz.tv/article/2</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/article/3</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/article/4</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/article/5</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/article/6</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/article/7</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/article/8</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/articles</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/dataProtection</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/event/1</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/event/2</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/event/3</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/event/4</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/event/5</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/event/6</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/event/7</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/event/8</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/events</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/imprint</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/tag/5</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/tag/6</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/tag/8</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/tag/9</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/tag/10</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/tag/11</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/tag/12</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/tag/13</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/tag/14</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/tag/15</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/tag/16</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/tag/17</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/tag/18</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/tags</loc><lastmod>2020-03-12</lastmod></url>
+    <url><loc>https://shokz.tv/videos</loc><lastmod>2020-03-12</lastmod></url>
+</urlset>
