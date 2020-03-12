@@ -13,7 +13,7 @@ export default function RecentTags(): ReactElement {
     }, []);
 
     return <>
-        <Header title={'ARTIKELKATEGORIEN'} />
+        <Header title={'ARTIKELKATEGORIEN'}/>
 
         <div className={'tagGrid'}>
             {tags.map((tag, index) => <div key={(tag && tag.id) + '-' + index} className={'column'}><Entry tag={tag} /></div>)}

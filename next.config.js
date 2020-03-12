@@ -8,6 +8,9 @@ async function get(url) {
 async function fetchArticleIds() {
     return await get('/article/public/articleIds');
 }
+async function fetchTagIds() {
+    return await get('/tag/ids');
+}
 async function fetchFeaturedEvents() {
   return await get('/event/featured');
 }
@@ -36,11 +39,15 @@ module.exports = withBundleAnalyzer(withOffline({
       '/events': { page: '/events' },
       '/event/[eventId]': { page: '/event/[eventId]' },
       '/imprint': { page: '/imprint' },
+      '/tag/[tagId]': {page: '/tag/[tagId]'},
+      '/tags': {page: '/tags'},
       '/videos': { page: '/videos' },
     };
+    const tagIds = await fetchTagIds();
     const articleIds = await fetchArticleIds();
     const eventIds = await fetchAllEventIds();
 
+    tagIds.forEach(tagId => paths[`/tag/${tagId}`] = { page: '/tag/[tagId]' });
     articleIds.forEach(articleId => paths[`/article/${articleId}`] = { page: '/article/[articleId]' });
     eventIds.forEach(eventId => paths[`/event/${eventId}`] = { page: '/event/[eventId]' });
 
