@@ -1,6 +1,7 @@
 stages:
   - build
   - deploy
+  - notification
 
 
 build_assets:
