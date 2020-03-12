@@ -44,3 +44,20 @@ deploy:
   script:
     - echo "Uploading build artifacts"
     - scp -P22 -r out/* $PROD_USER@$PROD_HOST:$WEB_PATH/$CI_PROJECT_NAMESPACE/$CI_PROJECT_TITLE
+
+success_notification:
+  stage: notification
+  script:
+    - echo "Success notification"
+    - wget https://raw.githubusercontent.com/DiscordHooks/gitlab-ci-discord-webhook/master/send.sh
+    - chmod +x send.sh
+    - ./send.sh success $WEBHOOK_URL
+  when: on_success
+failure_notification:
+  stage: notification
+  script:
+    - echo "Failure notification"
+    - wget https://raw.githubusercontent.com/DiscordHooks/gitlab-ci-discord-webhook/master/send.sh
+    - chmod +x send.sh
+    - ./send.sh failure $WEBHOOK_URL
+  when: on_failure
