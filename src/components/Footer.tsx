@@ -10,20 +10,25 @@ export default function Footer(): ReactElement {
                 <div className={'mainFooterLinks'}>
                     <div className={'footerRow x3'}>
                         <div className={'footerColumn'}>
+                            <img src={'/images/social/twitch.png'} alt={'twitch-icon'} />
                             <a className={'link'} href={'https://www.twitch.tv/shokztv'} target={'_blank'} rel={'noreferrer'}>Twitch</a>
                         </div>
                         <div className={'footerColumn'}>
+                            <img src={'/images/social/youtube.png'} alt={'youtube-icon'} />
                             <a className={'link'} href={'https://www.youtube.com/channel/UCbSSQP3v0syCn9_-e089HgA'} target={'_blank'} rel={'noreferrer'}>Youtube</a>
                         </div>
                     </div>
                     <div className={'footerRow x3'}>
                         <div className={'footerColumn'}>
+                            <img src={'/images/social/twitter.png'} alt={'twitter-icon'} />
                             <a className={'link'} href={'https://twitter.com/shokztv/'} target={'_blank'} rel={'noreferrer'}>Twitter</a>
                         </div>
                         <div className={'footerColumn'}>
+                            <img src={'/images/social/discord.png'} alt={'discord-icon'} />
                             <a className={'link'} href={'http://www.discord.gg/hagYNWg'} target={'_blank'} rel={'noreferrer'}>Discord</a>
                         </div>
                         <div className={'footerColumn'}>
+                            <img src={'/images/social/instagram.png'} alt={'instagram-icon'} />
                             <a className={'link'} href={'https://www.instagram.com/shokztv/'} target={'_blank'} rel={'noreferrer'}>Instagram</a>
                         </div>
                     </div>
@@ -100,6 +105,16 @@ export default function Footer(): ReactElement {
             .subFooterLinks {
                 padding: 20px;
                 width: 33%;
+            }
+
+            .footerColumn {
+                display: flex;
+                align-items: center;
+            }
+
+            .footerColumn img {
+                max-width: 25px;
+                margin-right: 10px;
             }
 
             .x2 .footerColumn {
