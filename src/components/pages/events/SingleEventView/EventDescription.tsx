@@ -10,10 +10,10 @@ const descriptionName = {
     advice: 'Hinweis'
 }
 
-export default function EventDescription({event}: {event: Event | null}):ReactElement {
+export default function EventDescription({event, noDivider = false}: {event: Event | null; noDivider?: boolean}):ReactElement {
     return <>
         {event && event.description.length > 0 && <>
-            <Divider />
+            {!noDivider && <Divider />}
 
             <Header title={event && descriptionName[event.descriptionType]} />
             <div className={'description'}>
