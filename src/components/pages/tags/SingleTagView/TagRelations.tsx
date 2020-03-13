@@ -6,24 +6,18 @@ import { fetchTagRelations } from "../../../../api/tag";
 import Divider from "../../../Divider";
 import Header from "../../../Header";
 import Carousel from "../../../block/Carousel";
-import Link from "next/link";
 import LoadingImage from "../../../block/ImageLoader";
-import TextLoader from "../../../TextLoader";
-import EventDetails from "../../events/SingleEventView/EventDetails";
-import EventLinks from "../../events/SingleEventView/EventLinks";
-import EventDescription from "../../events/SingleEventView/EventDescription";
+import Row from "../../articles/ArticleList/Row";
 
 
 export default function TagRelations({tagId}: {tagId: number | null}): ReactElement {
-    const [event, setEvent] = useState<Event | undefined>();
-    const [articles, setArticles] = useState<Partial<Article>[]>(Array(3).fill(undefined));
+    const [articles, setArticles] = useState<Article[]>(Array(3).fill(null));
     const [videos, setVideos] = useState<Video[]>(Array(10).fill(undefined));
 
     useEffect(() => {
         const load = async () => {
             if(tagId) {
                 const relations = await fetchTagRelations(tagId);
-                relations.event.length > 0 ? setEvent(relations.event[0]) : setEvent(null);
                 setVideos(relations.videos.sort(({id: a}, {id: b}) => b - a));
                 setArticles(relations.articles.sort(({id: a}, {id: b}) => b - a));
             }
@@ -31,48 +25,10 @@ export default function TagRelations({tagId}: {tagId: number | null}): ReactElem
         load();
     }, [tagId]);
     return <>
-
-        {event !== null && <>
-            <Divider />
-            <Header title={'Tag Event'} />
-        
-            <Link href={'/event/[eventId]'} as={`/event/${event && event.id}`}>
-                <h1>{event ? event.name : <div style={{paddingBottom: '1px'}}><TextLoader type={'h1'} rows={1} /></div>}</h1>
-            </Link>
-
-            <div className={'eventDetails'}>
-                <div className={'detailsColumn'}>
-                    <div className={'details'}>
-                        <EventDetails event={event} />
-                    </div>
-                    <div className={'eventLinks'}>
-                        <EventLinks event={event} />
-                    </div>
-                </div>
-
-                <div className={'eventDescription'}>
-                    <EventDescription event={event} noDivider />
-                </div>
-            </div>
-        </>}
-
         {articles.length > 0 && <>
             <Divider />
             <Header title={'Tag Artikel'} />
-            <Carousel slidesToShow={articles.length}>
-                {articles.map((article, index) => <div key={(article && article.id) + '-' + index} >
-                    <Link href={'/article/[articleId]'} as={'/article/' + (article && article.id)}>
-                        <div className={'prevArticleCol'}>
-                            <h3 className={'pastArticleHeader'}>{article ? article.title : <TextLoader type={'h3'} rows={2} />}</h3>
-                            <div className={'articleCover'}>
-                                <LoadingImage src={article && article.cover} 
-                                              webp={article && article.coverWEBP} 
-                                              jp2={article && article.coverJP2} />
-                            </div>
-                        </div>
-                    </Link>
-                </div>)}
-            </Carousel>
+            {articles.map((article) => <Row article={article} />)}
         </>}
 
         {videos.length > 0 && <>
@@ -124,82 +80,7 @@ export default function TagRelations({tagId}: {tagId: number | null}): ReactElem
                 margin-bottom: .5em;
                 line-height: 1.4;
             }
-            .eventDetails {
-                display: flex;
-                margin: -20px;
-            }
 
-            .coverColumn {
-                padding: 20px;
-                width: 512px;
-            }
-
-            .eventCover {
-                position: relative;
-                padding-bottom: 56.2%;
-            }
-
-            h1 {
-                margin-bottom: 25px;
-            }
-
-            .detailsColumn {
-                flex: 1;
-                display: flex;
-                padding: 20px;
-                margin: -20px;
-            }
-
-            .details {
-                padding: 20px;
-                width: 66%;
-            }
-
-            .eventLinks {
-                padding: 20px;
-            }
-
-            .eventDescription {
-                width: 50%;
-                padding: 20px;
-            }
-
-            @media only screen and (max-width: 768px) { 
-                h1 {
-                    text-align: center;
-                }
-
-                .eventDetails {
-                    margin: 0;
-                    flex-direction: column;
-                }
-
-                .coverColumn {
-                    margin: 0 auto;
-                }
-
-                .detailsColumn {
-                    margin: 0;
-                }
-
-                .eventDescription {
-                    width: 100%;
-                }
-
-            }
-
-            @media only screen and (max-width: 425px) { 
-                .detailsColumn {
-                    flex-direction: column;
-                }
-                .details, .eventLinks {
-                    width: 100%;
-                    padding: 5px;
-                }
-                .eventLinks {
-                    margin-top: 20px;
-                }
-            }
         `}</style>
     </>;
 }

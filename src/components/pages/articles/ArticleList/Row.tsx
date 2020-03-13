@@ -3,7 +3,6 @@ import { Article } from "../../../../api/@types/Article";
 import LoadingImage from "../../../block/ImageLoader";
 import Divider from "../../../Divider";
 import Link from "next/link";
-import dayjs from "dayjs";
 import { formatDate } from "../../../../hooks/eventDate";
 import CKEditorContent from "../../../CKEditorContent";
 import TextLoader from "../../../TextLoader";
@@ -26,7 +25,7 @@ export default function Row({article, noDivider = false}: {article: Article | nu
                         veröffentlicht am {formatDate(article && article.created)} von {article && article.author.name}
                     </div>
 
-                    <CKEditorContent text={article && article.body} rows={2}/>
+                    <CKEditorContent text={article ? article.body : '<p></p>'} rows={2}/>
                     {!article && <TextLoader rows={2} type={'ckeditor'} />}
                 </div>
             </div>
