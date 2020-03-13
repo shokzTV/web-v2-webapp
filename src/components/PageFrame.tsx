@@ -20,6 +20,11 @@ export default function PageFrame({children, title = null}: Props): ReactElement
 
       localStorage.setItem('version', version);
       if(localVersion && localVersion !== version) {
+        await caches.keys().then((names) => {
+            for (let name of names) {
+              caches.delete(name);
+            }
+        });
         window.location.reload(true);
       }
     };
