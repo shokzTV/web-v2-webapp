@@ -17,7 +17,7 @@ export default function event(): ReactElement {
         }
     }, [eventId]);
     
-    return <PageFrame>
+    return <PageFrame title={event && event.name}>
         <SingleEventView event={event} />
     </PageFrame>;
 }

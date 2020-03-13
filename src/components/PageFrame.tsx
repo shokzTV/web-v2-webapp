@@ -28,7 +28,7 @@ export default function PageFrame({children, title = null}: Props): ReactElement
   }, []);
   return <>
     <Head>
-      <title>shokz.tv {title && ` - ${title}`}</title>
+      <title>shokzTV {title && ` - ${title}`}</title>
       <meta name="google" content="notranslate" />
       <meta httpEquiv="Content-Language" content="de" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />

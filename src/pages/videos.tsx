@@ -3,7 +3,7 @@ import PageFrame from '../components/PageFrame';
 import VideoList from '../components/pages/video/VideoList';
 
 export default function videos(): ReactElement {
-  return <PageFrame>
+  return <PageFrame title={'Videos'}>
     <VideoList />
   </PageFrame>;
 }

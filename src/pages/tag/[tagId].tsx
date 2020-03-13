@@ -17,7 +17,7 @@ export default function tag(): ReactElement {
         }
     }, [tagId]);
     
-    return <PageFrame>
+    return <PageFrame title={tag && tag.name}>
         <SingleTagView tag={tag} />
     </PageFrame>;
 }

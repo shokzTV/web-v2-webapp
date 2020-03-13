@@ -5,7 +5,7 @@ import Divider from '../components/Divider';
 import PastEvents from '../components/pages/events/PastEvents';
 
 export default function events(): ReactElement {
-  return <PageFrame>
+  return <PageFrame title={'Events'}>
     <FeaturedEvents />
 
     <Divider double />

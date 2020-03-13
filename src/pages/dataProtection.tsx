@@ -4,7 +4,7 @@ import { COLORS } from '../style/colors';
 import Header from '../components/Header';
 
 export default function dataProtection(): ReactElement {
-  return <PageFrame>
+  return <PageFrame title={'Datenschutzerklärung'}>
     <Header title={'Datenschutzerklärung'} />
     <h1 className="adsimple-311161227"></h1>
     <h2 className="adsimple-311161227">Datenschutz</h2>
