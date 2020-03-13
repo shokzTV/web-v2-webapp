@@ -2,6 +2,7 @@ import { get } from "./request";
 import { Tag } from './@types/Tag';
 import { Video } from "./@types/Video";
 import { Event } from "./@types/Event";
+import { Article } from "./@types/Article";
 
 
 export async function fetchAllTags(): Promise<Tag[]> {
@@ -18,13 +19,7 @@ export async function fetchTag(tagId: number): Promise<Tag> {
 
 interface Relations {
     event: Event[];
-    articles: Array<{
-        id: number;
-        title: string;
-        cover: string;
-        coverWEBP: string;
-        coverJP2: string;
-    }>;
+    articles: Article[];
     videos: Video[];
 }
 
