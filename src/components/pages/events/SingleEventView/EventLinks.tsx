@@ -6,11 +6,9 @@ export default function EventLinks({event}: {event: Event}): ReactElement {
     const links = event && event.links || [];
     return <>
         <h4>Eventlinks</h4>
-
         <ul className={'listWrapper'}>
             {links.map(({id, name, link}) => <li key={id}><a className={'link'} target={'_blank'} href={link} rel={'noreferrer'}>{name}</a></li>)}
         </ul>
-
         <style jsx>{`
             h4 {
                 font-size: 20px;
@@ -28,6 +26,7 @@ export default function EventLinks({event}: {event: Event}): ReactElement {
 
             .link {
                 text-decoration: none;
+                color: ${COLORS.PRIMARY};
             }
         `}</style>
     </>;

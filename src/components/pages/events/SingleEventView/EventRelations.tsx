@@ -9,6 +9,7 @@ import LoadingImage from "../../../block/ImageLoader";
 import Divider from "../../../Divider";
 import Link from "next/link";
 import TextLoader from "../../../TextLoader";
+import Truncate from "react-truncate";
 
 export default function EventRelations({event}: {event: Event | null}): ReactElement {
     const [articles, setArticles] = useState<Partial<Article>[]>(Array(3).fill(undefined));
@@ -18,8 +19,8 @@ export default function EventRelations({event}: {event: Event | null}): ReactEle
         const load = async () => {
             if(event) {
                 const relations = await fetchEventRelations(event.id);
-                setVideos(relations.videos);
-                setArticles(relations.articles);
+                setVideos(relations.videos.sort(({id: a}, {id: b}) => b - a));
+                setArticles(relations.articles.sort(({id: a}, {id: b}) => b - a));
             }
         };
 
@@ -34,7 +35,7 @@ export default function EventRelations({event}: {event: Event | null}): ReactEle
                 {articles.map((article, index) => <div key={(article && article.id) + '-' + index} >
                     <Link href={'/article/[articleId]'} as={'/article/' + (article && article.id)}>
                         <div className={'prevArticleCol'}>
-                            <h3 className={'pastArticleHeader'}>{article ? article.title : <TextLoader type={'h3'} rows={2} />}</h3>
+                            <h3 className={'pastArticleHeader'}>{article ? <span><Truncate lines={2}>{article.title}</Truncate></span> : <TextLoader type={'h3'} rows={2} />}</h3>
                             <div className={'articleCover'}>
                                 <LoadingImage src={article && article.cover} 
                                                 webp={article && article.coverWEBP} 
@@ -94,6 +95,12 @@ export default function EventRelations({event}: {event: Event | null}): ReactEle
                 height: 3em;
                 margin-bottom: .5em;
                 line-height: 1.4;
+                display: flex;
+
+            }
+
+            .pastArticleHeader span {
+                align-self: flex-end;
             }
         `}</style>
     </>;
