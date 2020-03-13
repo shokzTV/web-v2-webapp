@@ -86,14 +86,17 @@ export default function MainEvent(): ReactElement {
                     min-height: 200px;
                     height: auto;
                 }
+                
                 .mainEventInner {
                     flex-direction: column;
                     align-items: center;
                     padding: 20px 0;
                 }
+                
                 .eventLinks {
                     flex-direction: column;
                 }
+                
                 .eventLink + .eventLink {
                     margin-top: 5px;
                     margin-left: 0;
@@ -103,6 +106,10 @@ export default function MainEvent(): ReactElement {
 
                 .organizerLogo {
                     width: auto;
+                }
+                
+                .mainEventHeader {
+                    text-align: center;
                 }
             }
         `}</style>
