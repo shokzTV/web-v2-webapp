@@ -32,7 +32,7 @@ export default function TagRelations({tagId}: {tagId: number | null}): ReactElem
         </>}
 
         {videos.length > 0 && <>
-            <Divider />
+            {articles.length === 0 && <Divider />}
             <Header title={'Tag Videos'} />
             <Carousel slidesToShow={videos.length}>
                 {videos.map((video, index) => <div key={(video && video.id) + '-' + index} className={'videoEntry'}>
