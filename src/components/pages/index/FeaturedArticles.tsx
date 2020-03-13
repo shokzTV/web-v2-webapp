@@ -7,6 +7,7 @@ import CKEditorContent from "../../CKEditorContent";
 import Link from "next/link";
 import Divider from "../../Divider";
 import TextLoader from "../../TextLoader";
+import Truncate from "react-truncate";
 
 export default function FeaturedArticles(): ReactElement {
     const [featured, setFeatured] = useState<Partial<Article[]> | null>(null);
@@ -45,7 +46,7 @@ export default function FeaturedArticles(): ReactElement {
         <div className={'lastArticleRow pastArticleRow'}>
             {previousArticles.map((article, index) => <Link href={'/article/[articleId]'} as={'/article/' + article.id} key={article.id + '-' + index}>
                 <div className={'prevArticleCol'}>
-                    <h3 className={'pastArticleHeader'}>{article.title ? <span className={'header'}>{article.title}</span> : <TextLoader rows={2} type={'h3'} />}</h3>
+                    <h3 className={'pastArticleHeader'}>{article.title ? <span className={'header'}><Truncate lines={2}>{article.title}</Truncate></span> : <TextLoader rows={2} type={'h3'} />}</h3>
                     <div className={'articleCover'}>
                         <LoadingImage src={article.cover} webp={article.coverWEBP} jp2={article.coverJP2} />
                     </div>

@@ -24,8 +24,8 @@ export default function TagRelations({tagId}: {tagId: number | null}): ReactElem
             if(tagId) {
                 const relations = await fetchTagRelations(tagId);
                 relations.event.length > 0 ? setEvent(relations.event[0]) : setEvent(null);
-                setVideos(relations.videos);
-                setArticles(relations.articles);
+                setVideos(relations.videos.sort(({id: a}, {id: b}) => b - a));
+                setArticles(relations.articles.sort(({id: a}, {id: b}) => b - a));
             }
         };
         load();
