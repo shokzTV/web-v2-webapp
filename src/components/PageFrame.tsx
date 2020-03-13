@@ -18,8 +18,8 @@ export default function PageFrame({children, title = null}: Props): ReactElement
       const version = await fetchVersion();
       const localVersion = localStorage.getItem('version');
 
-      if(localVersion !== version) {
-        localStorage.setItem('version', version);
+      localStorage.setItem('version', version);
+      if(localVersion && localVersion !== version) {
         window.location.reload(true);
       }
     };
