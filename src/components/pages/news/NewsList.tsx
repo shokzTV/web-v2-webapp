@@ -7,7 +7,7 @@ import classNames from "classnames";
 import Divider from "../../Divider";
 import { COLORS } from "../../../style/colors";
 
-const pageSize = 10;
+const pageSize = 20;
 export default function NewsList(): ReactElement {
     const [news, setNews] = useState<News[]>(Array(10).fill(undefined));
     const [page, setPage] = useState<number>(1);
