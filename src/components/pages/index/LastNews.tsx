@@ -15,7 +15,7 @@ export default function LastNews(): ReactElement {
     }, []);
     
     return <>
-        <Header title={'KURZNACHRICHTEN'} link={'ALLE KURZNACHRICHTEN ANZEIGEN'} linkTarget={'/events'} />
+        <Header title={'KURZNACHRICHTEN'} link={'ALLE KURZNACHRICHTEN ANZEIGEN'} linkTarget={'/news'} />
 
         <div className={'news'}>
             {news.map((entry, index) => <div key={(entry && entry.id) + '-'+index}>
