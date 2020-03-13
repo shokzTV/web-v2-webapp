@@ -42,6 +42,7 @@ module.exports = withBundleAnalyzer(withOffline({
       '/tag/[tagId]': {page: '/tag/[tagId]'},
       '/tags': {page: '/tags'},
       '/videos': { page: '/videos' },
+      '/news': { page: '/news' },
     };
     const tagIds = await fetchTagIds();
     const articleIds = await fetchArticleIds();
