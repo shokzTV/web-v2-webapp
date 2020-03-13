@@ -7,7 +7,7 @@ import LastVideos from '../components/pages/index/LastVideos';
 import LastNews from '../components/pages/index/LastNews';
 
 export default function index(): ReactElement {
-  return <PageFrame>
+  return <PageFrame title={'Die deutsche Dota2 Startseite'}>
     
     <FeaturedArticles />
 

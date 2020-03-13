@@ -5,7 +5,7 @@ import RecentTags from '../components/pages/articles/RecentTags';
 import Divider from '../components/Divider';
 
 export default function articles(): ReactElement {
-  return <PageFrame>
+  return <PageFrame title={'Artikel'}>
     <ArticleList />
 
     <Divider double />

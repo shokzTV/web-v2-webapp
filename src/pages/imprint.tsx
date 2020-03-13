@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import Divider from '../components/Divider';
 
 export default function imprint(): ReactElement {
-  return <PageFrame>
+  return <PageFrame title={'Impressum'}>
     <Header title={'Impressum'} />
 
     <div className={'row'}>
