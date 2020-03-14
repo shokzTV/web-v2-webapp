@@ -1,4 +1,4 @@
-import { ReactNode, ReactElement } from "react";
+import { ReactNode, ReactElement, useState, useEffect } from "react";
 import Slider from "react-slick";
 
 function NextArrow(props): ReactElement {
@@ -54,32 +54,47 @@ const sliderSettings = {
 };
 
 export default function Carousel({children, slidesToShow = 3}: {children: ReactNode; slidesToShow?: number;}): ReactElement {
-    return <>
-      <Slider {...sliderSettings}>
-        {slidesToShow < 2 && <div />}
-        {children}
-        {slidesToShow < 3 && <div />}
-      </Slider>
+  const [width, setWidth] = useState(0);
 
-      <style jsx global>{`
-        .slick-slider{padding: 0 20px;position:relative;display:block;box-sizing:border-box;touch-action:pan-y;}
-        .slick-list{position:relative;display:block;margin:0;padding:0;overflow:hidden;}
-        .slick-list:focus{outline:none;}
-        .slick-list .slick-slide{pointer-events:none;}
-        .slick-list .slick-slide.slick-active{pointer-events:auto;}
-        .slick-slider .slick-list,.slick-slider .slick-track{transform:translateZ(0);}
-        .slick-track{position:relative;top:0;left:0;display:block;}
-        .slick-track:after,.slick-track:before{display:table;content:"";}
-        .slick-track:after{clear:both;}
-        .slick-slide{display:none;float:left;height:100%;min-height:1px;}
-        .slick-slide img{display:block;}
-        .slick-initialized .slick-slide{display:block;}
-        .slick-next,.slick-prev{position:absolute;top:50%;display:block;width:20px;height:20px;margin-top:-10px;padding:0;font-size:0;line-height:0;border:0;cursor:pointer;}
-        .slick-next,.slick-next:focus,.slick-next:hover,.slick-prev,.slick-prev:focus,.slick-prev:hover{color:transparent;background:transparent;outline:none;}
-        .slick-next:focus:before,.slick-next:hover:before,.slick-prev:focus:before,.slick-prev:hover:before{opacity:1;}
-        .slick-prev{left:-1px;}
-        .slick-next{right:-1px;}  
-        .slick-arrow{font-size:20px;}
-      `}</style>
+  useEffect(() => {
+    setWidth(document.documentElement.clientWidth);
+    const resize = () => {
+      setWidth(document.documentElement.clientWidth);
+    }
+
+    window.addEventListener('resize', resize);
+
+    return () => {
+      window.removeEventListener('resize', resize);
+    };
+  }, []);
+
+  return <>
+    <Slider {...sliderSettings}>
+      {children}
+      {slidesToShow < 2 && width > 480 && <div />}
+      {slidesToShow < 3 && width > 768 && <div />}
+    </Slider>
+
+    <style jsx global>{`
+      .slick-slider{padding: 0 20px;position:relative;display:block;box-sizing:border-box;touch-action:pan-y;}
+      .slick-list{position:relative;display:block;margin:0;padding:0;overflow:hidden;}
+      .slick-list:focus{outline:none;}
+      .slick-list .slick-slide{pointer-events:none;}
+      .slick-list .slick-slide.slick-active{pointer-events:auto;}
+      .slick-slider .slick-list,.slick-slider .slick-track{transform:translateZ(0);}
+      .slick-track{position:relative;top:0;left:0;display:block;}
+      .slick-track:after,.slick-track:before{display:table;content:"";}
+      .slick-track:after{clear:both;}
+      .slick-slide{display:none;float:left;height:100%;min-height:1px;}
+      .slick-slide img{display:block;}
+      .slick-initialized .slick-slide{display:block;}
+      .slick-next,.slick-prev{position:absolute;top:50%;display:block;width:20px;height:20px;margin-top:-10px;padding:0;font-size:0;line-height:0;border:0;cursor:pointer;}
+      .slick-next,.slick-next:focus,.slick-next:hover,.slick-prev,.slick-prev:focus,.slick-prev:hover{color:transparent;background:transparent;outline:none;}
+      .slick-next:focus:before,.slick-next:hover:before,.slick-prev:focus:before,.slick-prev:hover:before{opacity:1;}
+      .slick-prev{left:-1px;}
+      .slick-next{right:-1px;}  
+      .slick-arrow{font-size:20px;}
+    `}</style>
   </>;
 }
