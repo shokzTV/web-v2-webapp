@@ -25,7 +25,7 @@ export default function FeaturedArticles(): ReactElement {
 
         <Link href={'/article/[articleId]'} as={'/article/' + (lastArticle && lastArticle.id)}>
             <div className={'lastArticleRow'}>
-                <div className={'lastArticleCol'}>
+                <div className={'lastArticleCol lastArticleCover'}>
                     <div className={'articleCover'}>
                         <LoadingImage src={lastArticle && lastArticle.cover} 
                                     webp={lastArticle && lastArticle.coverWEBP} 
@@ -65,6 +65,10 @@ export default function FeaturedArticles(): ReactElement {
             .lastArticleCol {
                 width: 50%;
                 padding: 20px;
+            }
+
+            .lastArticleCover {
+                width: 552px;
             }
 
             .prevArticleCol {
