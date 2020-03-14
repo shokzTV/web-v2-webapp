@@ -14,7 +14,7 @@ export default function NewsList(): ReactElement {
 
     useEffect(() => {
         const load = async () => {
-            setNews(await fetchAllNews());
+            setNews((await fetchAllNews()).sort(({id: a}, {id: b}) => b - a));
         };
 
         load();
