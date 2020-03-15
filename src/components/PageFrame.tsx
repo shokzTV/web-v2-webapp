@@ -6,6 +6,7 @@ import MainEvent from './block/MainEvent';
 import Navigation from './Navigation';
 import AlphaInfo from './block/AlphaInfo';
 import {fetchVersion} from '../api/base';
+import FeaturedStreamer from './block/FeaturedStreamer';
 
 interface Props {
     children: ReactNode;
@@ -57,8 +58,10 @@ export default function PageFrame({children, title = null}: Props): ReactElement
           </div>
         </div>
       </div>
-      <Footer />
     </div>
+
+    <FeaturedStreamer />
+    <Footer />
 
     <style jsx>{`
       .page {
