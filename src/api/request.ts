@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-unfetch';
+
 export async function get<T>(url: string): Promise<T> {
     try {
         const response = await fetch(process.env.API_URL + url);
