@@ -15,7 +15,7 @@ export default function EventDescription({event, noDivider = false}: {event: Eve
         {event && event.description.length > 0 && <>
             {!noDivider && <Divider />}
 
-            <Header title={event && descriptionName[event.descriptionType]} />
+            <Header title={event && descriptionName[event.descriptionType]} reduceSpacing/>
             <div className={'description'}>
                 <CKEditorContent text={event && event.description} />
             </div>

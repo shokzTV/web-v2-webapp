@@ -7,7 +7,7 @@ export default function FeaturedEvents(): ReactElement {
     const list = loadFeaturedEvents();
 
     return <>
-        <Header title={'Alle EVENTS'} link={'VORHERIGE EVENTS ANZEIGEN'} />
+        <Header title={'Alle EVENTS'} link={'VORHERIGE EVENTS ANZEIGEN'} topHeader/>
 
         <div className={'eventsGrid'}>
             {list.map((event, index) => <div key={event.id + '-' + index} className={'column'}><Entry event={event} /></div>)}

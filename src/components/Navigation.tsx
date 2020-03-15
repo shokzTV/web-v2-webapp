@@ -19,6 +19,9 @@ const items: MenuItem[] = [{
     name: 'Events',
     path: '/events'
 }, {
+    name: 'News',
+    path: '/news'
+}, {
     name: 'Videos',
     path: '/videos'
 }];
@@ -110,7 +113,7 @@ export default function Navigation(): ReactElement {
                 }
 
                 .menuWrapper.showSubMenu {
-                    height: 375px;
+                    height: 450px;
                 }
 
                 .logo {

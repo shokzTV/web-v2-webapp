@@ -14,7 +14,7 @@ export default function LastVideos(): ReactElement {
     }, []);
 
     return <>
-        <Header title={'NEUSTE VIDEOS'} link={'ALLE VIDEOS ANZEIGEN'} linkTarget={'/videos'} />
+        <Header title={'NEUSTE VIDEOS'} link={'ALLE VIDEOS ANZEIGEN'} linkTarget={'/videos'} reduceSpacing/>
         <Carousel>
             {videos.map((video, index) => <div key={(video && video.id) + '-' + index} className={'videoEntry'}>
                 <div className={'thumbnailWrapper'}>

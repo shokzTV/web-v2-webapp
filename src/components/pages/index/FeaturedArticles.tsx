@@ -21,7 +21,7 @@ export default function FeaturedArticles(): ReactElement {
     const previousArticles = useMemo<Partial<Article>[]>(() => featured ? featured.slice(0, 3).reverse() : [{id:0},{id:0},{id:0}], [featured]);
 
     return <>
-        <Header title={'NEUE ARTIKEL'} link={'ALLE ARTIKEL ANZEIGEN'} linkTarget={'/articles'} />
+        <Header title={'NEUE ARTIKEL'} link={'ALLE ARTIKEL ANZEIGEN'} linkTarget={'/articles'} topHeader />
 
         <Link href={'/article/[articleId]'} as={'/article/' + (lastArticle && lastArticle.id)}>
             <div className={'lastArticleRow'}>

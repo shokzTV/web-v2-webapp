@@ -32,6 +32,7 @@ export default function Entry({event}: {event: Partial<Event>}): ReactElement {
                 position: relative;
                 padding-bottom: 56.2%;
                 cursor: pointer;
+                max-width: 512px;
             }
 
             .eventDescription {

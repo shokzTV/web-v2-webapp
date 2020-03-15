@@ -23,7 +23,7 @@ export default function TagList(): ReactElement {
     const pageTags = useMemo(() => allTags.slice((page - 1) * pageSize, page * pageSize), [allTags, page]);
 
     return <>
-        <Header title={'Alle Tags'} />
+        <Header title={'Alle Tags'} topHeader/>
 
         <Pagination  page={page} total={total} setPage={setPage} noTopSpacing />
         <div className={'tagGrid'}>
@@ -36,9 +36,11 @@ export default function TagList(): ReactElement {
                 display: flex;
                 margin: -20px;
                 flex-wrap: wrap;
+                justify-content: space-around;
             }
 
             .column {
+                max-width: 552px;
                 width: 50%;
                 padding: 20px;
             }
