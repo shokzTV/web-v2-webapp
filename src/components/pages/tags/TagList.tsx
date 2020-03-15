@@ -1,24 +1,17 @@
-import { ReactElement, useState, useEffect, useMemo } from "react";
+import { ReactElement, useState, useMemo } from "react";
 import { Tag } from "../../../api/@types/Tag";
-import { fetchAllTags } from "../../../api/tag";
 import Header from "../../Header";
 import Pagination from "../../block/Pagination";
 import Entry from "../articles/RecentTags/Entry";
 
 const pageSize = 8;
-export default function TagList(): ReactElement {
-    const [allTags, setAllTags] = useState<Tag[]>([]);
+export default function TagList({allTags}: {allTags: Tag[]}): ReactElement {
     const [page, setPage] = useState(1);
 
     const total = useMemo(
         () => allTags.length > 0 ? (allTags.length % pageSize === 0 ? (allTags.length / pageSize) : Math.round((allTags.length / pageSize) + .5)) : 2, 
         [allTags, pageSize]
     );
-
-    useEffect(() => {
-        const load = async () => setAllTags(await fetchAllTags());
-        load();
-    }, []);
 
     const pageTags = useMemo(() => allTags.slice((page - 1) * pageSize, page * pageSize), [allTags, page]);
 
