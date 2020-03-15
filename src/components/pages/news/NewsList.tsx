@@ -1,6 +1,5 @@
-import { ReactElement, useState, useEffect, useMemo } from "react";
+import { ReactElement, useState, useMemo } from "react";
 import { News } from "../../../api/@types/News";
-import { fetchAllNews } from "../../../api/news";
 import Pagination from "../../block/Pagination";
 import TextLoader from "../../TextLoader";
 import classNames from "classnames";
@@ -8,17 +7,8 @@ import Divider from "../../Divider";
 import { COLORS } from "../../../style/colors";
 
 const pageSize = 20;
-export default function NewsList(): ReactElement {
-    const [news, setNews] = useState<News[]>(Array(10).fill(undefined));
+export default function NewsList({news}: {news: News[]}): ReactElement {
     const [page, setPage] = useState<number>(1);
-
-    useEffect(() => {
-        const load = async () => {
-            setNews((await fetchAllNews()).sort(({id: a}, {id: b}) => b - a));
-        };
-
-        load();
-    }, []);
 
     const total = useMemo(
         () => news.length > 0 ? (news.length % pageSize === 0 ? (news.length / pageSize) : Math.round((news.length / pageSize) + .5)) : 2, 
