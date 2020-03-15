@@ -66,11 +66,21 @@ module.exports = withBundleAnalyzer(withOffline({
     runtimeCaching: [
       {
         urlPattern: /^https?.*(webp|jp2|jpeg|.ico|.png)$/,
-        handler: 'CacheFirst'
+        handler: 'CacheFirst',
+        options: {
+          cacheableResponse: {
+            statuses: [200],
+          },
+        },
       },
       {
         urlPattern: /^https?.*(cdnjs|gstatic)/,
-        handler: 'CacheFirst'
+        handler: 'CacheFirst',
+        options: {
+          cacheableResponse: {
+            statuses: [200],
+          },
+        },
       },
       {
         urlPattern: /^https?.*(api)/,
