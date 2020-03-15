@@ -1,23 +1,29 @@
-import React, { ReactElement, useState, useEffect } from 'react';
+import React, { ReactElement } from 'react';
 import PageFrame from '../../components/PageFrame';
-import { useRouter } from 'next/router';
-import { Article } from '../../api/@types/Article';
-import { loadArticle } from '../../api/article';
 import SingleArticleView from '../../components/pages/articles/SingleArticleView';
+import { Article } from '../../api/@types/Article';
+import { fetchArticleIds, fetchArticles } from '../../api/article';
 
-export default function article(): ReactElement {
-    const router = useRouter();
-    const articleId = +router.query.articleId;
-    const [article, setArticle] = useState<Article | null>(null);
-
-    useEffect(() => {
-        const load = async () => setArticle(await loadArticle(articleId));
-        if(!article && articleId) {
-            load();
+export async function getStaticProps({params}) {
+    const articles = await fetchArticles([params.articleId]);
+    const article = articles[0];
+    return {
+        props: {
+            article
         }
-    }, [articleId]);
+    };
+}
 
-    return <PageFrame title={article && article.title} seoArticle={article}>
+export async function getStaticPaths() {
+    const articleIds = await fetchArticleIds();
+    return {
+      paths: articleIds.map(String).map((articleId) => ({ params: { articleId } })),
+      fallback: true,
+    };
+}
+
+export default function article({article}: {article: Article}): ReactElement {
+    return <PageFrame title={article.title} seoArticle={article}>
         <SingleArticleView article={article} />
     </PageFrame>;
 }
