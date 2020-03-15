@@ -34,7 +34,6 @@ module.exports = withBundleAnalyzer(withOffline({
     const paths = {
       '/': { page: '/' },
       '/articles': { page: '/articles' },
-      '/article/[articleId]': { page: '/article/[articleId]' },
       '/dataProtection': { page: '/dataProtection' },
       '/events': { page: '/events' },
       '/event/[eventId]': { page: '/event/[eventId]' },
@@ -45,11 +44,9 @@ module.exports = withBundleAnalyzer(withOffline({
       '/news': { page: '/news' },
     };
     const tagIds = await fetchTagIds();
-    const articleIds = await fetchArticleIds();
     const eventIds = await fetchAllEventIds();
 
     tagIds.forEach(tagId => paths[`/tag/${tagId}`] = { page: '/tag/[tagId]' });
-    articleIds.forEach(articleId => paths[`/article/${articleId}`] = { page: '/article/[articleId]' });
     eventIds.forEach(eventId => paths[`/event/${eventId}`] = { page: '/event/[eventId]' });
 
     return paths;
