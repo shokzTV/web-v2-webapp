@@ -17,7 +17,7 @@ export default function article(): ReactElement {
         }
     }, [articleId]);
 
-    return <PageFrame title={article && article.title}>
+    return <PageFrame title={article && article.title} seoArticle={article}>
         <SingleArticleView article={article} />
     </PageFrame>;
 }
