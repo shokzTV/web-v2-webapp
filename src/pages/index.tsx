@@ -14,7 +14,6 @@ import { News } from '../api/@types/News';
 import { fetchLatestVideos } from '../api/video';
 import { Video } from '../api/@types/Video';
 
-
 interface Props {
   featuredArticles: Partial<Article[]>;
   featuredEvents: Partial<Event>[];
