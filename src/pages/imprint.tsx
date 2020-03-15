@@ -85,6 +85,7 @@ export default function imprint(): ReactElement {
         }
         .col {
           padding: 5px;
+          width: 100%;
         }
       }
     `}</style>
