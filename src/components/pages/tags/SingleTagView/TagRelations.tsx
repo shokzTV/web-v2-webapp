@@ -9,7 +9,6 @@ import Carousel from "../../../block/Carousel";
 import LoadingImage from "../../../block/ImageLoader";
 import Row from "../../articles/ArticleList/Row";
 
-
 export default function TagRelations({tagId}: {tagId: number | null}): ReactElement {
     const [articles, setArticles] = useState<Article[]>(Array(3).fill(null));
     const [videos, setVideos] = useState<Video[]>(Array(10).fill(undefined));
@@ -26,7 +25,7 @@ export default function TagRelations({tagId}: {tagId: number | null}): ReactElem
     }, [tagId]);
     return <>
         {articles.length > 0 && <>
-            {articles.map((article) => <Row article={article} />)}
+            {articles.map((article, index) => <Row article={article} key={index + '-' + (article && article.id)} />)}
         </>}
 
         {videos.length > 0 && <>

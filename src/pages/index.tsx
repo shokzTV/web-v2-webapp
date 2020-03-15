@@ -5,26 +5,57 @@ import Divider from '../components/Divider';
 import FeaturedEvents from '../components/pages/index/FeaturedEvents';
 import LastVideos from '../components/pages/index/LastVideos';
 import LastNews from '../components/pages/index/LastNews';
+import { fetchFeaturedArticle } from '../api/article';
+import { Article } from '../api/@types/Article';
+import { fetchFeaturedEvents } from '../api/event';
+import { Event } from '../api/@types/Event';
+import { fetchRecentNews } from '../api/news';
+import { News } from '../api/@types/News';
+import { fetchLatestVideos } from '../api/video';
+import { Video } from '../api/@types/Video';
 
-export default function index(): ReactElement {
+
+interface Props {
+  featuredArticles: Partial<Article[]>;
+  featuredEvents: Partial<Event>[];
+  lastNews: News[];
+  videos: Video[];
+}
+
+export async function getStaticProps() {
+  const featuredArticles = await fetchFeaturedArticle();
+  const featuredEvents = await fetchFeaturedEvents();
+  const lastNews = await fetchRecentNews();
+  const videos = await fetchLatestVideos();
+  return {
+      props: {
+        featuredArticles,
+        featuredEvents,
+        lastNews,
+        videos,
+      }
+  };
+}
+
+export default function index({featuredArticles, featuredEvents, lastNews, videos}: Props): ReactElement {
   return <PageFrame title={'Die deutsche Dota2 Startseite'}>
     
-    <FeaturedArticles />
+    <FeaturedArticles featured={featuredArticles}/>
 
     <Divider double/>
 
     <div className={'row'}>
       <div className={'col'}>
-        <FeaturedEvents />
+        <FeaturedEvents featured={featuredEvents} />
       </div>
       <div className={'col'}>
-        <LastNews />
+        <LastNews lastNews={lastNews}/>
       </div>
     </div>
 
     <Divider double/>
 
-    <LastVideos />
+    <LastVideos videos={videos} />
 
     <style jsx>{`
       .row {

@@ -37,3 +37,10 @@ interface RelationResponse {
 export async function fetchEventRelations(id: number): Promise<RelationResponse> {
     return await get<RelationResponse>(`/event/relations/${id}`);
 }
+
+export async function fetchAllEventIds(): Promise<number[]> {
+    const pastIds = await fetchPastEventIds();
+    const featuredEvents = await fetchFeaturedEvents();
+    const featuredEventIds = featuredEvents.map(({id}) => id);
+    return pastIds.concat(featuredEventIds);
+}
