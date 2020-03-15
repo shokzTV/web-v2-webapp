@@ -7,6 +7,9 @@ import { fetchArticleIds, fetchArticles } from '../../api/article';
 export async function getStaticProps({params}) {
     const articles = await fetchArticles([params.articleId]);
     const article = articles[0];
+    if(!article) {
+        console.error(params.articleId);
+    }
     return {
         props: {
             article
@@ -23,7 +26,7 @@ export async function getStaticPaths() {
 }
 
 export default function article({article}: {article: Article}): ReactElement {
-    return <PageFrame title={article.title} seoArticle={article}>
+    return <PageFrame title={article && article.title} seoArticle={article}>
         <SingleArticleView article={article} />
     </PageFrame>;
 }
