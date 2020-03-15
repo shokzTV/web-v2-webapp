@@ -1,22 +1,27 @@
-import React, { ReactElement, useState, useEffect } from 'react';
+import React, { ReactElement } from 'react';
 import PageFrame from '../../components/PageFrame';
 import SingleEventView from '../../components/pages/events/SingleEventView';
-import { useRouter } from 'next/router';
 import { Event } from '../../api/@types/Event';
-import { fetchEvent } from '../../api/event';
+import { fetchEvent, fetchAllEventIds } from '../../api/event';
 
-export default function event(): ReactElement {
-    const router = useRouter();
-    const eventId = +router.query.eventId;
-    const [event, setEvent] = useState<Event | null>(null);
-
-    useEffect(() => {
-        const load = async () => setEvent(await fetchEvent(eventId));
-        if(!event && eventId) {
-            load();
+export async function getStaticProps({params}) {
+    const event = await fetchEvent(params.eventId);
+    return {
+        props: {
+            event
         }
-    }, [eventId]);
-    
+    };
+}
+
+export async function getStaticPaths() {
+    const eventIds = await fetchAllEventIds();
+    return {
+      paths: eventIds.map(String).map((eventId) => ({ params: { eventId } })),
+      fallback: true,
+    };
+}
+
+export default function event({event}: {event: Event}): ReactElement {
     return <PageFrame title={event && event.name}>
         <SingleEventView event={event} />
     </PageFrame>;

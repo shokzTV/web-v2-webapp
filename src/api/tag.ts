@@ -8,6 +8,11 @@ export async function fetchAllTags(): Promise<Tag[]> {
     return await get<Tag[]>(`/tag/list`);
 }
 
+export async function fetchAllTagIds(): Promise<number[]> {
+    const tags = await fetchAllTags();
+    return tags.map(({id}) => id);
+}
+
 export async function fetchLatestTags(): Promise<Tag[]> {
     return await get<Tag[]>('/tag/recent');
 }
