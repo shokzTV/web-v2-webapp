@@ -4,6 +4,7 @@ import YouTube from 'react-youtube-embed';
 import { TwitterTweetEmbed } from 'react-twitter-embed';
 import Truncate from 'react-truncate-html';
 import ReactDOMServer from 'react-dom/server';
+import { COLORS } from "../style/colors";
 
 var processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);
 
@@ -68,6 +69,11 @@ export default function CKEditorContent({text = '<p></p>', rows = 0}: {text: str
 
             .content :global(h4) {
                 margin-top: 15px;
+            }
+
+            .content :global(a), .content :global(a *) {
+                color: ${COLORS.PRIMARY};
+                text-decoration: none;
             }
         `}</style>
     </div>;
