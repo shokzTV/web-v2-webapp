@@ -5,7 +5,7 @@ import Header from '../components/Header';
 
 export default function dataProtection(): ReactElement {
   return <PageFrame title={'Datenschutzerklärung'}>
-    <Header title={'Datenschutzerklärung'} />
+    <Header title={'Datenschutzerklärung'} topHeader />
     <h1 className="adsimple-311161227"></h1>
     <h2 className="adsimple-311161227">Datenschutz</h2>
     <p>Wir haben diese Datenschutzerklärung (Fassung 11.03.2020-311161227) verfasst, um Ihnen gemäß der Vorgaben der <a className="adsimple-311161227" href="https://eur-lex.europa.eu/legal-content/DE/ALL/?uri=celex%3A32016R0679&amp;tid=311161227" target="_blank" rel="noopener">Datenschutz-Grundverordnung (EU) 2016/679</a> zu erklären, welche Informationen wir sammeln, wie wir Daten verwenden und welche Entscheidungsmöglichkeiten Sie als Besucher dieser Webseite haben.</p>

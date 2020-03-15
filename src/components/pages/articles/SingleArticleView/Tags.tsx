@@ -1,5 +1,7 @@
 import { Article } from "../../../../api/@types/Article";
 import { ReactElement } from "react";
+import Link from "next/link";
+import { COLORS } from "../../../../style/colors";
 
 export default function Tags({article}: {article: Article | null }): ReactElement {
     const tags = article ? article.tags : [];
@@ -8,7 +10,7 @@ export default function Tags({article}: {article: Article | null }): ReactElemen
         <div className={'tagList'}>
             <div className={'caption'}><b>Artikelkategorien:</b>&nbsp;&nbsp;</div>
             {tags.map((tag) => {
-                return <div className={'tag'} key={tag.id}>{tag.name}&nbsp;&nbsp;</div>;
+                return <Link href={'/tag/[tagId]'} as={`/tag/${tag.id}`}><div className={'tag'} key={tag.id}>{tag.name}&nbsp;&nbsp;</div></Link>;
             })}
         </div>
 
@@ -21,6 +23,11 @@ export default function Tags({article}: {article: Article | null }): ReactElemen
                 border-bottom: 1px solid #DDD;
                 margin-bottom: 10px;
                 padding-bottom: 10px;
+            }
+
+            .tag {
+                color: ${COLORS.PRIMARY};
+                cursor: pointer;
             }
         `}</style>
     </>;

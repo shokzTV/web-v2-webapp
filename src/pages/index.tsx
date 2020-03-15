@@ -50,7 +50,7 @@ export default function index(): ReactElement {
 
       @media only screen and (max-width: 425px) {
         .col {
-          padding: 5px;
+          padding: 20px 5px;
         }
       }
     `}</style>

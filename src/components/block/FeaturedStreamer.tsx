@@ -19,7 +19,7 @@ export default function FeaturedStreamer(): ReactElement {
             <Header title={'Ausgewählte Deutsche Livestreams'} inverted prefix={'live'} />
 
             <div className={'streamerRow'}>
-                {streamer.map((streamer) => <div className={'streamerCol'} key={streamer.id}>
+                {streamer.map((streamer) => <a className={'streamerCol'} key={streamer.id} href={`https://twitch.tv/${streamer.name}`} target={'_blank'} rel={'noreferrer'}>
                     <div className={'preview'}>
                         <div className={'previewImage'}>
                             <LoadingImage src={streamer.preview} webp={streamer.previewWEBP} jp2={streamer.previewJP2} />
@@ -40,7 +40,7 @@ export default function FeaturedStreamer(): ReactElement {
                             {streamer.title}
                         </div>
                     </div>
-                </div>)}
+                </a>)}
             </div>
         </div>
 

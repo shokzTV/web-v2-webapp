@@ -55,6 +55,20 @@ export default function CKEditorContent({text = '<p></p>', rows = 0}: {text: str
             .content :global(ul) {
                 padding-left: 20px;
             }
+
+            .content :global(h2) {
+                margin-top: 30px;
+                margin-bottom: 15px;
+            }
+
+            .content :global(h3) {
+                margin-top: 20px;
+                margin-bottom: 5px;
+            }
+
+            .content :global(h4) {
+                margin-top: 15px;
+            }
         `}</style>
     </div>;
 }

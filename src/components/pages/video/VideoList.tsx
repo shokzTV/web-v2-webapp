@@ -15,7 +15,7 @@ export default function VideoList(): ReactElement {
     } = usePagination<Video>(12, fetchVideoIds, fetchVideos);
 
     return <>
-        <Header title={'Alle Videos'} />
+        <Header title={'Alle Videos'} topHeader />
 
         <Pagination  page={page} total={total} setPage={setPage} noTopSpacing />
 

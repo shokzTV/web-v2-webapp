@@ -15,7 +15,7 @@ export default function ArticleList(): ReactElement {
     } = usePagination<Article>(10, fetchArticleIds, fetchArticles);
 
     return <>
-        <Header title={'ALLE ARTIKEL'} link={'ALLE ARTIKELKATERGORIEN ANZEIGEN'} linkTarget={'/tags'} />
+        <Header title={'ALLE ARTIKEL'} link={'ALLE ARTIKELKATERGORIEN ANZEIGEN'} linkTarget={'/tags'} topHeader/>
 
         <Pagination  page={page} total={total} setPage={setPage} />
         {entries.map((article, index) => <Row key={(article && article.id) + '-' + index} article={article} noDivider={index + 1 === entries.length}/>)}

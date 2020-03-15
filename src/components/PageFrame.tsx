@@ -74,7 +74,7 @@ export default function PageFrame({children, title = null}: Props): ReactElement
       .pageWrapper {
           max-width: 1175px;
           margin: 0 auto;
-          padding: 30px 15px 40px 15px;
+          padding: 20px 40px 40px 40px;
           flex-grow: 1;
           width: 100%;
       }  

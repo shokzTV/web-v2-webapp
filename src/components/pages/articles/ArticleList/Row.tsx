@@ -61,6 +61,10 @@ export default function Row({article, noDivider = false}: {article: Article | nu
                 font-weight: normal;
                 margin-bottom: 20px;
             }
+
+            h2 {
+                margin-bottom: 5px;
+            }
             
             @media only screen and (max-width: 768px) {
                 .articleRow {

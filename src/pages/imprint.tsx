@@ -5,7 +5,7 @@ import Divider from '../components/Divider';
 
 export default function imprint(): ReactElement {
   return <PageFrame title={'Impressum'}>
-    <Header title={'Impressum'} />
+    <Header title={'Impressum'} topHeader/>
 
     <div className={'row'}>
       <div className={'col'}>

@@ -7,7 +7,7 @@ import NewsList from '../components/pages/news/NewsList';
 
 export default function news(): ReactElement {
   return <PageFrame title={'News'}>
-      <Header title={'Kurznachrichten'} />
+      <Header title={'Kurznachrichten'} topHeader />
       <Divider />
       <NewsListHeader />
       <NewsList />

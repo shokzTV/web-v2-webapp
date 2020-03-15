@@ -9,10 +9,12 @@ interface Props {
     linkTarget?: string;
     inverted?: boolean;
     prefix?: string;
+    topHeader?: boolean;
+    reduceSpacing?: boolean;
 }
 
-export default function Header({title, linkTarget, link, inverted = false, prefix = ''}: Props): ReactElement {
-    return <div className={classNames('header', {inverted})}>
+export default function Header({title, linkTarget, link, inverted = false, prefix = '', topHeader = false, reduceSpacing = false}: Props): ReactElement {
+    return <div className={classNames('header', {inverted, topHeader, reduceSpacing})}>
         <div className={'title'}>{prefix.length > 0 && <><span className={'prefix'}>{prefix}</span>{' - '}</>}{title}</div>
 
         {link && <div className={'linkLabel'}>
@@ -25,7 +27,7 @@ export default function Header({title, linkTarget, link, inverted = false, prefi
 
         <style jsx>{`
             .header {
-                margin: 5px 0 40px 0;
+                margin: 0 0 35px 0;
                 line-height: 1em;
                 padding: 0 0 0 10px;
                 border-left: 2px solid ${COLORS.HIGHLIGHT};
@@ -38,6 +40,13 @@ export default function Header({title, linkTarget, link, inverted = false, prefi
                 flex-wrap: wrap-reverse;;
             }
 
+            .topHeader {
+                margin: 0 0 20px 0;
+            }
+
+            .reduceSpacing {
+                margin-bottom: 15px;
+            }
             .title {
                 color: ${COLORS.PRIMARY};
             }
