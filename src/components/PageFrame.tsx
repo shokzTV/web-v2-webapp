@@ -7,13 +7,47 @@ import Navigation from './Navigation';
 import AlphaInfo from './block/AlphaInfo';
 import {fetchVersion} from '../api/base';
 import FeaturedStreamer from './block/FeaturedStreamer';
+import { Article } from '../api/@types/Article';
+import dayjs from 'dayjs';
+
+
+function buildArticleRichCard(article: Article): object {
+  return {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://shokz.tv/article/" + article.id
+    },
+    "headline": article.title,
+    "image": [
+      article.cover
+     ],
+    "datePublished": dayjs.unix(article.created).toISOString(),
+    "dateModified": dayjs.unix(article.created).toISOString(),
+    "author": {
+      "@type": "Person",
+      "name": article.author.name,
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "shokzTV",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://shokz.tv/images/logo.png"
+      }
+    }
+  };
+}
 
 interface Props {
     children: ReactNode;
     title?: string;
+    seoArticle?: Article;
 }
 
-export default function PageFrame({children, title = null}: Props): ReactElement {
+export default function PageFrame({children, title = null, seoArticle = null}: Props): ReactElement {
+  const articleJsonLD = seoArticle && JSON.stringify(buildArticleRichCard(seoArticle));
   useEffect(() => {
     const checkVersion = async () => {
       const version = await fetchVersion();
@@ -32,17 +66,21 @@ export default function PageFrame({children, title = null}: Props): ReactElement
 
     checkVersion();
   }, []);
+
   return <>
     <Head>
       <title>shokzTV {title && ` - ${title}`}</title>
+      //@ts-ignore
+      <meta charset="UTF-8" />
       <meta name="google" content="notranslate" />
       <meta httpEquiv="Content-Language" content="de" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover" />
 
       <meta name="description" content="shokzTV: Die deutsche Dota2 Startseite für aktuelle Nachrichten, Themen, Events, Updates, Pro Teams, Twitchstreamer und Dota2 Castings" />
       <link rel="apple-touch-icon" href="images/apple-touch-icon.png"></link>
       <meta name="theme-color" content="#0A1C3F" />
       <link rel="manifest" href="/manifest.json" />
+      {articleJsonLD && articleJsonLD.length > 0 && <script type="application/ld+json">{`${articleJsonLD}`}</script>}
     </Head>
 
     <AlphaInfo />
