@@ -1,7 +1,6 @@
-import { ReactElement, useState, useEffect, useMemo } from "react";
+import { ReactElement, useMemo } from "react";
 import Header from "../../Header";
 import { Article } from '../../../api/@types/Article';
-import { fetchFeaturedArticle } from "../../../api/article";
 import LoadingImage from "../../block/ImageLoader";
 import CKEditorContent from "../../CKEditorContent";
 import Link from "next/link";
@@ -9,14 +8,7 @@ import Divider from "../../Divider";
 import TextLoader from "../../TextLoader";
 import Truncate from "react-truncate";
 
-export default function FeaturedArticles(): ReactElement {
-    const [featured, setFeatured] = useState<Partial<Article[]> | null>(null);
-
-    useEffect(() => {
-        const loadEvent = async () => setFeatured(await fetchFeaturedArticle());
-        loadEvent();
-    }, []);
-    
+export default function FeaturedArticles({featured}: {featured: Partial<Article[]>}): ReactElement {
     const lastArticle = useMemo<Partial<Article>>(() => featured && featured.slice(-1)[0], [featured]);
     const previousArticles = useMemo<Partial<Article>[]>(() => featured ? featured.slice(0, 3).reverse() : [{id:0},{id:0},{id:0}], [featured]);
 

@@ -30,27 +30,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 module.exports = withBundleAnalyzer(withOffline({
-  exportPathMap: async function() {
-    const paths = {
-      '/': { page: '/' },
-      '/articles': { page: '/articles' },
-      '/dataProtection': { page: '/dataProtection' },
-      '/events': { page: '/events' },
-      '/event/[eventId]': { page: '/event/[eventId]' },
-      '/imprint': { page: '/imprint' },
-      '/tag/[tagId]': {page: '/tag/[tagId]'},
-      '/tags': {page: '/tags'},
-      '/videos': { page: '/videos' },
-      '/news': { page: '/news' },
-    };
-    const tagIds = await fetchTagIds();
-    const eventIds = await fetchAllEventIds();
-
-    tagIds.forEach(tagId => paths[`/tag/${tagId}`] = { page: '/tag/[tagId]' });
-    eventIds.forEach(eventId => paths[`/event/${eventId}`] = { page: '/event/[eventId]' });
-
-    return paths;
-  },
   target: 'serverless',
   transformManifest: manifest => ['/'].concat(manifest), // add the homepage to the cache
   // Trying to set NODE_ENV=production when running yarn dev causes a build-time error so we

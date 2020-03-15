@@ -3,16 +3,8 @@ import Header from '../../Header';
 import { Video } from '../../../api/@types/Video';
 import Carousel from '../../block/Carousel';
 import LoadingImage from '../../block/ImageLoader';
-import { fetchLatestVideos } from '../../../api/video';
 
-export default function LastVideos(): ReactElement {
-    const [videos, setVideos] = useState<Video[]>(Array(10).fill(undefined));
-
-    useEffect(() => {
-        const loadVideos = async () => setVideos((await fetchLatestVideos()));
-        loadVideos();
-    }, []);
-
+export default function LastVideos({videos}: {videos: Video[]}): ReactElement {
     return <>
         <Header title={'NEUSTE VIDEOS'} link={'ALLE VIDEOS ANZEIGEN'} linkTarget={'/videos'} reduceSpacing/>
         <Carousel>
