@@ -1,16 +1,19 @@
 import { ReactElement } from "react";
 import { COLORS } from '../style/colors';
 import Link from "next/link";
+import classNames from "classnames";
 
 interface Props {
     title: string;
     link?: string;
     linkTarget?: string;
+    inverted?: boolean;
+    prefix?: string;
 }
 
-export default function Header({title, linkTarget, link}: Props): ReactElement {
-    return <div className={'header'}>
-        <div className={'title'}>{title}</div>
+export default function Header({title, linkTarget, link, inverted = false, prefix = ''}: Props): ReactElement {
+    return <div className={classNames('header', {inverted})}>
+        <div className={'title'}>{prefix.length > 0 && <><span className={'prefix'}>{prefix}</span>{' - '}</>}{title}</div>
 
         {link && <div className={'linkLabel'}>
             {linkTarget && <Link href={linkTarget}>
@@ -52,6 +55,14 @@ export default function Header({title, linkTarget, link}: Props): ReactElement {
 
             .link {
                 text-decoration: none;
+            }
+
+            .inverted .title {
+                color: #FFF;
+            }
+
+            .prefix {
+                color: #FF0100;
             }
         `}</style>
     </div>;

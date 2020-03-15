@@ -4,7 +4,6 @@ import { Video } from "./@types/Video";
 import { Event } from "./@types/Event";
 import { Article } from "./@types/Article";
 
-
 export async function fetchAllTags(): Promise<Tag[]> {
     return await get<Tag[]>(`/tag/list`);
 }
