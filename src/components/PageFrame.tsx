@@ -77,7 +77,13 @@ export default function PageFrame({children, title = null}: Props): ReactElement
           padding: 20px 40px 40px 40px;
           flex-grow: 1;
           width: 100%;
-      }  
+      }
+
+      @media only screen and (max-width: 425px) { 
+        .pageWrapper {
+          padding: 20px 15px 40px 15px;
+        } 
+      }
     `}</style>
 
     <style jsx global>{`
