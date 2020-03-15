@@ -10,7 +10,7 @@ export default function Tags({article}: {article: Article | null }): ReactElemen
         <div className={'tagList'}>
             <div className={'caption'}><b>Artikelkategorien:</b>&nbsp;&nbsp;</div>
             {tags.map((tag) => {
-                return <Link href={'/tag/[tagId]'} as={`/tag/${tag.id}`}><div className={'tag'} key={tag.id}>{tag.name}&nbsp;&nbsp;</div></Link>;
+                return <Link href={'/tag/[tagId]'} as={`/tag/${tag.id}`} key={tag.id}><div className={'tag'}>{tag.name}&nbsp;&nbsp;</div></Link>;
             })}
         </div>
 
