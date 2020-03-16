@@ -1,17 +1,9 @@
-import { ReactElement, useState, useEffect } from "react";
+import { ReactElement } from "react";
 import Header from "../../Header";
 import { Tag } from "../../../api/@types/Tag";
-import { fetchLatestTags } from "../../../api/tag";
 import Entry from "./RecentTags/Entry";
 
-export default function RecentTags(): ReactElement {
-    const [tags, setTags] = useState<Tag[]>(Array(8).fill(undefined));
-
-    useEffect(() => {
-        const loadTags = async () => setTags(await fetchLatestTags());
-        loadTags();
-    }, []);
-
+export default function RecentTags({tags}: {tags: Tag[]}): ReactElement {
     return <>
         <Header title={'ARTIKELKATEGORIEN'}/>
 

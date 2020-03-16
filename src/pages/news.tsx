@@ -19,7 +19,6 @@ export async function getStaticProps() {
 export default function news({news}: {news: News[]}): ReactElement {
   return <PageFrame title={'News'}>
       <Header title={'Kurznachrichten'} topHeader />
-      <Divider />
       <NewsListHeader />
       <NewsList news={news} />
   </PageFrame>;

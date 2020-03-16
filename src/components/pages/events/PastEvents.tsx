@@ -2,17 +2,22 @@ import { ReactElement } from "react";
 import Header from "../../Header";
 import { usePagination } from "../../../hooks/entryPagination";
 import { Event } from "../../../api/@types/Event";
-import { fetchPastEventIds, fetchEventsById } from "../../../api/event";
+import { fetchEventsById } from "../../../api/event";
 import Pagination from "../../block/Pagination";
 import Entry from "./PastEvents/Entry";
 
-export default function PastEvents(): ReactElement {
+interface Props {
+    pastEventIds: number[];
+    pastEvents: Event[];
+}
+
+export default function PastEvents({pastEventIds, pastEvents}: Props): ReactElement {
     const {
         page,
         total,
         setPage,
         entries
-    } = usePagination<Event>(10, fetchPastEventIds, fetchEventsById);
+    } = usePagination<Event>(10, pastEventIds, pastEvents, fetchEventsById);
     
     return <>
         <Header title={'VORHERIGE EVENTS'} />
