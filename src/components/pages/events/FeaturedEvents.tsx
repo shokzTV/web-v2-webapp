@@ -15,12 +15,14 @@ export default function FeaturedEvents({featuredEvents}: {featuredEvents: Event[
             .eventsGrid {
                 display: flex;
                 margin: -20px;
+                justify-content: space-between;
                 flex-wrap: wrap;
             }
 
             .column {
                 width: 50%;
                 padding: 20px;
+                max-width: 552px;
             }
             
             @media only screen and (max-width: 768px) {
