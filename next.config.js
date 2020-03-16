@@ -34,6 +34,7 @@ module.exports = withBundleAnalyzer(withOffline({
   transformManifest: manifest => ['/'].concat(manifest), // add the homepage to the cache
   // Trying to set NODE_ENV=production when running yarn dev causes a build-time error so we
   // turn on the SW in dev mode so that we can actually test it
+  generateInDevMode: true,
   workboxOpts: {
     swDest: 'static/service-worker.js',
     skipWaiting: true,
@@ -41,11 +42,11 @@ module.exports = withBundleAnalyzer(withOffline({
     clientsClaim: true,
     runtimeCaching: [
       {
-        urlPattern: /^https?.*(webp|jp2|jpeg|.ico|.png)$/,
+        urlPattern: /^https?.*(webp|jp2|jpeg|ico|png|jpg)$/,
         handler: 'CacheFirst',
         options: {
           cacheableResponse: {
-            statuses: [200],
+            statuses: [0, 200],
           },
         },
       },
@@ -54,7 +55,7 @@ module.exports = withBundleAnalyzer(withOffline({
         handler: 'CacheFirst',
         options: {
           cacheableResponse: {
-            statuses: [200],
+            statuses: [0, 200],
           },
         },
       },
@@ -63,6 +64,21 @@ module.exports = withBundleAnalyzer(withOffline({
         handler: 'NetworkFirst',
         options: {
           cacheName: 'alpha-v1',
+          expiration: {
+            maxEntries: 150,
+            maxAgeSeconds: 30 * 24 * 60 * 60,
+            purgeOnQuotaError: true,
+          },
+          cacheableResponse: {
+            statuses: [0, 200],
+          },
+        },
+      },
+      {
+        urlPattern: /^https?.*/,
+        handler: 'NetworkFirst',
+        options: {
+          cacheName: 'alpha-page-chache-v1',
           expiration: {
             maxEntries: 150,
             maxAgeSeconds: 30 * 24 * 60 * 60,
