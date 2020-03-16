@@ -82,7 +82,7 @@ export default function Footer(): ReactElement {
             .footerDisclaimer {
                 background-color: #343434;
                 text-align: center;
-                color: rgba(255,255,255,.5);
+                color: rgba(255,255,255,.8);
                 padding: 10px;
                 font-style: italic;
             }
