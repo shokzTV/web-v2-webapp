@@ -13,6 +13,7 @@ import { fetchRecentNews } from '../api/news';
 import { News } from '../api/@types/News';
 import { fetchLatestVideos } from '../api/video';
 import { Video } from '../api/@types/Video';
+import dayjs from 'dayjs';
 
 function getPriority(start: number, end: number): number {
     const currentTs = dayjs().unix();
