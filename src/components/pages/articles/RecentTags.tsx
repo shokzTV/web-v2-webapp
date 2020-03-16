@@ -24,11 +24,13 @@ export default function RecentTags(): ReactElement {
                 display: flex;
                 margin: -20px;
                 flex-wrap: wrap;
+                justify-content: space-between;
             }
 
             .column {
                 width: 50%;
                 padding: 20px;
+                max-width: 552px;
             }
 
             @media only screen and (max-width: 768px) {
