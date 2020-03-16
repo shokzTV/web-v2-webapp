@@ -5,6 +5,7 @@ import Divider from '../components/Divider';
 import PastEvents from '../components/pages/events/PastEvents';
 import { fetchFeaturedEvents } from '../api/event';
 import { Event } from '../api/@types/Event';
+import dayjs from 'dayjs';
 
 function getPriority(start: number, end: number): number {
     const currentTs = dayjs().unix();
