@@ -6,13 +6,13 @@ import { fetchVideoIds, fetchVideos } from "../../../api/video";
 import Pagination from "../../block/Pagination";
 import LoadingImage from "../../block/ImageLoader";
 
-export default function VideoList(): ReactElement {
+export default function VideoList({videoIds, videos}: {videoIds: number[]; videos: Video[]}): ReactElement {
     const {
         page,
         total,
         setPage,
         entries
-    } = usePagination<Video>(12, fetchVideoIds, fetchVideos);
+    } = usePagination<Video>(12, videoIds, videos, fetchVideos);
 
     return <>
         <Header title={'Alle Videos'} topHeader />

@@ -6,7 +6,8 @@ interface IdEntry {
 
 export function usePagination<T extends IdEntry = IdEntry>(
     pageSize: number = 10,
-    idLoader: () => Promise<number[]>,
+    ids: number[],
+    preloaded: T[],
     entryLoader: (ids: number[]) => Promise<T[]>,
 ): {
     total: number;
@@ -15,21 +16,13 @@ export function usePagination<T extends IdEntry = IdEntry>(
     entries: T[];
 } {
     const [page, setPage] = useState(1);
-    const [ids, setIds] = useState<number[]>([]);
-    const [loaded, setLoaded] = useState<number[]>([]);
-    const [data, setData] = useState<T[]>([]);
+    const [loaded, setLoaded] = useState<number[]>(preloaded.map(({id}) => id));
+    const [data, setData] = useState<T[]>(preloaded);
     const total = useMemo(
         () => ids.length > 0 ? (ids.length % pageSize === 0 ? (ids.length / pageSize) : Math.round((ids.length / pageSize) + .5)) : 2, 
         [ids, pageSize]
     );
     const pageIds = useMemo<number[]>(() => ids.length > 0 ? ids.slice((page - 1) * pageSize, page * pageSize) : [], [page, ids, pageSize]);
-
-    useEffect(() => {
-        const loadIds = async () => {
-            setIds(await idLoader());
-        };
-        loadIds();
-    }, []);
 
     useEffect(() => {
         const loadEntries = async () => {
