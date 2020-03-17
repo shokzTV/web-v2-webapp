@@ -20,6 +20,7 @@ export default function PastEvents({pastEventIds, pastEvents}: Props): ReactElem
     } = usePagination<Event>(10, pastEventIds, pastEvents, fetchEventsById);
     
     return <>
+        <div id={'vorherige'} />
         <Header title={'VORHERIGE EVENTS'} />
 
         <Pagination  page={page} total={total} setPage={setPage} />
