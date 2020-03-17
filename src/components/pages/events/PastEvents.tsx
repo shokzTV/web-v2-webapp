@@ -2,22 +2,22 @@ import { ReactElement } from "react";
 import Header from "../../Header";
 import { usePagination } from "../../../hooks/entryPagination";
 import { Event } from "../../../api/@types/Event";
-import { fetchEventsById } from "../../../api/event";
+import { fetchEventsBySlugs } from "../../../api/event";
 import Pagination from "../../block/Pagination";
 import Entry from "./PastEvents/Entry";
 
 interface Props {
-    pastEventIds: number[];
+    slugs: string[];
     pastEvents: Event[];
 }
 
-export default function PastEvents({pastEventIds, pastEvents}: Props): ReactElement {
+export default function PastEvents({slugs, pastEvents}: Props): ReactElement {
     const {
         page,
         total,
         setPage,
         entries
-    } = usePagination<Event>(10, pastEventIds, pastEvents, fetchEventsById);
+    } = usePagination<Event>(10, slugs, pastEvents, fetchEventsBySlugs, 'slug');
     
     return <>
         <div id={'vorherige'} />

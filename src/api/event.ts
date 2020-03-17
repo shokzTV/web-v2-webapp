@@ -10,18 +10,17 @@ export async function fetchFeaturedEvents(): Promise<Event[]> {
     return await get<Event[]>('/event/featured');
 }
 
-export async function fetchPastEventIds(): Promise<number[]> {
-    return await get<number[]>('/event/pastIds');
+export async function fetchPastEventSlugs(): Promise<string[]> {
+    return await get<string[]>('/event/pastSlugs');
 }
 
-export async function fetchEventsById(ids: number[] = []): Promise<Event[]> {
-    return await get<Event[]>(`/event/byId?ids[]=${ids.join('&ids[]=')}`);
+export async function fetchEventsBySlugs(slugs: string[] = []): Promise<Event[]> {
+    return await get<Event[]>(`/event/bySlug?slugs[]=${slugs.join('&slugs[]=')}`);
 }
 
-export async function fetchEvent(id: number): Promise<Event> {
-    return (await fetchEventsById([id]))[0];
+export async function fetchEvent(slug: string): Promise<Event> {
+    return (await fetchEventsBySlugs([slug]))[0];
 }
-
 
 interface RelationResponse {
     articles: Array<{
@@ -38,9 +37,9 @@ export async function fetchEventRelations(id: number): Promise<RelationResponse>
     return await get<RelationResponse>(`/event/relations/${id}`);
 }
 
-export async function fetchAllEventIds(): Promise<number[]> {
-    const pastIds = await fetchPastEventIds();
+export async function fetchAllEventSlugs(): Promise<string[]> {
+    const pastIds = await fetchPastEventSlugs();
     const featuredEvents = await fetchFeaturedEvents();
-    const featuredEventIds = featuredEvents.map(({id}) => id);
+    const featuredEventIds = featuredEvents.map(({slug}) => slug);
     return pastIds.concat(featuredEventIds);
 }

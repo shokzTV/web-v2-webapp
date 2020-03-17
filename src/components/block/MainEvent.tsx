@@ -24,7 +24,7 @@ export default function MainEvent(): ReactElement {
             <div className={'eventDetails'}>
                 <h1 className={'mainEventHeader'}>{event ? event.name : <>&nbsp;</>}</h1>
                 <div className={'eventLinks'}>
-                <Link href={'/event/[eventId]'} as={'/event/' + (event && event.id)}><div className={'eventLink'}>Eventüberblick</div></Link>
+                <Link href={'/event/[slug]'} as={'/event/' + (event && event.slug)}><div className={'eventLink'}>Eventüberblick</div></Link>
                     <div className={'eventLink'}>Neuigkeiten zum Event</div>
                 </div>
             </div>

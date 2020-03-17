@@ -2,10 +2,10 @@ import React, { ReactElement } from 'react';
 import PageFrame from '../../components/PageFrame';
 import SingleEventView from '../../components/pages/events/SingleEventView';
 import { Event } from '../../api/@types/Event';
-import { fetchEvent, fetchAllEventIds } from '../../api/event';
+import { fetchEvent, fetchAllEventSlugs } from '../../api/event';
 
 export async function getStaticProps({params}) {
-    const event = await fetchEvent(params.eventId);
+    const event = await fetchEvent(params.slug);
     return {
         props: {
             event
@@ -14,9 +14,9 @@ export async function getStaticProps({params}) {
 }
 
 export async function getStaticPaths() {
-    const eventIds = await fetchAllEventIds();
+    const slugs = await fetchAllEventSlugs();
     return {
-      paths: eventIds.map(String).map((eventId) => ({ params: { eventId } })),
+      paths: slugs.map((slug) => ({ params: { slug } })),
       fallback: true,
     };
 }
