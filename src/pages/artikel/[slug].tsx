@@ -2,14 +2,11 @@ import React, { ReactElement } from 'react';
 import PageFrame from '../../components/PageFrame';
 import SingleArticleView from '../../components/pages/articles/SingleArticleView';
 import { Article } from '../../api/@types/Article';
-import { fetchArticleIds, fetchArticles } from '../../api/article';
+import { fetchArticles, fetchArticleSlugs } from '../../api/article';
 
 export async function getStaticProps({params}) {
-    const articles = await fetchArticles([params.articleId]);
+    const articles = await fetchArticles([params.slug]);
     const article = articles[0];
-    if(!article) {
-        console.error(params.articleId);
-    }
     return {
         props: {
             article
@@ -18,9 +15,9 @@ export async function getStaticProps({params}) {
 }
 
 export async function getStaticPaths() {
-    const articleIds = await fetchArticleIds();
+    const slugs = await fetchArticleSlugs();
     return {
-      paths: articleIds.map(String).map((articleId) => ({ params: { articleId } })),
+      paths: slugs.map((slug) => ({ params: { slug } })),
       fallback: true,
     };
 }

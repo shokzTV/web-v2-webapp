@@ -2,6 +2,7 @@ import { Tag } from "./Tag";
 
 export interface Article {
     id: number;
+    slug: string;
     title: string;
     body: string;
     cover: string;
