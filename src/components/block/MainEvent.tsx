@@ -14,9 +14,9 @@ export default function MainEvent({mainEvent}: {mainEvent: Event}): ReactElement
                 <OrganizerLogo event={mainEvent} />
             </div>
             <div className={'eventDetails'}>
-                <h1 className={'mainEventHeader'}>{mainEvent.name}</h1>
+                <h1 className={'mainEventHeader'}>{mainEvent && mainEvent.name}</h1>
                 <div className={'eventLinks'}>
-                <Link href={'/event/[slug]'} as={'/event/' + mainEvent.slug}><div className={'eventLink'}>Eventüberblick</div></Link>
+                <Link href={'/event/[slug]'} as={'/event/' + (mainEvent && mainEvent.slug)}><div className={'eventLink'}>Eventüberblick</div></Link>
                     <div className={'eventLink'}>Neuigkeiten zum Event</div>
                 </div>
             </div>
