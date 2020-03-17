@@ -8,17 +8,17 @@ export async function fetchAllTags(): Promise<Tag[]> {
     return await get<Tag[]>(`/tag/list`);
 }
 
-export async function fetchAllTagIds(): Promise<number[]> {
+export async function fetchAllTagSlugs(): Promise<string[]> {
     const tags = await fetchAllTags();
-    return tags.map(({id}) => id);
+    return tags.map(({slug}) => slug);
 }
 
 export async function fetchLatestTags(): Promise<Tag[]> {
     return await get<Tag[]>('/tag/recent');
 }
 
-export async function fetchTag(tagId: number): Promise<Tag> {
-    return await get<Tag>(`/tag/info/${tagId}`);
+export async function fetchTag(slug: string): Promise<Tag> {
+    return await get<Tag>(`/tag/bySlug/${slug}`);
 }
 
 interface Relations {

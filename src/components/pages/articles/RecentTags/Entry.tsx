@@ -5,7 +5,7 @@ import TextLoader from "../../../TextLoader";
 import Link from "next/link";
 
 export default function Entry({tag}: {tag: Tag | null}): ReactElement {
-    return <Link href={'/kategorie/[tagId]'} as={`/kategorie/${tag && tag.id}`}>
+    return <Link href={'/kategorie/[slug]'} as={`/kategorie/${tag && tag.slug}`}>
         <div className={'tagEntry'}>
             <LoadingImage src={tag && tag.image} webp={tag && tag.imageWEBP} jp2={tag && tag.imageJP2} />
 

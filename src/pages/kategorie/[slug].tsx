@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
 import PageFrame from '../../components/PageFrame';
 import { Tag } from '../../api/@types/Tag';
-import { fetchTag, fetchAllTagIds } from '../../api/tag';
+import { fetchTag, fetchAllTagSlugs } from '../../api/tag';
 import SingleTagView from '../../components/pages/tags/SingleTagView';
 
 export async function getStaticProps({params}) {
-    const tag = await fetchTag(params.tagId);
+    const tag = await fetchTag(params.slug);
     return {
         props: {
             tag
@@ -14,9 +14,9 @@ export async function getStaticProps({params}) {
 }
 
 export async function getStaticPaths() {
-    const tagIds = await fetchAllTagIds();
+    const slugs = await fetchAllTagSlugs();
     return {
-      paths: tagIds.map(String).map((tagId) => ({ params: { tagId } })),
+      paths: slugs.map(String).map((slug) => ({ params: { slug } })),
       fallback: true,
     };
 }
