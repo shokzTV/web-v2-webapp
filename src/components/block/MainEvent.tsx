@@ -1,30 +1,22 @@
-import { ReactElement, useState, useEffect } from "react";
-import { fetchMainEvent } from "../../api/event";
+import { ReactElement } from "react";
 import OrganizerLogo from "./MainEvent/OrganizerLogo";
 import { Event } from '../../api/@types/Event';
 import EventBanner from "./MainEvent/EventBanner";
 import { COLORS } from "../../style/colors";
 import Link from "next/link";
 
-export default function MainEvent(): ReactElement {
-    const [event, setEvent] = useState<Event | null>(null);
-
-    useEffect(() => {
-        const loadEvent = async () => setEvent(await fetchMainEvent());
-        loadEvent();
-    }, []);
-
+export default function MainEvent({mainEvent}: {mainEvent: Event}): ReactElement {
     return <div className={'mainEventWrapper'}>
-        <EventBanner event={event} />
+        <EventBanner event={mainEvent} />
 
         <div className={'mainEventInner'}>
             <div className={'organizerLogo'}>
-                <OrganizerLogo event={event} />
+                <OrganizerLogo event={mainEvent} />
             </div>
             <div className={'eventDetails'}>
-                <h1 className={'mainEventHeader'}>{event ? event.name : <>&nbsp;</>}</h1>
+                <h1 className={'mainEventHeader'}>{mainEvent.name}</h1>
                 <div className={'eventLinks'}>
-                <Link href={'/event/[slug]'} as={'/event/' + (event && event.slug)}><div className={'eventLink'}>Eventüberblick</div></Link>
+                <Link href={'/event/[slug]'} as={'/event/' + mainEvent.slug}><div className={'eventLink'}>Eventüberblick</div></Link>
                     <div className={'eventLink'}>Neuigkeiten zum Event</div>
                 </div>
             </div>

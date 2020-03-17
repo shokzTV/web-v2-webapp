@@ -9,6 +9,7 @@ import {fetchVersion} from '../api/base';
 import FeaturedStreamer from './block/FeaturedStreamer';
 import { Article } from '../api/@types/Article';
 import dayjs from 'dayjs';
+import { Event } from '../api/@types/Event';
 
 
 function buildArticleRichCard(article: Article): object {
@@ -44,9 +45,10 @@ interface Props {
     children: ReactNode;
     title?: string;
     seoArticle?: Article;
+    mainEvent: Event;
 }
 
-export default function PageFrame({children, title = null, seoArticle = null}: Props): ReactElement {
+export default function PageFrame({children, title = null, seoArticle = null, mainEvent}: Props): ReactElement {
   const articleJsonLD = seoArticle && JSON.stringify(buildArticleRichCard(seoArticle));
   useEffect(() => {
     const checkVersion = async () => {
@@ -87,7 +89,7 @@ export default function PageFrame({children, title = null, seoArticle = null}: P
     <AlphaInfo />
 
     <Navigation />    
-    <MainEvent />
+    <MainEvent mainEvent={mainEvent}/>
     
     <div className={'page'}>
       <div className={'pageWrapper'}>

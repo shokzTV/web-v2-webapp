@@ -2,9 +2,21 @@ import React, { ReactElement } from 'react'
 import PageFrame from '../components/PageFrame';
 import Header from '../components/Header';
 import Divider from '../components/Divider';
+import { fetchMainEvent } from '../api/event';
+import { Event } from '../api/@types/Event';
 
-export default function imprint(): ReactElement {
-  return <PageFrame title={'Impressum'}>
+export async function getStaticProps() {
+  const mainEvent = await fetchMainEvent();
+
+  return {
+    props: {
+      mainEvent
+    }
+  }
+}
+
+export default function imprint({mainEvent}: {mainEvent: Event}): ReactElement {
+  return <PageFrame title={'Impressum'} mainEvent={mainEvent}>
     <Header title={'Impressum'} topHeader/>
 
     <div className={'row'}>
