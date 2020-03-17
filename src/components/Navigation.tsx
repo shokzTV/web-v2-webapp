@@ -14,13 +14,13 @@ const items: MenuItem[] = [{
     path: '/'
 }, {
     name: 'Artikel',
-    path: '/articles'
+    path: '/artikel'
 }, {
     name: 'Events',
     path: '/events'
 }, {
     name: 'News',
-    path: '/news'
+    path: '/kurznachrichten'
 }, {
     name: 'Videos',
     path: '/videos'

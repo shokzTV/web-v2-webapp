@@ -13,9 +13,9 @@ export default function FeaturedArticles({featured}: {featured: Partial<Article[
     const previousArticles = useMemo<Partial<Article>[]>(() => featured ? featured.slice(0, 3).reverse() : [{id:0},{id:0},{id:0}], [featured]);
 
     return <>
-        <Header title={'NEUE ARTIKEL'} link={'ALLE ARTIKEL ANZEIGEN'} linkTarget={'/articles'} topHeader />
+        <Header title={'NEUE ARTIKEL'} link={'ALLE ARTIKEL ANZEIGEN'} linkTarget={'/artikel'} topHeader />
 
-        <Link href={'/article/[articleId]'} as={'/article/' + (lastArticle && lastArticle.id)}>
+        <Link href={'/artikel/[articleId]'} as={'/artikel/' + (lastArticle && lastArticle.id)}>
             <div className={'lastArticleRow'}>
                 <div className={'lastArticleCol lastArticleCover'}>
                     <div className={'articleCover'}>
@@ -36,7 +36,7 @@ export default function FeaturedArticles({featured}: {featured: Partial<Article[
         <Divider />
 
         <div className={'lastArticleRow pastArticleRow'}>
-            {previousArticles.map((article, index) => <Link href={'/article/[articleId]'} as={'/article/' + article.id} key={article.id + '-' + index}>
+            {previousArticles.map((article, index) => <Link href={'/artikel/[articleId]'} as={'/artikel/' + article.id} key={article.id + '-' + index}>
                 <div className={'prevArticleCol'}>
                     <h3 className={'pastArticleHeader'}>{article.title ? <span className={'header'}><Truncate lines={2}>{article.title}</Truncate></span> : <TextLoader rows={2} type={'h3'} />}</h3>
                     <div className={'articleCover'}>

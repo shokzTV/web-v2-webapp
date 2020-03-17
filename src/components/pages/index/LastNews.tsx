@@ -8,7 +8,7 @@ import TextLoader from "../../TextLoader";
 
 export default function LastNews({lastNews}: {lastNews: News[]}): ReactElement {
     return <>
-        <Header title={'KURZNACHRICHTEN'} link={'ALLE KURZNACHRICHTEN ANZEIGEN'} linkTarget={'/news'} />
+        <Header title={'KURZNACHRICHTEN'} link={'ALLE KURZNACHRICHTEN ANZEIGEN'} linkTarget={'/kurznachrichten'} />
 
         <div className={'news'}>
             {lastNews.map((entry, index) => <div key={(entry && entry.id) + '-'+index}>
