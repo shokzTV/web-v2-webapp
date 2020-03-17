@@ -9,7 +9,7 @@ import Header from "../../Header";
 
 export default function SingleArticleView({article}: {article: Article | null}): ReactElement {
     return <>
-        <Header title={'Artikel'} link={'Alle Artikel anzeigen'} linkTarget={'/articles'} topHeader/>
+        <Header title={'Artikel'} link={'Alle Artikel anzeigen'} linkTarget={'/artikel'} topHeader/>
 
         <h1>{article ? article.title : <TextLoader rows={1} type={'h1'} /> }</h1>
 

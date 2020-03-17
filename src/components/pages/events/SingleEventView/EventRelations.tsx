@@ -33,7 +33,7 @@ export default function EventRelations({event}: {event: Event | null}): ReactEle
             <Header title={'Event Artikel'} reduceSpacing/>
             <Carousel slidesToShow={articles.length}>
                 {articles.map((article, index) => <div key={(article && article.id) + '-' + index} >
-                    <Link href={'/article/[articleId]'} as={'/article/' + (article && article.id)}>
+                    <Link href={'/artikel/[articleId]'} as={'/artikel/' + (article && article.id)}>
                         <div className={'prevArticleCol'}>
                             <h3 className={'pastArticleHeader'}>{article ? <span><Truncate lines={2}>{article.title}</Truncate></span> : <TextLoader type={'h3'} rows={2} />}</h3>
                             <div className={'articleCover'}>

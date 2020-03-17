@@ -5,7 +5,7 @@ import TagRelations from "./SingleTagView/TagRelations";
 
 export default function SingleTagView({tag}: {tag: Tag}): ReactElement {
     return <>
-        <Header title={'Kategorie: ' + (tag && tag.name)} link={'Alle Kategorien anzeigen'} linkTarget={'/tags'} topHeader/>
+        <Header title={'Kategorie: ' + (tag && tag.name)} link={'Alle Kategorien anzeigen'} linkTarget={'/kategorien'} topHeader/>
 
         <TagRelations tagId={tag && tag.id} />
 
