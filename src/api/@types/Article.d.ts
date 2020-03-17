@@ -18,6 +18,7 @@ export interface Article {
         avatarWEBP: string;
         avatarJP2: string;
         title: string;
+        profileUrl: string;
     };
     tags: Tag[];
 }
