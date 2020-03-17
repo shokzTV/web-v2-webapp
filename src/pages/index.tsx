@@ -7,7 +7,7 @@ import LastVideos from '../components/pages/index/LastVideos';
 import LastNews from '../components/pages/index/LastNews';
 import { fetchFeaturedArticle } from '../api/article';
 import { Article } from '../api/@types/Article';
-import { fetchFeaturedEvents } from '../api/event';
+import { fetchFeaturedEvents, fetchMainEvent } from '../api/event';
 import { Event } from '../api/@types/Event';
 import { fetchRecentNews } from '../api/news';
 import { News } from '../api/@types/News';
@@ -34,6 +34,7 @@ function sort({start: aStart, end: aEnd}: Event, {start: bStart, end: bEnd}: Eve
 interface Props {
   featuredArticles: Partial<Article[]>;
   featuredEvents: Partial<Event>[];
+  mainEvent: Event;
   lastNews: News[];
   videos: Video[];
 }
@@ -43,18 +44,20 @@ export async function getStaticProps() {
   const featuredEvents = await fetchFeaturedEvents();
   const lastNews = await fetchRecentNews();
   const videos = await fetchLatestVideos();
+  const mainEvent = await fetchMainEvent();
   return {
       props: {
         featuredArticles,
         lastNews,
+        mainEvent,
         videos,
         featuredEvents: featuredEvents.sort(sort),
       }
   };
 }
 
-export default function index({featuredArticles, featuredEvents, lastNews, videos}: Props): ReactElement {
-  return <PageFrame title={'Die deutsche Dota2 Startseite'}>
+export default function index({featuredArticles, featuredEvents, mainEvent, lastNews, videos}: Props): ReactElement {
+  return <PageFrame title={'Die deutsche Dota2 Startseite'} mainEvent={mainEvent}>
     
     <FeaturedArticles featured={featuredArticles}/>
 

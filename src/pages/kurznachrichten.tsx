@@ -2,22 +2,25 @@ import React, { ReactElement } from 'react'
 import PageFrame from '../components/PageFrame';
 import NewsListHeader from '../components/pages/news/NewsListHeader';
 import Header from '../components/Header';
-import Divider from '../components/Divider';
 import NewsList from '../components/pages/news/NewsList';
 import { News } from '../api/@types/News';
 import { fetchAllNews } from '../api/news';
+import { fetchMainEvent } from '../api/event';
+import { Event } from '../api/@types/Event';
 
 export async function getStaticProps() {
   const news = (await fetchAllNews()).sort(({id: a}, {id: b}) => b - a);
+  const mainEvent = await fetchMainEvent();
   return {
       props: {
-        news
+        mainEvent,
+        news,
       }
   };
 }
 
-export default function news({news}: {news: News[]}): ReactElement {
-  return <PageFrame title={'News'}>
+export default function news({mainEvent, news}: {news: News[]; mainEvent: Event}): ReactElement {
+  return <PageFrame title={'News'} mainEvent={mainEvent}>
       <Header title={'Kurznachrichten'} topHeader />
       <NewsListHeader />
       <NewsList news={news} />

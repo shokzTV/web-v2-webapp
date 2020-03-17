@@ -2,9 +2,21 @@ import React, { ReactElement } from 'react'
 import PageFrame from '../components/PageFrame';
 import { COLORS } from '../style/colors';
 import Header from '../components/Header';
+import { fetchMainEvent } from '../api/event';
+import { Event } from '../api/@types/Event';
 
-export default function dataProtection(): ReactElement {
-  return <PageFrame title={'Datenschutzerklärung'}>
+export async function getStaticProps() {
+  const mainEvent = await fetchMainEvent();
+
+  return {
+    props: {
+      mainEvent
+    }
+  }
+}
+
+export default function dataProtection({mainEvent}: {mainEvent: Event}): ReactElement {
+  return <PageFrame title={'Datenschutzerklärung'} mainEvent={mainEvent}>
     <Header title={'Datenschutzerklärung'} topHeader />
     <h1 className="adsimple-311161227"></h1>
     <h2 className="adsimple-311161227">Datenschutz</h2>

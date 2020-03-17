@@ -3,7 +3,7 @@ import PageFrame from '../components/PageFrame';
 import FeaturedEvents from '../components/pages/events/FeaturedEvents';
 import Divider from '../components/Divider';
 import PastEvents from '../components/pages/events/PastEvents';
-import { fetchFeaturedEvents, fetchPastEventSlugs, fetchEventsBySlugs } from '../api/event';
+import { fetchFeaturedEvents, fetchPastEventSlugs, fetchEventsBySlugs, fetchMainEvent } from '../api/event';
 import { Event } from '../api/@types/Event';
 import dayjs from 'dayjs';
 
@@ -25,6 +25,7 @@ function sort({start: aStart, end: aEnd}: Event, {start: bStart, end: bEnd}: Eve
 
 interface Props {
   featuredEvents: Event[];
+  mainEvent: Event;
   slugs: string[];
   pastEvents: Event[];
 }
@@ -34,9 +35,11 @@ export async function getStaticProps() {
   const featuredEvents = await fetchFeaturedEvents();
   const slugs = await fetchPastEventSlugs();
   const pastEvents = await fetchEventsBySlugs(slugs.slice(0, pageSize));
+  const mainEvent = await fetchMainEvent();
   return {
       props: {
         featuredEvents: featuredEvents.sort(sort),
+        mainEvent,
         slugs,
         pastEvents,
       }
@@ -44,8 +47,8 @@ export async function getStaticProps() {
 }
 
 
-export default function events({featuredEvents, slugs, pastEvents}: Props): ReactElement {
-  return <PageFrame title={'Events'}>
+export default function events({featuredEvents, mainEvent, slugs, pastEvents}: Props): ReactElement {
+  return <PageFrame title={'Events'} mainEvent={mainEvent}>
     <FeaturedEvents featuredEvents={featuredEvents}/>
 
     <Divider double />
