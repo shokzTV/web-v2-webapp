@@ -7,17 +7,17 @@ import Pagination from "../../block/Pagination";
 import Row from "./ArticleList/Row";
 
 interface Props {
-  articleIds: number[];
+  slugs: string[];
   articles: Article[];
 }
 
-export default function ArticleList({articleIds, articles}: Props): ReactElement {
+export default function ArticleList({slugs, articles}: Props): ReactElement {
     const {
         page,
         total,
         setPage,
-        entries
-    } = usePagination<Article>(10, articleIds, articles, fetchArticles);
+        entries,
+    } = usePagination<Article>(10, slugs, articles, fetchArticles, 'slug');
 
     return <>
         <Header title={'ALLE ARTIKEL'} link={'ALLE ARTIKELKATERGORIEN ANZEIGEN'} linkTarget={'/kategorien'} topHeader/>

@@ -15,7 +15,7 @@ export default function FeaturedArticles({featured}: {featured: Partial<Article[
     return <>
         <Header title={'NEUE ARTIKEL'} link={'ALLE ARTIKEL ANZEIGEN'} linkTarget={'/artikel'} topHeader />
 
-        <Link href={'/artikel/[articleId]'} as={'/artikel/' + (lastArticle && lastArticle.id)}>
+        <Link href={'/artikel/[slug]'} as={'/artikel/' + (lastArticle && lastArticle.slug)}>
             <div className={'lastArticleRow'}>
                 <div className={'lastArticleCol lastArticleCover'}>
                     <div className={'articleCover'}>
@@ -36,7 +36,7 @@ export default function FeaturedArticles({featured}: {featured: Partial<Article[
         <Divider />
 
         <div className={'lastArticleRow pastArticleRow'}>
-            {previousArticles.map((article, index) => <Link href={'/artikel/[articleId]'} as={'/artikel/' + article.id} key={article.id + '-' + index}>
+            {previousArticles.map((article, index) => <Link href={'/artikel/[slug]'} as={'/artikel/' + article.slug} key={article.id + '-' + index}>
                 <div className={'prevArticleCol'}>
                     <h3 className={'pastArticleHeader'}>{article.title ? <span className={'header'}><Truncate lines={2}>{article.title}</Truncate></span> : <TextLoader rows={2} type={'h3'} />}</h3>
                     <div className={'articleCover'}>

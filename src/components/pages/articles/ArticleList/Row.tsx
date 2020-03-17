@@ -11,7 +11,7 @@ import TextLoader from "../../../TextLoader";
 export default function Row({article, noDivider = false}: {article: Article | null; noDivider?: boolean}): ReactElement {
 
     return <>
-        <Link href={'/artikel/[articleId]'} as={'/artikel/' + (article && article.id)}>
+        <Link href={'/artikel/[slug]'} as={'/artikel/' + (article && article.slug)}>
             <div className={'articleRow'}>
                 <div className={'coverColumn'}>
                     <div className={'articleCover'}>
