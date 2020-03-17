@@ -16,7 +16,7 @@ export default function Author({article}: {article: Article | null}): ReactEleme
         </div>
         <div className={'name'}>
             <div className={'userName'}>
-                Autor:&nbsp;<a className={'link'} href={author.profileUrl} target={'_blank'} rel={'noreferrer'}>{author ? author.name: <TextLoader rows={1} />}</a>
+                Autor:&nbsp;<a className={'link'} href={author && author.profileUrl} target={'_blank'} rel={'noreferrer'}>{author ? author.name: <TextLoader rows={1} />}</a>
             </div>
             {author && author.title.length > 0 && <div className={'userTitle'}><i>{author.title}</i></div>}
             <div className={'publishInfo'}>veröffentlicht am {formatDate(article && article.created)}</div>
