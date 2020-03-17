@@ -12,7 +12,7 @@ export default function Entry({event}: {event: Partial<Event>}): ReactElement {
     const currentTs = dayjs().unix();
 
     return <>
-        <Link href={'/event/[eventId]'} as={'/event/' + (event && event.id)}>
+        <Link href={'/event/[slug]'} as={'/event/' + (event && event.slug)}>
             <div className={'eventEntry'}>
                 <LoadingImage src={tag && tag.image} webp={tag && tag.imageWEBP} jp2={tag && tag.imageJP2} />
 

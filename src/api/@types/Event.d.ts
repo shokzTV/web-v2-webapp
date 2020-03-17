@@ -27,4 +27,5 @@ export interface Event {
     organizerLogoWEBP: string;
     tags: Tag[];
     links: EventLink[];
+    slug: string;
 }

@@ -10,7 +10,7 @@ export default function Entry({event}: {event: Event | null}): ReactElement {
     const tag = event && event.tags[0];
     const eventDate = useEventDate(true)(event);
     return <>
-        <Link href={'/event/[eventId]'} as={'/event/' + (event && event.id)}>
+        <Link href={'/event/[slug]'} as={'/event/' + (event && event.slug)}>
             <div className={'event'}>
                 <div className={'coverColumn'}>
                     <div className={'coverImage'}>

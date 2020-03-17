@@ -19,7 +19,7 @@ export default function Row({event, noDivider = false}: {event: Event | null; no
         const eventDate = useEventDate(true)(event);    
     
         return <>
-            <Link href={'/event/[eventId]'} as={'/event/' + event.id}>
+            <Link href={'/event/[slug]'} as={'/event/' + (event && event.slug)}>
                 <a className={'link'}>
                     <div className={classNames('eventRow', {isRunning, isPast})}>
                         <div className={'eventRowData'}>
