@@ -6,13 +6,13 @@ import classNames from "classnames";
 import Header from "../Header";
 import LoadingImage from "./ImageLoader";
 
-export default function FeaturedStreamer(): ReactElement {
+export default function FeaturedStreamer({isVisible}: {isVisible: boolean}): ReactElement {
     const [streamer, setStreamer] = useState<Streamer[]>([]);
 
     useEffect(() => {
-        const load = async () => setStreamer(await fetchOnlineStreamer());
+        const load = async () => streamer.length === 0 && isVisible && setStreamer(await fetchOnlineStreamer());
         load();
-    }, []);
+    }, [isVisible]);
 
     return <div className={classNames('featuredStreamer', {onlineStreamer: streamer.length > 0})}>
         <div className={'featuredStreamerInner'}>
@@ -58,6 +58,7 @@ export default function FeaturedStreamer(): ReactElement {
 
             .featuredStreamerInner {
                 max-width: 1175px;
+                padding: 0 40px;
                 margin: 0 auto;
             }
 

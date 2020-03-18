@@ -54,6 +54,10 @@ export default function FeaturedArticles({featured}: {featured: Partial<Article[
                 cursor: pointer;
             }
 
+            .pastArticleRow {
+                justify-content: space-between;
+            }
+
             .lastArticleCol {
                 width: 50%;
                 padding: 20px;

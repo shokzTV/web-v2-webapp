@@ -58,7 +58,8 @@ export default function Navigation(): ReactElement {
 
             .menuWrapperInner {
                 margin: 0 auto;
-                max-width: 1024px;
+                max-width: 1175px;
+                padding: 0 40px;
                 display: flex;
                 height: 100%;
             }
