@@ -72,6 +72,7 @@ export default function FeaturedStreamer(): ReactElement {
                 display: flex;
                 align-items: center;
                 margin: -10px;
+                text-decoration: none;
             }
 
             .preview {
