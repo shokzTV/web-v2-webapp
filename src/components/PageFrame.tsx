@@ -103,7 +103,7 @@ export default function PageFrame({children, title = null, seoArticle = null, ma
     </div>
     <ReactVisibilitySensor  scrollCheck partialVisibility={true}>
       {({ isVisible }) => <>
-        <div style={{height: isVisible ? '0px' : '1px'}}/>
+        <div style={{height: '1px'}}/>
         <FeaturedStreamer isVisible={isVisible} />
       </>}
     </ReactVisibilitySensor>
