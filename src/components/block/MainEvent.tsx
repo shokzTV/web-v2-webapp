@@ -14,7 +14,7 @@ export default function MainEvent({mainEvent}: {mainEvent: Event}): ReactElement
                 <OrganizerLogo event={mainEvent} />
             </div>
             <div className={'eventDetails'}>
-                <h1 className={'mainEventHeader'}>{mainEvent && mainEvent.name}</h1>
+                <h2 className={'mainEventHeader'}>{mainEvent && mainEvent.name}</h2>
                 <div className={'eventLinks'}>
                 <Link href={'/event/[slug]'} as={'/event/' + (mainEvent && mainEvent.slug)}><div className={'eventLink'}>Eventüberblick</div></Link>
                     <div className={'eventLink'}>Neuigkeiten zum Event</div>
@@ -52,6 +52,7 @@ export default function MainEvent({mainEvent}: {mainEvent: Event}): ReactElement
             .mainEventHeader {
                 margin: 0;
                 margin-bottom: .75em;
+                font-size: 30px;
             }
 
             .eventLinks {
