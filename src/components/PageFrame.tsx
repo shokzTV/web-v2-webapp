@@ -10,6 +10,7 @@ import FeaturedStreamer from './block/FeaturedStreamer';
 import { Article } from '../api/@types/Article';
 import dayjs from 'dayjs';
 import { Event } from '../api/@types/Event';
+import ReactVisibilitySensor from 'react-visibility-sensor';
 
 
 function buildArticleRichCard(article: Article): object {
@@ -100,8 +101,12 @@ export default function PageFrame({children, title = null, seoArticle = null, ma
         </div>
       </div>
     </div>
-
-    <FeaturedStreamer />
+    <ReactVisibilitySensor  scrollCheck partialVisibility={true}>
+      {({ isVisible }) => <>
+        <div style={{height: isVisible ? '0px' : '1px'}}/>
+        <FeaturedStreamer isVisible={isVisible} />
+      </>}
+    </ReactVisibilitySensor>
     <Footer />
 
     <style jsx>{`

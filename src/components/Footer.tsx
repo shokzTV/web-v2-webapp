@@ -68,7 +68,7 @@ export default function Footer(): ReactElement {
             .footerWrapperInner {
                 max-width: 1175px;
                 margin: 0 auto;
-                padding: 40px 20px;
+                padding: 40px;
                 color: #FFF;
                 font-size: 18px;
             }
