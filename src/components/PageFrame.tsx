@@ -10,35 +10,37 @@ import { Article } from '../api/@types/Article';
 import dayjs from 'dayjs';
 import { Event } from '../api/@types/Event';
 import ReactVisibilitySensor from 'react-visibility-sensor';
+import { NewsArticle } from "schema-dts";
+import { JsonLd } from "react-schemaorg";
 
-
-function buildArticleRichCard(article: Article): object {
-  return {
-    "@context": "https://schema.org",
-    "@type": "NewsArticle",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://shokz.tv/artikel/" + article.slug
-    },
-    "headline": article.title,
-    "image": [
-      article.cover
-     ],
-    "datePublished": dayjs.unix(article.created).toISOString(),
-    "dateModified": dayjs.unix(article.created).toISOString(),
-    "author": {
-      "@type": "Person",
-      "name": article.author.name,
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "shokzTV",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://shokz.tv/images/logo.png"
-      }
-    }
-  };
+function JsonLDArticle({article}: {article: Article}) {
+  return <JsonLd<NewsArticle>
+    item={{
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://shokz.tv/artikel/" + article.slug
+      },
+      "headline": article.title,
+      "image": [
+        article.cover,
+       ],
+      "datePublished": dayjs.unix(article.created).toISOString(),
+      "dateModified": dayjs.unix(article.created).toISOString(),
+      "author": {
+        "@type": "Person",
+        "name": article.author.name
+      },
+       "publisher": {
+        "@type": "Organization",
+        "name": "shokzTV",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://shokz.tv/images/logo.png"
+        }
+      },
+    }}/>;
 }
 
 interface Props {
@@ -64,8 +66,8 @@ export default function PageFrame({children, title = null, seoArticle = null, se
       <link rel="manifest" href="/manifest.json" />
       <link rel="preconnect" href="//www.google-analytics.com" />
       <link rel="preconnect" href="//staging-api.shokz.tv" />
-      {seoArticle && <script type="application/ld+json">{`{${JSON.stringify(buildArticleRichCard(seoArticle))}}`}</script>}
-      {seoArticles && seoArticles.length > 0 && seoArticles.map((article, index) => <script key={index} type="application/ld+json">{`{${JSON.stringify(buildArticleRichCard(article))}}`}</script>)}
+      {seoArticle && <JsonLDArticle article={seoArticle} />}
+      {seoArticles && seoArticles.length > 0 && seoArticles.map((article) => <JsonLDArticle key={article.id} article={article} />)}
     </Head>
 
     <AlphaInfo />
