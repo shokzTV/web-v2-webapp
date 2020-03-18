@@ -5,6 +5,7 @@ import { fetchOnlineStreamer } from "../../api/streamer";
 import classNames from "classnames";
 import Header from "../Header";
 import LoadingImage from "./ImageLoader";
+import TwoColCarousel from "./TwoColCarousel";
 
 export default function FeaturedStreamer({isVisible}: {isVisible: boolean}): ReactElement {
     const [streamer, setStreamer] = useState<Streamer[]>([]);
@@ -18,17 +19,22 @@ export default function FeaturedStreamer({isVisible}: {isVisible: boolean}): Rea
         <div className={'featuredStreamerInner'}>
             <Header title={'Ausgewählte Deutsche Livestreams'} inverted prefix={'live'} />
 
-            <div className={'streamerRow'}>
-                {streamer.map((streamer) => <a className={'streamerCol'} key={streamer.id} href={`https://twitch.tv/${streamer.name}`} target={'_blank'} rel={'noreferrer'}>
-                    <div className={'preview'}>
-                        <div className={'previewImage'}>
-                            <LoadingImage src={streamer.preview} webp={streamer.previewWEBP} jp2={streamer.previewJP2} />
+            <TwoColCarousel slidesToShow={streamer.length}>
+                {streamer.map((streamer) => <div key={streamer.id} className={'streamerCol'}>
+                    <a className={'streamerLink'} key={streamer.id} href={`https://twitch.tv/${streamer.name}`} target={'_blank'} rel={'noreferrer'}>
+                        <div className={'preview'}>
+                            <div className={'previewImage'}>
+                                <LoadingImage src={streamer.preview} webp={streamer.previewWEBP} jp2={streamer.previewJP2} />
+                            </div>
                         </div>
-                    </div>
 
-                    <div className={'info'}>
-                        <div className={'details'}>
-                            <h4>{streamer.name}</h4>
+                        <div className={'info'}>
+                            <div className={'details'}>
+                                <h4>{streamer.name}</h4>
+                                <div className={'title'}>
+                                    {streamer.title}
+                                </div>
+                            </div>
                             <div className={'viewer'}>
                                 <div className={'viewerCount'}>{streamer.viewer}</div>
                                 <div className={'userIcon'}>
@@ -36,12 +42,9 @@ export default function FeaturedStreamer({isVisible}: {isVisible: boolean}): Rea
                                 </div>
                             </div>
                         </div>
-                        <div className={'title'}>
-                            {streamer.title}
-                        </div>
-                    </div>
-                </a>)}
-            </div>
+                    </a>
+                </div>)}
+            </TwoColCarousel>
         </div>
 
         <style jsx>{`
@@ -62,28 +65,23 @@ export default function FeaturedStreamer({isVisible}: {isVisible: boolean}): Rea
                 margin: 0 auto;
             }
 
-            .streamerRow {
-                margin: -20px;
-                display: flex;
-            }
-
-            .streamerCol {
-                padding: 20px;
-                width: 50%;
+            .streamerLink {
+                margin: 10px;
                 display: flex;
                 align-items: center;
-                margin: -10px;
                 text-decoration: none;
             }
 
             .preview {
-                padding: 10px;
-                width: 40%;
+                width: 35%;
             }
 
             .info {
-                padding: 10px;
-                width: 60%;
+                padding-left: 40px;
+                width: 65%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
             }
 
             .info * {
@@ -110,12 +108,6 @@ export default function FeaturedStreamer({isVisible}: {isVisible: boolean}): Rea
                 white-space: nowrap;
             }
 
-            .details {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-
             .viewer {
                 display: flex;
                 align-items: center;
@@ -132,6 +124,14 @@ export default function FeaturedStreamer({isVisible}: {isVisible: boolean}): Rea
             .viewerCount {
                 margin-right: 8px;
                 color: #0D6AB5;
+            }
+
+            .details, .info, .preview {
+                overflow: hidden;
+            }
+
+            .viewer {
+                flex-shrink: 0;
             }
 
             @media only screen and (max-width: 768px) { 
