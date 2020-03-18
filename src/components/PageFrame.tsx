@@ -57,12 +57,12 @@ export default function PageFrame({children, title = null, seoArticle = null, ma
 
       localStorage.setItem('version', version);
       if(localVersion && localVersion !== version) {
-        await caches.keys().then((names) => {
-            for (let name of names) {
-              caches.delete(name);
-            }
-        });
-        window.location.reload(true);
+        //await caches.keys().then((names) => {
+        //    for (let name of names) {
+        //      caches.delete(name);
+        //    }
+        //});
+        //window.location.reload(true);
       }
     };
 
