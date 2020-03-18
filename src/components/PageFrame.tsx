@@ -64,8 +64,8 @@ export default function PageFrame({children, title = null, seoArticle = null, se
       <link rel="manifest" href="/manifest.json" />
       <link rel="preconnect" href="//www.google-analytics.com" />
       <link rel="preconnect" href="//staging-api.shokz.tv" />
-      {seoArticle && <script type="application/ld+json">{`${JSON.stringify(buildArticleRichCard(seoArticle))}`}</script>}
-      {seoArticles && seoArticles.length > 0 && seoArticles.map((article, index) => <script key={index} type="application/ld+json">{`${JSON.stringify(buildArticleRichCard(article))}`}</script>)}
+      {seoArticle && <script type="application/ld+json">{`{${JSON.stringify(buildArticleRichCard(seoArticle))}}`}</script>}
+      {seoArticles && seoArticles.length > 0 && seoArticles.map((article, index) => <script key={index} type="application/ld+json">{`{${JSON.stringify(buildArticleRichCard(article))}}`}</script>)}
     </Head>
 
     <AlphaInfo />
