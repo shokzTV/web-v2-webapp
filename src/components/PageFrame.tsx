@@ -81,8 +81,8 @@ export default function PageFrame({children, title = null, seoArticle = null, ma
       <link rel="apple-touch-icon" href="images/apple-touch-icon.png"></link>
       <meta name="theme-color" content="#0A1C3F" />
       <link rel="manifest" href="/manifest.json" />
-      <link rel="dns-prefetch" href="//www.google-analytics.com" />
-      <link rel="dns-prefetch" href="//staging-api.shokz.tv" />
+      <link rel="preconnect" href="//www.google-analytics.com" />
+      <link rel="preconnect" href="//staging-api.shokz.tv" />
       {articleJsonLD && articleJsonLD.length > 0 && <script type="application/ld+json">{`${articleJsonLD}`}</script>}
     </Head>
 
