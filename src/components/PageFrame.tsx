@@ -18,7 +18,7 @@ function buildArticleRichCard(article: Article): object {
     "@type": "NewsArticle",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://shokz.tv/article/" + article.id
+      "@id": "https://shokz.tv/artikel/" + article.slug
     },
     "headline": article.title,
     "image": [
@@ -45,12 +45,11 @@ interface Props {
     children: ReactNode;
     title?: string;
     seoArticle?: Article;
+    seoArticles?: Article[];
     mainEvent: Event;
 }
 
-export default function PageFrame({children, title = null, seoArticle = null, mainEvent}: Props): ReactElement {
-  const articleJsonLD = seoArticle && JSON.stringify(buildArticleRichCard(seoArticle));
-
+export default function PageFrame({children, title = null, seoArticle = null, seoArticles = null, mainEvent}: Props): ReactElement {
   return <>
     <Head>
       <title>shokzTV {title && ` - ${title}`}</title>
@@ -65,7 +64,8 @@ export default function PageFrame({children, title = null, seoArticle = null, ma
       <link rel="manifest" href="/manifest.json" />
       <link rel="preconnect" href="//www.google-analytics.com" />
       <link rel="preconnect" href="//staging-api.shokz.tv" />
-      {articleJsonLD && articleJsonLD.length > 0 && <script type="application/ld+json">{`${articleJsonLD}`}</script>}
+      {seoArticle && <script type="application/ld+json">{`${JSON.stringify(buildArticleRichCard(seoArticle))}`}</script>}
+      {seoArticles && seoArticles.length > 0 && seoArticles.map((article, index) => <script key={index} type="application/ld+json">{`${JSON.stringify(buildArticleRichCard(article))}`}</script>)}
     </Head>
 
     <AlphaInfo />
