@@ -5,7 +5,6 @@ import Footer from './Footer';
 import MainEvent from './block/MainEvent';
 import Navigation from './Navigation';
 import AlphaInfo from './block/AlphaInfo';
-import {fetchVersion} from '../api/base';
 import FeaturedStreamer from './block/FeaturedStreamer';
 import { Article } from '../api/@types/Article';
 import dayjs from 'dayjs';
@@ -51,24 +50,6 @@ interface Props {
 
 export default function PageFrame({children, title = null, seoArticle = null, mainEvent}: Props): ReactElement {
   const articleJsonLD = seoArticle && JSON.stringify(buildArticleRichCard(seoArticle));
-  useEffect(() => {
-    const checkVersion = async () => {
-      const version = await fetchVersion();
-      const localVersion = localStorage.getItem('version');
-
-      localStorage.setItem('version', version);
-      if(localVersion && localVersion !== version) {
-        //await caches.keys().then((names) => {
-        //    for (let name of names) {
-        //      caches.delete(name);
-        //    }
-        //});
-        //window.location.reload(true);
-      }
-    };
-
-    checkVersion();
-  }, []);
 
   return <>
     <Head>
