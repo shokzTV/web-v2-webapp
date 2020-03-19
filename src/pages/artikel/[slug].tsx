@@ -5,6 +5,7 @@ import { Article } from '../../api/@types/Article';
 import { fetchArticles, fetchArticleSlugs } from '../../api/article';
 import { Event } from '../../api/@types/Event';
 import { fetchMainEvent } from '../../api/event';
+import { getImageUrl } from '../../config/image';
 
 export async function getStaticProps({params}) {
     const articles = await fetchArticles([params.slug]);
@@ -27,7 +28,7 @@ export async function getStaticPaths() {
 }
 
 export default function article({article, mainEvent}: {article: Article; mainEvent: Event}): ReactElement {
-    return <PageFrame title={article && article.title} seoArticle={article} mainEvent={mainEvent} ogTitle={article && article.title} ogImage={article && article.cover}>
+    return <PageFrame title={article && article.title} seoArticle={article} mainEvent={mainEvent} ogTitle={article && article.title} ogImage={getImageUrl(article && article.cover)}>
         <SingleArticleView article={article} />
     </PageFrame>;
 }
