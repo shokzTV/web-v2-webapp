@@ -61,7 +61,8 @@ export default function FeaturedArticles({featured}: {featured: Partial<Article[
             .lastArticleCol {
                 width: 50%;
                 padding: 20px;
-                max-height: 350px;
+                max-height: 328px;
+                overflow: hidden;
             }
 
             .lastArticleCover {

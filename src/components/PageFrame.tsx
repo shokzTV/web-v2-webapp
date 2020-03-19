@@ -58,7 +58,7 @@ export default function PageFrame({children, title = null, seoArticle = null, se
       <meta charSet="UTF-8" />
       <meta name="google" content="notranslate" />
       <meta httpEquiv="Content-Language" content="de" />
-      <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover" />
+      <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
 
       <meta name="description" content="shokzTV - Die deutschsprachige Dota 2 Startseite für aktuelle Nachrichten, nationale und internationale Events, Updates rund um die Pro-Szene, Interviews, Livestreams und mehr" />
       <link rel="apple-touch-icon" href="images/apple-touch-icon.png"></link>
