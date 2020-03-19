@@ -5,6 +5,7 @@ import { fetchTag, fetchAllTagSlugs } from '../../api/tag';
 import SingleTagView from '../../components/pages/tags/SingleTagView';
 import { Event } from '../../api/@types/Event';
 import { fetchMainEvent } from '../../api/event';
+import { getImageUrl } from '../../config/image';
 
 export async function getStaticProps({params}) {
     const tag = await fetchTag(params.slug);
@@ -26,7 +27,7 @@ export async function getStaticPaths() {
 }
 
 export default function tag({tag, mainEvent}: {tag: Tag; mainEvent: Event}): ReactElement {
-    return <PageFrame title={tag && tag.name} mainEvent={mainEvent} ogTitle={tag && tag.name} ogDescription={tag && tag.description} ogImage={tag && tag.image}>
+    return <PageFrame title={tag && tag.name} mainEvent={mainEvent} ogTitle={tag && tag.name} ogDescription={tag && tag.description} ogImage={getImageUrl(tag && tag.image)}>
         <SingleTagView tag={tag} />
     </PageFrame>;
 }
