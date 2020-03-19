@@ -161,7 +161,10 @@ export default function Footer(): ReactElement {
                     padding: 5px;
                 }
 
-                mainFooterLinks, .subFooterLinks {
+                .mainFooterLinks {
+                    padding: 10px 0;
+                }
+                .subFooterLinks {
                     padding: 0;
                 }
             }
