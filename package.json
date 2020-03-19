@@ -24,6 +24,7 @@
     "next-offline": "5.0.0",
     "react": "^16.13.0",
     "react-country-flag": "^2.0.1",
+    "react-device-detect": "^1.11.14",
     "react-dom": "^16.13.0",
     "react-schemaorg": "^1.0.1",
     "react-slick": "^0.25.2",
