@@ -4,6 +4,7 @@ import SingleEventView from '../../components/pages/events/SingleEventView';
 import { Event } from '../../api/@types/Event';
 import { fetchEvent, fetchAllEventSlugs, fetchMainEvent } from '../../api/event';
 import { getImageUrl } from '../../config/image';
+import Share from '../../components/block/Share';
 
 export async function getStaticProps({params}) {
     const event = await fetchEvent(params.slug);
@@ -28,5 +29,7 @@ export default function event({event, mainEvent}: {event: Event; mainEvent: Even
     const tag = event && event.tags[0];
     return <PageFrame title={event && event.name} mainEvent={mainEvent} ogTitle={event && event.name} ogDescription={event && event.descriptionShort.length > 0 ? event.descriptionShort : null} ogImage={getImageUrl(tag && tag.image)}>
         <SingleEventView event={event} />
+        
+        <Share url={`https://shokz.tv/event/${event && event.slug}`} title={event && event.name} text={event && event.descriptionShort} />
     </PageFrame>;
 }
