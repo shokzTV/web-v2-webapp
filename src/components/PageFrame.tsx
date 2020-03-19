@@ -49,9 +49,22 @@ interface Props {
     seoArticle?: Article;
     seoArticles?: Article[];
     mainEvent: Event;
+    ogTitle?: string;
+    ogDescription?: string;
+    ogImage?: string;
 }
 
-export default function PageFrame({children, title = null, seoArticle = null, seoArticles = null, mainEvent}: Props): ReactElement {
+export default function PageFrame({
+  children, 
+  title = null, 
+  seoArticle = null, 
+  seoArticles = null, 
+  mainEvent,
+  ogTitle = 'Events, Neuigkeiten, Interviews, Videos & mehr',
+  ogDescription = 'Die deutschsprachige Dota 2 Startseite | Events, Neuigkeiten, Interviews, Videos & mehr | Exklusiver Partner der ESL Meisterschaft in Dota 2',
+  ogImage = 'https://shokz.tv/images/share.jpg',
+
+}: Props): ReactElement {
   return <>
     <Head>
       <title>shokzTV {title && ` - ${title}`}</title>
@@ -61,9 +74,9 @@ export default function PageFrame({children, title = null, seoArticle = null, se
       <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
 
       <meta property="og:site_name" content="shokzTV - Die deutschsprachige Dota 2 Startseite" />
-      <meta property="og:title" content="Events, Neuigkeiten, Interviews, Videos & mehr" />
-      <meta property="og:description" content="Die deutschsprachige Dota 2 Startseite | Events, Neuigkeiten, Interviews, Videos & mehr | Exklusiver Partner der ESL Meisterschaft in Dota 2" />
-      <meta property="og:image" content="https://shokz.tv/images/share.jpg" />
+      <meta property="og:title" content={ogTitle} />
+      <meta property="og:description" content={ogDescription} />
+      <meta property="og:image" content={ogImage} />
       <meta property="og:url" content="https://shokz.tv/" />
       <meta name="twitter:card" content="summary_large_image" />
 
