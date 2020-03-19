@@ -60,7 +60,7 @@ export default function PageFrame({children, title = null, seoArticle = null, se
       <meta httpEquiv="Content-Language" content="de" />
       <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
 
-      <meta name="description" content="shokzTV - Die deutschsprachige Dota 2 Startseite für aktuelle Nachrichten, nationale und internationale Events, Updates rund um die Pro-Szene, Interviews, Livestreams und mehr" />
+      <meta name="description" content="Die deutschsprachige Dota 2 Startseite | Events, Neuigkeiten, Interviews, Videos & mehr | Exklusiver Partner der ESL Meisterschaft in Dota 2" />
       <link rel="apple-touch-icon" href="images/apple-touch-icon.png"></link>
       <meta name="theme-color" content="#0A1C3F" />
       <link rel="manifest" href="/manifest.json" />

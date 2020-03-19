@@ -63,10 +63,10 @@ export default function LastNews({lastNews}: {lastNews: News[]}): ReactElement {
                 margin-left: 10px;
             }
 
-
             @media only screen and (max-width: 768px) { 
                 .news {
                     max-height: none;
+                    overflow-y: visible;
                 }
             }
         `}</style>

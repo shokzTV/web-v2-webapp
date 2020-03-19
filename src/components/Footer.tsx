@@ -138,6 +138,7 @@ export default function Footer(): ReactElement {
                 }
                 .footerLinks {
                     flex-direction: column;
+                    margin: 0;
                 }
                 .mainFooterLinks, .subFooterLinks {
                     width: 100%;
@@ -150,7 +151,7 @@ export default function Footer(): ReactElement {
             }
             @media only screen and (max-width: 425px) { 
                 .footerWrapperInner {
-                    padding: 0 15px;
+                    padding: 15px;
                 }
                 .footerRow {
                     flex-direction: column;
@@ -158,6 +159,13 @@ export default function Footer(): ReactElement {
                 .footerColumn, .x2 .footerColumn, .x3 .footerColumn {
                     width: 100%;
                     padding: 5px;
+                }
+
+                .mainFooterLinks {
+                    padding: 10px 0;
+                }
+                .subFooterLinks {
+                    padding: 0;
                 }
             }
         `}</style>
