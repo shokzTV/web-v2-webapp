@@ -24,7 +24,8 @@ export async function getStaticPaths() {
 }
 
 export default function event({event, mainEvent}: {event: Event; mainEvent: Event}): ReactElement {
-    return <PageFrame title={event && event.name} mainEvent={mainEvent}>
+    const tag = event && event.tags[0];
+    return <PageFrame title={event && event.name} mainEvent={mainEvent} ogTitle={event && event.name} ogDescription={event && event.descriptionShort.length > 0 ? event.descriptionShort : null} ogImage={tag && tag.image}>
         <SingleEventView event={event} />
     </PageFrame>;
 }

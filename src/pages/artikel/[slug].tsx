@@ -27,7 +27,7 @@ export async function getStaticPaths() {
 }
 
 export default function article({article, mainEvent}: {article: Article; mainEvent: Event}): ReactElement {
-    return <PageFrame title={article && article.title} seoArticle={article} mainEvent={mainEvent}>
+    return <PageFrame title={article && article.title} seoArticle={article} mainEvent={mainEvent} ogTitle={article && article.title} ogImage={article && article.cover}>
         <SingleArticleView article={article} />
     </PageFrame>;
 }
