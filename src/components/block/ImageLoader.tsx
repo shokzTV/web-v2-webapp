@@ -4,15 +4,20 @@ import VisibilitySensor from "react-visibility-sensor";
 import { getImageUrl } from "../../config/image";
 import Loader from "./Loader";
 
+export function toAlt(name: string): string {
+    return name.toLowerCase().split('-').join('_').split(' ').join('_');
+}
+
 interface Props {
     src?: string;
     webp?: string;
     jp2?: string;
     contains?: boolean;
     hideLoader?: boolean;
+    altTag?: string;
 }
 
-export default function LoadingImage({src, webp, jp2, contains, hideLoader = false}: Props): ReactElement { 
+export default function LoadingImage({src, webp, jp2, contains, hideLoader = false, altTag}: Props): ReactElement { 
     const [loaded, setLoaded] = useState(false);
 
     return <VisibilitySensor  scrollCheck partialVisibility={true}>
@@ -21,7 +26,7 @@ export default function LoadingImage({src, webp, jp2, contains, hideLoader = fal
                 {(isVisible || loaded) && <picture>
                     <source type="image/webp" srcSet={getImageUrl(webp)}/>
                     <source type="image/jp2" srcSet={getImageUrl(jp2)}/>
-                    <img className={classNames('image', {contains})} src={getImageUrl(src)} alt={src} onLoad={() => setLoaded(true)}/>
+                    <img className={classNames('image', {contains})} src={getImageUrl(src)} alt={altTag || src} onLoad={() => setLoaded(true)}/>
                 </picture>}
             </div>}
             {(!hideLoader || !loaded) &&  <div className={'imageSkeleton'}><Loader /></div>}

@@ -6,7 +6,7 @@ import { fetchTagRelations } from "../../../../api/tag";
 import Divider from "../../../Divider";
 import Header from "../../../Header";
 import Carousel from "../../../block/Carousel";
-import LoadingImage from "../../../block/ImageLoader";
+import LoadingImage, { toAlt } from "../../../block/ImageLoader";
 import Row from "../../articles/ArticleList/Row";
 
 export default function TagRelations({tagId}: {tagId: number | null}): ReactElement {
@@ -36,8 +36,9 @@ export default function TagRelations({tagId}: {tagId: number | null}): ReactElem
                     <div className={'thumbnailWrapper'}>
                         <a href={video ? video.source : ''} target={'_blank'} rel={'noreferrer'}>
                             <LoadingImage src={video && video.thumbnail} 
-                                        webp={video && video.thumbnailWEBP} 
-                                        jp2={video && video.thumbnailJP2} />
+                                          webp={video && video.thumbnailWEBP} 
+                                          jp2={video && video.thumbnailJP2}
+                                          altTag={toAlt((video && video.title) + ' thumbnail')} />
                         </a>
                     </div>
                 </div>)}

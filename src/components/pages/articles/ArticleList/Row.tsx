@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import { Article } from "../../../../api/@types/Article";
-import LoadingImage from "../../../block/ImageLoader";
+import LoadingImage, { toAlt } from "../../../block/ImageLoader";
 import Divider from "../../../Divider";
 import Link from "next/link";
 import { formatDate } from "../../../../hooks/eventDate";
@@ -15,7 +15,7 @@ export default function Row({article, noDivider = false}: {article: Article | nu
             <div className={'articleRow'}>
                 <div className={'coverColumn'}>
                     <div className={'articleCover'}>
-                        <LoadingImage src={article && article.cover} webp={article && article.coverWEBP} jp2={article && article.coverJP2} />
+                        <LoadingImage src={article && article.cover} webp={article && article.coverWEBP} jp2={article && article.coverJP2} altTag={toAlt((article && article.title) + ' cover')}/>
                     </div>
                 </div>
 

@@ -5,7 +5,7 @@ import { Article } from "../../../../api/@types/Article";
 import { fetchEventRelations } from "../../../../api/event";
 import Header from "../../../Header";
 import Carousel from "../../../block/Carousel";
-import LoadingImage from "../../../block/ImageLoader";
+import LoadingImage, { toAlt } from "../../../block/ImageLoader";
 import Divider from "../../../Divider";
 import Link from "next/link";
 import TextLoader from "../../../TextLoader";
@@ -39,7 +39,8 @@ export default function EventRelations({event}: {event: Event | null}): ReactEle
                             <div className={'articleCover'}>
                                 <LoadingImage src={article && article.cover} 
                                                 webp={article && article.coverWEBP} 
-                                                jp2={article && article.coverJP2} />
+                                                jp2={article && article.coverJP2} 
+                                                altTag={toAlt((article && article.title) + ' cover')}/>
                             </div>
                         </div>
                     </Link>
@@ -56,7 +57,8 @@ export default function EventRelations({event}: {event: Event | null}): ReactEle
                         <a href={video ? video.source : ''} target={'_blank'} rel={'noreferrer'}>
                             <LoadingImage src={video && video.thumbnail} 
                                         webp={video && video.thumbnailWEBP} 
-                                        jp2={video && video.thumbnailJP2} />
+                                        jp2={video && video.thumbnailJP2} 
+                                        altTag={toAlt((video && video.title) + ' thumbnail')}/>
                         </a>
                     </div>
                 </div>)}

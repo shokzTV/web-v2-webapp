@@ -4,7 +4,7 @@ import { Event } from "../../../../api/@types/Event";
 import Link from "next/link";
 import { COLORS } from "../../../../style/colors";
 import classNames from "classnames";
-import LoadingImage from "../../../block/ImageLoader";
+import LoadingImage, { toAlt } from "../../../block/ImageLoader";
 import { useEventDate } from "../../../../hooks/eventDate";
 import ReactCountryFlag from "react-country-flag";
 import Divider from "../../../Divider";
@@ -28,7 +28,8 @@ export default function Row({event, noDivider = false}: {event: Event | null; no
                                               hideLoader
                                               src={event.organizer.icon} 
                                               webp={event.organizer.icon_webp} 
-                                              jp2={event.organizer.icon_jpeg_2000} />
+                                              jp2={event.organizer.icon_jpeg_2000}
+                                              altTag={toAlt(event.organizer.name + ' icon')} />
                             </div>
 
                             <div className={'eventName'}>

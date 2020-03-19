@@ -2,7 +2,7 @@ import { ReactElement, useState, useEffect } from 'react';
 import Header from '../../Header';
 import { Video } from '../../../api/@types/Video';
 import Carousel from '../../block/Carousel';
-import LoadingImage from '../../block/ImageLoader';
+import LoadingImage, { toAlt } from '../../block/ImageLoader';
 
 export default function LastVideos({videos}: {videos: Video[]}): ReactElement {
     return <>
@@ -13,7 +13,8 @@ export default function LastVideos({videos}: {videos: Video[]}): ReactElement {
                     <a href={video ? video.source : ''} target={'_blank'} rel={'noreferrer'}>
                         <LoadingImage src={video && video.thumbnail} 
                                       webp={video && video.thumbnailWEBP} 
-                                      jp2={video && video.thumbnailJP2} />
+                                      jp2={video && video.thumbnailJP2}
+                                      altTag={toAlt('video ' + (video && video.id) + ' thumbnail')} />
                     </a>
                 </div>
             </div>)}

@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import { Event } from "../../../../api/@types/Event";
-import LoadingImage from "../../../block/ImageLoader";
+import LoadingImage, { toAlt } from "../../../block/ImageLoader";
 import classNames from "classnames";
 import { useEventDate } from "../../../../hooks/eventDate";
 import dayjs from "dayjs";
@@ -14,7 +14,7 @@ export default function Entry({event}: {event: Partial<Event>}): ReactElement {
     return <>
         <Link href={'/event/[slug]'} as={'/event/' + (event && event.slug)}>
             <div className={'eventEntry'}>
-                <LoadingImage src={tag && tag.image} webp={tag && tag.imageWEBP} jp2={tag && tag.imageJP2} />
+                <LoadingImage src={tag && tag.image} webp={tag && tag.imageWEBP} jp2={tag && tag.imageJP2} altTag={toAlt((tag && tag.name) + ' image')}/>
 
                 <div className={'eventDescription'}>
                     <h3>{event.name || <>&nbsp;</>}</h3>

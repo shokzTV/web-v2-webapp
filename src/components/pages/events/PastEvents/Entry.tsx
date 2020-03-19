@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import Link from "next/link";
 import { Event } from "../../../../api/@types/Event";
-import LoadingImage from "../../../block/ImageLoader";
+import LoadingImage, { toAlt } from "../../../block/ImageLoader";
 import { useEventDate } from "../../../../hooks/eventDate";
 import TextLoader from "../../../TextLoader";
 
@@ -14,7 +14,7 @@ export default function Entry({event}: {event: Event | null}): ReactElement {
             <div className={'event'}>
                 <div className={'coverColumn'}>
                     <div className={'coverImage'}>
-                        <LoadingImage src={tag && tag.image} webp={tag && tag.imageWEBP} jp2={tag && tag.imageJP2} />
+                        <LoadingImage src={tag && tag.image} webp={tag && tag.imageWEBP} jp2={tag && tag.imageJP2} altTag={toAlt((tag && tag.name) + ' image')}/>
                     </div>
                 </div>
                 <div className={'detailsColumn'}>

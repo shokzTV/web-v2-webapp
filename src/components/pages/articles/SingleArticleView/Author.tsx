@@ -1,7 +1,7 @@
 import { Article } from "../../../../api/@types/Article";
 import { ReactElement } from "react";
 import { formatDate } from "../../../../hooks/eventDate";
-import LoadingImage from "../../../block/ImageLoader";
+import LoadingImage, { toAlt } from "../../../block/ImageLoader";
 import { COLORS } from "../../../../style/colors";
 import TextLoader from "../../../TextLoader";
 
@@ -12,7 +12,8 @@ export default function Author({article}: {article: Article | null}): ReactEleme
         <div className={'userAvatar'}>
             <LoadingImage src={author && author.avatar}
                           webp={author && author.avatarWEBP}
-                          jp2={author && author.avatarJP2} />
+                          jp2={author && author.avatarJP2} 
+                          altTag={toAlt((author && author.name) + ' avatar')}/>
         </div>
         <div className={'name'}>
             <div className={'userName'}>

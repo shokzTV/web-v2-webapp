@@ -4,7 +4,7 @@ import { Streamer } from "../../api/@types/Streamer";
 import { fetchOnlineStreamer } from "../../api/streamer";
 import classNames from "classnames";
 import Header from "../Header";
-import LoadingImage from "./ImageLoader";
+import LoadingImage, { toAlt } from "./ImageLoader";
 import TwoColCarousel from "./TwoColCarousel";
 
 export default function FeaturedStreamer({isVisible}: {isVisible: boolean}): ReactElement {
@@ -24,7 +24,7 @@ export default function FeaturedStreamer({isVisible}: {isVisible: boolean}): Rea
                     <a className={'streamerLink'} key={streamer.id} href={`https://twitch.tv/${streamer.name}`} target={'_blank'} rel={'noreferrer'}>
                         <div className={'preview'}>
                             <div className={'previewImage'}>
-                                <LoadingImage src={streamer.preview} webp={streamer.previewWEBP} jp2={streamer.previewJP2} />
+                                <LoadingImage src={streamer.preview} webp={streamer.previewWEBP} jp2={streamer.previewJP2} altTag={toAlt(streamer.name + ' preview')}/>
                             </div>
                         </div>
 
@@ -147,6 +147,23 @@ export default function FeaturedStreamer({isVisible}: {isVisible: boolean}): Rea
             @media only screen and (max-width: 425px) {
                 .streamerCol {
                     padding: 20px 5px;
+                }
+
+                .featuredStreamerInner {
+                    padding: 0;
+                }
+
+                .streamerLink {
+                    flex-direction: column;
+                }
+
+                .preview, .info {
+                    width: 100%;
+                }
+
+                .info {
+                    margin-top: 10px;
+                    padding-left: 0;
                 }
             }
         `}</style>
