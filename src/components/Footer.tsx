@@ -149,6 +149,9 @@ export default function Footer(): ReactElement {
                 }
             }
             @media only screen and (max-width: 425px) { 
+                .footerWrapperInner {
+                    padding: 0 15px;
+                }
                 .footerRow {
                     flex-direction: column;
                 }

@@ -106,6 +106,10 @@ export default function Navigation(): ReactElement {
                     position: relative;
                 }
 
+                .menuWrapperInner {
+                    padding: 0;
+                }
+
                 .responsiveMenuOpener {
                     display: block;
                     position: absolute;
