@@ -18,7 +18,7 @@ export async function getStaticProps() {
 }
 
 export default function tags({mainEvent, tags}: {mainEvent: Event; tags: Tag[]}): ReactElement {
-  return <PageFrame title={'Tags'} mainEvent={mainEvent}>
+  return <PageFrame title={'Kategorien'} mainEvent={mainEvent}>
     <TagList allTags={tags} />
   </PageFrame>;
 }

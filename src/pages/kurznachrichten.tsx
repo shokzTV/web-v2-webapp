@@ -20,7 +20,7 @@ export async function getStaticProps() {
 }
 
 export default function news({mainEvent, news}: {news: News[]; mainEvent: Event}): ReactElement {
-  return <PageFrame title={'News'} mainEvent={mainEvent}>
+  return <PageFrame title={'Kurznachrichten'} mainEvent={mainEvent}>
       <Header title={'Kurznachrichten'} topHeader />
       <NewsListHeader />
       <NewsList news={news} />
