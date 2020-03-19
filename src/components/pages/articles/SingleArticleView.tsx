@@ -1,7 +1,7 @@
 import { Article } from "../../../api/@types/Article";
 import { ReactElement } from "react";
 import CKEditorContent from "../../CKEditorContent";
-import LoadingImage from "../../block/ImageLoader";
+import LoadingImage, { toAlt } from "../../block/ImageLoader";
 import Author from "./SingleArticleView/Author";
 import Tags from "./SingleArticleView/Tags";
 import TextLoader from "../../TextLoader";
@@ -16,7 +16,7 @@ export default function SingleArticleView({article}: {article: Article | null}):
         <div className={'articleContent'}>
             <div className={'articleCoverWrapper'}>
                 <div className={'articleCover'}>
-                    <LoadingImage src={article && article.cover} webp={article && article.coverWEBP} jp2={article && article.coverJP2} />
+                    <LoadingImage src={article && article.cover} webp={article && article.coverWEBP} jp2={article && article.coverJP2} altTag={toAlt((article && article.title) + ' cover')}/>
                 </div>
             </div>
 

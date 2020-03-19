@@ -1,7 +1,7 @@
 import { ReactElement, useMemo } from "react";
 import Header from "../../Header";
 import { Article } from '../../../api/@types/Article';
-import LoadingImage from "../../block/ImageLoader";
+import LoadingImage, { toAlt } from "../../block/ImageLoader";
 import CKEditorContent from "../../CKEditorContent";
 import Link from "next/link";
 import Divider from "../../Divider";
@@ -21,7 +21,8 @@ export default function FeaturedArticles({featured}: {featured: Partial<Article[
                     <div className={'articleCover'}>
                         <LoadingImage src={lastArticle && lastArticle.cover} 
                                     webp={lastArticle && lastArticle.coverWEBP} 
-                                    jp2={lastArticle && lastArticle.coverJP2} />
+                                    jp2={lastArticle && lastArticle.coverJP2} 
+                                    altTag={toAlt((lastArticle && lastArticle.title) + ' cover')}/>
                     </div>
                 </div>
                 <div className={'lastArticleCol'}>
@@ -40,7 +41,7 @@ export default function FeaturedArticles({featured}: {featured: Partial<Article[
                 <div className={'prevArticleCol'}>
                     <h3 className={'pastArticleHeader'}>{article.title ? <span className={'header'}><Truncate lines={2}>{article.title}</Truncate></span> : <TextLoader rows={2} type={'h3'} />}</h3>
                     <div className={'articleCover'}>
-                        <LoadingImage src={article.cover} webp={article.coverWEBP} jp2={article.coverJP2} />
+                        <LoadingImage src={article.cover} webp={article.coverWEBP} jp2={article.coverJP2} altTag={toAlt((article && article.title) + ' cover')}/>
                     </div>
                 </div>
             </Link>)}

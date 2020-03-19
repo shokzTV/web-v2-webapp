@@ -1,13 +1,13 @@
 import { ReactElement } from "react";
 import { Tag } from "../../../../api/@types/Tag";
-import LoadingImage from "../../../block/ImageLoader";
+import LoadingImage, { toAlt } from "../../../block/ImageLoader";
 import TextLoader from "../../../TextLoader";
 import Link from "next/link";
 
 export default function Entry({tag}: {tag: Tag | null}): ReactElement {
     return <Link href={'/kategorie/[slug]'} as={`/kategorie/${tag && tag.slug}`}>
         <div className={'tagEntry'}>
-            <LoadingImage src={tag && tag.image} webp={tag && tag.imageWEBP} jp2={tag && tag.imageJP2} />
+            <LoadingImage src={tag && tag.image} webp={tag && tag.imageWEBP} jp2={tag && tag.imageJP2} altTag={toAlt((tag && tag.name) + ' image')}/>
 
             <div className={'tagDescription'}>
                 <h3>{tag ? tag.name : <TextLoader rows={1} type={'h3'} />}</h3>

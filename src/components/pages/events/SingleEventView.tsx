@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import { Event } from "../../../api/@types/Event";
-import LoadingImage from "../../block/ImageLoader";
+import LoadingImage, { toAlt } from "../../block/ImageLoader";
 import EventDetails from "./SingleEventView/EventDetails";
 import EventLinks from "./SingleEventView/EventLinks";
 import EventDescription from "./SingleEventView/EventDescription";
@@ -20,7 +20,7 @@ export default function SingleEventView({event}: {event: Event | null}): ReactE
         <div className={'eventDetails'}>
             <div className={'coverColumn'}>
                 <div className={'eventCover'}>
-                    <LoadingImage src={tag && tag.image} webp={tag && tag.imageWEBP} jp2={tag && tag.imageJP2} />
+                    <LoadingImage src={tag && tag.image} webp={tag && tag.imageWEBP} jp2={tag && tag.imageJP2} altTag={toAlt((tag && tag.name) + ' image')}/>
                 </div>
             </div>
 

@@ -4,7 +4,7 @@ import { Video } from "../../../api/@types/Video";
 import { usePagination } from "../../../hooks/entryPagination";
 import { fetchVideoIds, fetchVideos } from "../../../api/video";
 import Pagination from "../../block/Pagination";
-import LoadingImage from "../../block/ImageLoader";
+import LoadingImage, { toAlt } from "../../block/ImageLoader";
 
 export default function VideoList({videoIds, videos}: {videoIds: number[]; videos: Video[]}): ReactElement {
     const {
@@ -25,7 +25,8 @@ export default function VideoList({videoIds, videos}: {videoIds: number[]; video
                     <div className={'thumbnail'}>
                         <LoadingImage src={video && video.thumbnail} 
                                       webp={video && video.thumbnailWEBP} 
-                                      jp2={video && video.thumbnailJP2} />
+                                      jp2={video && video.thumbnailJP2} 
+                                      altTag={toAlt((video && video.title) + ' thumbnail')}/>
                     </div>
                 </a>
             </div>)}
