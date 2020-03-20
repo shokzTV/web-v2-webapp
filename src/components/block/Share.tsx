@@ -20,6 +20,7 @@ export default function Share({url, title, text = ''}: Props): ReactElement | nu
                     flex-direction: column;
                     align-items: center;
                     padding: 20px 0;
+                    margin-top: 30px;
                 }
 
                 .button {
