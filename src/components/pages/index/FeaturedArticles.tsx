@@ -9,8 +9,8 @@ import TextLoader from "../../TextLoader";
 import Truncate from "react-truncate";
 
 export default function FeaturedArticles({featured}: {featured: Partial<Article[]>}): ReactElement {
-    const lastArticle = useMemo<Partial<Article>>(() => featured && featured.slice(-1)[0], [featured]);
-    const previousArticles = useMemo<Partial<Article>[]>(() => featured ? featured.slice(0, 3).reverse() : [{id:0},{id:0},{id:0}], [featured]);
+    const lastArticle = useMemo<Partial<Article>>(() => featured && featured[0], [featured]);
+    const previousArticles = useMemo<Partial<Article>[]>(() => featured ? featured.slice(1, 4) : [{id:0},{id:0},{id:0}], [featured]);
 
     return <>
         <Header title={'NEUE ARTIKEL'} link={'ALLE ARTIKEL ANZEIGEN'} linkTarget={'/artikel'} topHeader />
