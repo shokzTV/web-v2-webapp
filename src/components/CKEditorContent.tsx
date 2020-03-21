@@ -43,7 +43,6 @@ export default function CKEditorContent({text = '<p></p>', rows = 0}: {text: str
             .content {
                 font-size: 18px;
                 line-height: 200%;
-                overflow: hidden;
             }    
 
             .content :global(img) {
@@ -52,6 +51,7 @@ export default function CKEditorContent({text = '<p></p>', rows = 0}: {text: str
 
             .content :global(p) {
                 margin-bottom: 0;
+                word-break: break-word;
             }
 
             .content :global(ul) {
@@ -75,7 +75,6 @@ export default function CKEditorContent({text = '<p></p>', rows = 0}: {text: str
             .content :global(a), .content :global(a *) {
                 color: ${COLORS.PRIMARY};
                 text-decoration: none;
-                word-break: break-word;
             }
         `}</style>
     </div>;
