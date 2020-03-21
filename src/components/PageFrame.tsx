@@ -91,8 +91,6 @@ export default function PageFrame({
       {seoArticles && seoArticles.length > 0 && seoArticles.map((article) => <JsonLDArticle key={article.id} article={article} />)}
     </Head>
 
-    <AlphaInfo />
-
     <Navigation />    
     <MainEvent mainEvent={mainEvent}/>
     
