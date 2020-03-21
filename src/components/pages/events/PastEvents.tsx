@@ -20,8 +20,8 @@ export default function PastEvents({slugs, pastEvents}: Props): ReactElement {
     } = usePagination<Event>(10, slugs, pastEvents, fetchEventsBySlugs, 'slug');
     
     return <>
-        <div id={'vorherige'} />
-        <Header title={'VORHERIGE EVENTS'} />
+        <div id={'weitere'} />
+        <Header title={'Weitere EVENTS'} />
 
         <Pagination  page={page} total={total} setPage={setPage} />
         <div className={'eventGrid'}>
