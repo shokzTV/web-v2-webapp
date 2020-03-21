@@ -5,7 +5,7 @@ import { Event } from "../../../api/@types/Event";
 
 export default function FeaturedEvents({featuredEvents}: {featuredEvents: Event[]}): ReactElement {
     return <>
-        <Header title={'Features Events'} link={'Weitere EVENTS ANZEIGEN'} topHeader linkTarget={'/events#weitere'} />
+        <Header title={'Featured Events'} link={'Weitere EVENTS ANZEIGEN'} topHeader linkTarget={'/events#weitere'} />
 
         <div className={'eventsGrid'}>
             {featuredEvents.map((event, index) => <div key={event.id + '-' + index} className={'column'}><Entry event={event} /></div>)}
