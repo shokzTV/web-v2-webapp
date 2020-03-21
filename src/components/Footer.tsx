@@ -42,12 +42,12 @@ export default function Footer(): ReactElement {
                     
                     <div className={'footerRow x2'}>
                         <div className={'footerColumn'}>
-                            <Link href={'/dataProtection'} as={'/datenschutz'}>
+                            <Link href={'/datenschutz'} as={'/datenschutz'}>
                                 <a className={'link'}>Datenschutzerklärung</a>
                             </Link>
                         </div>
                         <div className={'footerColumn'}>
-                            <Link href={'/imprint'} as={'/impressum'}>
+                            <Link href={'/impressum'} as={'/impressum'}>
                                 <a className={'link'}>Impressum</a>
                             </Link>
                         </div>
