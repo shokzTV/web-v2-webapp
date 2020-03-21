@@ -43,6 +43,8 @@ export default function CKEditorContent({text = '<p></p>', rows = 0}: {text: str
             .content {
                 font-size: 18px;
                 line-height: 200%;
+                overflow: hidden;
+                word-break: break-word;
             }    
 
             .content :global(img) {
