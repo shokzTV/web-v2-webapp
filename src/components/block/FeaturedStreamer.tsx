@@ -65,8 +65,8 @@ export default function FeaturedStreamer({isVisible}: {isVisible: boolean}): Rea
                 margin: 0 auto;
             }
 
-            .streamerLink {
-                margin: 10px;
+            .streamerLink {    
+                margin: 10px 25px;
                 display: flex;
                 align-items: center;
                 text-decoration: none;
@@ -155,6 +155,7 @@ export default function FeaturedStreamer({isVisible}: {isVisible: boolean}): Rea
 
                 .streamerLink {
                     flex-direction: column;
+                    margin: 10px;
                 }
 
                 .preview, .info {
