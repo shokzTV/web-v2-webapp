@@ -16,7 +16,7 @@ function getPriority(start: number, end: number): number {
 }
 
 function sort({start: aStart, end: aEnd}: Event, {start: bStart, end: bEnd}: Event): number {
-    return getPriority(bStart, bEnd) - getPriority(aStart, aEnd);
+    return getPriority(bStart, bEnd) - getPriority(aStart, aEnd) || aStart - bStart;;
 }
 
 export function loadFeaturedEvents(): Partial<Event>[] {
