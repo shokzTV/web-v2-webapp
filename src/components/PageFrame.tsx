@@ -78,6 +78,7 @@ export default function PageFrame({
       <meta property="og:description" content={ogDescription} />
       <meta property="og:image" content={ogImage} />
       <meta property="og:url" content="https://shokz.tv/" />
+      <meta property="og:type" content="website" />
       <meta name="twitter:card" content="summary_large_image" />
 
       <meta name="description" content="Die deutschsprachige Dota 2 Startseite | Events, Neuigkeiten, Interviews, Videos & mehr | Exklusiver Partner der ESL Meisterschaft in Dota 2" />
