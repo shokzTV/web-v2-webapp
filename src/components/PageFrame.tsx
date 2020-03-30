@@ -10,12 +10,12 @@ import { Article } from '../api/@types/Article';
 import dayjs from 'dayjs';
 import { Event } from '../api/@types/Event';
 import ReactVisibilitySensor from 'react-visibility-sensor';
-import { Article } from "schema-dts";
+import { Article as JsonArticle } from "schema-dts";
 import { JsonLd } from "react-schemaorg";
 
 function JsonLDArticle({article}: {article: Article}) {
   const tags = article.tags.map(({name}) => name);
-  return <JsonLd<Article>
+  return <JsonLd<JsonArticle>
     item={{
       "@context": "https://schema.org",
       "@type": "Article",
