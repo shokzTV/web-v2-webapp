@@ -90,7 +90,7 @@ export default function PageFrame({
       <link rel="preconnect" href="//www.google-analytics.com" />
       <link rel="preconnect" href="//staging-api.shokz.tv" />
       <script type="application/ld+json">
-      {
+      {{
           "@context": "http://schema.org",
           "@type": "Organization",
           "@id": "#publisher",
@@ -108,16 +108,16 @@ export default function PageFrame({
               "https://www.twitch.tv/shokztv",
               "https://www.youtube.com/channel/UCbSSQP3v0syCn9_-e089HgA"
           ]
-      }
+      }}
       </script>    
       <script type="application/ld+json">
-      {
+      {{
           "@context": "http://schema.org",
           "@type": "WebPage",
           "publisher": {
               "@id": "#publisher"
           }
-      }
+      }}
       </script> 
       {seoArticle && <JsonLDArticle article={seoArticle} />}
     </Head>
