@@ -15,29 +15,61 @@ import { JsonLd } from "react-schemaorg";
 
 function JsonLDArticle({article}: {article: Article}) {
   const tags = article.tags.map(({name}) => name);
-  return <JsonLd<JsonArticle>
-    item={{
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": article.title,
-      "image": `https://web-api.shokz.tv/${article.cover}`,
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://shokz.tv/artikel/" + article.slug
-      },
-      "datePublished": dayjs.unix(article.created).toISOString(),
-      "dateModified": dayjs.unix(article.created).toISOString(),
-      "author": {
-        "@type": "Person",
-        "url": article.author.profileUrl,
-        "name": article.author.name
-      },
-      "keywords": tags.join(', '),
-      //@ts-ignore
-      "publisher": {
-        "@id": "#publisher"
-      },
-    }}/>;
+  return <>
+    <JsonLd<JsonArticle>
+      item={{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": article.title,
+        "image": `https://web-api.shokz.tv/${article.cover}`,
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://shokz.tv/artikel/" + article.slug
+        },
+        "datePublished": dayjs.unix(article.created).toISOString(),
+        "dateModified": dayjs.unix(article.created).toISOString(),
+        "author": {
+          "@type": "Person",
+          "url": article.author.profileUrl,
+          "name": article.author.name
+        },
+        "keywords": tags.join(', '),
+        //@ts-ignore
+        "publisher": {
+          "@id": "#publisher"
+        },
+      }}/>
+      <JsonLd<WebPage>
+        item={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          //@ts-ignore
+          "publisher": {
+            "@id":  "#publisher"
+          },
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@type": "WebPage",
+                "url": "https://shokz.tv/",
+                "name": "shokzTV"
+              }
+            }, {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@type": "WebPage",
+                "url": "https://shokz.tv/artikel/",
+                "name": "Artikel"
+              }
+            }]
+          },
+        }}
+      />
+    </>;
 }
 
 interface Props {
@@ -103,7 +135,7 @@ export default function PageFrame({
             ]
         }}
       />
-      <JsonLd<WebPage>
+      {!seoArticle && <JsonLd<WebPage>
         item={{
             "@context": "https://schema.org",
             "@type": "WebPage",
@@ -112,7 +144,7 @@ export default function PageFrame({
               "@id":  "#publisher"
             },
         }}
-      />
+      />}
       {seoArticle && <JsonLDArticle article={seoArticle} />}
     </Head>
 
