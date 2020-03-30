@@ -91,7 +91,10 @@ export default function PageFrame({
             "@id": "#publisher",
             name: "shokzTV",
             url: "https://shokz.tv/",
-            logo: "https://shokz.tv/images/logo.png",
+            logo: {
+              "@type": 'ImageObject',
+              url: "https://shokz.tv/images/logo.png",
+            },
             sameAs: [
                 "https://www.instagram.com/shokztv/",
                 "https://twitter.com/shokztv/",
