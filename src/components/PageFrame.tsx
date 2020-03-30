@@ -137,7 +137,7 @@ export default function PageFrame({
           ],
         }}
       />
-      {seoArticles.length > 0 && <JsonLd<ItemList>
+      {seoArticles && seoArticles.length > 0 && <JsonLd<ItemList>
         item={{
           "@context": 'https://schema.org',
           "@type": "ItemList",
