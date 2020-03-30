@@ -53,6 +53,7 @@ function JsonLDArticle({article}: { article: Article }) {
               "@type": "ListItem",
               "position": 1,
               "item": {
+                "@id": "https://shokz.tv/",
                 "@type": "WebPage",
                 "url": "https://shokz.tv/",
                 "name": "shokzTV",
@@ -61,6 +62,7 @@ function JsonLDArticle({article}: { article: Article }) {
               "@type": "ListItem",
               "position": 2,
               "item": {
+                "@id": "https://shokz.tv/artikel/",
                 "@type": "WebPage",
                 "url": "https://shokz.tv/artikel/",
                 "name": "Artikel",
