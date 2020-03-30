@@ -19,17 +19,11 @@ function JsonLDArticle({article}: {article: Article}) {
     item={{
       "@context": "https://schema.org",
       "@type": "Article",
-      "@id": "#article",
+      "headline": article.title,
+      "image": `https://web-api.shokz.tv/${article.cover}`,
       "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "https://shokz.tv/artikel/" + article.slug
-      },
-      "headline": article.title,
-      "image": {
-        "@type": "ImageObject",
-        "url": `https://web-api.shokz.tv/${article.cover}`,
-        "width": 512,
-        "height": 288
       },
       "datePublished": dayjs.unix(article.created).toISOString(),
       "dateModified": dayjs.unix(article.created).toISOString(),
@@ -39,6 +33,7 @@ function JsonLDArticle({article}: {article: Article}) {
         "name": article.author.name
       },
       "keywords": tags.join(', '),
+      //@ts-ignore
       "publisher": {
         "@id": "#publisher"
       },
@@ -90,25 +85,31 @@ export default function PageFrame({
       <link rel="preconnect" href="//www.google-analytics.com" />
       <link rel="preconnect" href="//staging-api.shokz.tv" />
       <JsonLd<Organization>
-      item={{
-          "@context": "http://schema.org",
-          "@type": "Organization",
-          "@id": "#publisher",
-          "name": "shokzTV",
-          "url": "https://shokz.tv/",
-          "logo": {
-              "@type": "ImageObject",
-              "url": "https://shokz.tv/images/logo.png",
-              "width": 131,
-              "height": 56
-          },
-          "sameAs": [
-              "https://www.instagram.com/shokztv/",
-              "https://twitter.com/shokztv/",
-              "https://www.twitch.tv/shokztv",
-              "https://www.youtube.com/channel/UCbSSQP3v0syCn9_-e089HgA"
-          ]
-      }}/>  
+        item={{
+            "@context": 'https://schema.org',
+            "@type": "Organization",
+            "@id": "#publisher",
+            name: "shokzTV",
+            url: "https://shokz.tv/",
+            logo: "https://shokz.tv/images/logo.png",
+            sameAs: [
+                "https://www.instagram.com/shokztv/",
+                "https://twitter.com/shokztv/",
+                "https://www.twitch.tv/shokztv",
+                "https://www.youtube.com/channel/UCbSSQP3v0syCn9_-e089HgA"
+            ]
+        }}
+      />
+      <JsonLd<WebPage>
+        item={{
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            //@ts-ignore
+            "publisher": {
+              "@id":  "#publisher"
+            },
+        }}
+      />
       <JsonLd<WebPage>
       item={{
           "@context": "http://schema.org",
