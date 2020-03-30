@@ -10,7 +10,7 @@ import { Article } from '../api/@types/Article';
 import dayjs from 'dayjs';
 import { Event } from '../api/@types/Event';
 import ReactVisibilitySensor from 'react-visibility-sensor';
-import { Article as JsonArticle } from "schema-dts";
+import { Article as JsonArticle, Organization, WebPage } from "schema-dts";
 import { JsonLd } from "react-schemaorg";
 
 function JsonLDArticle({article}: {article: Article}) {
@@ -89,8 +89,8 @@ export default function PageFrame({
       <link rel="manifest" href="/manifest.json" />
       <link rel="preconnect" href="//www.google-analytics.com" />
       <link rel="preconnect" href="//staging-api.shokz.tv" />
-      <script type="application/ld+json">
-      {{
+      <JsonLd<Organization>
+      item={{
           "@context": "http://schema.org",
           "@type": "Organization",
           "@id": "#publisher",
@@ -108,17 +108,15 @@ export default function PageFrame({
               "https://www.twitch.tv/shokztv",
               "https://www.youtube.com/channel/UCbSSQP3v0syCn9_-e089HgA"
           ]
-      }}
-      </script>    
-      <script type="application/ld+json">
-      {{
+      }}/>  
+      <JsonLd<WebPage>
+      item={{
           "@context": "http://schema.org",
           "@type": "WebPage",
           "publisher": {
               "@id": "#publisher"
           }
-      }}
-      </script> 
+      }}/>
       {seoArticle && <JsonLDArticle article={seoArticle} />}
     </Head>
 
