@@ -1,19 +1,18 @@
-import React, { ReactElement, ReactNode, useEffect } from 'react';
+import React, {ReactElement, ReactNode} from 'react';
 import Head from "next/head";
-import { COLORS } from '../style/colors';
+import {COLORS} from '../style/colors';
 import Footer from './Footer';
 import MainEvent from './block/MainEvent';
 import Navigation from './Navigation';
-import AlphaInfo from './block/AlphaInfo';
 import FeaturedStreamer from './block/FeaturedStreamer';
-import { Article } from '../api/@types/Article';
+import {Article} from '../api/@types/Article';
 import dayjs from 'dayjs';
-import { Event } from '../api/@types/Event';
+import {Event} from '../api/@types/Event';
 import ReactVisibilitySensor from 'react-visibility-sensor';
-import { Article as JsonArticle, Organization, WebPage } from "schema-dts";
-import { JsonLd } from "react-schemaorg";
+import {Article as JsonArticle, ItemList, Organization, WebPage} from "schema-dts";
+import {JsonLd} from "react-schemaorg";
 
-function JsonLDArticle({article}: {article: Article}) {
+function JsonLDArticle({article}: { article: Article }) {
   const tags = article.tags.map(({name}) => name);
   return <>
     <JsonLd<JsonArticle>
@@ -24,70 +23,72 @@ function JsonLDArticle({article}: {article: Article}) {
         "image": `https://web-api.shokz.tv/${article.cover}`,
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://shokz.tv/artikel/" + article.slug
+          "@id": "https://shokz.tv/artikel/" + article.slug,
         },
         "datePublished": dayjs.unix(article.created).toISOString(),
         "dateModified": dayjs.unix(article.created).toISOString(),
         "author": {
           "@type": "Person",
           "url": article.author.profileUrl,
-          "name": article.author.name
+          "name": article.author.name,
         },
         "keywords": tags.join(', '),
         //@ts-ignore
         "publisher": {
-          "@id": "#publisher"
+          "@id": "#publisher",
         },
       }}/>
-      <JsonLd<WebPage>
-        item={{
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          //@ts-ignore
-          "publisher": {
-            "@id":  "#publisher"
-          },
-          "breadcrumb": {
-            "@type": "BreadcrumbList",
-            "itemListElement": [{
+    <JsonLd<WebPage>
+      item={{
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        //@ts-ignore
+        "publisher": {
+          "@id": "#publisher",
+        },
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
               "@type": "ListItem",
               "position": 1,
               "item": {
                 "@type": "WebPage",
                 "url": "https://shokz.tv/",
-                "name": "shokzTV"
-              }
+                "name": "shokzTV",
+              },
             }, {
               "@type": "ListItem",
               "position": 2,
               "item": {
                 "@type": "WebPage",
                 "url": "https://shokz.tv/artikel/",
-                "name": "Artikel"
-              }
-            }]
-          },
-        }}
-      />
-    </>;
+                "name": "Artikel",
+              },
+            },
+          ],
+        },
+      }}
+    />
+  </>;
 }
 
 interface Props {
-    children: ReactNode;
-    title?: string;
-    seoArticle?: Article;
-    seoArticles?: Article[];
-    mainEvent: Event;
-    ogTitle?: string;
-    ogDescription?: string;
-    ogImage?: string;
+  children: ReactNode;
+  title?: string;
+  seoArticle?: Article;
+  seoArticles?: Article[];
+  mainEvent: Event;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
 }
 
 export default function PageFrame({
-  children, 
-  title = null, 
-  seoArticle = null, 
-  seoArticles = null, 
+  children,
+  title = null,
+  seoArticle = null,
+  seoArticles = null,
   mainEvent,
   ogTitle = 'Events, Neuigkeiten, Interviews, Videos & mehr',
   ogDescription = 'Die deutschsprachige Dota 2 Startseite | Events, Neuigkeiten, Interviews, Videos & mehr | Exklusiver Partner der ESL Meisterschaft in Dota 2',
@@ -97,60 +98,74 @@ export default function PageFrame({
   return <>
     <Head>
       <title>shokzTV {title && ` - ${title}`}</title>
-      <meta charSet="UTF-8" />
-      <meta name="google" content="notranslate" />
-      <meta httpEquiv="Content-Language" content="de" />
-      <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
+      <meta charSet="UTF-8"/>
+      <meta name="google" content="notranslate"/>
+      <meta httpEquiv="Content-Language" content="de"/>
+      <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"/>
 
-      <meta property="og:site_name" content="shokzTV - Die deutschsprachige Dota 2 Startseite" />
-      <meta property="og:title" content={ogTitle} />
-      <meta property="og:description" content={ogDescription} />
-      <meta property="og:image" content={ogImage} />
-      <meta property="og:url" content="https://shokz.tv/" />
-      <meta property="og:type" content="website" />
-      <meta name="twitter:card" content="summary_large_image" />
+      <meta property="og:site_name" content="shokzTV - Die deutschsprachige Dota 2 Startseite"/>
+      <meta property="og:title" content={ogTitle}/>
+      <meta property="og:description" content={ogDescription}/>
+      <meta property="og:image" content={ogImage}/>
+      <meta property="og:url" content="https://shokz.tv/"/>
+      <meta property="og:type" content="website"/>
+      <meta name="twitter:card" content="summary_large_image"/>
 
-      <meta name="description" content="Die deutschsprachige Dota 2 Startseite | Events, Neuigkeiten, Interviews, Videos & mehr | Exklusiver Partner der ESL Meisterschaft in Dota 2" />
-      <link rel="apple-touch-icon" href="images/apple-touch-icon.png"></link>
-      <meta name="theme-color" content="#0A1C3F" />
-      <link rel="manifest" href="/manifest.json" />
-      <link rel="preconnect" href="//www.google-analytics.com" />
-      <link rel="preconnect" href="//staging-api.shokz.tv" />
+      <meta name="description"
+            content="Die deutschsprachige Dota 2 Startseite | Events, Neuigkeiten, Interviews, Videos & mehr | Exklusiver Partner der ESL Meisterschaft in Dota 2"/>
+      <link rel="apple-touch-icon" href="images/apple-touch-icon.png"/>
+      <meta name="theme-color" content="#0A1C3F"/>
+      <link rel="manifest" href="/manifest.json"/>
+      <link rel="preconnect" href="//www.google-analytics.com"/>
+      <link rel="preconnect" href="//web-api.shokz.tv/"/>
       <JsonLd<Organization>
         item={{
-            "@context": 'https://schema.org',
-            "@type": "Organization",
-            "@id": "#publisher",
-            name: "shokzTV",
-            url: "https://shokz.tv/",
-            logo: {
-              "@type": 'ImageObject',
-              url: "https://shokz.tv/images/logo.png",
-            },
-            sameAs: [
-                "https://www.instagram.com/shokztv/",
-                "https://twitter.com/shokztv/",
-                "https://www.twitch.tv/shokztv",
-                "https://www.youtube.com/channel/UCbSSQP3v0syCn9_-e089HgA"
-            ]
+          "@context": 'https://schema.org',
+          "@type": "Organization",
+          "@id": "#publisher",
+          name: "shokzTV",
+          url: "https://shokz.tv/",
+          logo: {
+            "@type": 'ImageObject',
+            url: "https://shokz.tv/images/logo.png",
+          },
+          sameAs: [
+            "https://www.instagram.com/shokztv/",
+            "https://twitter.com/shokztv/",
+            "https://www.twitch.tv/shokztv",
+            "https://www.youtube.com/channel/UCbSSQP3v0syCn9_-e089HgA",
+          ],
         }}
       />
-      {!seoArticle && <JsonLd<WebPage>
+      {seoArticles.length > 0 && <JsonLd<ItemList>
         item={{
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            //@ts-ignore
-            "publisher": {
-              "@id":  "#publisher"
-            },
+          "@context": 'https://schema.org',
+          "@type": "ItemList",
+          itemListElement: seoArticles.map((article, index) => (
+            {
+              "@type": "ListItem",
+              position: index + 1,
+              url: "https://shokz.tv/artikel/" + article.slug,
+            })
+          ),
         }}
       />}
-      {seoArticle && <JsonLDArticle article={seoArticle} />}
+      {!seoArticle && <JsonLd<WebPage>
+        item={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          //@ts-ignore
+          "publisher": {
+            "@id": "#publisher",
+          },
+        }}
+      />}
+      {seoArticle && <JsonLDArticle article={seoArticle}/>}
     </Head>
 
-    <Navigation />    
+    <Navigation/>
     <MainEvent mainEvent={mainEvent}/>
-    
+
     <div className={'page'}>
       <div className={'pageWrapper'}>
         <div>
@@ -160,13 +175,13 @@ export default function PageFrame({
         </div>
       </div>
     </div>
-    <ReactVisibilitySensor  scrollCheck partialVisibility={true}>
-      {({ isVisible }) => <>
+    <ReactVisibilitySensor scrollCheck partialVisibility={true}>
+      {({isVisible}) => <>
         <div style={{height: '1px'}}/>
-        <FeaturedStreamer isVisible={isVisible} />
+        <FeaturedStreamer isVisible={isVisible}/>
       </>}
     </ReactVisibilitySensor>
-    <Footer />
+    <Footer/>
 
     <style jsx>{`
       .page {
@@ -184,10 +199,10 @@ export default function PageFrame({
           width: 100%;
       }
 
-      @media only screen and (max-width: 425px) { 
+      @media only screen and (max-width: 425px) {
         .pageWrapper {
           padding: 20px 15px 40px 15px;
-        } 
+        }
       }
     `}</style>
 
