@@ -10,35 +10,37 @@ import { Article } from '../api/@types/Article';
 import dayjs from 'dayjs';
 import { Event } from '../api/@types/Event';
 import ReactVisibilitySensor from 'react-visibility-sensor';
-import { NewsArticle } from "schema-dts";
+import { Article } from "schema-dts";
 import { JsonLd } from "react-schemaorg";
 
 function JsonLDArticle({article}: {article: Article}) {
-  return <JsonLd<NewsArticle>
+  const tags = article.tags.map(({name}) => name);
+  return <JsonLd<Article>
     item={{
       "@context": "https://schema.org",
-      "@type": "NewsArticle",
+      "@type": "Article",
+      "@id": "#article",
       "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "https://shokz.tv/artikel/" + article.slug
       },
       "headline": article.title,
-      "image": [
-        article.cover,
-       ],
+      "image": {
+        "@type": "ImageObject",
+        "url": `https://web-api.shokz.tv/${article.cover}`,
+        "width": 512,
+        "height": 288
+      },
       "datePublished": dayjs.unix(article.created).toISOString(),
       "dateModified": dayjs.unix(article.created).toISOString(),
       "author": {
         "@type": "Person",
+        "url": article.author.profileUrl,
         "name": article.author.name
       },
-       "publisher": {
-        "@type": "Organization",
-        "name": "shokzTV",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://shokz.tv/images/logo.png"
-        }
+      "keywords": tags.join(', '),
+      "publisher": {
+        "@id": "#publisher"
       },
     }}/>;
 }
@@ -87,9 +89,37 @@ export default function PageFrame({
       <link rel="manifest" href="/manifest.json" />
       <link rel="preconnect" href="//www.google-analytics.com" />
       <link rel="preconnect" href="//staging-api.shokz.tv" />
-
+      <script type="application/ld+json">
+      {
+          "@context": "http://schema.org",
+          "@type": "Organization",
+          "@id": "#publisher",
+          "name": "shokzTV",
+          "url": "https://shokz.tv/",
+          "logo": {
+              "@type": "ImageObject",
+              "url": "https://shokz.tv/images/logo.png",
+              "width": 131,
+              "height": 56
+          },
+          "sameAs": [
+              "https://www.instagram.com/shokztv/",
+              "https://twitter.com/shokztv/",
+              "https://www.twitch.tv/shokztv",
+              "https://www.youtube.com/channel/UCbSSQP3v0syCn9_-e089HgA"
+          ]
+      }
+      </script>    
+      <script type="application/ld+json">
+      {
+          "@context": "http://schema.org",
+          "@type": "WebPage",
+          "publisher": {
+              "@id": "#publisher"
+          }
+      }
+      </script> 
       {seoArticle && <JsonLDArticle article={seoArticle} />}
-      {seoArticles && seoArticles.length > 0 && seoArticles.map((article) => <JsonLDArticle key={article.id} article={article} />)}
     </Head>
 
     <Navigation />    
