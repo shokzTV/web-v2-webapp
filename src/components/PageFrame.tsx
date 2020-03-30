@@ -110,14 +110,6 @@ export default function PageFrame({
             },
         }}
       />
-      <JsonLd<WebPage>
-      item={{
-          "@context": "http://schema.org",
-          "@type": "WebPage",
-          "publisher": {
-              "@id": "#publisher"
-          }
-      }}/>
       {seoArticle && <JsonLDArticle article={seoArticle} />}
     </Head>
 
