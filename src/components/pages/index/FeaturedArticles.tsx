@@ -93,6 +93,7 @@ export default function FeaturedArticles({featured}: {featured: Partial<Article[
 
             .pastArticleHeader .header {
                 align-self: flex-end;
+                width: 100%;
             }
 
             @media only screen and (max-width: 768px) { 
