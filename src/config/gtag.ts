@@ -1,4 +1,4 @@
-export const GA_TRACKING_ID = 'UA-160269810-1';
+export const GA_TRACKING_ID = 'UA-160269810-2';
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = url => {
