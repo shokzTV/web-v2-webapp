@@ -31,6 +31,6 @@ export default function tag({tag, mainEvent}: {tag: Tag; mainEvent: Event}): Rea
     return <PageFrame title={tag && tag.name} mainEvent={mainEvent} ogTitle={tag && tag.name} ogDescription={tag && tag.description} ogImage={getImageUrl(tag && tag.image)}>
         <SingleTagView tag={tag} />
 
-        <Share url={`https://shokz.tv/kategorie/${tag && tag.slug}`} title={tag && tag.name} text={tag && tag.description} />
+        <Share url={`https://dota2.shokz.tv/kategorie/${tag && tag.slug}`} title={tag && tag.name} text={tag && tag.description} />
     </PageFrame>;
 }
