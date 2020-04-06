@@ -30,6 +30,6 @@ export default function event({event, mainEvent}: {event: Event; mainEvent: Even
     return <PageFrame title={event && event.name} mainEvent={mainEvent} ogTitle={event && event.name} ogDescription={event && event.descriptionShort.length > 0 ? event.descriptionShort : null} ogImage={getImageUrl(tag && tag.image)}>
         <SingleEventView event={event} />
         
-        <Share url={`https://shokz.tv/event/${event && event.slug}`} title={event && event.name} text={event && event.descriptionShort} />
+        <Share url={`https://dota2.shokz.tv/event/${event && event.slug}`} title={event && event.name} text={event && event.descriptionShort} />
     </PageFrame>;
 }

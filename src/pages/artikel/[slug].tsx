@@ -32,6 +32,6 @@ export default function article({article, mainEvent}: {article: Article; mainEve
     return <PageFrame title={article && article.title} seoArticle={article} mainEvent={mainEvent} ogTitle={article && article.title} ogImage={getImageUrl(article && article.cover)}>
         <SingleArticleView article={article} />
 
-        <Share url={`https://shokz.tv/artikel/${article && article.slug}`} title={article && article.title} />
+        <Share url={`https://dota2.shokz.tv/artikel/${article && article.slug}`} title={article && article.title} />
     </PageFrame>;
 }

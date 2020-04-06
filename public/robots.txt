@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://shokz.tv/sitemap.xml
+Sitemap: https://dota2.shokz.tv/sitemap.xml

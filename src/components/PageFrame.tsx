@@ -23,7 +23,7 @@ function JsonLDArticle({article}: { article: Article }) {
         "image": `https://web-api.shokz.tv/${article.cover}`,
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://shokz.tv/artikel/" + article.slug,
+          "@id": "https://dota2.shokz.tv/artikel/" + article.slug,
         },
         "datePublished": dayjs.unix(article.created).toISOString(),
         "dateModified": dayjs.unix(article.created).toISOString(),
@@ -53,18 +53,18 @@ function JsonLDArticle({article}: { article: Article }) {
               "@type": "ListItem",
               "position": 1,
               "item": {
-                "@id": "https://shokz.tv/",
+                "@id": "https://dota2.shokz.tv/",
                 "@type": "WebPage",
-                "url": "https://shokz.tv/",
+                "url": "https://dota2.shokz.tv/",
                 "name": "shokzTV",
               },
             }, {
               "@type": "ListItem",
               "position": 2,
               "item": {
-                "@id": "https://shokz.tv/artikel/",
+                "@id": "https://dota2.shokz.tv/artikel/",
                 "@type": "WebPage",
-                "url": "https://shokz.tv/artikel/",
+                "url": "https://dota2.shokz.tv/artikel/",
                 "name": "Artikel",
               },
             },
@@ -94,7 +94,7 @@ export default function PageFrame({
   mainEvent,
   ogTitle = 'Events, Neuigkeiten, Interviews, Videos & mehr',
   ogDescription = 'Die deutschsprachige Dota 2 Startseite | Events, Neuigkeiten, Interviews, Videos & mehr | Exklusiver Partner der ESL Meisterschaft in Dota 2',
-  ogImage = 'https://shokz.tv/images/share.jpg',
+  ogImage = 'https://dota2.shokz.tv/images/share.jpg',
 
 }: Props): ReactElement {
   return <>
@@ -109,7 +109,7 @@ export default function PageFrame({
       <meta property="og:title" content={ogTitle}/>
       <meta property="og:description" content={ogDescription}/>
       <meta property="og:image" content={ogImage}/>
-      <meta property="og:url" content="https://shokz.tv/"/>
+      <meta property="og:url" content="https://dota2.shokz.tv/"/>
       <meta property="og:type" content="website"/>
       <meta name="twitter:card" content="summary_large_image"/>
 
@@ -126,10 +126,10 @@ export default function PageFrame({
           "@type": "Organization",
           "@id": "#publisher",
           name: "shokzTV",
-          url: "https://shokz.tv/",
+          url: "https://dota2.shokz.tv/",
           logo: {
             "@type": 'ImageObject',
-            url: "https://shokz.tv/images/logo.png",
+            url: "https://dota2.shokz.tv/images/logo.png",
           },
           sameAs: [
             "https://www.instagram.com/shokztv/",
@@ -147,7 +147,7 @@ export default function PageFrame({
             {
               "@type": "ListItem",
               position: index + 1,
-              url: "https://shokz.tv/artikel/" + article.slug,
+              url: "https://dota2.shokz.tv/artikel/" + article.slug,
             })
           ),
         }}
