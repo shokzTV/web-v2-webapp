@@ -192,7 +192,7 @@ export default function PageFrame({
               position: index + 1,
               name: news.headline,
               description: news.description,
-              url: news.source,
+              url: 'https://dota2.shokz.tv/kurznachrichten',
             })
           ),
         }}
