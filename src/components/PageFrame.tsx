@@ -107,7 +107,6 @@ interface Props {
   seoArticle?: Article;
   seoArticles?: Article[];
   seoEvents?: Event[];
-  seoNews?: News[];
   mainEvent: Event;
   ogTitle?: string;
   ogDescription?: string;
@@ -120,7 +119,6 @@ export default function PageFrame({
   seoArticle = null,
   seoArticles = null,
   seoEvents = null,
-  seoNews = null,
   mainEvent,
   ogTitle = 'Events, Neuigkeiten, Interviews, Videos & mehr',
   ogDescription = 'Die deutschsprachige Dota 2 Startseite | Events, Neuigkeiten, Interviews, Videos & mehr | Exklusiver Partner der ESL Meisterschaft in Dota 2',
@@ -172,6 +170,22 @@ export default function PageFrame({
         }}
       />
       {seoArticles && seoArticles.length > 0 && seoArticles.map((article) => <JsonLDArticle key={article.id} article={article}/>)}
+      {seoArticles && seoArticles.length > 0 && <JsonLd<ItemList>
+        item={{
+          "@context": 'https://schema.org',
+          "@type": "ItemList",
+          itemListElement: seoArticles.map((article, index) => (
+            {
+              "@type": "ListItem",
+              position: index + 1,
+              name: article.title,
+              description: article.body,
+              image: `https://web-api.shokz.tv/${article.cover}`,
+              url: "https://dota2.shokz.tv/artikel/" + article.slug,
+            })
+          ),
+        }}
+      />}
       {!seoArticle && <JsonLd<WebPage>
         item={{
           "@context": "https://schema.org",
@@ -180,20 +194,6 @@ export default function PageFrame({
           "publisher": {
             "@id": "#publisher",
           },
-        }}
-      />}
-      {seoNews && seoNews.length > 0 && <JsonLd<ItemList>
-        item={{
-          "@context": 'https://schema.org',
-          "@type": "ItemList",
-          itemListElement: seoNews.map((news, index) => (
-            {
-              "@type": "ListItem",
-              position: index + 1,
-              name: news.headline,
-              description: news.description
-            })
-          ),
         }}
       />}
       {seoEventsFiltered && seoEventsFiltered.length > 0 && seoEventsFiltered.map((event) => <JsonLdEvent event={event} key={event.id} />)}
