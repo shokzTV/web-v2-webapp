@@ -33,7 +33,7 @@ function sort({start: aStart, end: aEnd}: Event, {start: bStart, end: bEnd}: Eve
 
 interface Props {
   featuredArticles: Partial<Article[]>;
-  featuredEvents: Partial<Event>[];
+  featuredEvents: Event[];
   mainEvent: Event;
   lastNews: News[];
   videos: Video[];
@@ -57,7 +57,7 @@ export async function getStaticProps() {
 }
 
 export default function index({featuredArticles, featuredEvents, mainEvent, lastNews, videos}: Props): ReactElement {
-  return <PageFrame title={'Die deutsche Dota2 Startseite'} mainEvent={mainEvent} seoArticles={featuredArticles}>
+  return <PageFrame title={'Die deutsche Dota2 Startseite'} mainEvent={mainEvent} seoArticles={featuredArticles} seoEvents={featuredEvents}>
     
     <FeaturedArticles featured={featuredArticles}/>
 
