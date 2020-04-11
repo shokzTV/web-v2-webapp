@@ -73,7 +73,7 @@ function JsonLDWebPage() {
 }
 
 function JsonLDArticle({article}: { article: Article }) {
-  const tags = article.tags.map(({name}) => name);
+  const tags = article.tags ? article.tags.map(({name}) => name) : [];
   return <>
     <JsonLd<JsonArticle>
       item={{
