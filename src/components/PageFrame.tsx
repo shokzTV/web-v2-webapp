@@ -1,4 +1,4 @@
-import React, {ReactElement, ReactNode} from 'react';
+import React, {ReactElement, ReactNode, useMemo} from 'react';
 import Head from "next/head";
 import {COLORS} from '../style/colors';
 import Footer from './Footer';
@@ -9,8 +9,31 @@ import {Article} from '../api/@types/Article';
 import dayjs from 'dayjs';
 import {Event} from '../api/@types/Event';
 import ReactVisibilitySensor from 'react-visibility-sensor';
-import {Article as JsonArticle, ItemList, Organization, WebPage} from "schema-dts";
+import {Article as JsonArticle, ItemList, Organization, WebPage, Event as JsonEvent} from "schema-dts";
 import {JsonLd} from "react-schemaorg";
+import { News } from '../api/@types/News';
+
+function JsonLdEvent({event}: {event: Event}) {
+  const image = event.tags[0].image;
+  const homepageLink = event.links.find(({linkType}) => linkType === 'homepage');
+  const locationUrl = homepageLink ? homepageLink.link : `https://dota2.shokz.tv/event/${event.slug}`;
+  return <JsonLd<JsonEvent>
+    item={{
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "startDate": dayjs.unix(event.start).toISOString(),
+      "endDate": dayjs.unix(event.end).toISOString(),
+      "name": event.name,
+      "location": {
+        "@type": "VirtualLocation",
+        "name": event.location,
+        "url": locationUrl
+      },
+      "description": event.descriptionShort,
+      "image": `https://web-api.shokz.tv/${image}`,
+    }}  
+   />;
+}
 
 function JsonLDArticle({article}: { article: Article }) {
   const tags = article.tags.map(({name}) => name);
@@ -80,6 +103,8 @@ interface Props {
   title?: string;
   seoArticle?: Article;
   seoArticles?: Article[];
+  seoEvents?: Event[];
+  seoNews?: News[];
   mainEvent: Event;
   ogTitle?: string;
   ogDescription?: string;
@@ -91,12 +116,16 @@ export default function PageFrame({
   title = null,
   seoArticle = null,
   seoArticles = null,
+  seoEvents = null,
+  seoNews = null,
   mainEvent,
   ogTitle = 'Events, Neuigkeiten, Interviews, Videos & mehr',
   ogDescription = 'Die deutschsprachige Dota 2 Startseite | Events, Neuigkeiten, Interviews, Videos & mehr | Exklusiver Partner der ESL Meisterschaft in Dota 2',
   ogImage = 'https://dota2.shokz.tv/images/share.jpg',
 
 }: Props): ReactElement {
+  const seoEventsFiltered = useMemo<Event[]>(() => seoEvents && seoEvents.filter(({id}) => !mainEvent || mainEvent.id !== id), [mainEvent, seoEvents]);
+
   return <>
     <Head>
       <title>shokzTV {title && ` - ${title}`}</title>
@@ -162,7 +191,37 @@ export default function PageFrame({
           },
         }}
       />}
+      {seoEventsFiltered && seoEventsFiltered.length > 0 && <JsonLd<ItemList>
+        item={{
+          "@context": 'https://schema.org',
+          "@type": "ItemList",
+          itemListElement: seoEventsFiltered.map((event, index) => (
+            {
+              "@type": "ListItem",
+              position: index + 1,
+              url: "https://dota2.shokz.tv/event/" + event.slug,
+            })
+          ),
+        }}
+      />}
+      {seoNews && seoNews.length > 0 && <JsonLd<ItemList>
+        item={{
+          "@context": 'https://schema.org',
+          "@type": "ItemList",
+          itemListElement: seoNews.map((news, index) => (
+            {
+              "@type": "ListItem",
+              position: index + 1,
+              name: news.headline,
+              description: news.description,
+              url: news.source,
+            })
+          ),
+        }}
+      />}
+      {seoEventsFiltered && seoEventsFiltered.length > 0 && seoEventsFiltered.map((event) => <JsonLdEvent event={event} key={event.id} />)}
       {seoArticle && <JsonLDArticle article={seoArticle}/>}
+      {mainEvent && <JsonLdEvent event={mainEvent}  />}
     </Head>
 
     <Navigation/>
