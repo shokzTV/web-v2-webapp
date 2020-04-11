@@ -35,6 +35,43 @@ function JsonLdEvent({event}: {event: Event}) {
    />;
 }
 
+function JsonLDWebPage() {
+  return <JsonLd<WebPage>
+    item={{
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      //@ts-ignore
+      "publisher": {
+        "@id": "#publisher",
+      },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@id": "https://dota2.shokz.tv/",
+              "@type": "WebPage",
+              "url": "https://dota2.shokz.tv/",
+              "name": "shokzTV",
+            },
+          }, {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@id": "https://dota2.shokz.tv/artikel/",
+              "@type": "WebPage",
+              "url": "https://dota2.shokz.tv/artikel/",
+              "name": "Artikel",
+            },
+          },
+        ],
+      },
+    }}
+  />;
+}
+
 function JsonLDArticle({article}: { article: Article }) {
   const tags = article.tags.map(({name}) => name);
   return <>
@@ -61,40 +98,6 @@ function JsonLDArticle({article}: { article: Article }) {
           "@id": "#publisher",
         },
       }}/>
-    <JsonLd<WebPage>
-      item={{
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        //@ts-ignore
-        "publisher": {
-          "@id": "#publisher",
-        },
-        "breadcrumb": {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "item": {
-                "@id": "https://dota2.shokz.tv/",
-                "@type": "WebPage",
-                "url": "https://dota2.shokz.tv/",
-                "name": "shokzTV",
-              },
-            }, {
-              "@type": "ListItem",
-              "position": 2,
-              "item": {
-                "@id": "https://dota2.shokz.tv/artikel/",
-                "@type": "WebPage",
-                "url": "https://dota2.shokz.tv/artikel/",
-                "name": "Artikel",
-              },
-            },
-          ],
-        },
-      }}
-    />
   </>;
 }
 
@@ -168,19 +171,7 @@ export default function PageFrame({
           ],
         }}
       />
-      {seoArticles && seoArticles.length > 0 && <JsonLd<ItemList>
-        item={{
-          "@context": 'https://schema.org',
-          "@type": "ItemList",
-          itemListElement: seoArticles.map((article, index) => (
-            {
-              "@type": "ListItem",
-              position: index + 1,
-              url: "https://dota2.shokz.tv/artikel/" + article.slug,
-            })
-          ),
-        }}
-      />}
+      {seoArticles && seoArticles.length > 0 && seoArticles.map((article) => <JsonLDArticle key={article.id} article={article}/>)}
       {!seoArticle && <JsonLd<WebPage>
         item={{
           "@context": "https://schema.org",
@@ -189,19 +180,6 @@ export default function PageFrame({
           "publisher": {
             "@id": "#publisher",
           },
-        }}
-      />}
-      {seoEventsFiltered && seoEventsFiltered.length > 0 && <JsonLd<ItemList>
-        item={{
-          "@context": 'https://schema.org',
-          "@type": "ItemList",
-          itemListElement: seoEventsFiltered.map((event, index) => (
-            {
-              "@type": "ListItem",
-              position: index + 1,
-              url: "https://dota2.shokz.tv/event/" + event.slug,
-            })
-          ),
         }}
       />}
       {seoNews && seoNews.length > 0 && <JsonLd<ItemList>
@@ -220,7 +198,10 @@ export default function PageFrame({
         }}
       />}
       {seoEventsFiltered && seoEventsFiltered.length > 0 && seoEventsFiltered.map((event) => <JsonLdEvent event={event} key={event.id} />)}
-      {seoArticle && <JsonLDArticle article={seoArticle}/>}
+      {seoArticle && <>
+        <JsonLDArticle article={seoArticle}/>
+        <JsonLDWebPage />
+      </>}
       {mainEvent && <JsonLdEvent event={mainEvent}  />}
     </Head>
 
