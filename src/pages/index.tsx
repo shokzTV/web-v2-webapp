@@ -57,7 +57,7 @@ export async function getStaticProps() {
 }
 
 export default function index({featuredArticles, featuredEvents, mainEvent, lastNews, videos}: Props): ReactElement {
-  return <PageFrame title={'Die deutsche Dota2 Startseite'} mainEvent={mainEvent} seoArticles={featuredArticles} seoEvents={featuredEvents}>
+  return <PageFrame title={'Die deutsche Dota2 Startseite'} mainEvent={mainEvent} seoArticles={featuredArticles} seoEvents={featuredEvents} seoNews={lastNews}>
     
     <FeaturedArticles featured={featuredArticles}/>
 
