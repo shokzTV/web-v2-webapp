@@ -11,7 +11,12 @@ export default function FeaturedStreamer({isVisible}: {isVisible: boolean}): Rea
     const [streamer, setStreamer] = useState<Streamer[]>([]);
 
     useEffect(() => {
-        const load = async () => streamer.length === 0 && isVisible && setStreamer(await fetchOnlineStreamer());
+        const load = async () => {
+            if(streamer.length === 0 && isVisible) {
+                const online = await fetchOnlineStreamer();
+                setStreamer(online.sort(({viewer: a}, {viewer: b}) => b - a));
+            }
+        };
         load();
     }, [isVisible]);
 
