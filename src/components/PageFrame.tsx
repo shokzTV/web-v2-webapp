@@ -4,14 +4,11 @@ import {COLORS} from '../style/colors';
 import Footer from './Footer';
 import MainEvent from './block/MainEvent';
 import Navigation from './Navigation';
-import FeaturedStreamer from './block/FeaturedStreamer';
 import {Article} from '../api/@types/Article';
 import dayjs from 'dayjs';
 import {Event} from '../api/@types/Event';
-import ReactVisibilitySensor from 'react-visibility-sensor';
 import {Article as JsonArticle, ItemList, Organization, WebPage, Event as JsonEvent} from "schema-dts";
 import {JsonLd} from "react-schemaorg";
-import { News } from '../api/@types/News';
 
 function JsonLdEvent({event}: {event: Event}) {
   const image = event.tags[0].image;
@@ -216,12 +213,6 @@ export default function PageFrame({
         </div>
       </div>
     </div>
-    <ReactVisibilitySensor scrollCheck partialVisibility={true}>
-      {({isVisible}) => <>
-        <div style={{height: '1px'}}/>
-        <FeaturedStreamer isVisible={isVisible}/>
-      </>}
-    </ReactVisibilitySensor>
     <Footer/>
 
     <style jsx>{`
