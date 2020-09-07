@@ -19,9 +19,6 @@ const items: MenuItem[] = [{
     name: 'Events',
     path: '/events'
 }, {
-    name: 'News',
-    path: '/kurznachrichten'
-}, {
     name: 'Videos',
     path: '/videos'
 }];
