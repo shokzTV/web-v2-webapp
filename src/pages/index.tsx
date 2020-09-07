@@ -63,17 +63,6 @@ export default function index({featuredArticles, featuredEvents, mainEvent, last
 
     <Divider double/>
 
-    <div className={'row'}>
-      <div className={'col'}>
-        <FeaturedEvents featured={featuredEvents} />
-      </div>
-      <div className={'col'}>
-        <LastNews lastNews={lastNews}/>
-      </div>
-    </div>
-
-    <Divider double/>
-
     <LastVideos videos={videos} />
 
     <style jsx>{`
