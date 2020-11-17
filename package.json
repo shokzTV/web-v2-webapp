@@ -16,7 +16,7 @@
     "@types/react-truncate": "^2.3.3",
     "@types/styled-jsx": "^2.2.8",
     "classnames": "^2.2.6",
-    "dayjs": "^1.8.35",
+    "dayjs": "^1.9.6",
     "dotenv": "^8.2.0",
     "html-to-react": "^1.4.3",
     "isomorphic-unfetch": "^3.0.0",
