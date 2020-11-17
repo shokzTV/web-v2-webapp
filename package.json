@@ -34,7 +34,7 @@
     "react-visibility-sensor": "^5.1.1",
     "react-youtube-embed": "^1.0.3",
     "schema-dts": "^0.7.1",
-    "styled-jsx": "^3.3.0",
+    "styled-jsx": "^3.3.1",
     "yarn": "^1.22.5"
   },
   "devDependencies": {
